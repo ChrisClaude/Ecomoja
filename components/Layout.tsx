@@ -6,7 +6,11 @@ import {
 	faInstagramSquare,
 	faTwitterSquare,
 } from '@fortawesome/free-brands-svg-icons';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import {
+	faHeart,
+	faSearch,
+	faShoppingCart,
+} from '@fortawesome/free-solid-svg-icons';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -14,7 +18,15 @@ type LayoutProp = {
 	children: React.ReactNode;
 };
 
-library.add(fab, faFacebook, faTwitterSquare, faInstagramSquare, faCoffee);
+library.add(
+	fab,
+	faFacebook,
+	faTwitterSquare,
+	faInstagramSquare,
+	faShoppingCart,
+	faSearch,
+	faHeart,
+);
 
 const Layout = ({ children }: LayoutProp) => (
 	<div>
