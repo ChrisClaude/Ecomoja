@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,11 +8,6 @@
 
 // Bootstrap (all dependencies)
 @import "../node_modules/bootstrap/scss/bootstrap";
-
-// Components: Icons / Fonts
-@import "../node_modules/@fortawesome/fontawesome-free/scss/solid";
-@import "../node_modules/@fortawesome/fontawesome-free/scss/regular";
-@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
 
 // Oscar public side pages styles
 @import "alerts";
@@ -179,8 +176,10 @@ a.checkout-btn, a.wishlist-btn {
 	background-color: $white;
 
 	.list-group {
-		margin-top: $spacer / 2;
-		margin-bottom: $spacer / 2;
+		//margin-top: $spacer / 2;
+		margin-top: math.div($spacer, 2);
+		//margin-bottom: $spacer / 2;
+		margin-bottom: math.div($spacer, 2);
 		border-radius: 0;
 	}
 
@@ -193,7 +192,8 @@ a.checkout-btn, a.wishlist-btn {
 		border: none;
 
 		.fas {
-			font-size: $font-size-base / 1.5;
+			//font-size: $font-size-base / 1.5;
+			font-size: math.div($font-size-base, 1.5) ;
 		}
 
 		&:hover {
@@ -206,7 +206,8 @@ a.checkout-btn, a.wishlist-btn {
 .daily-deals {
 	width: 100%;
 	display: block;
-	padding: $spacer/1.5 1.25rem;
+	//padding: $spacer/1.5 1.25rem;
+	padding: math.div($spacer, 1.5) 1.25rem;
 	background-color: $ecolap-daily-deals;
 	color: $white !important;
 
@@ -434,7 +435,8 @@ a.checkout-btn, a.wishlist-btn {
 		height: auto;
 
 		a {
-			padding: $spacer/2 $spacer * 2;
+			//padding: $spacer/2 $spacer * 2;
+			padding: math.div($spacer, 2) $spacer * 2;
 			white-space: nowrap;
 			width: 100%;
 		}
@@ -655,11 +657,11 @@ a.checkout-btn, a.wishlist-btn {
 
 		span:first-child {
 			font-size: 1.2*$font-size-base;
-			margin-right: $spacer/2;
+			margin-right: math.div($spacer, 2);
 		}
 
 		span:nth-child(2) {
-			margin-right: $spacer/2;
+			margin-right: math.div($spacer, 2);
 		}
 	}
 
@@ -670,7 +672,7 @@ a.checkout-btn, a.wishlist-btn {
 
 	.rating-info-container {
 		width: 100%;
-		margin-top: $spacer/3;
+		margin-top: math.div($spacer, 3);
 
 		.fa-star {
 			color: $yellow;
