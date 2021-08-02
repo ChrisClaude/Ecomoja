@@ -114,7 +114,6 @@ const Header = () => (
 									href="#"
 									className="nav-link wishlist-btn py-1 px-3"
 								>
-									{/* <i className="fas fa-heart" /> */}
 									<FontAwesomeIcon icon="heart" />
 								</a>
 							</li>
@@ -124,7 +123,6 @@ const Header = () => (
 									href="#"
 									className="nav-link checkout-btn py-1 px-3"
 								>
-									{/* <i className="fas fa-shopping-cart mr-2" /> */}
 									<FontAwesomeIcon icon="shopping-cart" className="w-6" />
 								</a>
 							</li>
@@ -136,14 +134,12 @@ const Header = () => (
 							className="btn d-flex align-items-center justify-content-center h-100"
 							type="button"
 						>
-							{/* <i className="fas fa-search" /> */}
 							<FontAwesomeIcon icon="search" />
 						</button>
 						<button
 							className="btn d-flex align-items-center justify-content-center h-100"
 							type="button"
 						>
-							{/* <i className="fas fa-shopping-cart" /> */}
 							<FontAwesomeIcon icon="shopping-cart" />
 						</button>
 					</div>
