@@ -7,9 +7,11 @@ import {
 	faTwitterSquare,
 } from '@fortawesome/free-brands-svg-icons';
 import {
+	faChevronDown,
 	faHeart,
 	faSearch,
 	faShoppingCart,
+	faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import Header from './Header';
 import Footer from './Footer';
@@ -26,6 +28,8 @@ library.add(
 	faShoppingCart,
 	faSearch,
 	faHeart,
+	faStar,
+	faChevronDown,
 );
 
 const Layout = ({ children }: LayoutProp) => (
