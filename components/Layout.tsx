@@ -8,11 +8,13 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import {
 	faChevronDown,
+	faChevronRight,
 	faHeart,
 	faSearch,
 	faShoppingCart,
 	faStar,
 } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -30,6 +32,8 @@ library.add(
 	faHeart,
 	faStar,
 	faChevronDown,
+	faClock,
+	faChevronRight,
 );
 
 const Layout = ({ children }: LayoutProp) => (
