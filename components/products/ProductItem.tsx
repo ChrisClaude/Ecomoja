@@ -1,16 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
+import { Product } from '@/types/Product';
 
-export type Product = {
-	id: number;
-	name: string;
-	image: string;
-	description: string;
-	currentPrice: number;
-	oldPrice?: number;
-	rating?: number;
-	numberOfVotes?: number;
-};
+type ProductProps = Product;
 
 const ProductItem = ({
 	name,
@@ -19,7 +11,7 @@ const ProductItem = ({
 	oldPrice,
 	rating,
 	numberOfVotes,
-}: Product) => (
+}: ProductProps) => (
 	<div className="product-item">
 		<div className="d-flex justify-content-center w-100 product-item-header">
 			<img src={image} alt="product" />
@@ -30,19 +22,17 @@ const ProductItem = ({
 				<span>R {currentPrice}</span>
 				<span className="text-line-through text-muted">R {oldPrice}</span>
 				<img
-					src="/assets/info-product-item-icon.svg' %}"
+					src="/assets/info-product-item-icon.svg"
 					className="pricing-info-svg"
 					alt="Pricing info icon"
 				/>
 			</div>
 			<div className="rating-info-container">
-				<span>
+				<span className="mr-1">
 					<FontAwesomeIcon icon="star" />
 				</span>
-				<span>
-					{rating}
-					<span className="text-muted">{numberOfVotes}</span>
-				</span>
+				<span className="mr-1">{rating}</span>
+				<span className="text-muted">({numberOfVotes})</span>
 			</div>
 		</div>
 	</div>

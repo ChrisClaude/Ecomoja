@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import * as React from 'react';
 import Link from 'next/link';
 
@@ -206,11 +207,19 @@ const NavBarProductCategory = () => (
 	</>
 );
 
+const Logo = () => {
+	const src =
+		'https://crazeenvironmental.com/wp-content/uploads/2020/10/cropped-Web-Grey-logo-with-WB-160x101.png';
+	return (
+		<Image width={90} loader={() => src} height={50} src={src} alt="logo" />
+	);
+};
+
 const Header = () => (
 	<header>
 		<nav
 			id="top_page"
-			className="navbar navbar-expand-lg navbar-light bg-light accounts"
+			className="py-2 navbar navbar-expand-lg navbar-light bg-light accounts"
 		>
 			<div className="container">
 				<div className="row w-100 no-gutters">
@@ -229,11 +238,7 @@ const Header = () => (
 					<div className="col-8 col-sm-6 col-md-6 d-flex flex-row justify-content-center justify-content-sm-start align-items-sm-center px-0">
 						<Link href="/">
 							<a>
-								<img
-									className="logo mr-3"
-									src="https://crazeenvironmental.com/wp-content/uploads/2020/10/cropped-Web-Grey-logo-with-WB-160x101.png"
-									alt="logo"
-								/>
+								<Logo />
 							</a>
 						</Link>
 

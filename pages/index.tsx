@@ -1,64 +1,74 @@
 import * as React from 'react';
 import Layout from '@/components/Layout';
+import Catalogue from '@/components/Catalogue';
+
+const Banner = () => (
+	<section className="px-20 pb-5 pt-3 bg-white">
+		<div className="row">
+			<div className="col-md-9">
+				<div className="d-md-flex">
+					<div className="layout-spacer" />
+					<div className="slideshow-container">
+						<div className="slideshow-inner-container">
+							<div className="slides">
+								<img
+									src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+									alt="eco friendly product"
+								/>
+							</div>
+
+							<div className="slides">
+								<img
+									src="https://images.unsplash.com/photo-1563391506244-af91a410fcc9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80"
+									alt="eco friendly product"
+								/>
+							</div>
+
+							<div className="slides">
+								<img
+									src="https://images.unsplash.com/photo-1564419320408-38e24e038739?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+									alt="eco friendly product"
+								/>
+							</div>
+							<div className="slides">
+								<img
+									src="https://images.pexels.com/photos/4792666/pexels-photo-4792666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+									alt="eco friendly product"
+								/>
+							</div>
+						</div>
+						<a className="prev">&#10094;</a>
+						<a className="next">&#10095;</a>
+						{/* TODO: Add dot click action */}
+						<div className="dots-container">
+							<div className="dots active" />
+							<div className="dots" />
+							<div className="dots" />
+							<div className="dots" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div className="row mt-4">
+			<div className="col-md-9">
+				<div className="d-md-flex">
+					<div className="layout-spacer" />
+					<div className="feature-brands-container">
+						<h4 className="pb-2">Feature Brands</h4>
+						<div className="feature-brands-swiper" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+);
 
 export default function Home() {
 	return (
 		<Layout>
-			<h1 className="text-6xl font-bold">
-				Welcome to{' '}
-				<a className="text-blue-600" href="https://nextjs.org">
-					Next.js!
-				</a>
-			</h1>
-
-			<p className="mt-3 text-2xl">
-				Get started by editing{' '}
-				<code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-					pages/index.js
-				</code>
-			</p>
-
-			<div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-				<a
-					href="https://nextjs.org/docs"
-					className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-				>
-					<h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-					<p className="mt-4 text-xl">
-						Find in-depth information about Next.js features and API.
-					</p>
-				</a>
-
-				<a
-					href="https://nextjs.org/learn"
-					className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-				>
-					<h3 className="text-2xl font-bold">Learn &rarr;</h3>
-					<p className="mt-4 text-xl">
-						Learn about Next.js in an interactive course with quizzes!
-					</p>
-				</a>
-
-				<a
-					href="https://github.com/vercel/next.js/tree/master/examples"
-					className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-				>
-					<h3 className="text-2xl font-bold">Examples &rarr;</h3>
-					<p className="mt-4 text-xl">
-						Discover and deploy boilerplate example Next.js projects.
-					</p>
-				</a>
-
-				<a
-					href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-					className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-				>
-					<h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-					<p className="mt-4 text-xl">
-						Instantly deploy your Next.js site to a public URL with Vercel.
-					</p>
-				</a>
-			</div>
+			<Banner />
+			<Catalogue />
 		</Layout>
 	);
 }

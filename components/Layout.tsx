@@ -37,11 +37,9 @@ library.add(
 );
 
 const Layout = ({ children }: LayoutProp) => (
-	<div>
+	<div className="w-full">
 		<Header />
-		<main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-			{children}
-		</main>
+		<main>{children}</main>
 		<Footer />
 	</div>
 );

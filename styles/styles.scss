@@ -141,7 +141,7 @@ a.checkout-btn, a.wishlist-btn {
 }
 
 .banner {
-	display:none;
+	display: none;
 	height: auto;
 	background-color: $primary;
 }
@@ -193,7 +193,7 @@ a.checkout-btn, a.wishlist-btn {
 
 		.fas {
 			//font-size: $font-size-base / 1.5;
-			font-size: math.div($font-size-base, 1.5) ;
+			font-size: math.div($font-size-base, 1.5);
 		}
 
 		&:hover {
@@ -343,8 +343,8 @@ a.checkout-btn, a.wishlist-btn {
 }
 
 .change .bar3 {
-	-webkit-transform: rotate(45deg) translate(-25%,-50%);
-	transform: rotate(45deg) translate(-25%,-50%);
+	-webkit-transform: rotate(45deg) translate(-25%, -50%);
+	transform: rotate(45deg) translate(-25%, -50%);
 }
 
 .hamburger-menu {
@@ -444,7 +444,7 @@ a.checkout-btn, a.wishlist-btn {
 }
 
 .layout-spacer {
-	width: 28%;
+	width: 37%;
 }
 
 .layout-container {
@@ -561,12 +561,12 @@ a.checkout-btn, a.wishlist-btn {
 
 .prev-product {
 	@extend .prev;
-	display:none;
+	display: none;
 }
 
 .next-product {
 	@extend .next;
-	display:none;
+	display: none;
 }
 
 .products-container {
@@ -769,10 +769,13 @@ a.checkout-btn, a.wishlist-btn {
 		justify-content: space-between;
 	}
 
+	.product-item:first-child {
+		margin-top: 0;
+	}
+
 	.product-item {
 		width: 200px;
 		height: 290px;
-		margin-top: 0;
 	}
 
 	.prev-product {
@@ -784,7 +787,7 @@ a.checkout-btn, a.wishlist-btn {
 	}
 
 	.banner {
-		display:block;
+		display: block;
 	}
 
 	.daily-deals {
