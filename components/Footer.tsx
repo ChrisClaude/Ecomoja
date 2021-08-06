@@ -106,7 +106,7 @@ const Footer = () => (
 					</div>
 					<div className="social-icon-container mt-4 mt-md-0">
 						<h5 className="text-md-left">Follow us</h5>
-						<ul className="list-style-none d-flex justify-content-center justify-content-md-between m-0 pl-0 overflow-hidden">
+						<ul className="list-style-none d-flex justify-content-md-between m-0 pl-0 overflow-hidden">
 							<li className="mr-2 mr-md-0">
 								<a href="#" className="inline-block w-8">
 									<FontAwesomeIcon icon={['fab', 'facebook']} />
