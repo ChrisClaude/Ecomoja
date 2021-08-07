@@ -12,6 +12,8 @@ import {
 	faHeart,
 	faSearch,
 	faShoppingCart,
+	faSortDown,
+	faSortUp,
 	faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
@@ -34,14 +36,16 @@ library.add(
 	faChevronDown,
 	faClock,
 	faChevronRight,
+	faSortDown,
+	faSortUp,
 );
 
 const Layout = ({ children }: LayoutProp) => (
-	<div className="w-full">
+	<>
 		<Header />
 		<main>{children}</main>
 		<Footer />
-	</div>
+	</>
 );
 
 export default Layout;

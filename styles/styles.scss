@@ -1,25 +1,12 @@
 @use "sass:math";
 
+// Bootstrap (all dependencies)
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "variables";
-
-// Bootstrap (all dependencies)
-@import "../node_modules/bootstrap/scss/bootstrap";
-
-// Oscar public side pages styles
-@import "alerts";
-@import "checkout";
-@import "forms";
-@import "header";
-@import "layout";
-@import "plugins";
-@import "product_lists";
-@import "product_page";
-@import "reviews";
-@import "type";
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
@@ -51,6 +38,7 @@ $ecolap-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%);
 body {
 	font-size: 13px !important;
 	font-family: 'Roboto', sans-serif;
+	@apply bg-gray-200;
 }
 
 a {
@@ -100,7 +88,6 @@ a:hover {
 }
 
 .wishlist-btn {
-	position: absolute;
 	width: 33px;
 	height: 33px !important;
 	border-radius: 100%;
@@ -118,7 +105,6 @@ a:hover {
 }
 
 .checkout-btn {
-	position: absolute;
 	width: 75px;
 	height: 35px;
 	border-radius: 18px;
@@ -374,12 +360,6 @@ a.checkout-btn, a.wishlist-btn {
 	}
 }
 
-.shop-icons-list {
-	margin: 0;
-	padding: 0;
-	display: flex;
-}
-
 .navbar {
 	padding: 0;
 }
@@ -411,35 +391,6 @@ a.checkout-btn, a.wishlist-btn {
 	> .nav-expand-links-container {
 		height: 285px;
 		transition: height 0.7s ease;
-	}
-}
-
-.nav-expand-links-container {
-	position: absolute;
-	top: 30px;
-	left: 0.5px;
-	min-width: 150px;
-	background-color: white;
-	z-index: 5;
-	border-radius: 5px;
-	box-shadow: $ecolap-shadow;
-	height: 0;
-	overflow: hidden;
-
-	ul {
-		padding: 0;
-	}
-
-	li {
-		display: block;
-		height: auto;
-
-		a {
-			//padding: $spacer/2 $spacer * 2;
-			padding: math.div($spacer, 2) $spacer * 2;
-			white-space: nowrap;
-			width: 100%;
-		}
 	}
 }
 
