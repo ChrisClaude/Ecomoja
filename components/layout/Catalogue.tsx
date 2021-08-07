@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ProductCardList from '@/components/products/ProductCardList';
-import { products } from '../Products';
+import { products } from '../../Products';
 
 const Catalogue = () => (
 	<div className="px-44 py-8">

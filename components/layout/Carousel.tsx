@@ -7,7 +7,7 @@ import 'swiper/components/navigation/navigation.min.css';
 import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
 
 SwiperCore.use([Autoplay, Pagination, Navigation]);
-
+// TODO: Update Carousel to use Image component from Next JS
 const Carousel = () => (
 	<div className="h-80 w-full">
 		<Swiper

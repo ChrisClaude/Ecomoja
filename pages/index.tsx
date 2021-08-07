@@ -1,29 +1,25 @@
 import * as React from 'react';
-import Layout from '@/components/Layout';
-import Catalogue from '@/components/Catalogue';
-import Carousel from '@/components/Carousel';
+import Layout from '@/components/layout/Layout';
+import Catalogue from '@/components/layout/Catalogue';
+import Carousel from '@/components/layout/Carousel';
 
 const Banner = () => (
-	<section className="px-20 pb-5 pt-3 bg-white">
-		<div className="row">
-			<div className="col-md-9">
-				<div className="d-md-flex">
-					<div className="layout-spacer" />
-					<div className="slideshow-container">
-						<Carousel />
-					</div>
+	<section className="px-2 py-8 flex flex-col bg-white md:px-32 lg:px-44">
+		<div className="flex w-full">
+			<div className="w-2/5" />
+			<div className="w-3/5">
+				<div className="w-full">
+					<Carousel />
 				</div>
 			</div>
 		</div>
 
-		<div className="row mt-4">
-			<div className="col-md-9">
-				<div className="d-md-flex">
-					<div className="layout-spacer" />
-					<div className="feature-brands-container">
-						<h4 className="pb-2">Feature Brands</h4>
-						<div className="feature-brands-swiper" />
-					</div>
+		<div className="flex w-full">
+			<div className="w-2/5" />
+			<div className="w-3/5">
+				<div className="w-full overflow-hidden">
+					<h4 className="pb-2">Feature Brands</h4>
+					<div className="feature-brands-swiper" />
 				</div>
 			</div>
 		</div>

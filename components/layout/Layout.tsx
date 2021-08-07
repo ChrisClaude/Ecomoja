@@ -17,7 +17,7 @@ import {
 	faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-import Header from './Header';
+import Header from './header/Header';
 import Footer from './Footer';
 
 type LayoutProp = {
