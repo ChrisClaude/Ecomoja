@@ -218,13 +218,12 @@ const Logo = () => {
 
 const Header = () => (
 	<header>
-		<nav className="flex px-44 bg-white w-full h-16">
+		<nav className="px-2 flex bg-white w-full h-16 lg:px-44">
 			<div className="flex w-full">
-				<div className="col-1 d-flex align-items-center d-sm-none">
+				<div className="flex items-center lg:hidden">
 					<button
 						type="button"
-						className="hamburger-menu btn d-flex w-auto h-100 flex-column align-items-center"
-						id="toggle-mobile-nav"
+						className="hamburger-menu flex w-auto h-full flex-col items-center"
 					>
 						<span className="bar1" />
 						<span className="bar2" />
@@ -232,14 +231,14 @@ const Header = () => (
 					</button>
 				</div>
 
-				<div className="flex w-1/4">
+				<div className="flex lg:w-1/4">
 					<Link href="/">
 						<a className="flex items-center">
 							<Logo />
 						</a>
 					</Link>
 
-					<ul className="flex items-center ml-5">
+					<ul className="hidden items-center ml-5 lg:flex ">
 						<li className="p-2">
 							<Link href="#">
 								<a>Help</a>
@@ -253,7 +252,7 @@ const Header = () => (
 					</ul>
 				</div>
 
-				<div className="flex w-3/4 justify-end">
+				<div className="w-3/4 justify-end hidden lg:flex ">
 					<ul className="flex w-3/4 justify-end items-center">
 						<li className="p-2">
 							<Link href="#">
@@ -276,6 +275,7 @@ const Header = () => (
 												className={styles['sort-down']}
 											/>
 										</span>
+										{/* TODO: Add sort up icon */}
 										{/* <FontAwesomeIcon icon="sort-up" className={styles['sort-up']} /> */}
 									</span>
 								</a>
@@ -325,7 +325,7 @@ const Header = () => (
 					</ul>
 				</div>
 				{/* Mobile Icons */}
-				<div className="col-3 d-flex align-items-center d-sm-none">
+				<div className="flex items-center ml-auto lg:hidden">
 					<button
 						className="btn d-flex align-items-center justify-content-center h-100"
 						type="button"
