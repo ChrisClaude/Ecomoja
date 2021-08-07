@@ -16,7 +16,7 @@ type ProductListProps = {
 };
 
 const ProductListSwiper = ({ products }: ProductListSwiperProps) => (
-	<div className="flex justify-content-between p-4">
+	<div className="flex justify-content-between p-3">
 		{products.map((product) => (
 			<ProductItem key={product.id} {...product} />
 		))}
