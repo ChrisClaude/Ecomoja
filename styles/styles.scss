@@ -1,7 +1,7 @@
 @use "sass:math";
 
 // Bootstrap (all dependencies)
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "./scss/bootstrap";
 
 @tailwind base;
 @tailwind components;

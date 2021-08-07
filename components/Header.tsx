@@ -218,8 +218,10 @@ const Logo = () => {
 
 const Header = () => (
 	<header>
-		<nav className="px-2 flex bg-white w-full h-16 lg:px-44">
+		<nav className="px-2 flex bg-white w-full h-16 md:px-32 lg:px-44">
 			<div className="flex w-full">
+				{/* Mobile burger menu */}
+				{/* TODO: Implement burger menu with http://negomi.github.io/react-burger-menu/ */}
 				<div className="flex items-center lg:hidden">
 					<button
 						type="button"
@@ -231,7 +233,7 @@ const Header = () => (
 					</button>
 				</div>
 
-				<div className="flex lg:w-1/4">
+				<div className="flex lg:w-2/5">
 					<Link href="/">
 						<a className="flex items-center">
 							<Logo />
@@ -252,7 +254,7 @@ const Header = () => (
 					</ul>
 				</div>
 
-				<div className="w-3/4 justify-end hidden lg:flex ">
+				<div className="w-3/5 justify-end hidden lg:flex ">
 					<ul className="flex w-3/4 justify-end items-center">
 						<li className="p-2">
 							<Link href="#">
