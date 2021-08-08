@@ -41,15 +41,6 @@ body {
 	@apply bg-gray-200;
 }
 
-a {
-	color: $body-color !important;
-}
-
-a:hover {
-	text-decoration: underline !important;
-	color: $primary !important;
-}
-
 .container {
 	padding-left: $spacer !important;
 	padding-right: $spacer !important;
@@ -126,9 +117,7 @@ a.checkout-btn, a.wishlist-btn {
 	color: $white !important;
 }
 
-.banner {
-	display: none;
-	height: auto;
+.bg-ecolap-blue {
 	background-color: $primary;
 }
 
@@ -147,97 +136,8 @@ a.checkout-btn, a.wishlist-btn {
 	@extend .layout-grid;
 }
 
-.items-category-container {
-	width: 21%;
-	position: relative;
-}
-
-.items-category {
-	position: absolute;
-	width: 215px;
-	z-index: 50;
-	box-shadow: $ecolap-shadow;
-	border-radius: 5px;
-	overflow: hidden;
-	background-color: $white;
-
-	.list-group {
-		//margin-top: $spacer / 2;
-		margin-top: math.div($spacer, 2);
-		//margin-bottom: $spacer / 2;
-		margin-bottom: math.div($spacer, 2);
-		border-radius: 0;
-	}
-
-	.list-group-item {
-		padding-top: 0.3rem;
-		padding-bottom: 0.3rem;
-		justify-content: space-between;
-		display: flex;
-		align-items: center;
-		border: none;
-
-		.fas {
-			//font-size: $font-size-base / 1.5;
-			font-size: math.div($font-size-base, 1.5);
-		}
-
-		&:hover {
-			background-color: $primary;
-			color: $white;
-		}
-	}
-}
-
-.daily-deals {
-	width: 100%;
-	display: block;
-	//padding: $spacer/1.5 1.25rem;
-	padding: math.div($spacer, 1.5) 1.25rem;
-	background-color: $ecolap-daily-deals;
-	color: $white !important;
-
-	&:hover {
-		text-decoration: none !important;
-		color: $white !important;
-	}
-
-	i {
-		position: relative;
-		top: 1px;
-		font-size: 1.2rem;
-	}
-
-	span {
-		font-size: 1rem;
-		font-weight: bolder;
-		margin-left: 2px;
-	}
-}
-
-.items-category-header {
-	background-color: $ecolap-gray;
-	color: $white;
-	padding: 0.5rem 1em !important;
-	position: relative;
-	display: flex;
-	align-items: center;
-
-	i {
-		margin-left: auto;
-	}
-
-	&:hover {
-		background-color: $ecolap-gray-hover;
-	}
-}
-
 .search-container {
-	width: 79%;
-	height: 100%;
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: space-between;
+	@apply w-full flex flex-col justify-between;
 
 	.list-group-item {
 		padding: 0.2rem 1.25rem;
@@ -281,12 +181,6 @@ a.checkout-btn, a.wishlist-btn {
 		border-radius: 3px;
 		overflow: hidden;
 	}
-}
-
-.swiper-container {
-	background-color: $white;
-	border-radius: 0.25rem;;
-	overflow: hidden;
 }
 
 .swiper-item {
@@ -755,18 +649,6 @@ a.checkout-btn, a.wishlist-btn {
 	.next-product {
 		display: inline-block;
 	}
-
-	.banner {
-		display: block;
-	}
-
-	.daily-deals {
-		i {
-			top: -1px;
-			font-size: 1rem;
-		}
-	}
-
 }
 
 // Large devices (desktops, 992px and up)
