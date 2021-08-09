@@ -10,8 +10,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-$enable-responsive-font-sizes: true;
-
 // Color variables
 $body-color: #333;
 $primary: #0b79bf;
@@ -22,18 +20,11 @@ $danger: #f4697a;
 $danger-hover: #f0384f;
 $ecolap-gray: #4D4D4D;
 $ecolap-gray-hover: #404042;
-$ecolap-daily-deals: #25CD66;
+
 $facebook-color: #3b5998;
 $twitter-color: #55acee;
 $instagram-color: #2a5b83;
 
-// Shadow variables
-$ecolap-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%);
-
-* {
-	margin: 0;
-	padding: 0;
-}
 
 body {
 	font-size: 13px !important;
@@ -42,7 +33,7 @@ body {
 }
 
 h1 {
-	 @apply text-3xl font-semibold;
+	@apply text-3xl font-semibold;
 }
 
 h2 {
@@ -54,7 +45,7 @@ h3 {
 }
 
 h4 {
-	 @apply text-lg font-semibold;
+	@apply text-lg font-semibold;
 }
 
 .container {
@@ -82,17 +73,6 @@ h4 {
 	border-right: 1px solid $gray-500 !important;
 }
 
-.navbar li {
-	height: 30px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	a {
-		display: inline-block;
-		height: 100%;
-	}
-}
 
 .wishlist-btn {
 	width: 33px;
@@ -537,21 +517,6 @@ a.checkout-btn, a.wishlist-btn {
 * Footer          *
 *******************
 */
-.footer {
-	ul {
-		margin-bottom: 0;
-	}
-}
-
-.social-icon-container {
-	flex-basis: initial;
-	overflow: hidden;
-
-	svg {
-		font-size: 2*$font-size-base;
-	}
-}
-
 .fa-facebook-square {
 	color: $facebook-color;
 }
@@ -627,10 +592,6 @@ a.checkout-btn, a.wishlist-btn {
 		max-width: 100%;
 		padding-left: $spacer * 2 !important;
 		padding-right: $spacer * 2 !important;
-	}
-
-	.social-icon-container {
-		flex-basis: 7rem;
 	}
 
 	.products-container {
