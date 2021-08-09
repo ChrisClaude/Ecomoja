@@ -4,7 +4,7 @@ import Catalogue from '@/components/layout/Catalogue';
 import Carousel from '@/components/layout/Carousel';
 
 const Banner = () => (
-	<section className="px-2 py-6 flex flex-col bg-white md:px-32 lg:px-44">
+	<section className="px-2 py-6 hidden flex-col bg-white md:px-32 lg:px-44 lg:flex">
 		<div className="flex w-full">
 			<div className="w-56" />
 			<div className="flex-1 ml-5 overflow-hidden">

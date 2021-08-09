@@ -1,4 +1,5 @@
 import { Product } from '@/types/Product';
+import { ProductCategory } from '@/types/ProductCategory';
 
 // eslint-disable-next-line import/prefer-default-export
 export const products: Product[] = [
@@ -59,7 +60,7 @@ export const products: Product[] = [
 		numberOfVotes: 70,
 	},
 	{
-		id: 111,
+		id: 116,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
 		image:
@@ -70,7 +71,7 @@ export const products: Product[] = [
 		numberOfVotes: 90,
 	},
 	{
-		id: 112,
+		id: 11234,
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
@@ -82,7 +83,7 @@ export const products: Product[] = [
 		numberOfVotes: 10,
 	},
 	{
-		id: 113,
+		id: 15213,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
 		image:
@@ -93,7 +94,7 @@ export const products: Product[] = [
 		numberOfVotes: 10,
 	},
 	{
-		id: 114,
+		id: 1825414,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
 		image:
@@ -104,7 +105,7 @@ export const products: Product[] = [
 		numberOfVotes: 1,
 	},
 	{
-		id: 115,
+		id: 110755,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
 		image:
@@ -115,7 +116,7 @@ export const products: Product[] = [
 		numberOfVotes: 70,
 	},
 	{
-		id: 111,
+		id: 114731,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
 		image:
@@ -126,7 +127,7 @@ export const products: Product[] = [
 		numberOfVotes: 90,
 	},
 	{
-		id: 112,
+		id: 115555555732,
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
@@ -138,7 +139,7 @@ export const products: Product[] = [
 		numberOfVotes: 10,
 	},
 	{
-		id: 113,
+		id: 1186798563,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
 		image:
@@ -149,7 +150,7 @@ export const products: Product[] = [
 		numberOfVotes: 10,
 	},
 	{
-		id: 114,
+		id: 116374,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
 		image:
@@ -160,7 +161,7 @@ export const products: Product[] = [
 		numberOfVotes: 1,
 	},
 	{
-		id: 115,
+		id: 1157439670,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
 		image:
@@ -171,7 +172,7 @@ export const products: Product[] = [
 		numberOfVotes: 70,
 	},
 	{
-		id: 111,
+		id: 11657681,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
 		image:
@@ -182,7 +183,7 @@ export const products: Product[] = [
 		numberOfVotes: 90,
 	},
 	{
-		id: 112,
+		id: 119875,
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
@@ -194,7 +195,7 @@ export const products: Product[] = [
 		numberOfVotes: 10,
 	},
 	{
-		id: 113,
+		id: 113637675879,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
 		image:
@@ -205,7 +206,7 @@ export const products: Product[] = [
 		numberOfVotes: 10,
 	},
 	{
-		id: 114,
+		id: 114654875497,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
 		image:
@@ -216,7 +217,7 @@ export const products: Product[] = [
 		numberOfVotes: 1,
 	},
 	{
-		id: 115,
+		id: 1167895,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
 		image:
@@ -227,7 +228,7 @@ export const products: Product[] = [
 		numberOfVotes: 70,
 	},
 	{
-		id: 111,
+		id: 11497091,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
 		image:
@@ -238,7 +239,7 @@ export const products: Product[] = [
 		numberOfVotes: 90,
 	},
 	{
-		id: 112,
+		id: 1160934462,
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
@@ -250,7 +251,7 @@ export const products: Product[] = [
 		numberOfVotes: 10,
 	},
 	{
-		id: 113,
+		id: 117569703,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
 		image:
@@ -261,7 +262,7 @@ export const products: Product[] = [
 		numberOfVotes: 10,
 	},
 	{
-		id: 114,
+		id: 113276474,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
 		image:
@@ -272,7 +273,7 @@ export const products: Product[] = [
 		numberOfVotes: 1,
 	},
 	{
-		id: 115,
+		id: 1198745635,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
 		image:
@@ -282,4 +283,22 @@ export const products: Product[] = [
 		rating: 3,
 		numberOfVotes: 70,
 	},
+];
+
+export const productCategories: ProductCategory[] = [
+	{ id: 1, name: 'Home & Appliances' },
+	{ id: 2, name: 'Health & Personal Care' },
+	{ id: 3, name: 'Books & Courses' },
+	{ id: 4, name: 'Office & Stationery' },
+	{ id: 5, name: 'Fashion' },
+	{ id: 6, name: 'Gardening' },
+	{ id: 7, name: 'Eco Power Generators' },
+	{ id: 8, name: 'Services' },
+	{ id: 9, name: 'Pets' },
+	{ id: 10, name: 'Sports & Training' },
+	{ id: 11, name: 'Camping & Outdoors' },
+	{ id: 12, name: 'Liquor' },
+	{ id: 13, name: 'Toys' },
+	{ id: 14, name: 'Groceries & Household' },
+	{ id: 15, name: 'Books & Courses' },
 ];

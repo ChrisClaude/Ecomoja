@@ -3,7 +3,7 @@ import ProductCardList from '@/components/products/ProductCardList';
 import { products } from '../../Products';
 
 const Catalogue = () => (
-	<div className="px-44 py-8">
+	<div className="px-44 py-8 hidden lg:block">
 		<div className="bg-white">
 			<ProductCardList
 				title="Daily Deals"

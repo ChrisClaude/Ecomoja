@@ -1,113 +1,43 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
+import { ProductCategory } from '@/types/ProductCategory';
+import { productCategories } from '../../../Products';
+
+const ProductCategoryList = ({
+	categoryList,
+}: {
+	categoryList: ProductCategory[];
+}) => (
+	<ul className="flex flex-col my-2">
+		{categoryList.map((category) => (
+			<li
+				key={category.id}
+				className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer"
+			>
+				<span>{category.name}</span>
+				<span>
+					<FontAwesomeIcon icon="chevron-right" />
+				</span>
+			</li>
+		))}
+	</ul>
+);
 
 const ShopCategory = () => (
 	<>
-		{/*#region Items Category*/}
 		<div className="relative">
 			<div className="absolute w-56 z-20 overflow-hidden bg-white rounded-md shadow-lg">
 				<div className="flex flex-col">
 					<div className="w-full">
 						<div className="flex items-center justify-between relative text-white bg-ecolap-gray py-2 px-5 hover:bg-ecolap-gray-h">
 							Shop by Department
-							<span className="">
+							<span>
 								<FontAwesomeIcon icon="chevron-down" />
 							</span>
 						</div>
 					</div>
 					<div className="w-full">
-						<ul className="flex flex-col my-2">
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Cras justo odio</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Dapibus ac facilisis in</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Morbi leo risus</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Porta ac consectetur ac</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Vestibulum at eros</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Cras justo odio</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Dapibus ac facilisis in</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Morbi leo risus</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Porta ac consectetur ac</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Vestibulum at eros</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Cras justo odio</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Dapibus ac facilisis in</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Morbi leo risus</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Porta ac consectetur ac</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-							<li className="py-1 px-5 flex items-center justify-between hover:bg-primary hover:text-white cursor-pointer">
-								<span>Vestibulum at eros</span>
-								<span>
-									<FontAwesomeIcon icon="chevron-right" />
-								</span>
-							</li>
-						</ul>
+						<ProductCategoryList categoryList={productCategories} />
 						<a
 							href="#"
 							className="w-full block py-3 px-5 bg-ecolap-green text-white hover:no-underline hover:text-white"
@@ -123,13 +53,11 @@ const ShopCategory = () => (
 				</div>
 			</div>
 		</div>
-		{/*#endregion */}
 	</>
 );
 
 const SearchContainer = () => (
 	<>
-		{/*#region Search Container */}
 		<div className="search-container w-full flex flex-col justify-between">
 			<div className="bg-white flex">
 				<div className="w-3/6">
@@ -206,7 +134,6 @@ const SearchContainer = () => (
 				</ul>
 			</div>
 		</div>
-		{/*#endregion */}
 	</>
 );
 
