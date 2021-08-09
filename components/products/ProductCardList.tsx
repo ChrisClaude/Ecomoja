@@ -16,7 +16,7 @@ type ProductListProps = {
 };
 
 const ProductListSwiper = ({ products }: ProductListSwiperProps) => (
-	<div className="flex justify-content-between p-3">
+	<div className="flex justify-content-between py-3 px-4">
 		{products.map((product) => (
 			<ProductItem key={product.id} {...product} />
 		))}
@@ -50,7 +50,7 @@ const ProductCardListHeader = ({
 	buttonText,
 	buttonType,
 }: ProductListCardListHeaderProps) => (
-	<div className="d-flex justify-content-between align-items-center py-2 px-4">
+	<div className="d-flex justify-content-between align-items-center pt-2 pb-1 px-4">
 		<h3>{title}</h3>
 		{pickButtonType(buttonText, buttonType)}
 	</div>

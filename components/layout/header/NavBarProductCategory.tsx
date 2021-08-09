@@ -130,7 +130,7 @@ const ShopCategory = () => (
 const SearchContainer = () => (
 	<>
 		{/*#region Search Container */}
-		<div className="search-container">
+		<div className="search-container w-full flex flex-col justify-between">
 			<div className="bg-white flex">
 				<div className="w-3/6">
 					<label htmlFor="search-product" className="w-full">

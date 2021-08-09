@@ -133,12 +133,7 @@ a.checkout-btn, a.wishlist-btn {
 }
 
 .search-container {
-	@apply w-full flex flex-col justify-between;
-
-	.list-group-item {
-		padding: 0.2rem 1.25rem;
-	}
-
+	
 	input[type="text"], .btn {
 		padding: 0.4rem 0.8rem !important;
 		border: none;
