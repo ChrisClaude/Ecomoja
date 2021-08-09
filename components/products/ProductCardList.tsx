@@ -1,9 +1,9 @@
 import * as React from 'react';
 import ProductItem from '@/components/products/ProductItem';
 import { Product } from '@/types/Product';
+import ProductListSwiper from '@/components/products/ProductListSwiper';
 
 type ProductCardListProps = ProductListProps & ProductListCardListHeaderProps;
-type ProductListSwiperProps = ProductListProps;
 
 type ProductListCardListHeaderProps = {
 	title: string;
@@ -14,14 +14,6 @@ type ProductListCardListHeaderProps = {
 type ProductListProps = {
 	products: Product[];
 };
-
-const ProductListSwiper = ({ products }: ProductListSwiperProps) => (
-	<div className="flex justify-content-between py-3 px-4">
-		{products.map((product) => (
-			<ProductItem key={product.id} {...product} />
-		))}
-	</div>
-);
 
 const pickButtonType = (
 	buttonText: string,
