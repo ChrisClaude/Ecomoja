@@ -101,7 +101,7 @@ const NavBar = () => (
 					</li>
 				</ul>
 				<ul className="flex items-center ml-1">
-					<li className="mr-1">
+					<li className="mr-2">
 						<a href="#" className="wishlist-btn">
 							<FontAwesomeIcon icon="heart" />
 						</a>
