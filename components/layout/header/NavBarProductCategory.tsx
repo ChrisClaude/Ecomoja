@@ -4,7 +4,7 @@ import * as React from 'react';
 const ShopCategory = () => (
 	<>
 		{/*#region Items Category*/}
-		<div className="w-full relative">
+		<div className="relative">
 			<div className="absolute w-56 z-20 overflow-hidden bg-white rounded-md shadow-lg">
 				<div className="flex flex-col">
 					<div className="w-full">
@@ -227,11 +227,11 @@ const NavBarProductCategory = () => (
 		{/*#endregion */}
 		{/*#region Desktop daily deals */}
 		<div className="hidden px-2 py-2 bg-ecolap-blue lg:flex lg:px-44">
-			<div className="w-2/5">
+			<div className="w-56">
 				<ShopCategory />
 			</div>
 
-			<div className="w-3/5">
+			<div className="flex-1 ml-5 overflow-hidden">
 				<SearchContainer />
 			</div>
 		</div>
