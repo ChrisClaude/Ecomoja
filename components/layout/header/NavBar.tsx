@@ -44,7 +44,7 @@ const NavBar = () => (
 			<div className="w-3/5 justify-end hidden lg:flex ">
 				<ul className="flex w-3/4 justify-end items-center">
 					<li className="p-2">
-						<Link href="#">
+						<Link href="/login">
 							<a>Login or register</a>
 						</Link>
 					</li>
