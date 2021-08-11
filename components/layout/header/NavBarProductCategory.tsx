@@ -60,7 +60,7 @@ const SearchContainer = () => (
 	<>
 		<div className="search-container w-full flex flex-col justify-between">
 			<div className="bg-white flex">
-				<div className="w-3/6">
+				<div className="flex-1">
 					<label htmlFor="search-product" className="w-full">
 						<input
 							type="text"
@@ -69,7 +69,7 @@ const SearchContainer = () => (
 						/>
 					</label>
 				</div>
-				<div className="w-2/6">
+				<div className="w-40">
 					<label htmlFor="select-department" className="w-100 mb-0">
 						<select className="form-control form-control-sm">
 							<option>All Departments</option>
@@ -85,7 +85,7 @@ const SearchContainer = () => (
 						</select>
 					</label>
 				</div>
-				<div className="w-1/6">
+				<div className="w-12">
 					<button className="btn btn-ecolap-gray w-full h-full" type="button">
 						<span>
 							<FontAwesomeIcon icon="search" />
