@@ -7,4 +7,5 @@ export type Product = {
 	oldPrice?: number;
 	rating?: number;
 	numberOfVotes?: number;
+	categories?: string[];
 };
