@@ -56,7 +56,7 @@ const NavBar = () => (
 					<li className="p-2 relative">
 						<Link href="#">
 							<a>
-								<span>My Account</span>
+								<span>My Eomoja</span>
 								<span className="ml-1">
 									<span>
 										<FontAwesomeIcon

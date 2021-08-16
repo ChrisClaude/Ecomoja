@@ -18,7 +18,7 @@ const Banner = () => (
 			<div className="w-56" />
 			<div className="flex-1 ml-5 overflow-hidden">
 				<div className="w-3/4">
-					<h4 className="pb-2">Featured Brands</h4>
+					<h4 className="pb-2">Featured Partners</h4>
 					<div className="w-full bg-gray-300 h-24" />
 				</div>
 			</div>
