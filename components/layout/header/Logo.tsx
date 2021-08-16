@@ -3,9 +3,9 @@ import * as React from 'react';
 
 const Logo = () => {
 	const src =
-		'https://crazeenvironmental.com/wp-content/uploads/2020/10/cropped-Web-Grey-logo-with-WB-160x101.png';
+		'/assets/ecomojalogodesign_horizontallogoandname_greenandblack.png';
 	return (
-		<Image width={85} loader={() => src} height={45} src={src} alt="logo" />
+		<Image width={105} loader={() => src} height={125} src={src} alt="logo" />
 	);
 };
 
