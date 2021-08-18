@@ -25,11 +25,14 @@
 			"@/styles/*": [
 				"styles/*"
 			],
+			"@/services/*": [
+				"services/*"
+			],
 			"@/types/*": [
 				"types/*"
 			],
-			"@/services/*": [
-				"services/*"
+			"@/utils/*": [
+				"utils/*"
 			]
 		}
 	},

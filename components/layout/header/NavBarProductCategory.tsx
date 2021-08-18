@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { ProductCategory } from '@/types/ProductCategory';
+import { AppContext } from '@/utils/context/AppContext';
 import { productCategories } from '../../../Products';
 
 const ProductCategoryList = ({
@@ -24,11 +25,13 @@ const ProductCategoryList = ({
 );
 
 const ShopCategory = () => {
-	const [isShopByCategoryCollapsed, setIsShopByCategoryCollapsed] =
-		React.useState(true);
+	const { isShopByCategoryCollapsed, dispatch } = React.useContext(AppContext);
 
 	const toggleShopBuCategory = () => {
-		setIsShopByCategoryCollapsed(!isShopByCategoryCollapsed);
+		dispatch({
+			type: 'SET_SHOP_BY_CATEGORY',
+			payload: !isShopByCategoryCollapsed,
+		});
 	};
 
 	return (
@@ -44,11 +47,13 @@ const ShopCategory = () => {
 										<FontAwesomeIcon
 											icon="chevron-up"
 											onClick={toggleShopBuCategory}
+											className="cursor-pointer"
 										/>
 									) : (
 										<FontAwesomeIcon
 											icon="chevron-down"
 											onClick={toggleShopBuCategory}
+											className="cursor-pointer"
 										/>
 									)}
 								</span>
@@ -120,81 +125,88 @@ const SearchContainer = () => (
 	</div>
 );
 
-const NavBarProductCategory = () => (
-	<>
-		{/*#region Mobile daily deals */}
-		<div className="px-2 flex items-center h-12 justify-between bg-ecolap-green md:px-32 lg:hidden">
-			<div>
-				<FontAwesomeIcon icon={['far', 'clock']} className="text-white mr-1" />
-				<a href="#" className="text-white">
-					<span className="text-uppercase">Daily Deals</span>
+const NavBarProductCategory = () => {
+	const { isShopByCategoryCollapsed } = React.useContext(AppContext);
+
+	return (
+		<>
+			{/*#region Mobile daily deals */}
+			<div className="px-2 flex items-center h-12 justify-between bg-ecolap-green md:px-32 lg:hidden">
+				<div>
+					<FontAwesomeIcon
+						icon={['far', 'clock']}
+						className="text-white mr-1"
+					/>
+					<a href="#" className="text-white">
+						<span className="text-uppercase">Daily Deals</span>
+					</a>
+				</div>
+				<a href="#" className="text-white font-weight-bold">
+					View More
 				</a>
 			</div>
-			<a href="#" className="text-white font-weight-bold">
-				View More
-			</a>
-		</div>
-		{/*#endregion */}
-		{/*#region Desktop daily deals */}
-		<div className="hidden px-2 py-2 bg-ecolap-blue lg:flex lg:flex-col lg:px-44">
-			<div className="lg:flex">
-				<div className="w-56 mr-5">
-					<ShopCategory />
-				</div>
+			{/*#endregion */}
+			{/*#region Desktop daily deals */}
+			<div className="hidden px-2 py-2 bg-ecolap-blue lg:flex lg:flex-col lg:px-44">
+				<div className="lg:flex">
+					<div className="w-56 mr-5">
+						<ShopCategory />
+					</div>
 
-				<div className="flex-1 overflow-hidden">
-					<SearchContainer />
+					<div className="flex-1 overflow-hidden">
+						<SearchContainer />
+					</div>
 				</div>
-			</div>
-			<div className="lg:flex">
-				<div className="w-56 mr-5" />
+				<div className="lg:flex">
+					<div className={isShopByCategoryCollapsed ? 'w-56 mr-5' : 'hidden'} />
 
-				<div className="flex-1 overflow-hidden">
-					<div className="bg-white overflow-hidden rounded-sm overflow-hidden mt-2">
-						<ul className="flex h-8">
-							<li
-								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-								title="Clearance store"
-							>
-								Clearance store
-							</li>
-							<li
-								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-								title="Shop Local"
-							>
-								Shop local
-							</li>
-							<li
-								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-								title="Winter"
-							>
-								Winter
-							</li>
-							<li
-								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-								title="Fashion Outlet"
-							>
-								Fashion outlet
-							</li>
-							<li
-								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-								title="brand store"
-							>
-								Brand store
-							</li>
-							<li
-								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-								title="Exclusive"
-							>
-								Exclusive
-							</li>
-						</ul>
+					<div className="flex-1 overflow-hidden">
+						<div className="bg-white overflow-hidden rounded-sm overflow-hidden mt-2">
+							<ul className="flex h-8">
+								<li
+									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+									title="Clearance store"
+								>
+									Clearance store
+								</li>
+								<li
+									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+									title="Shop Local"
+								>
+									Shop local
+								</li>
+								<li
+									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+									title="Winter"
+								>
+									Winter
+								</li>
+								<li
+									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+									title="Fashion Outlet"
+								>
+									Fashion outlet
+								</li>
+								<li
+									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+									title="brand store"
+								>
+									Brand store
+								</li>
+								<li
+									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+									title="Exclusive"
+								>
+									Exclusive
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		{/*#endregion */}
-	</>
-);
+			{/*#endregion */}
+		</>
+	);
+};
 
 export default NavBarProductCategory;

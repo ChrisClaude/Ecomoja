@@ -2,6 +2,7 @@ import * as React from 'react';
 import Layout from '@/components/layout/Layout';
 import Catalogue from '@/components/layout/Catalogue';
 import Carousel from '@/components/layout/Carousel';
+import { AppContext } from '@/utils/context/AppContext';
 
 const Banner = () => (
 	<section className="px-2 py-6 hidden flex-col bg-white md:px-32 lg:px-44 lg:flex">
@@ -27,6 +28,17 @@ const Banner = () => (
 );
 
 export default function Home() {
+	const { dispatch } = React.useContext(AppContext);
+
+	React.useEffect(
+		() =>
+			dispatch({
+				type: 'SET_SHOP_BY_CATEGORY',
+				payload: true,
+			}),
+		[],
+	);
+
 	return (
 		<Layout>
 			<Banner />
