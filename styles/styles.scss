@@ -168,11 +168,6 @@ a.checkout-btn, a.wishlist-btn {
 	select:focus, select:focus-visible {
 		background-color: $gray-300;
 	}
-
-	& > div {
-		border-radius: 3px;
-		overflow: hidden;
-	}
 }
 
 .swiper-item {

@@ -23,118 +23,101 @@ const ProductCategoryList = ({
 	</ul>
 );
 
-const ShopCategory = () => (
-	<>
-		<div className="relative">
-			<div className="absolute w-56 z-20 overflow-hidden bg-white rounded-md shadow-lg">
-				<div className="flex flex-col">
-					<div className="w-full">
-						<div className="flex items-center justify-between relative text-white bg-ecolap-gray py-2 px-5 hover:bg-ecolap-gray-h">
-							Shop by Department
-							<span>
-								<FontAwesomeIcon icon="chevron-down" />
-							</span>
+const ShopCategory = () => {
+	const [isShopByCategoryCollapsed, setIsShopByCategoryCollapsed] =
+		React.useState(true);
+
+	const toggleShopBuCategory = () => {
+		setIsShopByCategoryCollapsed(!isShopByCategoryCollapsed);
+	};
+
+	return (
+		<>
+			<div className="relative">
+				<div className="absolute w-56 z-20 overflow-hidden bg-white rounded-md shadow-lg">
+					<div className="flex flex-col">
+						<div className="w-full">
+							<div className="flex items-center justify-between relative text-white bg-ecolap-gray h-8 py-2 px-5 hover:bg-ecolap-gray-h">
+								Shop by Department
+								<span>
+									{isShopByCategoryCollapsed ? (
+										<FontAwesomeIcon
+											icon="chevron-up"
+											onClick={toggleShopBuCategory}
+										/>
+									) : (
+										<FontAwesomeIcon
+											icon="chevron-down"
+											onClick={toggleShopBuCategory}
+										/>
+									)}
+								</span>
+							</div>
+						</div>
+						<div
+							className={isShopByCategoryCollapsed ? 'inline-block' : 'hidden'}
+						>
+							<ProductCategoryList categoryList={productCategories} />
+							<a
+								href="#"
+								className="w-full block py-3 px-5 bg-ecolap-green text-white hover:no-underline hover:text-white"
+							>
+								<span className="mr-1 text-base">
+									<FontAwesomeIcon icon={['far', 'clock']} />
+								</span>
+								<span className="text-uppercase text-base font-bold">
+									Daily Deals
+								</span>
+							</a>
 						</div>
 					</div>
-					<div className="w-full">
-						<ProductCategoryList categoryList={productCategories} />
-						<a
-							href="#"
-							className="w-full block py-3 px-5 bg-ecolap-green text-white hover:no-underline hover:text-white"
-						>
-							<span className="mr-1 text-base">
-								<FontAwesomeIcon icon={['far', 'clock']} />
-							</span>
-							<span className="text-uppercase text-base font-bold">
-								Daily Deals
-							</span>
-						</a>
-					</div>
 				</div>
 			</div>
-		</div>
-	</>
-);
+		</>
+	);
+};
 
 const SearchContainer = () => (
-	<>
-		<div className="search-container w-full flex flex-col justify-between">
-			<div className="bg-white flex">
-				<div className="flex-1">
-					<label htmlFor="search-product" className="w-full">
-						<input
-							type="text"
-							className="w-full"
-							placeholder="Search for products, brands..."
-						/>
-					</label>
-				</div>
-				<div className="w-40">
-					<label htmlFor="select-department" className="w-100 mb-0">
-						<select className="form-control form-control-sm">
-							<option>All Departments</option>
-							<option>Baby and Toddler</option>
-							<option>Beauty</option>
-							<option>Books</option>
-							<option>Cameras</option>
-							<option>Camping & Outdoors</option>
-							<option>Cellphones & Wearables</option>
-							<option>Computers & Tablets</option>
-							<option>Fashion</option>
-							<option>Gaming</option>
-						</select>
-					</label>
-				</div>
-				<div className="w-12">
-					<button className="btn btn-ecolap-gray w-full h-full" type="button">
-						<span>
-							<FontAwesomeIcon icon="search" />
-						</span>
-					</button>
-				</div>
-			</div>
-			<div className="bg-white overflow-hidden rounded mt-2">
-				<ul className="flex">
-					<li
-						className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-						title="Clearance store"
-					>
-						Clearance store
-					</li>
-					<li
-						className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-						title="Shop Local"
-					>
-						Shop local
-					</li>
-					<li
-						className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-						title="Winter"
-					>
-						Winter
-					</li>
-					<li
-						className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-						title="Fashion Outlet"
-					>
-						Fashion outlet
-					</li>
-					<li
-						className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-						title="brand store"
-					>
-						Brand store
-					</li>
-					<li
-						className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-						title="Exclusive"
-					>
-						Exclusive
-					</li>
-				</ul>
-			</div>
+	<div className="search-container rounded-sm overflow-hidden bg-white flex h-8">
+		<div className="flex-1">
+			<label htmlFor="search-product" className="w-full">
+				<input
+					type="text"
+					className="w-full"
+					placeholder="Search for products, brands..."
+				/>
+			</label>
 		</div>
-	</>
+		<div className="w-40 flex">
+			<label
+				htmlFor="select-department"
+				className="inline-block flex w-100 mb-0"
+			>
+				<select className="form-control form-control-sm">
+					<option>All Departments</option>
+					<option>Baby and Toddler</option>
+					<option>Beauty</option>
+					<option>Books</option>
+					<option>Cameras</option>
+					<option>Camping & Outdoors</option>
+					<option>Cellphones & Wearables</option>
+					<option>Computers & Tablets</option>
+					<option>Fashion</option>
+					<option>Gaming</option>
+				</select>
+			</label>
+		</div>
+		<div className="w-12 flex">
+			<button
+				className="btn btn-ecolap-gray w-full flex items-center justify-center"
+				type="button"
+			>
+				<span>
+					<FontAwesomeIcon icon="search" />
+				</span>
+			</button>
+		</div>
+	</div>
 );
 
 const NavBarProductCategory = () => (
@@ -153,13 +136,61 @@ const NavBarProductCategory = () => (
 		</div>
 		{/*#endregion */}
 		{/*#region Desktop daily deals */}
-		<div className="hidden px-2 py-2 bg-ecolap-blue lg:flex lg:px-44">
-			<div className="w-56">
-				<ShopCategory />
-			</div>
+		<div className="hidden px-2 py-2 bg-ecolap-blue lg:flex lg:flex-col lg:px-44">
+			<div className="lg:flex">
+				<div className="w-56 mr-5">
+					<ShopCategory />
+				</div>
 
-			<div className="flex-1 ml-5 overflow-hidden">
-				<SearchContainer />
+				<div className="flex-1 overflow-hidden">
+					<SearchContainer />
+				</div>
+			</div>
+			<div className="lg:flex">
+				<div className="w-56 mr-5" />
+
+				<div className="flex-1 overflow-hidden">
+					<div className="bg-white overflow-hidden rounded-sm overflow-hidden mt-2">
+						<ul className="flex h-8">
+							<li
+								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+								title="Clearance store"
+							>
+								Clearance store
+							</li>
+							<li
+								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+								title="Shop Local"
+							>
+								Shop local
+							</li>
+							<li
+								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+								title="Winter"
+							>
+								Winter
+							</li>
+							<li
+								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+								title="Fashion Outlet"
+							>
+								Fashion outlet
+							</li>
+							<li
+								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+								title="brand store"
+							>
+								Brand store
+							</li>
+							<li
+								className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
+								title="Exclusive"
+							>
+								Exclusive
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 		{/*#endregion */}

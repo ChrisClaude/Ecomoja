@@ -9,6 +9,7 @@ import {
 import {
 	faChevronDown,
 	faChevronRight,
+	faChevronUp,
 	faHeart,
 	faSearch,
 	faShoppingCart,
@@ -34,6 +35,7 @@ library.add(
 	faHeart,
 	faStar,
 	faChevronDown,
+	faChevronUp,
 	faClock,
 	faChevronRight,
 	faSortDown,
