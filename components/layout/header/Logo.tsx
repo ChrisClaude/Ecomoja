@@ -3,9 +3,9 @@ import * as React from 'react';
 
 const Logo = () => {
 	const src =
-		'/assets/ecomojalogodesign_horizontallogoandname_greenandblack.png';
+		'/assets/EcoMojaLogoDesign_HorizontalLogoAndName_GreenAndBlack.svg';
 	return (
-		<Image width={105} loader={() => src} height={125} src={src} alt="logo" />
+		<Image width={270} loader={() => src} height={155} src={src} alt="logo" />
 	);
 };
 
