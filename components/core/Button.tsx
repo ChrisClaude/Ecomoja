@@ -3,7 +3,7 @@ import * as React from 'react';
 type ButtonOwnProps<E extends React.ElementType = React.ElementType> = {
 	/** The children element(s) of the component */
 	children?: React.ReactNode;
-	/** Specifies the compnent variant to render */
+	/** Specifies the component variant to render */
 	variant: 'contained' | 'outlined';
 	/** Specifies the HTML element to render */
 	as?: E;
@@ -70,29 +70,50 @@ const switchButtonClassesVariant = (
 	key: string,
 	variant: 'contained' | 'outlined',
 ) => {
+	let value = '';
 	if (variant === 'outlined') {
 		switch (key) {
 			case 'primary':
-				return ' border-primary text-primary hover:bg-primary';
+				value = ' border-primary text-primary hover:bg-primary';
+				break;
 			case 'secondary':
-				return ' border-secondary text-secondary hover:bg-secondary';
+				value = ' border-secondary text-secondary hover:bg-secondary';
+				break;
 			case 'light':
-				return ' border-light text-light hover:bg-light hover:text-dark';
+				value = ' border-light text-light hover:bg-light hover:text-dark';
+				break;
 			case 'dark':
-				return ' border-dark text-dark hover:bg-dark';
+				value = ' border-dark text-dark hover:bg-dark';
+				break;
+			default:
+				value = '';
+				break;
 		}
 	} else if (variant === 'contained') {
 		switch (key) {
 			case 'primary':
-				return ' border-primary bg-primary text-white hover:bg-light hover:text-primary';
+				value =
+					' border-primary bg-primary text-white hover:bg-light hover:text-primary';
+				break;
 			case 'secondary':
-				return ' border-secondary bg-secondary text-white hover:bg-light hover:text-secondary';
+				value =
+					' border-secondary bg-secondary text-white hover:bg-light hover:text-secondary';
+				break;
 			case 'light':
-				return ' border-light bg-light text-dark hover:bg-dark hover:text-white';
+				value =
+					' border-light bg-light text-dark hover:bg-dark hover:text-white';
+				break;
 			case 'dark':
-				return ' border-dark bg-dark text-white hover:bg-light hover:text-dark';
+				value =
+					' border-dark bg-dark text-white hover:bg-light hover:text-dark';
+				break;
+			default:
+				value = '';
+				break;
 		}
 	}
+
+	return value;
 };
 
 const createClassNames = (

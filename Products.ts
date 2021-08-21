@@ -14,6 +14,8 @@ export const products: Product[] = [
 		rating: 4,
 		numberOfVotes: 90,
 		categories: ['Gardening'],
+		vendor: 'CMK',
+		isInStock: true,
 	},
 	{
 		id: 112,
@@ -26,7 +28,9 @@ export const products: Product[] = [
 		oldPrice: 994,
 		rating: 5,
 		numberOfVotes: 10,
-		categories: ['Eco'],
+		categories: ['Eco', 'Natural'],
+		vendor: 'Cougar',
+		isInStock: false,
 	},
 	{
 		id: 113,
@@ -39,6 +43,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Home ]and Decorate'],
+		vendor: 'KMB',
+		isInStock: false,
 	},
 	{
 		id: 114,
@@ -51,6 +57,8 @@ export const products: Product[] = [
 		rating: 1,
 		numberOfVotes: 1,
 		categories: ['Gardening'],
+		vendor: 'WBx',
+		isInStock: true,
 	},
 	{
 		id: 115,
@@ -63,6 +71,8 @@ export const products: Product[] = [
 		rating: 3,
 		numberOfVotes: 70,
 		categories: ['Gardening'],
+		vendor: 'Crazee Sales',
+		isInStock: true,
 	},
 	{
 		id: 116,
@@ -75,6 +85,8 @@ export const products: Product[] = [
 		rating: 4,
 		numberOfVotes: 90,
 		categories: ['Gardening'],
+		vendor: 'CMK',
+		isInStock: true,
 	},
 	{
 		id: 11234,
@@ -88,6 +100,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: false,
 	},
 	{
 		id: 15213,
@@ -100,6 +114,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Gardening'],
+		vendor: 'Eco services',
+		isInStock: true,
 	},
 	{
 		id: 1825414,
@@ -112,6 +128,8 @@ export const products: Product[] = [
 		rating: 1,
 		numberOfVotes: 1,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 110755,
@@ -124,6 +142,8 @@ export const products: Product[] = [
 		rating: 3,
 		numberOfVotes: 70,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 114731,
@@ -136,6 +156,8 @@ export const products: Product[] = [
 		rating: 4,
 		numberOfVotes: 90,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 115555555732,
@@ -149,6 +171,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Gardening'],
+		vendor: 'CMK',
+		isInStock: true,
 	},
 	{
 		id: 1186798563,
@@ -161,6 +185,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 116374,
@@ -173,6 +199,8 @@ export const products: Product[] = [
 		rating: 1,
 		numberOfVotes: 1,
 		categories: ['Gardening'],
+		vendor: 'CMK',
+		isInStock: true,
 	},
 	{
 		id: 1157439670,
@@ -185,6 +213,8 @@ export const products: Product[] = [
 		rating: 3,
 		numberOfVotes: 70,
 		categories: ['Gardening'],
+		vendor: 'Cougar',
+		isInStock: true,
 	},
 	{
 		id: 11657681,
@@ -197,6 +227,8 @@ export const products: Product[] = [
 		rating: 4,
 		numberOfVotes: 90,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 119875,
@@ -210,6 +242,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 113637675879,
@@ -222,6 +256,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Gardening'],
+		vendor: 'Crazee Style',
+		isInStock: true,
 	},
 	{
 		id: 114654875497,
@@ -234,6 +270,8 @@ export const products: Product[] = [
 		rating: 1,
 		numberOfVotes: 1,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 1167895,
@@ -246,6 +284,8 @@ export const products: Product[] = [
 		rating: 3,
 		numberOfVotes: 70,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 11497091,
@@ -258,6 +298,8 @@ export const products: Product[] = [
 		rating: 4,
 		numberOfVotes: 90,
 		categories: ['Gardening'],
+		vendor: 'CMK',
+		isInStock: true,
 	},
 	{
 		id: 1160934462,
@@ -271,6 +313,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 	{
 		id: 117569703,
@@ -283,6 +327,8 @@ export const products: Product[] = [
 		rating: 5,
 		numberOfVotes: 10,
 		categories: ['Gardening'],
+		vendor: 'Cougar',
+		isInStock: true,
 	},
 	{
 		id: 113276474,
@@ -295,6 +341,8 @@ export const products: Product[] = [
 		rating: 1,
 		numberOfVotes: 1,
 		categories: ['Gardening'],
+		vendor: 'CMK',
+		isInStock: true,
 	},
 	{
 		id: 1198745635,
@@ -307,68 +355,14 @@ export const products: Product[] = [
 		rating: 3,
 		numberOfVotes: 70,
 		categories: ['Gardening'],
+		vendor: 'Eaglestack',
+		isInStock: true,
 	},
 ];
 
 export const productCategories: ProductCategory[] = [
 	{
-		id: 1,
-		name: 'Home & Appliances',
-	},
-	{
-		id: 2,
-		name: 'Health & Personal Care',
-	},
-	{
-		id: 3,
-		name: 'Books & Courses',
-	},
-	{
-		id: 4,
-		name: 'Office & Stationery',
-	},
-	{
-		id: 5,
-		name: 'Fashion',
-	},
-	{
-		id: 6,
-		name: 'Gardening',
-	},
-	{
-		id: 7,
-		name: 'Eco Power Generators',
-	},
-	{
-		id: 8,
-		name: 'Services',
-	},
-	{
-		id: 9,
-		name: 'Pets',
-	},
-	{
-		id: 10,
-		name: 'Sports & Training',
-	},
-	{
-		id: 11,
-		name: 'Camping & Outdoors',
-	},
-	{
-		id: 12,
-		name: 'Liquor',
-	},
-	{
-		id: 13,
-		name: 'Toys',
-	},
-	{
 		id: 14,
 		name: 'Groceries & Household',
-	},
-	{
-		id: 15,
-		name: 'Books & Courses',
 	},
 ];
