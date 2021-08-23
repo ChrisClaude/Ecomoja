@@ -439,17 +439,6 @@ a.checkout-btn, a.wishlist-btn {
 .product-item {
 	@apply bg-white flex flex-col items-center w-full h-full cursor-pointer overflow-hidden rounded transition-shadow duration-500;
 
-	//display: flex;
-	//flex-direction: column;
-	//align-items: center;
-	//width: 100%;
-	//height: 100%;
-	//cursor: pointer;
-	//border-radius: 4px;
-	//overflow: hidden;
-	//transition: box-shadow 0.5s ease;
-	//background-color: $white;
-
 	&:hover {
 		box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.3);
 	}
@@ -501,18 +490,6 @@ a.checkout-btn, a.wishlist-btn {
 	color: $instagram-color;
 }
 
-/******************
-* Class Utilities *
-*******************
-*/
-.text-line-through {
-	text-decoration: line-through;
-}
-
-.list-style-none {
-	list-style-type: none;
-}
-
 // Swiper JS / Carousel 
 .swiper-container {
 	@apply w-full h-full;
@@ -532,29 +509,10 @@ a.checkout-btn, a.wishlist-btn {
 *****************
 */
 
-// Small devices (landscape phones, 576px and up)
-@include media-breakpoint-up(sm) {
-	.container-sm, .container {
-		max-width: 100%;
-		padding-left: $spacer !important;
-		padding-right: $spacer !important;
-	}
-}
-
 // Medium devices (tablets, 768px and up)
 @include media-breakpoint-up(md) {
-	.eco-ml-md-0 {
-		margin-left: 0 !important;
-	}
-
 	.hamburger-menu {
 		display: none;
-	}
-
-	.container-md, .container-sm, .container {
-		max-width: 100%;
-		padding-left: $spacer * 2 !important;
-		padding-right: $spacer * 2 !important;
 	}
 
 	.products-container {
@@ -564,38 +522,12 @@ a.checkout-btn, a.wishlist-btn {
 			margin-right: 1.5*$spacer;
 		}
 	}
-
-	.products-container-transparent {
-		justify-content: space-between;
-	}
-
-	.prev-product {
-		display: inline-block;
-	}
-
-	.next-product {
-		display: inline-block;
-	}
+	
 }
 
 // Large devices (desktops, 992px and up)
 @include media-breakpoint-up(lg) {
 	.hamburger-menu {
 		display: none;
-	}
-
-	.container-lg, .container-md, .container-sm, .container {
-		max-width: 1220px;
-		padding-left: $spacer * 2.5;
-		padding-right: $spacer * 2.5;
-	}
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@include media-breakpoint-up(xl) {
-	.container-xl, .container-lg, .container-md, .container-sm, .container {
-		max-width: 1220px;
-		padding-left: $spacer;
-		padding-right: $spacer;
 	}
 }

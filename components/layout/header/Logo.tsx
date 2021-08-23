@@ -5,7 +5,14 @@ const Logo = () => {
 	const src =
 		'/assets/EcoMojaLogoDesign_HorizontalLogoAndName_GreenAndBlack.svg';
 	return (
-		<Image width={270} loader={() => src} height={155} src={src} alt="logo" />
+		<Image
+			width={250}
+			loader={() => src}
+			height={65}
+			src={src}
+			objectFit="cover"
+			alt="logo"
+		/>
 	);
 };
 

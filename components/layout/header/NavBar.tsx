@@ -5,7 +5,7 @@ import styles from '@/styles/NavBar.module.scss';
 import Logo from '@/components/layout/header/Logo';
 
 const NavBar = () => (
-	<nav className="px-2 flex bg-white w-full h-16 md:px-32 lg:px-44">
+	<nav className="px-2 flex bg-white w-full h-16 md:px-32 lg:px-16">
 		<div className="flex w-full">
 			{/* Mobile burger menu */}
 			{/* TODO: Implement burger menu with http://negomi.github.io/react-burger-menu/ */}
