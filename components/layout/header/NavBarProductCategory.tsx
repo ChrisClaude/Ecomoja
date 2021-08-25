@@ -96,9 +96,9 @@ const SearchContainer = () => (
 		<div className="w-40 flex">
 			<label
 				htmlFor="select-department"
-				className="inline-block flex w-100 mb-0"
+				className="inline-block flex flex-1 mb-0"
 			>
-				<select className="form-control form-control-sm">
+				<select className="w-full">
 					<option>All Departments</option>
 					<option>Baby and Toddler</option>
 					<option>Beauty</option>

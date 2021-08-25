@@ -1,7 +1,5 @@
 @use "sass:math";
 
-// Bootstrap (all dependencies)
-@import "./scss/bootstrap";
 @import "./swiper/swiper";
 
 @tailwind base;
@@ -49,10 +47,10 @@ h4 {
 	@apply text-lg font-semibold;
 }
 
-.container {
-	padding-left: $spacer !important;
-	padding-right: $spacer !important;
+a:hover {
+	@apply text-primary underline;
 }
+
 
 .btn-ecolap-gray {
 	color: #fff;
@@ -66,16 +64,8 @@ h4 {
 	}
 }
 
-.navbar .list-group-item {
-	padding: 0;
-}
-
-.border-right {
-	border-right: 1px solid $gray-500 !important;
-}
-
-
 .wishlist-btn {
+	@apply text-white;
 	width: 33px;
 	height: 33px !important;
 	border-radius: 100%;
@@ -83,7 +73,6 @@ h4 {
 	display: flex !important;
 	align-items: center !important;
 	justify-content: center !important;
-	color: $white !important;
 	padding: 0.5rem !important;
 	font-size: 1.2rem;
 
@@ -93,6 +82,7 @@ h4 {
 }
 
 .checkout-btn {
+	@apply text-white;
 	width: 75px;
 	height: 35px;
 	border-radius: 18px;
@@ -100,7 +90,6 @@ h4 {
 	display: flex !important;
 	align-items: center !important;
 	justify-content: center !important;
-	color: $white !important;
 	padding: 0.5rem !important;
 	font-size: 1rem;
 
@@ -110,28 +99,14 @@ h4 {
 }
 
 a.checkout-btn, a.wishlist-btn {
+	@apply text-white;
 	text-decoration: none !important;
-	color: $white !important;
 }
 
 .bg-ecolap-blue {
 	background-color: $primary;
 }
 
-.layout-grid {
-	display: grid;
-	grid-template-columns: 215px auto;
-	grid-column-gap: 25px;
-}
-
-.banner-grid {
-	@extend .layout-grid;
-	min-height: 82px;
-}
-
-.main-grid {
-	@extend .layout-grid;
-}
 
 .search-container {
 
@@ -152,7 +127,7 @@ a.checkout-btn, a.wishlist-btn {
 		padding: 0.57rem !important;
 		border-radius: 0;
 		border: none;
-		background-color: $gray-300;
+		@apply bg-gray-300;
 	}
 
 	label {
@@ -164,31 +139,6 @@ a.checkout-btn, a.wishlist-btn {
 		border: none;
 		box-shadow: none;
 	}
-
-	select:focus, select:focus-visible {
-		background-color: $gray-300;
-	}
-}
-
-.swiper-item {
-	background-color: $gray-300;
-	cursor: pointer;
-
-	&:hover {
-		background-color: $gray-400;
-	}
-}
-
-.w-12 {
-	width: 3rem;
-}
-
-.w-20 {
-	width: 5rem;
-}
-
-.w-24 {
-	width: 6rem;
 }
 
 .bar1, .bar2, .bar3 {
@@ -215,7 +165,7 @@ a.checkout-btn, a.wishlist-btn {
 }
 
 .hamburger-menu {
-	cursor: pointer;
+	@apply md:hidden cursor-pointer flex-col items-center justify-center;
 	color: #212529;
 	vertical-align: middle;
 	user-select: none;
@@ -223,14 +173,10 @@ a.checkout-btn, a.wishlist-btn {
 	padding: 0.375rem 0.75rem;
 	max-width: 100%;
 	height: 40px;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 
 	.fa-search {
-		position: relative;
+		@apply text-xl relative;
 		top: 2px;
-		font-size: $font-size-base * 1.2;
 	}
 
 	&:focus, &:focus-visible {
@@ -238,10 +184,6 @@ a.checkout-btn, a.wishlist-btn {
 		border: none;
 		box-shadow: none;
 	}
-}
-
-.navbar {
-	padding: 0;
 }
 
 .fa-sort-down.nav-icon {
@@ -274,168 +216,10 @@ a.checkout-btn, a.wishlist-btn {
 	}
 }
 
-.layout-spacer {
-	width: 37%;
-}
-
-.layout-container {
-	width: 72%;
-	flex-grow: 2;
-}
-
-.slideshow-container {
-	@extend .layout-container;
-	height: 330px;
-	position: relative;
-	overflow: hidden;
-
-	.prev, .next {
-		visibility: hidden;
-		opacity: 0;
-		pointer-events: none;
-	}
-
-	&:hover .prev, &:hover .next {
-		opacity: 1;
-		visibility: visible;;
-		pointer-events: auto;
-	}
-}
-
-.slide-action-btn-inactive {
-	visibility: hidden !important;
-	opacity: 0 !important;
-	pointer-events: none !important;
-}
-
-.prev, .next {
-	position: absolute;
-	transition: visibility 0.5s ease, opacity 0.5s ease;
-	top: 50%;
-	width: 35px;
-	height: 35px;
-	border-radius: 100%;
-	background-color: rgba(0, 0, 0, 0.3);
-	color: $white !important;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 15px;
-	cursor: pointer;
-
-	&:hover {
-		color: $white !important;
-		text-decoration: none !important;
-		background-color: rgba(0, 0, 0, 0.45);
-	}
-}
-
-.prev {
-	left: 10px;
-}
-
-.next {
-	right: 10px;
-}
-
-.slideshow-inner-container {
-	width: 400%;
-	display: flex;
-	transition: transform 0.7s ease-in-out;
-}
-
-.slides {
-	width: 100%;
-
-	img {
-		width: 100%;
-		height: 330px;
-	}
-}
-
-.dots-container {
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
-	display: flex;
-	justify-content: space-between;
-	width: 70px;
-}
-
-.dots {
-	width: 12px;
-	height: 12px;
-	background-color: rgba($color: #4d4d4f, $alpha: 0.24);
-	border-radius: 100%;
-	cursor: pointer;
-
-	&.active {
-		background-color: #4d4d4f;
-	}
-}
-
-.feature-brands-container {
-	@extend .layout-container;
-}
-
 /*********************
 * Sales Items Styles *
 **********************
 */
-
-.prev-product {
-	@extend .prev;
-	display: none;
-}
-
-.next-product {
-	@extend .next;
-	display: none;
-}
-
-.products-container {
-	display: flex;
-	flex-flow: column nowrap;
-	width: 100%;
-	height: auto;
-	padding: $spacer/2 1.5*$spacer $spacer*2;
-	align-items: center;
-
-
-	.prev-product, .next-product {
-		visibility: hidden;
-		opacity: 0;
-		pointer-events: none;
-	}
-
-	&:hover .prev-product, &:hover .next-product {
-		display: flex;
-		opacity: 1;
-		visibility: visible;;
-		pointer-events: auto;
-	}
-}
-
-
-.products-container-transparent {
-	@extend .products-container;
-	justify-content: space-between;
-	padding-left: 0;
-	padding-right: 0;
-
-	& > div {
-		margin-right: 0;
-	}
-
-	.prev-product {
-		left: -20px;
-	}
-
-	.next-product {
-		right: -20px;
-	}
-}
-
 .product-item {
 	@apply bg-white flex flex-col items-center w-full h-full cursor-pointer overflow-hidden rounded transition-shadow duration-500;
 
@@ -444,33 +228,15 @@ a.checkout-btn, a.wishlist-btn {
 	}
 
 	.pricing-info-container {
+		@apply mt-6;
 		width: 100%;
 		display: flex;
 		align-items: center;
-		margin-top: $spacer*1.5;
-
-		span:first-child {
-			font-size: 1.2*$font-size-base;
-			margin-right: math.div($spacer, 2);
-		}
-
-		span:nth-child(2) {
-			margin-right: math.div($spacer, 2);
-		}
 	}
 
 	.pricing-info-svg {
 		width: 16px;
 		height: 16px;
-	}
-
-	.rating-info-container {
-		width: 100%;
-		margin-top: math.div($spacer, 3);
-
-		.fa-star {
-			color: $yellow;
-		}
 	}
 }
 
@@ -499,35 +265,6 @@ a.checkout-btn, a.wishlist-btn {
 	@apply text-base flex justify-center items-center;
 }
 
-.swiper-slide img {
+.swiper-slide img:first-child {
 	@apply block w-full h-full object-cover;
-}
-
-
-/****************
-* Media Queries *
-*****************
-*/
-
-// Medium devices (tablets, 768px and up)
-@include media-breakpoint-up(md) {
-	.hamburger-menu {
-		display: none;
-	}
-
-	.products-container {
-		flex-flow: row nowrap;
-
-		& > div {
-			margin-right: 1.5*$spacer;
-		}
-	}
-	
-}
-
-// Large devices (desktops, 992px and up)
-@include media-breakpoint-up(lg) {
-	.hamburger-menu {
-		display: none;
-	}
 }

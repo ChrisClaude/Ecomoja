@@ -5,6 +5,8 @@ type ButtonOwnProps<E extends React.ElementType = React.ElementType> = {
 	children?: React.ReactNode;
 	/** Specifies the component variant to render */
 	variant: 'contained' | 'outlined';
+	/** Specifies full width button */
+	full?: boolean;
 	/** Specifies the HTML element to render */
 	as?: E;
 };
@@ -70,49 +72,7 @@ const switchButtonClassesVariant = (
 	key: string,
 	variant: 'contained' | 'outlined',
 ) => {
-	let value = '';
-	if (variant === 'outlined') {
-		switch (key) {
-			case 'primary':
-				value = ' border-primary text-primary hover:bg-primary';
-				break;
-			case 'secondary':
-				value = ' border-secondary text-secondary hover:bg-secondary';
-				break;
-			case 'light':
-				value = ' border-light text-light hover:bg-light hover:text-dark';
-				break;
-			case 'dark':
-				value = ' border-dark text-dark hover:bg-dark';
-				break;
-			default:
-				value = '';
-				break;
-		}
-	} else if (variant === 'contained') {
-		switch (key) {
-			case 'primary':
-				value =
-					' border-primary bg-primary text-white hover:bg-light hover:text-primary';
-				break;
-			case 'secondary':
-				value =
-					' border-secondary bg-secondary text-white hover:bg-light hover:text-secondary';
-				break;
-			case 'light':
-				value =
-					' border-light bg-light text-dark hover:bg-dark hover:text-white';
-				break;
-			case 'dark':
-				value =
-					' border-dark bg-dark text-white hover:bg-light hover:text-dark';
-				break;
-			default:
-				value = '';
-				break;
-		}
-	}
-
+	let value = 'bg-primary text-white';
 	return value;
 };
 

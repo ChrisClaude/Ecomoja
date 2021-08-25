@@ -16,17 +16,17 @@ const ProductItem = ({
 			<div className="flex flex-col w-full p-2.5">
 				<span className="w-full pt-2 flex-1">{name}</span>
 				<div className="pricing-info-container">
-					<span>R {currentPrice}</span>
-					<span className="text-line-through text-muted">R {oldPrice}</span>
+					<span className="text-base mr-2">R {currentPrice}</span>
+					<span className="line-through text-gray-400 mr-2">R {oldPrice}</span>
 					<img
 						src="/assets/info-product-item-icon.svg"
-						className="pricing-info-svg"
+						className="w-4 h-4"
 						alt="Pricing info icon"
 					/>
 				</div>
-				<div className="rating-info-container">
+				<div className="mt-8 w-full ">
 					<span className="mr-1">
-						<FontAwesomeIcon icon="star" />
+						<FontAwesomeIcon icon="star" className="text-yellow-500" />
 					</span>
 					<span className="mr-1">{rating}</span>
 					<span className="text-muted">({numberOfVotes})</span>

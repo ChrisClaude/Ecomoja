@@ -32,14 +32,15 @@ const ProductDetails = ({ product }: { product: Product }) => {
 		<div className="flex flex-col w-full">
 			<div className="flex">{showCategories(product)}</div>
 			<div className="flex">
-				<div className="bg-white shadow rounded-sm w-2/3 bg-yellow-300 flex">
-					<div>
+				<div className="bg-white shadow rounded-sm w-2/3 flex">
+					<div className="flex p-5">
 						<Image
 							loader={() => product.image}
 							width={300}
 							height={300}
 							src={product.image}
 							alt={product.name}
+							objectFit="cover"
 						/>
 					</div>
 					<div className="flex-1 p-5">

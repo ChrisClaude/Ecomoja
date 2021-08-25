@@ -65,7 +65,7 @@ const Footer = () => (
 				</div>
 				<div className="overflow-hidden mt-4 md:w-28 lg:mt-0">
 					<h5 className="mb-2 font-semibold">Follow us</h5>
-					<ul className="list-style-none d-flex justify-content-md-between m-0 pl-0 overflow-hidden">
+					<ul className="flex lg:justify-between m-0 pl-0 overflow-hidden">
 						<li className="mr-2 mr-md-0">
 							<a href="#" className="inline-block w-8 text-3xl">
 								<FontAwesomeIcon icon={['fab', 'facebook']} />

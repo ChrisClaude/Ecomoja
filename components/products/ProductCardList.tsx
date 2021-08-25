@@ -2,6 +2,7 @@ import * as React from 'react';
 import ProductItem from '@/components/products/ProductItem';
 import { Product } from '@/types/Product';
 import ProductListSwiper from '@/components/products/ProductListSwiper';
+import Button from '@/components/core/Button';
 
 type ProductCardListProps = ProductListProps & ProductListCardListHeaderProps;
 
@@ -22,15 +23,15 @@ const pickButtonType = (
 	let jsxResult;
 	if (buttonType === 'filled') {
 		jsxResult = (
-			<button className="btn btn-primary" type="button">
+			<Button variant="contained" primary>
 				{buttonText}
-			</button>
+			</Button>
 		);
 	} else if (buttonType === 'outlined') {
 		jsxResult = (
-			<button className="btn btn-outline-dark" type="button">
+			<Button variant="outlined" primary>
 				{buttonText}
-			</button>
+			</Button>
 		);
 	}
 
@@ -42,7 +43,7 @@ const ProductCardListHeader = ({
 	buttonText,
 	buttonType,
 }: ProductListCardListHeaderProps) => (
-	<div className="d-flex justify-content-between align-items-center pt-2 pb-1 px-4">
+	<div className="flex justify-between align-items-center pt-2 pb-1 px-4">
 		<h3>{title}</h3>
 		{pickButtonType(buttonText, buttonType)}
 	</div>
