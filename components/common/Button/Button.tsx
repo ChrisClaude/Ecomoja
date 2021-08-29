@@ -118,6 +118,7 @@ const Button = <E extends React.ElementType = typeof defaultElement>({
 	variant = 'contained',
 	className,
 	as,
+	...props
 }: ButtonProps<E>) => {
 	const buttonStyling = createClassNames(
 		{
@@ -130,7 +131,11 @@ const Button = <E extends React.ElementType = typeof defaultElement>({
 	);
 	const TagName = as || defaultElement;
 	// TODO: Currently if a user passes a classes such as py-4, the component will render classes with duplicate padding classes. This should be avoided
-	return <TagName className={cn(buttonStyling, className)}>{children}</TagName>;
+	return (
+		<TagName className={cn(buttonStyling, className)} {...props}>
+			{children}
+		</TagName>
+	);
 };
 
 export default Button;

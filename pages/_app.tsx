@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { AppProps } from 'next/app';
 import '@/styles/styles.scss';
-import { UIContextProvider } from '@/utils/context/UIContext';
+import { UIProvider } from '@/utils/context/UIContext';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-	<UIContextProvider>
+	<UIProvider>
 		<Component {...pageProps} />
-	</UIContextProvider>
+	</UIProvider>
 );
 
 export default MyApp;

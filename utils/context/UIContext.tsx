@@ -7,18 +7,19 @@ type UIContextType = UIState & {
 	dispatch: React.Dispatch<UIAction>;
 };
 
-export const UIContext = React.createContext<UIContextType>({
+const initializeUIState: UIState = {
 	isShopByCategoryCollapsed: true,
-} as UIContextType);
+	cartItems: [],
+};
 
-export const UIContextProvider = ({
-	children,
-}: {
-	children: React.ReactNode;
-}) => {
-	const [appState, dispatch] = React.useReducer(reducer, {
-		isShopByCategoryCollapsed: true,
-	});
+export const UIContext = React.createContext<UIContextType>(
+	initializeUIState as UIContextType,
+);
+
+UIContext.displayName = 'UIContext';
+
+export const UIProvider = ({ children }: { children: React.ReactNode }) => {
+	const [appState, dispatch] = React.useReducer(reducer, initializeUIState);
 
 	return (
 		<UIContext.Provider
