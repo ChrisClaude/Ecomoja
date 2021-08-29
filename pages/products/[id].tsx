@@ -3,10 +3,10 @@ import Layout from '@/components/layout/Layout';
 import { getProduct, getProducts } from '@/services/ProductServices';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import ProductDetails from '@/components/products/ProductDetails';
-import { AppContext } from '@/utils/context/AppContext';
+import { UIContext } from '@/utils/context/UIContext';
 
 const ProductDetail = ({ product }) => {
-	const { dispatch } = React.useContext(AppContext);
+	const { dispatch } = React.useContext(UIContext);
 
 	React.useEffect(
 		() =>

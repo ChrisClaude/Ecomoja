@@ -2,7 +2,7 @@ import * as React from 'react';
 import Layout from '@/components/layout/Layout';
 import Catalogue from '@/components/layout/Catalogue';
 import Carousel from '@/components/layout/Carousel';
-import { AppContext } from '@/utils/context/AppContext';
+import { UIContext } from '@/utils/context/UIContext';
 import Head from 'next/head';
 
 const Banner = () => (
@@ -29,7 +29,7 @@ const Banner = () => (
 );
 
 export default function Home() {
-	const { dispatch } = React.useContext(AppContext);
+	const { dispatch } = React.useContext(UIContext);
 
 	React.useEffect(
 		() =>

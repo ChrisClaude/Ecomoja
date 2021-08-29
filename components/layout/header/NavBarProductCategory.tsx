@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { ProductCategory } from '@/types/ProductCategory';
-import { AppContext } from '@/utils/context/AppContext';
+import { UIContext } from '@/utils/context/UIContext';
 import { productCategories } from '../../../Products';
 
 const ProductCategoryList = ({
@@ -25,7 +25,7 @@ const ProductCategoryList = ({
 );
 
 const ShopCategory = () => {
-	const { isShopByCategoryCollapsed, dispatch } = React.useContext(AppContext);
+	const { isShopByCategoryCollapsed, dispatch } = React.useContext(UIContext);
 
 	const toggleShopBuCategory = () => {
 		dispatch({
@@ -126,7 +126,7 @@ const SearchContainer = () => (
 );
 
 const NavBarProductCategory = () => {
-	const { isShopByCategoryCollapsed } = React.useContext(AppContext);
+	const { isShopByCategoryCollapsed } = React.useContext(UIContext);
 
 	return (
 		<>

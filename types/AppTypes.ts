@@ -1,3 +1,3 @@
-export type AppState = {
+export type UIState = {
 	isShopByCategoryCollapsed: boolean;
 };
