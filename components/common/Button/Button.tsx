@@ -76,7 +76,7 @@ const createClassNames = (
 	variant: 'contained' | 'outlined',
 ): string => {
 	let result =
-		'py-2 px-3 rounded-sm font-semibold hover:scale-105 hover:animate-heartbeat ' +
+		'flex items-center justify-center py-2 px-3 rounded-sm font-semibold hover:scale-105 hover:animate-heartbeat ' +
 		'focus-within:border focus-within:border-opacity-20';
 	if (variant === 'contained') {
 		if (classes.primary) {

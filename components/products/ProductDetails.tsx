@@ -77,10 +77,21 @@ const ProductDetails = ({ product }: { product: Product }) => (
 				</span>
 				<div className="flex flex-col mt-3">
 					<Button variant="contained" primary className="py-3">
-						Add to Cart
+						<span className="flex items-center justify-center w-full">
+							<span className="material-icons-round mr-1 text-base">add</span>
+							<span className="material-icons-round mr-2 text-base">
+								shopping_cart
+							</span>
+							<span>Add to Cart</span>
+						</span>
 					</Button>
 					<Button variant="contained" light className="mt-2 py-3">
-						Add to List
+						<span className="flex items-center justify-center w-full">
+							<span className="material-icons-round mr-2 text-base">
+								favorite_border
+							</span>
+							<span>Add to List</span>
+						</span>
 					</Button>
 				</div>
 			</div>

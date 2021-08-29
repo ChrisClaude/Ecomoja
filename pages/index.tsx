@@ -3,6 +3,7 @@ import Layout from '@/components/layout/Layout';
 import Catalogue from '@/components/layout/Catalogue';
 import Carousel from '@/components/layout/Carousel';
 import { AppContext } from '@/utils/context/AppContext';
+import Head from 'next/head';
 
 const Banner = () => (
 	<section className="px-2 py-6 hidden flex-col bg-white md:px-32 lg:px-16 lg:flex">
@@ -41,6 +42,9 @@ export default function Home() {
 
 	return (
 		<Layout>
+			<Head>
+				<title>Ecomoja | Home</title>
+			</Head>
 			<Banner />
 			<Catalogue />
 		</Layout>
