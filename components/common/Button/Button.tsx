@@ -129,7 +129,7 @@ const Button = <E extends React.ElementType = typeof defaultElement>({
 		variant,
 	);
 	const TagName = as || defaultElement;
-
+	// TODO: Currently if a user passes a classes such as py-4, the component will render classes with duplicate padding classes. This should be avoided
 	return <TagName className={cn(buttonStyling, className)}>{children}</TagName>;
 };
 

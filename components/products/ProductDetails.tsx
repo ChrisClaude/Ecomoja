@@ -79,10 +79,10 @@ const ProductDetails = ({ product }: { product: Product }) => {
 						R {product.oldPrice}
 					</span>
 					<div className="flex flex-col mt-3">
-						<Button variant="contained" primary>
+						<Button variant="contained" primary className="py-3">
 							Add to Cart
 						</Button>
-						<Button variant="contained" primary className="mt-2">
+						<Button variant="contained" light className="mt-2 py-3">
 							Add to List
 						</Button>
 					</div>
