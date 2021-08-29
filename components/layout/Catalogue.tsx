@@ -8,7 +8,7 @@ const Catalogue = () => (
 			<ProductCardList
 				title="Daily Deals"
 				buttonText="View more"
-				buttonType="filled"
+				buttonType="contained"
 				products={products}
 			/>
 		</div>

@@ -4,12 +4,37 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
+			animation: {
+				heartbeat: 'heartbeat 1.5s ease-in-out',
+			},
 			colors: {
 				primary: '#0b79bf',
 				secondary: '#ecc94b',
 				'ecolap-gray': '#4d4d4d',
 				'ecolap-green': '#25CD66',
 				'ecolap-gray-h': '#404042',
+			},
+			keyframes: {
+				heartbeat: {
+					'0%': {
+						transform: 'scale(1)',
+					},
+					'14%': {
+						transform: 'scale(1.05)',
+					},
+					'20%': {
+						transform: 'scale(1)',
+					},
+					'42%': {
+						transform: 'scale(1.05)',
+					},
+					'70%': {
+						transform: 'scale(1)',
+					},
+					'100%': {
+						transform: 'scale(1.05)',
+					},
+				},
 			},
 		},
 	},

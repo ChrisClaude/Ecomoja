@@ -2,14 +2,14 @@ import * as React from 'react';
 import ProductItem from '@/components/products/ProductItem';
 import { Product } from '@/types/Product';
 import ProductListSwiper from '@/components/products/ProductListSwiper';
-import Button from '@/components/core/Button';
+import Button from '@/components/common/Button/Button';
 
 type ProductCardListProps = ProductListProps & ProductListCardListHeaderProps;
 
 type ProductListCardListHeaderProps = {
 	title: string;
 	buttonText: string;
-	buttonType: 'filled' | 'outlined';
+	buttonType: 'contained' | 'outlined';
 };
 
 type ProductListProps = {
@@ -18,10 +18,10 @@ type ProductListProps = {
 
 const pickButtonType = (
 	buttonText: string,
-	buttonType: 'filled' | 'outlined',
+	buttonType: 'contained' | 'outlined',
 ) => {
 	let jsxResult;
-	if (buttonType === 'filled') {
+	if (buttonType === 'contained') {
 		jsxResult = (
 			<Button variant="contained" primary>
 				{buttonText}
@@ -29,7 +29,7 @@ const pickButtonType = (
 		);
 	} else if (buttonType === 'outlined') {
 		jsxResult = (
-			<Button variant="outlined" primary>
+			<Button variant="outlined" dark>
 				{buttonText}
 			</Button>
 		);

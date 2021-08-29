@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Product } from '@/types/Product';
 import Link from 'next/link';
 import Image from 'next/image';
-import Button from '@/components/core/Button';
+import Button from '@/components/common/Button/Button';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
@@ -82,7 +82,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 						<Button variant="contained" primary>
 							Add to Cart
 						</Button>
-						<Button variant="contained" secondary className="mt-2">
+						<Button variant="contained" primary className="mt-2">
 							Add to List
 						</Button>
 					</div>
