@@ -1,0 +1,15 @@
+.cartWrapper {
+	@apply relative;
+	
+	.cartItems {
+		@apply hidden;
+	}
+	
+	&:hover .cartItems {
+		@apply block;
+	}
+}
+
+.cartItems {
+	@apply absolute bg-white w-72 right-0 shadow-md pt-2 rounded-sm z-10;
+}
