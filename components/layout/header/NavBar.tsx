@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '@/styles/NavBar.module.scss';
 import Logo from '@/components/layout/header/Logo';
+import { Cart } from '@/components/cart';
 
 const NavBar = () => (
 	<nav className="px-2 flex bg-white w-full h-16 md:px-32 lg:px-16">
@@ -110,12 +111,7 @@ const NavBar = () => (
 						</a>
 					</li>
 					<li>
-						<a
-							href="#"
-							className="flex text-white items-center justify-center rounded-3xl w-12 h-8 bg-green-600 hover:bg-green-700 hover:text-white"
-						>
-							<FontAwesomeIcon icon="shopping-cart" className="w-6" />
-						</a>
+						<Cart />
 					</li>
 				</ul>
 			</div>
