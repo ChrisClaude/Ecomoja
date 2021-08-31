@@ -9,7 +9,8 @@ module.exports = {
 			},
 			colors: {
 				primary: '#0b79bf',
-				secondary: '#ecc94b',
+				secondary: '#6bc134',
+				success: '#1c8644',
 				'ecolap-gray': '#4d4d4d',
 				'ecolap-green': '#25CD66',
 				'ecolap-gray-h': '#404042',

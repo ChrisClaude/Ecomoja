@@ -10,13 +10,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 // Color variables
-$body-color: #333;
-$primary: #0b79bf;
-$primary-hover: #187139;
-$success: #1c8644;
-$success-hover: #187139;
-$danger: #f4697a;
-$danger-hover: #f0384f;
 $ecolap-gray: #4D4D4D;
 $ecolap-gray-hover: #404042;
 
@@ -64,52 +57,8 @@ a:hover {
 	}
 }
 
-.wishlist-btn {
-	@apply text-white;
-	width: 33px;
-	height: 33px !important;
-	border-radius: 100%;
-	background-color: $danger !important;
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center !important;
-	padding: 0.5rem !important;
-	font-size: 1.2rem;
-
-	&:hover {
-		background-color: $danger-hover !important;
-	}
-}
-
-.checkout-btn {
-	@apply text-white;
-	width: 75px;
-	height: 35px;
-	border-radius: 18px;
-	background-color: $success !important;
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center !important;
-	padding: 0.5rem !important;
-	font-size: 1rem;
-
-	&:hover {
-		background-color: $success-hover !important;
-	}
-}
-
-a.checkout-btn, a.wishlist-btn {
-	@apply text-white;
-	text-decoration: none !important;
-}
-
-.bg-ecolap-blue {
-	background-color: $primary;
-}
-
 
 .search-container {
-
 	input[type="text"], .btn {
 		padding: 0.4rem 0.8rem !important;
 		border: none;
