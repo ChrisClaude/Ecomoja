@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout';
 import { getProduct, getProducts } from '@/services/ProductServices';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import ProductDetails from '@/components/products/ProductDetails';
-import { UIContext } from '@/utils/context/UIContext';
+import { UIContext } from '../../api/context/UIContext';
 
 const ProductDetail = ({ product }) => {
 	const { dispatch } = React.useContext(UIContext);

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { ProductCategory } from '@/types/ProductCategory';
-import { UIContext } from '@/utils/context/UIContext';
+import { UIContext } from '../../../api/context/UIContext';
 import { productCategories } from '../../../Products';
 
 const ProductCategoryList = ({

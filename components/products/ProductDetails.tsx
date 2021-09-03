@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { Product } from '@/types/Product';
 import { Button } from '@/components/common/';
 import { addProduct } from '@/services/ProductServices';
-import { UIContext } from '@/utils/context/UIContext';
-import { UIAction } from '@/utils/reducer/reducer';
+import { UIContext } from '../../api/context/UIContext';
+import { UIAction } from '../../api/reducer/reducer';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;

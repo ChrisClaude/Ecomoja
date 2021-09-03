@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { UIContext } from '@/utils/context/UIContext';
 import { Button } from '@/components/common';
 import { CartItem as CartItemType } from '@/types/AppTypes';
-import s from './Cart.module.scss';
 import Image from 'next/image';
+import s from './Cart.module.scss';
+import { UIContext } from '../../api/context/UIContext';
 
 const CartNavICon = () => {
 	const { cartItems } = React.useContext(UIContext);
