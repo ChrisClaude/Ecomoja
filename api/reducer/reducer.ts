@@ -6,12 +6,20 @@ type AddProductToCart = {
 	payload: Product;
 };
 
+type RemoveProductFromCart = {
+	type: 'REMOVE_PRODUCT_FROM_CART';
+	payload: Product;
+};
+
 type SetShopByCategory = {
 	type: 'SET_SHOP_BY_CATEGORY';
 	payload: boolean;
 };
 
-export type UIAction = AddProductToCart | SetShopByCategory;
+export type UIAction =
+	| AddProductToCart
+	| SetShopByCategory
+	| RemoveProductFromCart;
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	if (action.type === 'SET_SHOP_BY_CATEGORY') {
@@ -48,6 +56,18 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			newCartItems.push(cartItem);
 		}
 
+		return {
+			...state,
+			cartItems: newCartItems,
+		};
+	}
+
+	if (action.type === 'REMOVE_PRODUCT_FROM_CART') {
+		// we're comparing carItem's id (item.id) to product's id (action.payload.id)
+		// because a cartItem has the same id as the product it contains
+		const newCartItems = state.cartItems.filter(
+			(item) => item.id !== action.payload.id,
+		);
 		return {
 			...state,
 			cartItems: newCartItems,
