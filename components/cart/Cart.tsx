@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@/components/common';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import Image from 'next/image';
+import { default as cn } from 'classnames';
 import s from './Cart.module.scss';
 import { UIContext } from '../../api/context/UIContext';
 
@@ -24,7 +25,10 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch } = React.useContext(UIContext);
 
 	const removeCartItem = () => {
-		dispatch({ type: 'REMOVE_PRODUCT_FROM_CART', payload: cartItem.product });
+		dispatch({
+			type: 'REMOVE_PRODUCT_FROM_CART',
+			payload: cartItem.product,
+		});
 	};
 	return (
 		<div className="flex px-5 py-2 h-20">
@@ -76,24 +80,36 @@ const CartMini = () => {
 	// TODO: Show no content when Cart is empty
 	return (
 		<div className={s.cartMini}>
-			<div>
-				{cartItems.map((item) => (
-					<CartItem cartItem={item} key={item.id} />
-				))}
+			<div
+				className={cn(
+					{ hidden: cartItems.length > 0 },
+					'h-40 flex items-center justify-center',
+				)}
+			>
+				<p>Your cart is empty</p>
 			</div>
-			<div>
-				<div className="py-2 px-5 border-t-2 border-b-2 border-solid border-gray-300 flex justify-end font-bold">
-					Total: R {calculateCartTotal(cartItems)}
+			<div className={cn({ hidden: cartItems.length === 0 })}>
+				<div>
+					{cartItems.map((item) => (
+						<CartItem cartItem={item} key={item.id} />
+					))}
 				</div>
-				<div className="flex justify-between px-6 my-3">
-					<Button secondary className="bg-green-600 w-1/2 mr-2">
-						<span className="material-icons text-base mr-1">lock</span>
-						<span>Checkout</span>
-					</Button>
-					<Button secondary className="bg-green-600 w-1/2">
-						<span className="material-icons text-base mr-1">shopping_cart</span>
-						<span>Cart</span>
-					</Button>
+				<div>
+					<div className="py-2 px-5 border-t-2 border-b-2 border-solid border-gray-300 flex justify-end font-bold">
+						Total: R {calculateCartTotal(cartItems)}
+					</div>
+					<div className="flex justify-between px-6 my-3">
+						<Button secondary className="bg-green-600 w-1/2 mr-2">
+							<span className="material-icons text-base mr-1">lock</span>
+							<span>Checkout</span>
+						</Button>
+						<Button secondary className="bg-green-600 w-1/2">
+							<span className="material-icons text-base mr-1">
+								shopping_cart
+							</span>
+							<span>Cart</span>
+						</Button>
+					</div>
 				</div>
 			</div>
 		</div>
