@@ -4,6 +4,7 @@ import { Button } from '@/components/common';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import Image from 'next/image';
 import { default as cn } from 'classnames';
+import Link from 'next/link';
 import s from './Cart.module.scss';
 import { UIContext } from '../../api/context/UIContext';
 
@@ -77,7 +78,6 @@ const calculateCartTotal = (cart: CartItemType[]): number => {
 const CartMini = () => {
 	const { cartItems } = React.useContext(UIContext);
 
-	// TODO: Show no content when Cart is empty
 	return (
 		<div className={s.cartMini}>
 			<div
@@ -103,12 +103,18 @@ const CartMini = () => {
 							<span className="material-icons text-base mr-1">lock</span>
 							<span>Checkout</span>
 						</Button>
-						<Button secondary className="bg-green-600 w-1/2">
-							<span className="material-icons text-base mr-1">
-								shopping_cart
-							</span>
-							<span>Cart</span>
-						</Button>
+						<Link href="/cart" passHref>
+							<Button
+								secondary
+								className="bg-green-600 w-1/2 hover:text-white hover:no-underline"
+								as="a"
+							>
+								<span className="material-icons text-base mr-1">
+									shopping_cart
+								</span>
+								<span>Cart</span>
+							</Button>
+						</Link>
 					</div>
 				</div>
 			</div>
