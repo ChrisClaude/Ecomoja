@@ -7,7 +7,7 @@ export type Product = {
 	oldPrice?: number;
 	rating?: number;
 	numberOfVotes?: number;
-	categories?: string[];
+	categories: string[];
 	vendor: string;
 	isInStock: boolean;
 	isFreeDelivered?: boolean;

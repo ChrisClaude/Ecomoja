@@ -35,7 +35,6 @@ const handleAddProductToCart = (
 	product: Product,
 	dispatch: React.Dispatch<UIAction>,
 ) => {
-	console.log('Added product from handleAddProductToCart');
 	dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: product });
 	addProduct(product);
 };

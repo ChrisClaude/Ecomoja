@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Layout from '@/components/layout/Layout';
 import Catalogue from '@/components/layout/Catalogue';
 import Carousel from '@/components/layout/Carousel';
 import Head from 'next/head';
@@ -41,12 +40,12 @@ export default function Home() {
 	);
 
 	return (
-		<Layout>
+		<>
 			<Head>
 				<title>Ecomoja | Home</title>
 			</Head>
 			<Banner />
 			<Catalogue />
-		</Layout>
+		</>
 	);
 }

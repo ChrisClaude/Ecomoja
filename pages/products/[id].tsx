@@ -1,12 +1,14 @@
 import React from 'react';
-import Layout from '@/components/layout/Layout';
 import { getProduct, getProducts } from '@/services/ProductServices';
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import ProductDetails from '@/components/products/ProductDetails';
 import { UIContext } from '../../api/context/UIContext';
+import Head from 'next/head';
+import { Product } from '@/types/Product';
 
-const ProductDetail = ({ product }) => {
+const ProductDetail = ({ product }: { product: Product }) => {
 	const { dispatch } = React.useContext(UIContext);
+	const { name } = product;
 
 	React.useEffect(
 		() =>
@@ -18,7 +20,10 @@ const ProductDetail = ({ product }) => {
 	);
 
 	return (
-		<Layout>
+		<>
+			<Head>
+				<title>Ecomoja | {name}</title>
+			</Head>
 			<div className="hidden px-2 py-6 lg:flex lg:px-44">
 				<div className="flex-1 overflow-hidden">
 					<div className="w-full">
@@ -26,7 +31,7 @@ const ProductDetail = ({ product }) => {
 					</div>
 				</div>
 			</div>
-		</Layout>
+		</>
 	);
 };
 
