@@ -19,8 +19,14 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"paths": {
+			"@/api/*": [
+				"api/*"
+			],
 			"@/components/*": [
 				"components/*"
+			],
+			"@/helpers/*": [
+				"helpers/*"
 			],
 			"@/styles/*": [
 				"styles/*"

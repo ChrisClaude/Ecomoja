@@ -1,4 +1,19 @@
-// eslint-disable-next-line import/prefer-default-export
+import { CartItem as CartItemType } from '@/types/AppTypes';
+
+/**
+ * Computes the total price from the cart items
+ * @param cart the cart array containing the user selected items
+ */
+export const calculateCartTotal = (cart: CartItemType[]): number => {
+	let total = 0;
+
+	cart.forEach((item) => {
+		total += item.product.currentPrice * item.productInstances;
+	});
+
+	return total;
+};
+
 export const purgeClasses = (classNames: string): string => {
 	const classArray = classNames.split(' ');
 	// We need to remove duplicate classes such as

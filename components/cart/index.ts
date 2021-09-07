@@ -1,1 +1,2 @@
-export { default as Cart } from './Cart';
+export { default as CartNavBarView } from './CartNavBarView';
+export { default as CartMiniItem } from './CartMiniItem';
