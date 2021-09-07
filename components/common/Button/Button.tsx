@@ -80,11 +80,14 @@ const createClassNames = (
 		'focus-within:border focus-within:border-opacity-20';
 	if (variant === 'contained') {
 		if (classes.primary) {
-			result += ' bg-primary text-white focus-within:border-primary';
+			result +=
+				' bg-primary text-white focus-within:border-primary hover:text-white hover:no-underline';
 		} else if (classes.secondary) {
-			result += ' bg-secondary text-white focus-within:border-secondary';
+			result +=
+				' bg-secondary text-white focus-within:border-secondary hover:text-white hover:no-underline';
 		} else if (classes.dark) {
-			result += ' bg-gray-500 text-white focus-within:border-bg-gray-500';
+			result +=
+				' bg-gray-500 text-white focus-within:border-bg-gray-500 hover:text-white hover:no-underline';
 		} else if (classes.light) {
 			result += ' bg-gray-100 text-black focus-within:border-bg-gray-100';
 		}

@@ -14,6 +14,20 @@ export const calculateCartTotal = (cart: CartItemType[]): number => {
 	return total;
 };
 
+/**
+ * Computes the total number of cart items
+ * @param cart the cart array containing the user selected items
+ */
+export const calculateNumberOfCartItems = (cart: CartItemType[]): number => {
+	let total = 0;
+
+	cart.forEach((item) => {
+		total += item.productInstances;
+	});
+
+	return total;
+};
+
 export const purgeClasses = (classNames: string): string => {
 	const classArray = classNames.split(' ');
 	// We need to remove duplicate classes such as
