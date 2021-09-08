@@ -8,6 +8,7 @@ import {
 } from '@/helpers/index';
 import { Button } from '@/components/common';
 import Link from 'next/link';
+import { default as cn } from 'classnames';
 
 const Cart = () => {
 	const { cartItems, dispatch } = React.useContext(UIContext);
@@ -28,7 +29,18 @@ const Cart = () => {
 			</Head>
 			<section className="px-16 py-8 hidden lg:block">
 				<h1 className="mb-6">Shopping Cart</h1>
-				<div className="flex items-start">
+				<div
+					className={cn(
+						{ hidden: cartItems.length > 0 },
+						'h-80 bg-white flex items-center justify-center text-lg',
+					)}
+				>
+					<p className="animate-bounce">Your cart is empty!</p>
+				</div>
+
+				<div
+					className={cn('flex items-start', { hidden: cartItems.length === 0 })}
+				>
 					<div className="space-y-5 flex-1">
 						{cartItems.map((item) => (
 							<CartItem cartItem={item} key={item.id} />

@@ -14,8 +14,6 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	};
 
 	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
-		console.log(event.currentTarget.value);
-
 		if (+event.currentTarget.value === cartItem.productInstances + 1) {
 			dispatch({
 				type: 'INCREASE_PRODUCT_QUANTITY',
