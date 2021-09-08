@@ -7,7 +7,7 @@
 @tailwind utilities;
 
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;900&display=swap');
 
 // Color variables
 $ecolap-gray: #4D4D4D;
@@ -20,24 +20,36 @@ $instagram-color: #2a5b83;
 
 body {
 	font-size: 13px !important;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Urbanist', sans-serif;
 	@apply bg-gray-200 text-gray-700;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	@apply font-extrabold;
+}
+
 h1 {
-	@apply text-3xl font-semibold;
+	@apply text-4xl;
 }
 
 h2 {
-	@apply text-2xl font-semibold;
+	@apply text-3xl;
 }
 
 h3 {
-	@apply text-xl font-semibold;
+	@apply text-2xl;
 }
 
 h4 {
-	@apply text-lg font-semibold;
+	@apply text-xl;
+}
+
+h5 {
+	@apply text-lg;
+}
+
+h6 {
+	@apply text-base;
 }
 
 a:hover {

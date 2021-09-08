@@ -27,7 +27,7 @@ const Cart = () => {
 				<title>Ecomoja | Cart</title>
 			</Head>
 			<section className="px-16 py-8 hidden lg:block">
-				<h2>Shopping Cart</h2>
+				<h1 className="mb-6">Shopping Cart</h1>
 				<div className="flex items-start">
 					<div className="space-y-5 flex-1">
 						{cartItems.map((item) => (
@@ -35,11 +35,17 @@ const Cart = () => {
 						))}
 					</div>
 					<aside className="ml-5 w-80 h-auto bg-white px-4 py-6">
-						<h3>Cart Summary</h3>
-						<div className="mt-5">
-							<span>Total:</span>
-							<span>({calculateNumberOfCartItems(cartItems)} items)</span>
-							<span>R {calculateCartTotal(cartItems)}</span>
+						<h2>Cart Summary</h2>
+						<div className="mt-5 flex items-end">
+							<div>
+								<span className="text-lg font-semibold">Total:</span>
+								<span className="ml-2">
+									({calculateNumberOfCartItems(cartItems)} items)
+								</span>
+							</div>
+							<span className="text-2xl font-semibold ml-auto">
+								R {calculateCartTotal(cartItems)}
+							</span>
 						</div>
 						<Link href="#" passHref>
 							<Button secondary as="a" className="w-full mt-3">
