@@ -6,7 +6,7 @@ import {
 	calculateCartTotal,
 	calculateNumberOfCartItems,
 } from '@/helpers/index';
-import { Button } from '@/components/common';
+import { Button, Modal } from '@/components/common';
 import Link from 'next/link';
 import { default as cn } from 'classnames';
 
@@ -27,7 +27,7 @@ const Cart = () => {
 			<Head>
 				<title>Ecomoja | Cart</title>
 			</Head>
-			<section className="px-16 py-8 hidden lg:block">
+			<section className="px-16 py-8 hidden lg:block relative">
 				<h1 className="mb-6">Shopping Cart</h1>
 				<div
 					className={cn(

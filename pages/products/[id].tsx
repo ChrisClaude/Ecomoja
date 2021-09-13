@@ -5,6 +5,7 @@ import ProductDetails from '@/components/products/ProductDetails';
 import { UIContext } from '../../api/context/UIContext';
 import Head from 'next/head';
 import { Product } from '@/types/Product';
+import { Modal } from '@/components/common';
 
 const ProductDetail = ({ product }: { product: Product }) => {
 	const { dispatch } = React.useContext(UIContext);
@@ -31,6 +32,7 @@ const ProductDetail = ({ product }: { product: Product }) => {
 					</div>
 				</div>
 			</div>
+			<Modal>This is a cart</Modal>
 		</>
 	);
 };

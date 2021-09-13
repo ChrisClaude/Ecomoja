@@ -3,6 +3,7 @@ import { Product } from './Product';
 export type UIState = {
 	isShopByCategoryCollapsed: boolean;
 	cartItems: CartItem[];
+	isModalOpen: boolean;
 };
 
 export type CartItem = {

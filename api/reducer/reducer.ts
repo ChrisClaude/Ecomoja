@@ -26,12 +26,17 @@ type SetShopByCategory = {
 	payload: boolean;
 };
 
+type ToggleModal = {
+	type: 'TOGGLE_MODAL';
+};
+
 export type UIAction =
 	| AddProductToCart
 	| SetShopByCategory
 	| RemoveProductFromCart
 	| IncreaseProductQuantity
-	| DecreaseProductQuantity;
+	| DecreaseProductQuantity
+	| ToggleModal;
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[];
@@ -107,6 +112,12 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			return {
 				...state,
 				cartItems: newCartItems,
+			};
+
+		case 'TOGGLE_MODAL':
+			return {
+				...state,
+				isModalOpen: !state.isModalOpen,
 			};
 
 		default:
