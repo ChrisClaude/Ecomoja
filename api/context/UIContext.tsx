@@ -10,7 +10,7 @@ type UIContextType = UIState & {
 const initializeUIState: UIState = {
 	isShopByCategoryCollapsed: true,
 	cartItems: [],
-	isModalOpen: true,
+	isModalOpen: false,
 };
 
 export const UIContext = React.createContext<UIContextType>(

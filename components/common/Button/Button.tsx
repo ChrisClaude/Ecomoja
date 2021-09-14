@@ -113,17 +113,20 @@ const createClassNames = (
 const defaultElement = 'button';
 
 const Button = React.forwardRef(
-	<E extends React.ElementType = typeof defaultElement>({
-		children,
-		primary = false,
-		secondary = false,
-		dark = false,
-		light = false,
-		variant = 'contained',
-		className,
-		as,
-		...props
-	}: ButtonProps<E>) => {
+	<E extends React.ElementType = typeof defaultElement>(
+		{
+			children,
+			primary = false,
+			secondary = false,
+			dark = false,
+			light = false,
+			variant = 'contained',
+			className,
+			as,
+			...props
+		}: ButtonProps<E>,
+		ref,
+	) => {
 		const buttonStyling = createClassNames(
 			{
 				primary,
@@ -136,7 +139,7 @@ const Button = React.forwardRef(
 		const TagName = as || defaultElement;
 		// TODO: Currently if a user passes a classes such as py-4, the component will render classes with duplicate padding classes. This should be avoided
 		return (
-			<TagName className={cn(buttonStyling, className)} {...props}>
+			<TagName className={cn(buttonStyling, className)} {...props} ref={ref}>
 				{children}
 			</TagName>
 		);

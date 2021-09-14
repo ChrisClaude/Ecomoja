@@ -36,6 +36,7 @@ const handleAddProductToCart = (
 	dispatch: React.Dispatch<UIAction>,
 ) => {
 	dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: product });
+	dispatch({ type: 'TOGGLE_MODAL' });
 	addProduct(product);
 };
 
