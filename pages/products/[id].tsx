@@ -2,14 +2,30 @@ import React from 'react';
 import { getProduct, getProducts } from '@/services/ProductServices';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import ProductDetails from '@/components/products/ProductDetails';
-import { UIContext } from '../../api/context/UIContext';
+import { UIContext } from '@/api/context/UIContext';
 import Head from 'next/head';
 import { Product } from '@/types/Product';
 import { CartModal } from '@/components/cart';
+import { useRouter } from 'next/router';
 
 const ProductDetail = ({ product }: { product: Product }) => {
+	const router = useRouter();
 	const { dispatch } = React.useContext(UIContext);
 	const { name } = product;
+
+	React.useEffect(() => {
+		const handleRouteChange = (url, { shallow }) => {
+			dispatch({ type: 'RESET_MODAL' });
+		};
+
+		router.events.on('routeChangeStart', handleRouteChange);
+
+		// If the component is unmounted, unsubscribe
+		// from the event with the `off` method:
+		return () => {
+			router.events.off('routeChangeStart', handleRouteChange);
+		};
+	}, []);
 
 	React.useEffect(
 		() =>

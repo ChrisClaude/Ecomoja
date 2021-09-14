@@ -30,13 +30,18 @@ type ToggleModal = {
 	type: 'TOGGLE_MODAL';
 };
 
+type resetModal = {
+	type: 'RESET_MODAL';
+};
+
 export type UIAction =
 	| AddProductToCart
 	| SetShopByCategory
 	| RemoveProductFromCart
 	| IncreaseProductQuantity
 	| DecreaseProductQuantity
-	| ToggleModal;
+	| ToggleModal
+	| resetModal;
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[];
@@ -79,24 +84,18 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				(cartItem) => cartItem.id === action.payload.id,
 			);
 
-			if (submittedCartItems.length === 0) {
-				const cartItem: CartItem = {
-					id: action.payload.id,
-					product: action.payload,
-					productInstances: 1,
+			if (submittedCartItems.length !== 0) {
+				return {
+					...state,
 				};
-				newCartItems = [...state.cartItems, cartItem];
-			} else {
-				const cartItem = {
-					...submittedCartItems[0],
-					productInstances: submittedCartItems[0].productInstances + 1,
-				};
-				newCartItems = state.cartItems.filter(
-					(item) => item.id !== action.payload.id,
-				);
-
-				newCartItems.push(cartItem);
 			}
+
+			const cartItem: CartItem = {
+				id: action.payload.id,
+				product: action.payload,
+				productInstances: 1,
+			};
+			newCartItems = [...state.cartItems, cartItem];
 
 			return {
 				...state,
@@ -119,7 +118,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				isModalOpen: !state.isModalOpen,
 			};
-
+		case 'RESET_MODAL':
+			return {
+				...state,
+				isModalOpen: false,
+			};
 		default:
 			return { ...state };
 	}
