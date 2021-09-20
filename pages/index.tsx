@@ -36,7 +36,7 @@ export default function Home() {
 				type: 'SET_SHOP_BY_CATEGORY',
 				payload: true,
 			}),
-		[],
+		[dispatch],
 	);
 
 	return (

@@ -14,7 +14,9 @@ type ProductListSwiperProps = {
 
 SwiperCore.use([Virtual]);
 const ProductListSwiper = ({ products }: ProductListSwiperProps) => {
+	/* eslint-disable no-unused-vars */
 	const [swiperRef, setSwiperRef] = useState(null);
+	/* eslint-enable */
 	return (
 		<div className="h-96">
 			<Swiper

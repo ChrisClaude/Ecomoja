@@ -6,7 +6,7 @@ import {
 	calculateCartTotal,
 	calculateNumberOfCartItems,
 } from '@/helpers/index';
-import { Button, Modal } from '@/components/common';
+import { Button } from '@/components/common';
 import Link from 'next/link';
 import { default as cn } from 'classnames';
 
@@ -19,7 +19,7 @@ const Cart = () => {
 				type: 'SET_SHOP_BY_CATEGORY',
 				payload: false,
 			}),
-		[],
+		[dispatch],
 	);
 
 	return (

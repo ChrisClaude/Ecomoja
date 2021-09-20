@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
-
+/* eslint-disable @next/next/no-img-element */
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 // TODO: Update Carousel to use Image component from Next JS
 const Carousel = () => (

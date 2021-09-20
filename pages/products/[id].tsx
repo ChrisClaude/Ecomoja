@@ -14,7 +14,7 @@ const ProductDetail = ({ product }: { product: Product }) => {
 	const { name } = product;
 
 	React.useEffect(() => {
-		const handleRouteChange = (url, { shallow }) => {
+		const handleRouteChange = () => {
 			dispatch({ type: 'RESET_MODAL' });
 		};
 
@@ -25,7 +25,7 @@ const ProductDetail = ({ product }: { product: Product }) => {
 		return () => {
 			router.events.off('routeChangeStart', handleRouteChange);
 		};
-	}, []);
+	}, [dispatch, router.events]);
 
 	React.useEffect(
 		() =>
@@ -33,7 +33,7 @@ const ProductDetail = ({ product }: { product: Product }) => {
 				type: 'SET_SHOP_BY_CATEGORY',
 				payload: false,
 			}),
-		[],
+		[dispatch],
 	);
 
 	return (

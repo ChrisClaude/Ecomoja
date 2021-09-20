@@ -363,6 +363,6 @@ export const products: Product[] = [
 export const productCategories: ProductCategory[] = [
 	{
 		id: 14,
-		name: 'Groceries & Household',
+		name: 'Groceries',
 	},
 ];

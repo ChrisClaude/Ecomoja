@@ -1,5 +1,4 @@
 import * as React from 'react';
-import ProductItem from '@/components/products/ProductItem';
 import { Product } from '@/types/Product';
 import ProductListSwiper from '@/components/products/ProductListSwiper';
 import Button from '@/components/common/Button/Button';

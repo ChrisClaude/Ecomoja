@@ -12,9 +12,6 @@ const Footer = () => (
 							<a href="#">About Us</a>
 						</li>
 						<li className="mb-1">
-							<a href="#">Careers</a>
-						</li>
-						<li className="mb-1">
 							<a href="#">Sell on Ecomoja</a>
 						</li>
 						<li className="mb-1">

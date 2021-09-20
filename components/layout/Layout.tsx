@@ -18,10 +18,10 @@ import {
 	faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-import Header from './header/Header';
-import Footer from './Footer';
 import { default as cn } from 'classnames';
 import { UIContext } from '@/api/context/UIContext';
+import Header from './header/Header';
+import Footer from './Footer';
 
 type LayoutProp = {
 	children: React.ReactNode;

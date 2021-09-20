@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/button-has-type */
 import * as React from 'react';
 import { Button, Modal } from '@/components/common';
 import { UIContext } from '@/api/context/UIContext';
