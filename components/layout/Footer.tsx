@@ -82,8 +82,8 @@ const Footer = () => (
 				</div>
 			</div>
 		</div>
-		<div className="bg-primary text-white px-2 py-4 md:px-32 lg:px-44">
-			<div>&copy; Crazee-evironmental 2021</div>
+		<div className="bg-green-600 text-white px-2 py-4 md:px-32 lg:px-44">
+			<p className="text-center">&copy; Craze-evironmental 2021</p>
 		</div>
 	</footer>
 );

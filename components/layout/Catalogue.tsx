@@ -6,7 +6,7 @@ const Catalogue = () => (
 	<div className="px-16 py-8 hidden lg:block">
 		<div className="bg-white">
 			<ProductCardList
-				title="Daily Deals"
+				title="Groceries"
 				buttonText="View more"
 				buttonType="contained"
 				products={products}
@@ -14,7 +14,7 @@ const Catalogue = () => (
 		</div>
 		<div className="mt-6">
 			<ProductCardList
-				title="Stay Warm & Well This Winter"
+				title="Groceries"
 				buttonText="View more"
 				buttonType="outlined"
 				products={products}

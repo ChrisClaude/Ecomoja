@@ -148,60 +148,14 @@ const NavBarProductCategory = () => {
 			</div>
 			{/*#endregion */}
 			{/*#region Desktop daily deals */}
-			<div className="hidden px-2 py-2 bg-primary lg:flex lg:flex-col lg:px-16">
+			<div className="hidden px-2 py-4 h-16 bg-green-600 lg:flex lg:flex-col lg:px-16 justify-center">
 				<div className="lg:flex">
 					<div className="w-56 mr-5">
 						<ShopCategory />
 					</div>
 
-					<div className="flex-1 overflow-hidden">
-						<SearchContainer />
-					</div>
-				</div>
-				<div className="lg:flex">
-					<div className={isShopByCategoryCollapsed ? 'w-56 mr-5' : 'hidden'} />
-
-					<div className="flex-1 overflow-hidden">
-						<div className="bg-white overflow-hidden rounded-sm overflow-hidden mt-2">
-							<ul className="flex h-8">
-								<li
-									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-									title="Clearance store"
-								>
-									Clearance store
-								</li>
-								<li
-									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-									title="Shop Local"
-								>
-									Shop local
-								</li>
-								<li
-									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-									title="Winter"
-								>
-									Winter
-								</li>
-								<li
-									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-									title="Fashion Outlet"
-								>
-									Fashion outlet
-								</li>
-								<li
-									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-									title="brand store"
-								>
-									Brand store
-								</li>
-								<li
-									className="flex-1 bg-gray-200 cursor-pointer truncate text-center hover:bg-gray-300 py-2 px-3"
-									title="Exclusive"
-								>
-									Exclusive
-								</li>
-							</ul>
-						</div>
+					<div className="rounded-lg shadow-lg p-3 bg-gray-300 cursor-pointer">
+						Promotions
 					</div>
 				</div>
 			</div>

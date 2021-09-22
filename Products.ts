@@ -7,8 +7,7 @@ export const products: Product[] = [
 		id: 111,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
-		image:
-			'https://media.takealot.com/covers_tsins/68704043/68704043-1-pdpxl.jpeg',
+		image: '/assets/products/apple_1.jpg',
 		currentPrice: 387,
 		oldPrice: 894,
 		rating: 4,
@@ -22,8 +21,7 @@ export const products: Product[] = [
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
-		image:
-			'https://media.takealot.com/covers_tsins/62253629/62253629-1-pdpxl.jpeg',
+		image: '/assets/products/aubergine_1.jpg',
 		currentPrice: 647,
 		oldPrice: 994,
 		rating: 5,
@@ -36,8 +34,7 @@ export const products: Product[] = [
 		id: 113,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
-		image:
-			'https://media.takealot.com/covers_images/d513cbb80859489b8fed8e982987a770/s-zoom.file',
+		image: '/assets/products/bananas_3.jpg',
 		currentPrice: 547,
 		oldPrice: 494,
 		rating: 5,
@@ -50,8 +47,7 @@ export const products: Product[] = [
 		id: 114,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/7b16abb1f3574dc8bc25ee3dcbf8875a/s-pdpxl.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 847,
 		oldPrice: 1494,
 		rating: 1,
@@ -64,8 +60,7 @@ export const products: Product[] = [
 		id: 115,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/4aac18fd41e44329b9f5b2765d8c558e/s-pdpxl.file',
+		image: '/assets/products/strawberry_2.jpg',
 		currentPrice: 347,
 		oldPrice: 694,
 		rating: 3,
@@ -78,8 +73,7 @@ export const products: Product[] = [
 		id: 116,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
-		image:
-			'https://media.takealot.com/covers_tsins/68704043/68704043-1-pdpxl.jpeg',
+		image: '/assets/products/tomatoes_1.jpg',
 		currentPrice: 387,
 		oldPrice: 894,
 		rating: 4,
@@ -93,8 +87,7 @@ export const products: Product[] = [
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
-		image:
-			'https://media.takealot.com/covers_tsins/62253629/62253629-1-pdpxl.jpeg',
+		image: '/assets/products/strawberry_2.jpg',
 		currentPrice: 647,
 		oldPrice: 994,
 		rating: 5,
@@ -107,8 +100,7 @@ export const products: Product[] = [
 		id: 15213,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
-		image:
-			'https://media.takealot.com/covers_images/d513cbb80859489b8fed8e982987a770/s-zoom.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 547,
 		oldPrice: 494,
 		rating: 5,
@@ -121,8 +113,7 @@ export const products: Product[] = [
 		id: 1825414,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/7b16abb1f3574dc8bc25ee3dcbf8875a/s-pdpxl.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 847,
 		oldPrice: 1494,
 		rating: 1,
@@ -135,8 +126,7 @@ export const products: Product[] = [
 		id: 110755,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/4aac18fd41e44329b9f5b2765d8c558e/s-pdpxl.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 347,
 		oldPrice: 694,
 		rating: 3,
@@ -149,8 +139,7 @@ export const products: Product[] = [
 		id: 114731,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
-		image:
-			'https://media.takealot.com/covers_tsins/68704043/68704043-1-pdpxl.jpeg',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 387,
 		oldPrice: 894,
 		rating: 4,
@@ -164,8 +153,7 @@ export const products: Product[] = [
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
-		image:
-			'https://media.takealot.com/covers_tsins/62253629/62253629-1-pdpxl.jpeg',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 647,
 		oldPrice: 994,
 		rating: 5,
@@ -178,8 +166,7 @@ export const products: Product[] = [
 		id: 1186798563,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
-		image:
-			'https://media.takealot.com/covers_images/d513cbb80859489b8fed8e982987a770/s-zoom.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 547,
 		oldPrice: 494,
 		rating: 5,
@@ -192,8 +179,7 @@ export const products: Product[] = [
 		id: 116374,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/7b16abb1f3574dc8bc25ee3dcbf8875a/s-pdpxl.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 847,
 		oldPrice: 1494,
 		rating: 1,
@@ -206,8 +192,7 @@ export const products: Product[] = [
 		id: 1157439670,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/4aac18fd41e44329b9f5b2765d8c558e/s-pdpxl.file',
+		image: '/assets/products/strawberry_2.jpg',
 		currentPrice: 347,
 		oldPrice: 694,
 		rating: 3,
@@ -220,8 +205,7 @@ export const products: Product[] = [
 		id: 11657681,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
-		image:
-			'https://media.takealot.com/covers_tsins/68704043/68704043-1-pdpxl.jpeg',
+		image: '/assets/products/bananas_3.jpg',
 		currentPrice: 387,
 		oldPrice: 894,
 		rating: 4,
@@ -235,8 +219,7 @@ export const products: Product[] = [
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
-		image:
-			'https://media.takealot.com/covers_tsins/62253629/62253629-1-pdpxl.jpeg',
+		image: '/assets/products/strawberry_2.jpg',
 		currentPrice: 647,
 		oldPrice: 994,
 		rating: 5,
@@ -249,8 +232,7 @@ export const products: Product[] = [
 		id: 113637675879,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
-		image:
-			'https://media.takealot.com/covers_images/d513cbb80859489b8fed8e982987a770/s-zoom.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 547,
 		oldPrice: 494,
 		rating: 5,
@@ -263,8 +245,7 @@ export const products: Product[] = [
 		id: 114654875497,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/7b16abb1f3574dc8bc25ee3dcbf8875a/s-pdpxl.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 847,
 		oldPrice: 1494,
 		rating: 1,
@@ -277,8 +258,7 @@ export const products: Product[] = [
 		id: 1167895,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/4aac18fd41e44329b9f5b2765d8c558e/s-pdpxl.file',
+		image: '/assets/products/strawberry_2.jpg',
 		currentPrice: 347,
 		oldPrice: 694,
 		rating: 3,
@@ -291,8 +271,7 @@ export const products: Product[] = [
 		id: 11497091,
 		name: 'PerfectAire - ScentAire',
 		description: '100% Essential Oil - Tea Tree Oil - 10ml',
-		image:
-			'https://media.takealot.com/covers_tsins/68704043/68704043-1-pdpxl.jpeg',
+		image: '/assets/products/bananas_3.jpg',
 		currentPrice: 387,
 		oldPrice: 894,
 		rating: 4,
@@ -306,8 +285,7 @@ export const products: Product[] = [
 		name: 'Greenleaf Forest Ultrasonic Essential Oil',
 		description:
 			'Not only do they add a beautiful aroma into the air but they also humidify the air.',
-		image:
-			'https://media.takealot.com/covers_tsins/62253629/62253629-1-pdpxl.jpeg',
+		image: '/assets/products/strawberry_2.jpg',
 		currentPrice: 647,
 		oldPrice: 994,
 		rating: 5,
@@ -320,8 +298,7 @@ export const products: Product[] = [
 		id: 117569703,
 		name: 'Hanging Plants',
 		description: 'Artificial Plant',
-		image:
-			'https://media.takealot.com/covers_images/d513cbb80859489b8fed8e982987a770/s-zoom.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 547,
 		oldPrice: 494,
 		rating: 5,
@@ -334,8 +311,7 @@ export const products: Product[] = [
 		id: 113276474,
 		name: 'HouzeComfort Artificial Ficus Indoor and Outdoor Pot Plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/7b16abb1f3574dc8bc25ee3dcbf8875a/s-pdpxl.file',
+		image: '/assets/products/mushrooms_2.jpg',
 		currentPrice: 847,
 		oldPrice: 1494,
 		rating: 1,
@@ -348,8 +324,7 @@ export const products: Product[] = [
 		id: 1198745635,
 		name: 'Artificial monsteria plant',
 		description: 'Decorate and Style with Plants',
-		image:
-			'https://media.takealot.com/covers_images/4aac18fd41e44329b9f5b2765d8c558e/s-pdpxl.file',
+		image: '/assets/products/strawberry_2.jpg',
 		currentPrice: 347,
 		oldPrice: 694,
 		rating: 3,
