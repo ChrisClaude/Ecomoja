@@ -45,12 +45,12 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				/>
 			</div>
 			<div className="flex flex-col flex-1 justify-between">
-				<div className="flex">
+				<div className="flex flex-col md:flex-row">
 					<div className="flex flex-col">
 						<p className="text-2xl font-semibold">{cartItem.product.name}</p>
 						<p>{cartItem.product.description}</p>
 					</div>
-					<div className="flex flex-col ml-auto">
+					<div className="my-4 flex flex-col md:ml-auto md:my-0">
 						<span className="text-2xl font-bold">
 							R {cartItem.product.currentPrice}
 						</span>
@@ -68,8 +68,8 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 						</div>
 					</div>
 				</div>
-				<div className="flex">
-					<p>
+				<div className="flex flex-col md:flex-row">
+					<p className="flex items-center">
 						{cartItem.product.isFreeDelivered
 							? 'Free Delivery'
 							: 'Delivery fees will be charged'}

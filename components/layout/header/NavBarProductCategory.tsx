@@ -132,7 +132,7 @@ const NavBarProductCategory = () => {
 	return (
 		<>
 			{/*#region Mobile daily deals */}
-			<div className="px-2 flex items-center h-12 justify-between bg-ecolap-green md:px-32 lg:hidden">
+			<div className="px-2 flex items-center h-12 justify-between bg-green-600 md:px-32 lg:hidden">
 				<div>
 					<FontAwesomeIcon
 						icon={['far', 'clock']}

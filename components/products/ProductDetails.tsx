@@ -46,8 +46,8 @@ const ProductDetails = ({ product }: { product: Product }) => {
 	return (
 		<div className="flex flex-col w-full">
 			<div className="flex">{showCategories(product)}</div>
-			<div className="flex">
-				<div className="bg-white shadow rounded-sm w-2/3 flex">
+			<div className="flex flex-col lg:flex-row">
+				<div className="flex w-full bg-white shadow rounded-sm lg:w-2/3">
 					<div className="flex p-5">
 						<Image
 							loader={() => product.image}
@@ -85,7 +85,8 @@ const ProductDetails = ({ product }: { product: Product }) => {
 						</div>
 					</div>
 				</div>
-				<div className="bg-white w-1/3 flex flex-col shadow rounded-sm ml-5 p-5 h-60 overflow-hidden">
+
+				<div className="mt-5 w-full bg-white flex flex-col overflow-hidden shadow rounded-sm p-5 h-60 sm:w-1/2 lg:ml-5 lg:w-1/3 lg:mt-0">
 					<span className="text-4xl font-bold">R {product.currentPrice}</span>
 					<span className="mt-1 font-bold uppercase text-xs">
 						Free delivery

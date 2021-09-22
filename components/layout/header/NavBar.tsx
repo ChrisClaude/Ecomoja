@@ -118,17 +118,16 @@ const NavBar = () => (
 			{/* Mobile Icons */}
 			<div className="flex items-center ml-auto lg:hidden">
 				<button
-					className="btn d-flex align-items-center justify-content-center h-100"
+					className="h-8 p-1 text-base flex items-center justify-center"
 					type="button"
 				>
 					<FontAwesomeIcon icon="search" />
 				</button>
-				<button
-					className="btn d-flex align-items-center justify-content-center h-100"
-					type="button"
-				>
-					<FontAwesomeIcon icon="shopping-cart" />
-				</button>
+				<Link href="/cart">
+					<a className="h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700">
+						<FontAwesomeIcon icon="shopping-cart" />
+					</a>
+				</Link>
 			</div>
 		</div>
 	</nav>
