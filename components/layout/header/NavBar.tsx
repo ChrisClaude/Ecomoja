@@ -31,12 +31,7 @@ const NavBar = () => (
 				<ul className="hidden items-center ml-5 lg:flex ">
 					<li className="p-2">
 						<Link href="#">
-							<a>Help</a>
-						</Link>
-					</li>
-					<li className="p-2">
-						<Link href="#">
-							<a>Sell on Eco</a>
+							<a>Sell with Us</a>
 						</Link>
 					</li>
 				</ul>

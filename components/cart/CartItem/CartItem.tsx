@@ -33,7 +33,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	};
 
 	return (
-		<div className="w-full flex bg-white p-3">
+		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
 			<div>
 				<Image
 					loader={() => cartItem.product.image}
@@ -44,7 +44,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 					objectFit="cover"
 				/>
 			</div>
-			<div className="flex flex-col flex-1 justify-between">
+			<div className="flex flex-col justify-between lg:flex-1">
 				<div className="flex flex-col md:flex-row">
 					<div className="flex flex-col">
 						<p className="text-2xl font-semibold">{cartItem.product.name}</p>
@@ -74,7 +74,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 							? 'Free Delivery'
 							: 'Delivery fees will be charged'}
 					</p>
-					<div className="flex ml-auto">
+					<div className="flex lg:ml-auto">
 						<button
 							type="button"
 							className="px-2 py-1 rounded flex items-center justify-center transition duration-300 hover:bg-gray-200 rounded-sm mr-2"

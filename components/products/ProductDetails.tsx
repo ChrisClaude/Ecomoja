@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { Product } from '@/types/Product';
 import { Button } from '@/components/common/';
 import { addProduct } from '@/services/ProductServices';
-import { UIContext } from '../../api/context/UIContext';
-import { UIAction } from '../../api/reducer/reducer';
+import { UIContext } from '@/api/context/UIContext';
+import { UIAction } from '@/api/reducer/reducer';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
@@ -47,7 +47,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 		<div className="flex flex-col w-full">
 			<div className="flex">{showCategories(product)}</div>
 			<div className="flex flex-col lg:flex-row">
-				<div className="flex w-full bg-white shadow rounded-sm lg:w-2/3">
+				<div className="flex flex-col w-full bg-white shadow rounded-sm lg:flex-row lg:w-2/3">
 					<div className="flex p-5">
 						<Image
 							loader={() => product.image}

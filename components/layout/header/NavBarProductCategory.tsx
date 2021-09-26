@@ -41,7 +41,7 @@ const ShopCategory = () => {
 				<div className="absolute w-56 z-20 overflow-hidden bg-white rounded-md shadow-lg">
 					<div className="flex flex-col">
 						<div className="w-full">
-							<div className="flex items-center justify-between relative text-white bg-ecolap-gray h-8 py-2 px-5 hover:bg-ecolap-gray-h">
+							<div className="flex items-center justify-between relative text-white bg-ecolap-gray py-3 px-5 hover:bg-ecolap-gray-h">
 								Shop by Department
 								<span>
 									{isShopByCategoryCollapsed ? (
@@ -148,8 +148,8 @@ const NavBarProductCategory = () => {
 			</div>
 			{/*#endregion */}
 			{/*#region Desktop daily deals */}
-			<div className="hidden px-2 py-4 h-16 bg-green-600 lg:flex lg:flex-col lg:px-16 justify-center">
-				<div className="lg:flex">
+			<div className="hidden px-2 py-4 h-16 bg-white lg:flex lg:flex-col lg:px-16 justify-center">
+				<div className="border-b-2 border-black pb-2 lg:flex">
 					<div className="w-56 mr-5">
 						<ShopCategory />
 					</div>

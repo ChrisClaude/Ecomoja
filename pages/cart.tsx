@@ -27,7 +27,7 @@ const Cart = () => {
 			<Head>
 				<title>Ecomoja | Cart</title>
 			</Head>
-			<section className="px-6 px-16 py-8 lg:block relative">
+			<section className="px-6 py-8 lg:block lg:px-16 relative">
 				<h1 className="mb-6">Shopping Cart</h1>
 				<div
 					className={cn(
