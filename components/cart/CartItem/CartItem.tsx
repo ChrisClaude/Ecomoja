@@ -74,10 +74,10 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 							? 'Free Delivery'
 							: 'Delivery fees will be charged'}
 					</p>
-					<div className="flex lg:ml-auto">
+					<div className="flex md:ml-auto">
 						<button
 							type="button"
-							className="px-2 py-1 rounded flex items-center justify-center transition duration-300 hover:bg-gray-200 rounded-sm mr-2"
+							className="px-2 py-1 rounded flex items-center justify-center transition duration-300 mr-2 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
 							onClick={handleOnRemoveCartItem}
 						>
 							<span className="material-icons mr-1">delete</span>{' '}
@@ -85,7 +85,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 						</button>
 						<button
 							type="button"
-							className="px-2 py-1 flex items-center justify-center transition duration-300 hover:bg-gray-200 rounded-sm"
+							className="px-2 py-1 rounded flex items-center justify-center transition duration-300 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
 						>
 							<span className="material-icons mr-1">favorite</span>
 							<span>Add to list</span>
