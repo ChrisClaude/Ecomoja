@@ -21,7 +21,7 @@ const NavBar = () => (
 				</button>
 			</div>
 
-			<div className="flex lg:w-2/5">
+			<div className="flex">
 				<Link href="/">
 					<a className="flex items-center">
 						<Logo />
@@ -36,23 +36,32 @@ const NavBar = () => (
 					</li>
 				</ul>
 			</div>
-
-			<div className="w-3/5 justify-end hidden lg:flex ">
-				<ul className="flex w-3/4 justify-end items-center">
+			<div className="hidden mx-3 lg:flex-1 lg:flex lg:items-center">
+				<input
+					type="text"
+					placeholder="Search your eco friendly products here"
+					className="flex-1 p-2 bg-gray-200 h-12 focus-visible:outline-none"
+				/>
+				<span className="material-icons-round flex items-center justify-center bg-gray-200 text-xl h-12 px-3 focus:outline-none">
+					search
+				</span>
+			</div>
+			<div className="justify-end hidden lg:flex">
+				<ul className="flex justify-end items-center">
 					<li className="p-2">
 						<Link href="/login">
-							<a>Login or register</a>
+							<a className="whitespace-nowrap">Login or register</a>
 						</Link>
 					</li>
 					<li className="p-2">
 						<Link href="#">
-							<a>Orders</a>
+							<a className="whitespace-nowrap">Orders</a>
 						</Link>
 					</li>
 					<li className="p-2 relative">
 						<Link href="#">
-							<a>
-								<span>My Eomoja</span>
+							<a className="whitespace-nowrap">
+								<span>My Ecomoja</span>
 								<span className="ml-1">
 									<span>
 										<FontAwesomeIcon
@@ -69,7 +78,7 @@ const NavBar = () => (
 						<div className={styles['nav-expand']}>
 							<ul className="pb-2">
 								<li className="py-1 px-3">
-									<a href="#">My Account</a>
+									<a href="#">My Ecomoja</a>
 								</li>
 								<li className="py-1 px-3">
 									<a href="#">Track Order</a>
