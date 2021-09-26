@@ -41,7 +41,7 @@ const ProductDetail = ({ product }: { product: Product }) => {
 			<Head>
 				<title>Ecomoja | {name}</title>
 			</Head>
-			<div className="hidden px-2 py-6 lg:flex lg:px-44">
+			<div className="flex px-2 py-6 lg:px-44">
 				<div className="flex-1 overflow-hidden">
 					<div className="w-full">
 						<ProductDetails product={product} />

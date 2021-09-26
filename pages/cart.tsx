@@ -27,7 +27,7 @@ const Cart = () => {
 			<Head>
 				<title>Ecomoja | Cart</title>
 			</Head>
-			<section className="px-16 py-8 hidden lg:block relative">
+			<section className="px-6 py-8 lg:block lg:px-16 relative">
 				<h1 className="mb-6">Shopping Cart</h1>
 				<div
 					className={cn(
@@ -39,14 +39,17 @@ const Cart = () => {
 				</div>
 
 				<div
-					className={cn('flex items-start', { hidden: cartItems.length === 0 })}
+					className={cn('flex flex-col items-start lg:flex-row', {
+						hidden: cartItems.length === 0,
+					})}
 				>
-					<div className="space-y-5 flex-1">
+					<div className="space-y-5 w-full lg:flex-1">
 						{cartItems.map((item) => (
 							<CartItem cartItem={item} key={item.id} />
 						))}
 					</div>
-					<aside className="ml-5 w-80 h-auto bg-white px-4 py-6">
+
+					<aside className="mt-4 w-full h-auto bg-white px-4 py-6 lg:ml-5 lg:mt-0 lg:w-80">
 						<h2>Cart Summary</h2>
 						<div className="mt-5 flex items-end">
 							<div>

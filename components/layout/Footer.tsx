@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer = () => (
 	<footer className="footer">
-		<div className="px-2 py-6 bg-white md:px-32 lg:px-44">
+		<div className="bg-footer-img bg-center bg-cover px-2 py-6 bg-white md:px-32 lg:px-44">
 			<div className="flex flex-col lg:justify-between lg:flex-row">
 				<div>
 					<h5 className="mb-2 font-semibold">Company</h5>
@@ -82,8 +82,10 @@ const Footer = () => (
 				</div>
 			</div>
 		</div>
-		<div className="bg-green-600 text-white px-2 py-4 md:px-32 lg:px-44">
-			<p className="text-center">&copy; Craze-evironmental 2021</p>
+		<div className="bg-white px-2 py-4 md:px-32 lg:px-44">
+			<p className="text-center font-semibold text-base">
+				&copy; Craze-evironmental 2021
+			</p>
 		</div>
 	</footer>
 );

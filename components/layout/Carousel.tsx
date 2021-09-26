@@ -21,16 +21,10 @@ const Carousel = () => (
 			className="mySwiper"
 		>
 			<SwiperSlide>
-				<img
-					src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-					alt="eco friendly product"
-				/>
+				<img src="/assets/HomePage_1.png" alt="eco friendly product" />
 			</SwiperSlide>
 			<SwiperSlide>
-				<img
-					src="https://images.unsplash.com/photo-1563391506244-af91a410fcc9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80"
-					alt="eco friendly product"
-				/>
+				<img src="/assets/HomePage_2.png" alt="eco friendly product" />
 			</SwiperSlide>
 			<SwiperSlide>
 				<img

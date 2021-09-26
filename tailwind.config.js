@@ -7,6 +7,9 @@ module.exports = {
 			animation: {
 				heartbeat: 'heartbeat 1.5s ease-in-out',
 			},
+			backgroundImage: {
+				'footer-img': "url('/assets/EcoMojaFooter_banner.png')",
+			},
 			colors: {
 				primary: '#0b79bf',
 				secondary: '#6bc134',
