@@ -11,27 +11,28 @@ const reducer = (state: SwiperState, action: SwiperAction): SwiperState => {
 
 	switch (type) {
 		case 'NEXT_SLIDE':
-			console.log('next slide button');
 			return {
 				...state,
 				nextSlide: true,
 				prevSlide: false,
 			};
 		case 'PREV_SLIDE':
-			console.log('previous slide button');
 			return {
 				...state,
 				prevSlide: true,
 				nextSlide: false,
 			};
 		case 'TOGGLE_ACTION_BUTTONS':
-			console.log(state.isActionButtonsDisabled);
 			return {
 				...state,
 				isActionButtonsDisabled: !state.isActionButtonsDisabled,
 			};
+		case 'INITIALIZE_SWIPER':
+			return {
+				...state,
+				slides: payload as JSX.Element[],
+			};
 		case 'PREPEND_LAST_ELEMENT':
-			console.log('prepend last element');
 			payload_ = payload as JSX.Element[];
 			const lastElement = payload_.pop();
 			payload_.unshift(lastElement);
@@ -41,7 +42,6 @@ const reducer = (state: SwiperState, action: SwiperAction): SwiperState => {
 				slides: payload_,
 			};
 		case 'APPEND_FIRST_ELEMENT':
-			console.log('append first element');
 			payload_ = payload as JSX.Element[];
 			const firstElement = payload_.shift();
 			payload_.push(firstElement);

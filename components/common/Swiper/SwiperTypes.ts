@@ -29,6 +29,11 @@ type ResetSlide = {
 	payload?: {};
 };
 
+type InitializeSwiper = {
+	type: 'INITIALIZE_SWIPER';
+	payload: JSX.Element[];
+};
+
 type PrependLastElement = {
 	type: 'PREPEND_LAST_ELEMENT';
 	payload: JSX.Element[];
@@ -48,6 +53,7 @@ export type SwiperAction =
 	| NextSlide
 	| PrevSlide
 	| ToggleActionButtons
+	| InitializeSwiper
 	| ResetSlide
 	| PrependLastElement
 	| AppendLastElement

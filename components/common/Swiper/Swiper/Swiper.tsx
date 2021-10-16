@@ -1,11 +1,16 @@
 import * as React from 'react';
 import SwiperContainer from '../SwiperContainer/SwiperContainer';
-import { SwiperProvider } from '@/components/common/Swiper/context';
+import { SwiperProvider } from '../context';
+import SwiperItem from '@/components/common/Swiper/SwiperItem/SwiperItem';
 
-const Swiper = () => {
+type SwiperProps = {
+	children: JSX.Element[];
+};
+
+const Swiper = ({ children }: SwiperProps) => {
 	return (
 		<SwiperProvider>
-			<SwiperContainer totalSlideNumber={4} />
+			<SwiperContainer autoplay>{children}</SwiperContainer>
 		</SwiperProvider>
 	);
 };

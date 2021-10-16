@@ -2,13 +2,15 @@ import * as React from 'react';
 import s from './SwiperContainer.module.scss';
 import { default as cn } from 'classnames';
 import { SwiperContext } from '../context';
-import SwiperButton from '@/components/common/Swiper/SwiperButton';
+import SwiperButton from '../SwiperButton';
+import { JSX } from '@babel/types';
 
 type SwiperContainerProps = {
-	totalSlideNumber: number;
+	children: JSX.Element[];
+	autoplay?: boolean;
 };
 
-const SwiperContainer = ({ totalSlideNumber }: SwiperContainerProps) => {
+const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 	const {
 		nextSlide,
 		prevSlide,
@@ -18,13 +20,36 @@ const SwiperContainer = ({ totalSlideNumber }: SwiperContainerProps) => {
 		isActionButtonsDisabled,
 	} = React.useContext(SwiperContext);
 
+	const [totalSlideNumber, setTotalSlideNumber] = React.useState(0);
+
 	React.useEffect(() => {
+		if (autoplay) {
+			const intervalId = setInterval(() => {
+				console.log('running autoplay');
+				handleNextSlide();
+			}, 2500);
+			console.log('running outside autoplay setInterval');
+			return () => clearInterval(intervalId);
+		}
+	}, [autoplay]);
+
+	React.useEffect(() => {
+		setTotalSlideNumber(children.length);
+
 		dispatch({
-			type: 'PREPEND_LAST_ELEMENT',
-			payload: slides,
+			type: 'INITIALIZE_SWIPER',
+			payload: [...children],
 		});
-		console.log('running');
-	}, []);
+	}, [children]);
+
+	React.useEffect(() => {
+		if (slides.length > 0) {
+			dispatch({
+				type: 'PREPEND_LAST_ELEMENT',
+				payload: slides,
+			});
+		}
+	}, [slides]);
 
 	const handleNextSlide = () => {
 		dispatch({
@@ -47,7 +72,6 @@ const SwiperContainer = ({ totalSlideNumber }: SwiperContainerProps) => {
 	const handleOnTransitionEnd = (
 		event: React.TransitionEvent<HTMLDivElement>,
 	) => {
-		console.log(event);
 		dispatch({
 			type: 'SET_CAN_TRANSITION',
 			payload: false,

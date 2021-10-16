@@ -15,13 +15,7 @@ export const SwiperProvider = ({ children }: { children: React.ReactNode }) => {
 		prevSlide: false,
 		canTransition: true,
 		isActionButtonsDisabled: false,
-		slides: [1, 2, 3, 4].map((n) => (
-			<SwiperItem key={n}>
-				<div className="w-full h-full flex items-center justify-center bg-green-300">
-					<div>Slide {n}</div>
-				</div>
-			</SwiperItem>
-		)),
+		slides: [],
 	};
 
 	const [swiperState, dispatch] = React.useReducer(
