@@ -5,8 +5,8 @@ type SwiperProps = {
 	children: React.ReactNode;
 } & React.HTMLProps<HTMLDivElement>;
 
-const SwiperItem = ({ children, className }: SwiperProps) => {
-	return <div className={cn('h-full w-full', className)}>{children}</div>;
-};
+const SwiperItem = ({ children, className }: SwiperProps) => (
+	<div className={cn('h-full w-full', className)}>{children}</div>
+);
 
 export default SwiperItem;

@@ -10,19 +10,18 @@ const SwiperButton = ({
 	className,
 	onClick,
 	...props
-}: SwiperButtonProps) => {
-	return (
-		<button
-			className={cn(
-				'absolute inset-y-1/2 block focus-within:outline-none',
-				className,
-			)}
-			onClick={onClick}
-			disabled={props.disabled}
-		>
-			{children}
-		</button>
-	);
-};
+}: SwiperButtonProps) => (
+	<button
+		className={cn(
+			'absolute inset-y-1/2 block focus-within:outline-none',
+			className,
+		)}
+		onClick={onClick}
+		disabled={props.disabled}
+		type="button"
+	>
+		{children}
+	</button>
+);
 
 export default SwiperButton;

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SwiperContextType, SwiperState } from './SwiperTypes';
 import { default as swiperReducer } from './reducer';
-import SwiperItem from './SwiperItem/SwiperItem';
 
 export const SwiperContext = React.createContext<SwiperContextType>(
 	{} as SwiperContextType,

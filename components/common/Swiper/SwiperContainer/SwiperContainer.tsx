@@ -1,9 +1,9 @@
 import * as React from 'react';
-import s from './SwiperContainer.module.scss';
+import { JSX } from '@babel/types';
 import { default as cn } from 'classnames';
+import s from './SwiperContainer.module.scss';
 import { SwiperContext } from '../context';
 import SwiperButton from '../SwiperButton';
-import { JSX } from '@babel/types';
 
 type SwiperContainerProps = {
 	children: JSX.Element[];
@@ -22,56 +22,7 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 
 	const [totalSlideNumber, setTotalSlideNumber] = React.useState(0);
 
-	React.useEffect(() => {
-		if (autoplay) {
-			const intervalId = setInterval(() => {
-				console.log('running autoplay');
-				handleNextSlide();
-			}, 2500);
-			console.log('running outside autoplay setInterval');
-			return () => clearInterval(intervalId);
-		}
-	}, [autoplay]);
-
-	React.useEffect(() => {
-		setTotalSlideNumber(children.length);
-
-		dispatch({
-			type: 'INITIALIZE_SWIPER',
-			payload: [...children],
-		});
-	}, [children]);
-
-	React.useEffect(() => {
-		if (slides.length > 0) {
-			dispatch({
-				type: 'PREPEND_LAST_ELEMENT',
-				payload: slides,
-			});
-		}
-	}, [slides]);
-
-	const handleNextSlide = () => {
-		dispatch({
-			type: 'TOGGLE_ACTION_BUTTONS',
-		});
-		dispatch({
-			type: 'NEXT_SLIDE',
-		});
-	};
-
-	const handlePrevSlide = () => {
-		dispatch({
-			type: 'TOGGLE_ACTION_BUTTONS',
-		});
-		dispatch({
-			type: 'PREV_SLIDE',
-		});
-	};
-
-	const handleOnTransitionEnd = (
-		event: React.TransitionEvent<HTMLDivElement>,
-	) => {
+	const handleOnTransitionEnd = () => {
 		dispatch({
 			type: 'SET_CAN_TRANSITION',
 			payload: false,
@@ -101,6 +52,56 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 			});
 		}, 600);
 	};
+
+	const handleNextSlide = () => {
+		dispatch({
+			type: 'TOGGLE_ACTION_BUTTONS',
+		});
+		dispatch({
+			type: 'NEXT_SLIDE',
+		});
+	};
+
+	const handlePrevSlide = () => {
+		dispatch({
+			type: 'TOGGLE_ACTION_BUTTONS',
+		});
+		dispatch({
+			type: 'PREV_SLIDE',
+		});
+	};
+
+	// eslint-disable-next-line consistent-return
+	React.useEffect(() => {
+		if (autoplay) {
+			const intervalId = setInterval(() => {
+				// eslint-disable-next-line no-console
+				console.log('running autoplay');
+				handleNextSlide();
+			}, 2500);
+			// eslint-disable-next-line no-console
+			console.log('running outside autoplay setInterval');
+			return () => clearInterval(intervalId);
+		}
+	}, [autoplay, handleNextSlide]);
+
+	React.useEffect(() => {
+		setTotalSlideNumber(children.length);
+
+		dispatch({
+			type: 'INITIALIZE_SWIPER',
+			payload: [...children],
+		});
+	}, [children]);
+
+	React.useEffect(() => {
+		if (slides.length > 0) {
+			dispatch({
+				type: 'PREPEND_LAST_ELEMENT',
+				payload: slides,
+			});
+		}
+	}, [slides]);
 
 	return (
 		<div className="h-full overflow-hidden relative">
@@ -141,6 +142,10 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 			</SwiperButton>
 		</div>
 	);
+};
+
+SwiperContainer.defaultProps = {
+	autoplay: false,
 };
 
 export default SwiperContainer;

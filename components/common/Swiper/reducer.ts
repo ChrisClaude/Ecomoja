@@ -7,7 +7,7 @@ import { JSX } from '@babel/types';
 const reducer = (state: SwiperState, action: SwiperAction): SwiperState => {
 	const { type, payload } = action;
 
-	let payload_;
+	let data;
 
 	switch (type) {
 		case 'NEXT_SLIDE':
@@ -33,22 +33,24 @@ const reducer = (state: SwiperState, action: SwiperAction): SwiperState => {
 				slides: payload as JSX.Element[],
 			};
 		case 'PREPEND_LAST_ELEMENT':
-			payload_ = payload as JSX.Element[];
-			const lastElement = payload_.pop();
-			payload_.unshift(lastElement);
+			data = payload as JSX.Element[];
+			// eslint-disable-next-line no-case-declarations
+			const lastElement = data.pop();
+			data.unshift(lastElement);
 
 			return {
 				...state,
-				slides: payload_,
+				slides: data,
 			};
 		case 'APPEND_FIRST_ELEMENT':
-			payload_ = payload as JSX.Element[];
-			const firstElement = payload_.shift();
-			payload_.push(firstElement);
+			data = payload as JSX.Element[];
+			// eslint-disable-next-line no-case-declarations
+			const firstElement = data.shift();
+			data.push(firstElement);
 
 			return {
 				...state,
-				slides: payload_,
+				slides: data,
 			};
 		case 'SET_CAN_TRANSITION':
 			return {
@@ -60,6 +62,10 @@ const reducer = (state: SwiperState, action: SwiperAction): SwiperState => {
 				...state,
 				nextSlide: false,
 				prevSlide: false,
+			};
+		default:
+			return {
+				...state,
 			};
 	}
 };

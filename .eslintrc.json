@@ -37,7 +37,7 @@
     "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-		"indent": [2, "tab"],
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"react/jsx-indent": "off",
 		"react/jsx-indent-props": "off",
 		"react/jsx-one-expression-per-line": "off",
