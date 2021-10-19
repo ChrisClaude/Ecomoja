@@ -99,7 +99,7 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 				payload: slides,
 			});
 		}
-	}, [children]);
+	}, []);
 
 	return (
 		<div className="h-full overflow-hidden relative">
@@ -145,5 +145,7 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 SwiperContainer.defaultProps = {
 	autoplay: false,
 };
+
+SwiperContainer.whyDidYouRender = true;
 
 export default SwiperContainer;

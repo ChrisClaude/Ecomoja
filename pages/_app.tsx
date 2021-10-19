@@ -1,3 +1,4 @@
+import '../scripts/wdyr';
 import * as React from 'react';
 import { AppProps } from 'next/app';
 import '@/styles/styles.scss';
