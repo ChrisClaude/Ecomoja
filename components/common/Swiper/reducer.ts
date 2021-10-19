@@ -31,6 +31,7 @@ const reducer = (state: SwiperState, action: SwiperAction): SwiperState => {
 			return {
 				...state,
 				slides: payload as JSX.Element[],
+				totalSlideNumber: (payload as JSX.Element[]).length,
 			};
 		case 'PREPEND_LAST_ELEMENT':
 			data = payload as JSX.Element[];

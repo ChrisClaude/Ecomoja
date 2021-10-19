@@ -18,9 +18,8 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 		canTransition,
 		dispatch,
 		isActionButtonsDisabled,
+		totalSlideNumber,
 	} = React.useContext(SwiperContext);
-
-	const [totalSlideNumber, setTotalSlideNumber] = React.useState(0);
 
 	const handleOnTransitionEnd = () => {
 		dispatch({
@@ -53,14 +52,14 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 		}, 600);
 	};
 
-	const handleNextSlide = () => {
+	const handleNextSlide = React.useCallback(() => {
 		dispatch({
 			type: 'TOGGLE_ACTION_BUTTONS',
 		});
 		dispatch({
 			type: 'NEXT_SLIDE',
 		});
-	};
+	}, [dispatch]);
 
 	const handlePrevSlide = () => {
 		dispatch({
@@ -74,20 +73,19 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 	// eslint-disable-next-line consistent-return
 	React.useEffect(() => {
 		if (autoplay) {
+			const delayTime = 2500;
 			const intervalId = setInterval(() => {
 				// eslint-disable-next-line no-console
 				console.log('running autoplay');
 				handleNextSlide();
-			}, 2500);
+			}, delayTime);
 			// eslint-disable-next-line no-console
 			console.log('running outside autoplay setInterval');
 			return () => clearInterval(intervalId);
 		}
-	}, [autoplay, handleNextSlide]);
+	}, [autoplay]);
 
 	React.useEffect(() => {
-		setTotalSlideNumber(children.length);
-
 		dispatch({
 			type: 'INITIALIZE_SWIPER',
 			payload: [...children],
@@ -101,7 +99,7 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 				payload: slides,
 			});
 		}
-	}, [slides]);
+	}, [children]);
 
 	return (
 		<div className="h-full overflow-hidden relative">

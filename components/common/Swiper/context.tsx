@@ -15,6 +15,7 @@ export const SwiperProvider = ({ children }: { children: React.ReactNode }) => {
 		canTransition: true,
 		isActionButtonsDisabled: false,
 		slides: [],
+		totalSlideNumber: 0,
 	};
 
 	const [swiperState, dispatch] = React.useReducer(

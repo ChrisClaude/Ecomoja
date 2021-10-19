@@ -7,6 +7,7 @@ export type SwiperState = {
 	isActionButtonsDisabled: boolean;
 	canTransition: boolean;
 	slides: JSX.Element[];
+	totalSlideNumber: number;
 };
 
 type NextSlide = {
