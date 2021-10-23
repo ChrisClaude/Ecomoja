@@ -1,47 +1,4 @@
-import { CartItem, UIState } from '@/types/AppTypes';
-import { Product } from '@/types/Product';
-
-type IncreaseProductQuantity = {
-	type: 'INCREASE_PRODUCT_QUANTITY';
-	payload: Product;
-};
-
-type DecreaseProductQuantity = {
-	type: 'DECREASE_PRODUCT_QUANTITY';
-	payload: Product;
-};
-
-type AddProductToCart = {
-	type: 'ADD_PRODUCT_TO_CART';
-	payload: Product;
-};
-
-type RemoveProductFromCart = {
-	type: 'REMOVE_PRODUCT_FROM_CART';
-	payload: Product;
-};
-
-type SetShopByCategory = {
-	type: 'SET_SHOP_BY_CATEGORY';
-	payload: boolean;
-};
-
-type ToggleModal = {
-	type: 'TOGGLE_MODAL';
-};
-
-type resetModal = {
-	type: 'RESET_MODAL';
-};
-
-export type UIAction =
-	| AddProductToCart
-	| SetShopByCategory
-	| RemoveProductFromCart
-	| IncreaseProductQuantity
-	| DecreaseProductQuantity
-	| ToggleModal
-	| resetModal;
+import { CartItem, UIAction, UIState } from '@/types/AppTypes';
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[];

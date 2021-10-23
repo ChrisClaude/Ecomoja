@@ -5,12 +5,19 @@ import { SwiperProvider } from '../context';
 
 type SwiperProps = {
 	children: JSX.Element[];
+	visibleChildren?: number;
 };
 
-const Swiper = ({ children }: SwiperProps) => (
+const Swiper = ({ children, visibleChildren }: SwiperProps) => (
 	<SwiperProvider>
-		<SwiperContainer autoplay>{children}</SwiperContainer>
+		<SwiperContainer autoplay visibleChildren={visibleChildren}>
+			{children}
+		</SwiperContainer>
 	</SwiperProvider>
 );
+
+Swiper.defaultProps = {
+	visibleChildren: 1,
+};
 
 export default Swiper;

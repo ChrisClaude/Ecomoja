@@ -8,9 +8,14 @@ import SwiperButton from '../SwiperButton';
 type SwiperContainerProps = {
 	children: JSX.Element[];
 	autoplay?: boolean;
+	visibleChildren?: number;
 };
 
-const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
+const SwiperContainer = ({
+	children,
+	autoplay,
+	visibleChildren,
+}: SwiperContainerProps) => {
 	const {
 		nextSlide,
 		prevSlide,
@@ -105,14 +110,22 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 		<div className="h-full overflow-hidden relative">
 			<div
 				className={cn('h-full flex', {
-					[s.w2xFull]: totalSlideNumber === 2,
-					[s.w3xFull]: totalSlideNumber === 3,
-					[s.w4xFull]: totalSlideNumber === 4,
-					[s.w5xFull]: totalSlideNumber === 5,
-					[s.w6xFull]: totalSlideNumber === 6,
-					[s.translateX14]: nextSlide === false && prevSlide === false,
+					[s.w2xFull]: totalSlideNumber / visibleChildren === 2,
+					[s.w3xFull]: totalSlideNumber / visibleChildren === 3,
+					[s.w4xFull]: totalSlideNumber / visibleChildren === 4,
+					[s.w5xFull]: totalSlideNumber / visibleChildren === 5,
+					[s.w6xFull]: totalSlideNumber / visibleChildren === 6,
+					[s.translateX1d4]:
+						totalSlideNumber === 4 &&
+						nextSlide === false &&
+						prevSlide === false,
 					[s.translateX0]: prevSlide,
-					[s.translateX12]: nextSlide,
+					[s.translateX1d2]: totalSlideNumber === 4 && nextSlide,
+					[s.translateX1d5]:
+						totalSlideNumber === 5 &&
+						nextSlide === false &&
+						prevSlide === false,
+					[s.translateX2d5]: totalSlideNumber === 5 && nextSlide,
 					'transition-transform': canTransition,
 					'duration-500': canTransition,
 				})}
@@ -144,8 +157,9 @@ const SwiperContainer = ({ children, autoplay }: SwiperContainerProps) => {
 
 SwiperContainer.defaultProps = {
 	autoplay: false,
+	visibleChildren: 1,
 };
 
-SwiperContainer.whyDidYouRender = true;
+// SwiperContainer.whyDidYouRender = true;
 
 export default SwiperContainer;

@@ -11,7 +11,7 @@ const Banner = () => (
 			<div className="w-56" />
 			<div className="flex-1 ml-5 overflow-hidden">
 				<div className="w-3/4 h-80">
-					<Swiper>
+					<Swiper visibleChildren={1}>
 						<SwiperItem>
 							<img
 								src="/assets/HomePage_1.png"
