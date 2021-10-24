@@ -4,6 +4,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[];
 
 	switch (action.type) {
+		case 'SET_CURRENT_USER':
+			return {
+				...state,
+				user: action.payload,
+			};
 		case 'INCREASE_PRODUCT_QUANTITY':
 			state.cartItems.forEach((cartItem: CartItem) => {
 				if (cartItem.id === action.payload.id) {

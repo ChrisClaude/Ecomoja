@@ -13,21 +13,31 @@ const Redirect = () => {
 	const router = useRouter();
 
 	React.useEffect(() => {
-		if (user || getCurrentUser()) {
+		console.log(
+			'user || getCurrentUser()',
+			user !== null || getCurrentUser() !== null,
+		);
+		if (user !== null || getCurrentUser() !== null) {
 			router.push('/');
 		}
 
-		if (!user && getCurrentUser() !== null) {
+		console.log(user === null && getCurrentUser() !== null);
+
+		if (user === null || getCurrentUser() !== null) {
 			const url = window.location.href;
 			const token = parseUrl(url);
 			storeUserToken(token);
 			const currentUser = getUserFromToken(token);
-			dispatch({
-				type: 'SET_CURRENT_USER',
-				payload: currentUser,
+			setTimeout(() => {
+				dispatch({
+					type: 'SET_CURRENT_USER',
+					payload: currentUser,
+				});
+				console.log('before push');
+				router.push('/');
 			});
 		}
-	});
+	}, []);
 
 	return (
 		<div>Login successful. You will be redirected to another page shortly.</div>
