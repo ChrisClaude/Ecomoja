@@ -43,5 +43,9 @@ export const storeUserToken = (token: string) => {
  */
 export const getCurrentUser = (): User | null => {
 	if (localStorage.getItem('token') === null) return null;
-	return getUserFromToken('token');
+	return getUserFromToken(localStorage.getItem('token'));
+};
+
+export const logout = () => {
+	localStorage.removeItem('token');
 };

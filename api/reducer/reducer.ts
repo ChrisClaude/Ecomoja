@@ -9,6 +9,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				user: action.payload,
 			};
+		case 'REMOVE_CURRENT_USER':
+			return {
+				...state,
+				user: null,
+			};
 		case 'INCREASE_PRODUCT_QUANTITY':
 			state.cartItems.forEach((cartItem: CartItem) => {
 				if (cartItem.id === action.payload.id) {

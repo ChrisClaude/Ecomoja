@@ -4,4 +4,5 @@ export {
 	storeUserToken,
 	getCurrentUser,
 	parseUrl,
+	logout,
 } from './auth';

@@ -6,9 +6,17 @@ import Logo from '@/components/layout/header/Logo';
 import { CartNavBarView } from '@/components/cart';
 import { Button } from '@/components/common';
 import { useRouter } from 'next/router';
+import { UIContext } from '@/api/context/UIContext';
+import { logout } from '@/api/auth';
 
 const NavBar = () => {
+	const { user, dispatch } = React.useContext(UIContext);
 	const router = useRouter();
+
+	const handleLogout = () => {
+		logout();
+		dispatch({ type: 'REMOVE_CURRENT_USER' });
+	};
 
 	return (
 		<nav className="px-2 flex bg-white w-full h-16 md:px-32 lg:px-16">
@@ -54,14 +62,20 @@ const NavBar = () => {
 				<div className="justify-end hidden lg:flex">
 					<ul className="flex justify-end items-center">
 						<li className="p-2">
-							<Button
-								onClick={() =>
-									router.push(process.env.NEXT_PUBLIC_LOGIN_OR_REGISTER)
-								}
-								className="whitespace-nowrap"
-							>
-								Login or register
-							</Button>
+							{user ? (
+								<Button onClick={handleLogout} className="whitespace-nowrap">
+									Logout
+								</Button>
+							) : (
+								<Button
+									onClick={() =>
+										router.push(process.env.NEXT_PUBLIC_LOGIN_OR_REGISTER)
+									}
+									className="whitespace-nowrap"
+								>
+									Login or register
+								</Button>
+							)}
 						</li>
 						<li className="p-2">
 							<Link href="#">

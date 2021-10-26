@@ -59,6 +59,10 @@ type setCurrentUser = {
 	payload: User;
 };
 
+type removeCurrentUser = {
+	type: 'REMOVE_CURRENT_USER';
+};
+
 export type UIAction =
 	| AddProductToCart
 	| SetShopByCategory
@@ -67,4 +71,5 @@ export type UIAction =
 	| DecreaseProductQuantity
 	| ToggleModal
 	| resetModal
-	| setCurrentUser;
+	| setCurrentUser
+	| removeCurrentUser;

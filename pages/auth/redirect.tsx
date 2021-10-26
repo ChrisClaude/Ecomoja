@@ -26,6 +26,7 @@ const Redirect = () => {
 		if (user === null || getCurrentUser() !== null) {
 			const url = window.location.href;
 			const token = parseUrl(url);
+			console.log('parsed token', token);
 			storeUserToken(token);
 			const currentUser = getUserFromToken(token);
 			setTimeout(() => {
