@@ -61,6 +61,13 @@ const NavBar = () => {
 				</div>
 				<div className="justify-end hidden lg:flex">
 					<ul className="flex justify-end items-center">
+						{user && (
+							<li className="p-2">
+								<Link href="#">
+									<a className="whitespace-nowrap">Hi {user.username}</a>
+								</Link>
+							</li>
+						)}
 						<li className="p-2">
 							{user ? (
 								<Button onClick={handleLogout} className="whitespace-nowrap">
