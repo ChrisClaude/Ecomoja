@@ -19,6 +19,9 @@ export const parseUrl = (url: string) => {
  * @param token a jwt token
  */
 export const getUserFromToken = (token: string): User | null => {
+	if (token === undefined || token === null) {
+		return null;
+	}
 	const decoded = token && getDecodedToken(token as string);
 
 	return decoded === null
@@ -42,7 +45,15 @@ export const storeUserToken = (token: string) => {
  * This methods gets the current user from the local storage stored token
  */
 export const getCurrentUser = (): User | null => {
-	if (localStorage.getItem('token') === null) return null;
+	if (
+		localStorage.getItem('token') === null ||
+		localStorage.getItem('token') === 'null' ||
+		localStorage.getItem('token') === undefined
+	) {
+		return null;
+	}
+
+	console.log(typeof localStorage.getItem('token'));
 	return getUserFromToken(localStorage.getItem('token'));
 };
 

@@ -12,21 +12,23 @@ const Redirect = () => {
 	const { user, dispatch } = React.useContext(UIContext);
 	const router = useRouter();
 
+	React.useEffect(
+		() =>
+			dispatch({
+				type: 'SET_SHOP_BY_CATEGORY',
+				payload: false,
+			}),
+		[dispatch],
+	);
+
 	React.useEffect(() => {
-		console.log(
-			'user || getCurrentUser()',
-			user !== null || getCurrentUser() !== null,
-		);
 		if (user !== null || getCurrentUser() !== null) {
 			router.push('/');
 		}
 
-		console.log(user === null && getCurrentUser() !== null);
-
 		if (user === null || getCurrentUser() !== null) {
 			const url = window.location.href;
 			const token = parseUrl(url);
-			console.log('parsed token', token);
 			storeUserToken(token);
 			const currentUser = getUserFromToken(token);
 			setTimeout(() => {
@@ -34,14 +36,17 @@ const Redirect = () => {
 					type: 'SET_CURRENT_USER',
 					payload: currentUser,
 				});
-				console.log('before push');
 				router.push('/');
 			});
 		}
 	}, []);
 
 	return (
-		<div>Login successful. You will be redirected to another page shortly.</div>
+		<div className="py-8 h-40">
+			<p className="text-center text-xl">
+				Login successful! You will be redirected to another page shortly.
+			</p>
+		</div>
 	);
 };
 
