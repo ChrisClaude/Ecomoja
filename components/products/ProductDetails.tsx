@@ -6,7 +6,7 @@ import { Product } from '@/types/Product';
 import { Button } from '@/components/common/';
 import { addProduct } from '@/services/ProductServices';
 import { UIContext } from '@/api/context/UIContext';
-import { UIAction } from '@/api/reducer/reducer';
+import { UIAction } from '@/types/AppTypes';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
@@ -35,7 +35,10 @@ const handleAddProductToCart = (
 	product: Product,
 	dispatch: React.Dispatch<UIAction>,
 ) => {
-	dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: product });
+	dispatch({
+		type: 'ADD_PRODUCT_TO_CART',
+		payload: product,
+	});
 	dispatch({ type: 'TOGGLE_MODAL' });
 	addProduct(product);
 };
