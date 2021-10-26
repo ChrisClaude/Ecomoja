@@ -188,13 +188,6 @@ a:hover {
 		box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.3);
 	}
 
-	.pricing-info-container {
-		@apply mt-6;
-		width: 100%;
-		display: flex;
-		align-items: center;
-	}
-
 	.pricing-info-svg {
 		width: 16px;
 		height: 16px;
@@ -217,15 +210,6 @@ a:hover {
 	color: $instagram-color;
 }
 
-// Swiper JS / Carousel 
-.swiper-container {
-	@apply w-full h-full;
-}
-
-.swiper-slide {
-	@apply text-base flex justify-center items-center;
-}
-
-.swiper-slide img:first-child {
-	@apply block w-full h-full object-cover;
-}
+// React slick
+.slick-list {margin: 0 -5px;}
+.slick-slide>div {padding: 0 10px;}

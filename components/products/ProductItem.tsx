@@ -11,12 +11,12 @@ const ProductItem = ({
 }: ProductProps) => (
 	<Link href={`/products/${id}`}>
 		<a className="product-item block hover:text-gray-700 hover:no-underline">
-			<div className="flex justify-center items-center w-full h-44 p-2.5">
+			<div className="flex justify-center items-center w-full h-52 overflow-hidden p-2.5">
 				<img src={image} alt="product" />
 			</div>
-			<div className="flex flex-col w-full p-2.5">
-				<span className="w-full pt-2 flex-1">{name}</span>
-				<div className="pricing-info-container">
+			<div className="flex flex-col w-full p-2.5 h-32">
+				<div className="w-full pt-1 flex-1">{name}</div>
+				<div className="pricing-info-container w-full flex items-center flex-1">
 					<span className="text-base mr-2">R {currentPrice}</span>
 					<span className="line-through text-gray-400 mr-2">R {oldPrice}</span>
 					<img
@@ -25,7 +25,7 @@ const ProductItem = ({
 						alt="Pricing info icon"
 					/>
 				</div>
-				<div className="mt-8 w-full ">
+				<div className="w-full flex-1">
 					<span className="mr-1">
 						<FontAwesomeIcon icon="star" className="text-yellow-500" />
 					</span>

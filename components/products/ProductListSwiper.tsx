@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
-import SwiperCore, { Virtual } from 'swiper';
+import * as React from 'react';
 import ProductItem from '@/components/products/ProductItem';
 import { Product } from '@/types/Product';
 import Slider from 'react-slick';
-// TODO: Take this styling to the global scss file
-import 'swiper/components/pagination/pagination.min.css';
-import 'swiper/components/navigation/navigation.min.css';
 
 type ProductListSwiperProps = {
 	products: Product[];
 };
 
-SwiperCore.use([Virtual]);
 const ProductListSwiper = ({ products }: ProductListSwiperProps) => {
-	/* eslint-disable no-unused-vars */
-	const [swiperRef, setSwiperRef] = useState(null);
 	const settings = {
 		className: 'center',
 		infinite: true,
@@ -29,7 +22,7 @@ const ProductListSwiper = ({ products }: ProductListSwiperProps) => {
 	};
 
 	return (
-		<div className="h-96 pt-2 pb-4">
+		<div className="h-96">
 			<Slider {...settings}>
 				{products.map((product) => (
 					<div key={product.id}>
