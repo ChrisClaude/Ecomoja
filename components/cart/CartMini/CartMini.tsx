@@ -2,7 +2,7 @@ import * as React from 'react';
 import { UIContext } from '@/api/context/UIContext';
 import s from '@/components/cart/CartNavBarView/Cart.module.scss';
 import { default as cn } from 'classnames';
-import { calculateCartTotal } from '@/helpers/index';
+import { calculateCartTotal } from '@/helpers/main';
 import { Button } from '@/components/common';
 import Link from 'next/link';
 import { CartMiniItem } from '@/components/cart';

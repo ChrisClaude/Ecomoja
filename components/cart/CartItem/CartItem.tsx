@@ -44,7 +44,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 					objectFit="cover"
 				/>
 			</div>
-			<div className="flex flex-col justify-between lg:flex-1">
+			<div className="flex flex-col justify-between lg:flex-1 ml-2">
 				<div className="flex flex-col md:flex-row">
 					<div className="flex flex-col">
 						<p className="text-2xl font-semibold">{cartItem.product.name}</p>

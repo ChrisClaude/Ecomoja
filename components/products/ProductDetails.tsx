@@ -4,9 +4,11 @@ import Image from 'next/image';
 
 import { Product } from '@/types/Product';
 import { Button } from '@/components/common/';
-import { addProduct } from '@/services/ProductServices';
 import { UIContext } from '@/api/context/UIContext';
-import { UIAction } from '@/types/AppTypes';
+import {
+	handleAddProductToCart,
+	storeCartToLocalStorage,
+} from '@/helpers/main';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
@@ -31,20 +33,12 @@ const showCategories = ({ id, categories }: Product) => {
 	);
 };
 
-const handleAddProductToCart = (
-	product: Product,
-	dispatch: React.Dispatch<UIAction>,
-) => {
-	dispatch({
-		type: 'ADD_PRODUCT_TO_CART',
-		payload: product,
-	});
-	dispatch({ type: 'TOGGLE_MODAL' });
-	addProduct(product);
-};
-
 const ProductDetails = ({ product }: { product: Product }) => {
-	const { dispatch } = React.useContext(UIContext);
+	const { dispatch, cartItems } = React.useContext(UIContext);
+
+	React.useEffect(() => {
+		storeCartToLocalStorage(cartItems);
+	}, [cartItems]);
 
 	return (
 		<div className="flex flex-col w-full">
@@ -102,7 +96,10 @@ const ProductDetails = ({ product }: { product: Product }) => {
 							variant="contained"
 							primary
 							className="py-3"
-							onClick={() => handleAddProductToCart(product, dispatch)}
+							onClick={() => {
+								handleAddProductToCart(product, dispatch);
+								dispatch({ type: 'TOGGLE_MODAL' });
+							}}
 						>
 							<span className="flex items-center justify-center w-full">
 								<span className="material-icons-round mr-1 text-base">add</span>

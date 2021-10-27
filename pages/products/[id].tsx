@@ -7,10 +7,11 @@ import Head from 'next/head';
 import { Product } from '@/types/Product';
 import { CartModal } from '@/components/cart';
 import { useRouter } from 'next/router';
+import { storeCartToLocalStorage } from '@/helpers/main';
 
 const ProductDetail = ({ product }: { product: Product }) => {
 	const router = useRouter();
-	const { dispatch } = React.useContext(UIContext);
+	const { dispatch, cartItems } = React.useContext(UIContext);
 	const { name } = product;
 
 	React.useEffect(() => {
