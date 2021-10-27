@@ -2,13 +2,25 @@ import * as React from 'react';
 import Head from 'next/head';
 import { UIContext } from '@/api/context/UIContext';
 import { CartItem } from '@/components/cart';
-import { calculateCartTotal, calculateNumberOfCartItems } from '@/helpers/main';
+import {
+	calculateCartTotal,
+	calculateNumberOfCartItems,
+	getCartFromLocalStorage,
+} from '@/helpers/main';
 import { Button } from '@/components/common';
 import Link from 'next/link';
 import { default as cn } from 'classnames';
 
 const Cart = () => {
 	const { cartItems, dispatch } = React.useContext(UIContext);
+
+	React.useEffect(() => {
+		const storedCartItems = getCartFromLocalStorage();
+
+		if (storedCartItems !== null) {
+			dispatch({ type: 'PATCH_CART', payload: storedCartItems });
+		}
+	}, []);
 
 	React.useEffect(
 		() =>

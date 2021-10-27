@@ -1,7 +1,7 @@
 import * as React from 'react';
 // eslint-disable-next-line import/named
-import { UIState } from '@/types/AppTypes';
-import reducer, { UIAction } from '../reducer/reducer';
+import { UIState, UIAction } from '@/types/AppTypes';
+import reducer from '../reducer/reducer';
 
 type UIContextType = UIState & {
 	dispatch: React.Dispatch<UIAction>;

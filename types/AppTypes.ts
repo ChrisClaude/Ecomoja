@@ -31,6 +31,11 @@ type DecreaseProductQuantity = {
 	payload: Product;
 };
 
+type PatchCart = {
+	type: 'PATCH_CART';
+	payload: CartItem[];
+};
+
 type AddProductToCart = {
 	type: 'ADD_PRODUCT_TO_CART';
 	payload: Product;
@@ -67,6 +72,7 @@ export type UIAction =
 	| AddProductToCart
 	| SetShopByCategory
 	| RemoveProductFromCart
+	| PatchCart
 	| IncreaseProductQuantity
 	| DecreaseProductQuantity
 	| ToggleModal

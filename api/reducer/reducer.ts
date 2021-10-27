@@ -44,7 +44,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				isShopByCategoryCollapsed: action.payload,
 			};
-
+		case 'PATCH_CART':
+			return {
+				...state,
+				cartItems: [...action.payload],
+			};
 		case 'ADD_PRODUCT_TO_CART':
 			const { cartItems } = state;
 			const submittedCartItems = cartItems.filter(
