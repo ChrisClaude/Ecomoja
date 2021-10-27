@@ -12,8 +12,8 @@ module.exports = {
 			},
 			colors: {
 				primary: '#0b79bf',
-				secondary: '#6bc134',
-				success: '#1c8644',
+				secondary: '#059669',
+				success: '#6bc134',
 				'ecolap-gray': '#4d4d4d',
 				'ecolap-green': '#25CD66',
 				'ecolap-gray-h': '#404042',

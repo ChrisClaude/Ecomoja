@@ -23,7 +23,7 @@ const pickButtonType = (
 	let jsxResult;
 	if (buttonType === 'contained') {
 		jsxResult = (
-			<Button variant="contained" primary>
+			<Button variant="contained" secondary>
 				{buttonText}
 			</Button>
 		);

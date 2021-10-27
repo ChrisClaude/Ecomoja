@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { Product } from '@/types/Product';
 import Link from 'next/link';
+import { Button } from '@/components/common';
 
 type ProductProps = { product: Product };
 
@@ -25,12 +26,15 @@ const ProductItem = ({
 						alt="Pricing info icon"
 					/>
 				</div>
-				<div className="w-full flex-1">
+				<div className="w-full flex-1 flex items-center">
 					<span className="mr-1">
 						<FontAwesomeIcon icon="star" className="text-yellow-500" />
 					</span>
 					<span className="mr-1">{rating}</span>
 					<span className="text-muted">({numberOfVotes})</span>
+					<Button secondary className="ml-auto">
+						Add to cart
+					</Button>
 				</div>
 			</div>
 		</a>
