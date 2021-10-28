@@ -6,15 +6,7 @@ import { getCartFromLocalStorage } from '@/helpers/main';
 import s from './Cart.module.scss';
 
 const CartNavICon = () => {
-	const { cartItems, dispatch } = React.useContext(UIContext);
-
-	React.useEffect(() => {
-		const storedCartItems = getCartFromLocalStorage();
-
-		if (storedCartItems !== null) {
-			dispatch({ type: 'PATCH_CART', payload: storedCartItems });
-		}
-	}, []);
+	const { cartItems } = React.useContext(UIContext);
 
 	return (
 		<a

@@ -8,6 +8,7 @@ import { UIContext } from '@/api/context/UIContext';
 import {
 	handleAddProductToCart,
 	storeCartToLocalStorage,
+	updateCartItems,
 } from '@/helpers/main';
 import { toast } from 'react-toastify';
 
@@ -17,10 +18,6 @@ const ProductItem = ({ product }: ProductProps) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
 	const { id, name, image, currentPrice, oldPrice, rating, numberOfVotes } =
 		product;
-
-	React.useEffect(() => {
-		storeCartToLocalStorage(cartItems);
-	}, [cartItems]);
 
 	return (
 		<Link href={`/products/${id}`}>
@@ -55,7 +52,7 @@ const ProductItem = ({ product }: ProductProps) => {
 								event.stopPropagation();
 								toast.success("You've added a new item to your cart", {
 									position: 'top-right',
-									autoClose: 3000,
+									autoClose: 1500,
 									hideProgressBar: false,
 									closeOnClick: true,
 									pauseOnHover: true,
@@ -63,6 +60,8 @@ const ProductItem = ({ product }: ProductProps) => {
 									progress: undefined,
 								});
 								handleAddProductToCart(product, dispatch);
+								const newCartItems = updateCartItems(cartItems, product);
+								storeCartToLocalStorage(newCartItems);
 							}}
 						>
 							Add to cart

@@ -1,4 +1,4 @@
-import { CartItem as CartItemType, UIAction } from '@/types/AppTypes';
+import { CartItem, CartItem as CartItemType, UIAction } from '@/types/AppTypes';
 import { Product } from '@/types/Product';
 import * as React from 'react';
 import { addProduct } from '@/services/ProductServices';
@@ -66,7 +66,6 @@ export const purgeClasses = (classNames: string): string => {
 	return '';
 };
 
-// Event handlers
 export const handleAddProductToCart = (
 	product: Product,
 	dispatch: React.Dispatch<UIAction>,
@@ -76,4 +75,26 @@ export const handleAddProductToCart = (
 		payload: product,
 	});
 	addProduct(product);
+};
+
+export const updateCartItems = (
+	cartItems: CartItemType[],
+	product: Product,
+): CartItemType[] => {
+	const filteredCartItems = cartItems.filter(
+		(cartItem) => cartItem.id === product.id,
+	);
+
+	// there is no existing cart item in the cart - we then create an new cart item
+	if (filteredCartItems.length === 0) {
+		const cartItem: CartItem = {
+			id: product.id,
+			product,
+			productInstances: 1,
+		};
+		return [cartItem, ...cartItems];
+	}
+
+	// there is an existing cart item in the cart - we do nothing, just return the exist cart items array as is
+	return cartItems;
 };
