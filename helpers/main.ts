@@ -98,3 +98,8 @@ export const addNewCartItem = (
 	// there is an existing cart item in the cart - we do nothing, just return the exist cart items array as is
 	return cartItems;
 };
+
+export const removeCartItem = (
+	cartItems: CartItemType[],
+	id: number,
+): CartItemType[] => cartItems.filter((cartItem) => cartItem.id !== id);

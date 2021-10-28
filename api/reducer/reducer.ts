@@ -1,5 +1,5 @@
 import { CartItem, UIAction, UIState } from '@/types/AppTypes';
-import { addNewCartItem } from '@/helpers/main';
+import { addNewCartItem, removeCartItem } from '@/helpers/main';
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[];
@@ -61,11 +61,8 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			};
 
 		case 'REMOVE_PRODUCT_FROM_CART':
-			// we're comparing carItem's id (item.id) to product's id (action.payload.id)
-			// because a cartItem has the same id as the product it contains
-			newCartItems = state.cartItems.filter(
-				(item) => item.id !== action.payload.id,
-			);
+			// all cart items have the same id as their product
+			newCartItems = removeCartItem(state.cartItems, action.payload.id);
 			return {
 				...state,
 				cartItems: newCartItems,

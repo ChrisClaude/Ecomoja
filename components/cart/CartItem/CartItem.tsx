@@ -2,15 +2,19 @@ import React from 'react';
 import Image from 'next/image';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/api/context/UIContext';
+import { removeCartItem, storeCartToLocalStorage } from '@/helpers/main';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
-	const { dispatch } = React.useContext(UIContext);
+	const { dispatch, cartItems } = React.useContext(UIContext);
 
 	const handleOnRemoveCartItem = () => {
 		dispatch({
 			type: 'REMOVE_PRODUCT_FROM_CART',
 			payload: cartItem.product,
 		});
+
+		const newCartItems = removeCartItem(cartItems, cartItem.product.id);
+		storeCartToLocalStorage(newCartItems);
 	};
 
 	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
