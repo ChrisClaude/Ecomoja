@@ -8,7 +8,7 @@ import { UIContext } from '@/api/context/UIContext';
 import {
 	handleAddProductToCart,
 	storeCartToLocalStorage,
-	updateCartItems,
+	addNewCartItem,
 } from '@/helpers/main';
 import { toast } from 'react-toastify';
 
@@ -60,7 +60,7 @@ const ProductItem = ({ product }: ProductProps) => {
 									progress: undefined,
 								});
 								handleAddProductToCart(product, dispatch);
-								const newCartItems = updateCartItems(cartItems, product);
+								const newCartItems = addNewCartItem(cartItems, product);
 								storeCartToLocalStorage(newCartItems);
 							}}
 						>

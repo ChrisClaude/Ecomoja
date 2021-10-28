@@ -77,7 +77,7 @@ export const handleAddProductToCart = (
 	addProduct(product);
 };
 
-export const updateCartItems = (
+export const addNewCartItem = (
 	cartItems: CartItemType[],
 	product: Product,
 ): CartItemType[] => {

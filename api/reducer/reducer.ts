@@ -1,5 +1,5 @@
 import { CartItem, UIAction, UIState } from '@/types/AppTypes';
-import { updateCartItems } from '@/helpers/main';
+import { addNewCartItem } from '@/helpers/main';
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[];
@@ -54,7 +54,7 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			// eslint-disable-next-line no-case-declarations
 			const { cartItems } = state;
 
-			newCartItems = updateCartItems(cartItems, action.payload);
+			newCartItems = addNewCartItem(cartItems, action.payload);
 			return {
 				...state,
 				cartItems: newCartItems,
