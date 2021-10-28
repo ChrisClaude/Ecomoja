@@ -78,7 +78,7 @@ const NavBar = () => {
 									onClick={() =>
 										router.push(process.env.NEXT_PUBLIC_LOGIN_OR_REGISTER)
 									}
-									className="whitespace-nowrap"
+									className="whitespace-nowrap font-normal"
 								>
 									Login or register
 								</Button>

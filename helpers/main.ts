@@ -1,4 +1,4 @@
-import { CartItem, CartItem as CartItemType, UIAction } from '@/types/AppTypes';
+import { CartItem as CartItemType, UIAction } from '@/types/AppTypes';
 import { Product } from '@/types/Product';
 import * as React from 'react';
 import { addProduct } from '@/services/ProductServices';

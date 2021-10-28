@@ -9,6 +9,7 @@ import {
 	handleAddProductToCart,
 	storeCartToLocalStorage,
 } from '@/helpers/main';
+import { toast } from 'react-toastify';
 
 type ProductProps = { product: Product };
 
@@ -52,6 +53,15 @@ const ProductItem = ({ product }: ProductProps) => {
 							onClick={(event) => {
 								event.preventDefault();
 								event.stopPropagation();
+								toast.success("You've added a new item to your cart", {
+									position: 'top-right',
+									autoClose: 3000,
+									hideProgressBar: false,
+									closeOnClick: true,
+									pauseOnHover: true,
+									draggable: true,
+									progress: undefined,
+								});
 								handleAddProductToCart(product, dispatch);
 							}}
 						>
