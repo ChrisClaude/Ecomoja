@@ -74,7 +74,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				</div>
 				<div className="flex flex-col md:flex-row">
 					<p className="flex items-center">
-						{cartItem.product.isFreeDelivered
+						{cartItem.product.isFreeForDelivery
 							? 'Free Delivery'
 							: 'Delivery fees will be charged'}
 					</p>

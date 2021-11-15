@@ -20,11 +20,18 @@ const WishList = () => {
 			<Head>
 				<title>Ecomoja | Wish List</title>
 			</Head>
-			<div className="px-6 py-8 lg:block lg:px-16 relative">
-				<h1 className="mb-6">Wish List</h1>
-				{wishList.map((p) => (
-					<WishListItem product={p} key={p.id} />
-				))}
+			<div>
+				<div className="px-6 py-8 grid lg:gap-y-3 lg:grid-cols-5 lg:px-16 relative">
+					<div className="md:hidden lg:block">Menu</div>
+					<div className="col-span-3">
+						<h3 className="mb-6">Wish List</h3>
+						{wishList.map((p) => (
+							<div className="mb-4">
+								<WishListItem product={p} key={p.id} />
+							</div>
+						))}
+					</div>
+				</div>
 			</div>
 		</>
 	);

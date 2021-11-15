@@ -213,3 +213,7 @@ a:hover {
 // React slick
 .slick-list {margin: 0 -5px;}
 .slick-slide>div {padding: 0 10px;}
+.slick-prev:before,
+.slick-next:before {
+	@apply text-gray-800;
+}

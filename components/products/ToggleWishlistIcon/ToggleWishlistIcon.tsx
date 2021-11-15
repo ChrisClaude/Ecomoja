@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Button } from '@/components/common';
 import { toast } from 'react-toastify';
+import { Product } from '@/types/Product';
+import { type } from 'os';
+import { UIContext } from '@/api/context/UIContext';
 
-const ToggleWishlistIcon = ({
-	isInUsersWishList,
-}: {
-	isInUsersWishList: boolean;
-}) => {
-	const [checkInUsersWishlist, setCheckInUsersWishlist] =
-		React.useState(isInUsersWishList);
+const ToggleWishlistIcon = ({ product }: { product: Product }) => {
+	const { dispatch } = React.useContext(UIContext);
+	const [isInUsersWishList, setIsInUsersWishList] = React.useState<boolean>(
+		product.isInUsersWishList,
+	);
 
 	const toggleToWishlist = (event) => {
 		event.preventDefault();
@@ -24,6 +25,7 @@ const ToggleWishlistIcon = ({
 				progress: undefined,
 			});
 		} else {
+			dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: product });
 			toast.info("You've added a new item to your wishlist", {
 				position: 'top-right',
 				autoClose: 1500,
@@ -34,7 +36,7 @@ const ToggleWishlistIcon = ({
 				progress: undefined,
 			});
 
-			setCheckInUsersWishlist(!isInUsersWishList);
+			setIsInUsersWishList(!isInUsersWishList);
 		}
 	};
 
@@ -44,12 +46,14 @@ const ToggleWishlistIcon = ({
 				toggleToWishlist(event)
 			}
 		>
-			{checkInUsersWishlist ? (
+			{isInUsersWishList ? (
 				<span className="material-icons-round text-3xl text-red-500">
 					favorite
 				</span>
 			) : (
-				<span className="material-icons-round text-3xl">favorite_border</span>
+				<span className="material-icons-round text-3xl text-gray-500">
+					favorite_border
+				</span>
 			)}
 		</Button>
 	);

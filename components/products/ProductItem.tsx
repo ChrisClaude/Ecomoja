@@ -55,7 +55,7 @@ const ProductItem = ({ product }: ProductProps) => {
 						<span className="text-muted">({numberOfVotes})</span>
 						<div className="flex ml-auto items-center">
 							<div className="mr-1">
-								<ToggleWishlistIcon isInUsersWishList={isInUsersWishList} />
+								<ToggleWishlistIcon product={product} />
 							</div>
 							<Button
 								secondary
