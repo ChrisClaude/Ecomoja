@@ -10,7 +10,7 @@ export type UIState = {
 	user: User | null;
 	isShopByCategoryCollapsed: boolean;
 	cartItems: CartItem[];
-	wishListItem ?: Product[];
+	wishList?: Product[];
 	isModalOpen: boolean;
 };
 
@@ -47,6 +47,11 @@ type RemoveProductFromCart = {
 	payload: Product;
 };
 
+type AddProductToWishList = {
+	type: 'ADD_PRODUCT_TO_WISHLIST';
+	payload: Product;
+};
+
 type SetShopByCategory = {
 	type: 'SET_SHOP_BY_CATEGORY';
 	payload: boolean;
@@ -71,6 +76,7 @@ type removeCurrentUser = {
 
 export type UIAction =
 	| AddProductToCart
+	| AddProductToWishList
 	| SetShopByCategory
 	| RemoveProductFromCart
 	| PatchCart

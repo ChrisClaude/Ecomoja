@@ -9,6 +9,7 @@ import {
 	handleAddProductToCart,
 	storeCartToLocalStorage,
 } from '@/helpers/main';
+import { toast } from 'react-toastify';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
@@ -41,8 +42,16 @@ const ProductDetails = ({ product }: { product: Product }) => {
 	}, [cartItems]);
 
 	const handleAddToWishList = () => {
-		console.log('Add to wish list');
 		dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: product });
+		toast.info("You've added a new item to your wishlist", {
+			position: 'top-right',
+			autoClose: 1500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
 	};
 
 	return (

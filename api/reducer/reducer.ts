@@ -61,10 +61,10 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			};
 
 		case 'ADD_PRODUCT_TO_WISHLIST':
-			const wishListItem = [action.payload, ...state.wishListItem];
+			const newWishList = [action.payload, ...state.wishList];
 			return {
 				...state,
-				wishListItem,
+				wishList: newWishList,
 			};
 
 		case 'REMOVE_PRODUCT_FROM_CART':
