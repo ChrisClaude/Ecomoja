@@ -17,16 +17,8 @@ type ProductProps = { product: Product };
 
 const ProductItem = ({ product }: ProductProps) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
-	const {
-		id,
-		name,
-		image,
-		currentPrice,
-		oldPrice,
-		rating,
-		numberOfVotes,
-		isInUsersWishList,
-	} = product;
+	const { id, name, image, currentPrice, oldPrice, rating, numberOfVotes } =
+		product;
 
 	return (
 		<Link href={`/products/${id}`}>
