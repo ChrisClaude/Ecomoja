@@ -12,4 +12,5 @@ export type Product = {
 	isInStock: boolean;
 	isFreeDelivered?: boolean;
 	deliveryFees?: number;
+	isInUsersWishList?: boolean;
 };

@@ -15,6 +15,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 112,
@@ -29,6 +30,7 @@ export const products: Product[] = [
 		categories: ['Eco', 'Natural'],
 		vendor: 'Cougar',
 		isInStock: false,
+		isInUsersWishList: false,
 	},
 	{
 		id: 113,
@@ -42,6 +44,7 @@ export const products: Product[] = [
 		categories: ['Home ]and Decorate'],
 		vendor: 'KMB',
 		isInStock: false,
+		isInUsersWishList: false,
 	},
 	{
 		id: 114,
@@ -55,6 +58,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'WBx',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 115,
@@ -68,6 +72,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Crazee Sales',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 116,
@@ -81,6 +86,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 11234,
@@ -95,6 +101,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: false,
+		isInUsersWishList: false,
 	},
 	{
 		id: 15213,
@@ -108,6 +115,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eco services',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 1825414,
@@ -121,6 +129,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 110755,
@@ -134,6 +143,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 114731,
@@ -147,6 +157,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 115555555732,
@@ -161,6 +172,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 1186798563,
@@ -174,6 +186,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 116374,
@@ -187,6 +200,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
+		isInUsersWishList: true,
 	},
 	{
 		id: 1157439670,
@@ -200,6 +214,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Cougar',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 11657681,
@@ -213,6 +228,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: true,
 	},
 	{
 		id: 119875,
@@ -227,6 +243,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 113637675879,
@@ -240,6 +257,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Crazee Style',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 114654875497,
@@ -253,6 +271,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 1167895,
@@ -266,6 +285,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: true,
 	},
 	{
 		id: 11497091,
@@ -279,6 +299,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 1160934462,
@@ -293,6 +314,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 117569703,
@@ -306,6 +328,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Cougar',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 113276474,
@@ -319,6 +342,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 	{
 		id: 1198745635,
@@ -332,6 +356,7 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
+		isInUsersWishList: false,
 	},
 ];
 

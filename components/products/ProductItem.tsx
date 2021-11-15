@@ -6,18 +6,27 @@ import Link from 'next/link';
 import { Button } from '@/components/common';
 import { UIContext } from '@/api/context/UIContext';
 import {
+	addNewCartItem,
 	handleAddProductToCart,
 	storeCartToLocalStorage,
-	addNewCartItem,
 } from '@/helpers/main';
 import { toast } from 'react-toastify';
+import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 
 type ProductProps = { product: Product };
 
 const ProductItem = ({ product }: ProductProps) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
-	const { id, name, image, currentPrice, oldPrice, rating, numberOfVotes } =
-		product;
+	const {
+		id,
+		name,
+		image,
+		currentPrice,
+		oldPrice,
+		rating,
+		numberOfVotes,
+		isInUsersWishList,
+	} = product;
 
 	return (
 		<Link href={`/products/${id}`}>
@@ -44,28 +53,32 @@ const ProductItem = ({ product }: ProductProps) => {
 						</span>
 						<span className="mr-1">{rating}</span>
 						<span className="text-muted">({numberOfVotes})</span>
-						<Button
-							secondary
-							className="ml-auto"
-							onClick={(event) => {
-								event.preventDefault();
-								event.stopPropagation();
-								toast.success("You've added a new item to your cart", {
-									position: 'top-right',
-									autoClose: 1500,
-									hideProgressBar: false,
-									closeOnClick: true,
-									pauseOnHover: true,
-									draggable: true,
-									progress: undefined,
-								});
-								handleAddProductToCart(product, dispatch);
-								const newCartItems = addNewCartItem(cartItems, product);
-								storeCartToLocalStorage(newCartItems);
-							}}
-						>
-							Add to cart
-						</Button>
+						<div className="flex ml-auto items-center">
+							<div className="mr-1">
+								<ToggleWishlistIcon isInUsersWishList={isInUsersWishList} />
+							</div>
+							<Button
+								secondary
+								onClick={(event) => {
+									event.preventDefault();
+									event.stopPropagation();
+									toast.success("You've added a new item to your cart", {
+										position: 'top-right',
+										autoClose: 1500,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+									});
+									handleAddProductToCart(product, dispatch);
+									const newCartItems = addNewCartItem(cartItems, product);
+									storeCartToLocalStorage(newCartItems);
+								}}
+							>
+								Add to cart
+							</Button>
+						</div>
 					</div>
 				</div>
 			</a>
