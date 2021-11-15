@@ -10,6 +10,7 @@ export type UIState = {
 	user: User | null;
 	isShopByCategoryCollapsed: boolean;
 	cartItems: CartItem[];
+	wishListItem ?: Product[];
 	isModalOpen: boolean;
 };
 

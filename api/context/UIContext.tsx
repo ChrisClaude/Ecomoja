@@ -12,6 +12,7 @@ const initializeUIState: UIState = {
 	cartItems: [],
 	isModalOpen: false,
 	user: null,
+	wishListItem: [],
 };
 
 export const UIContext = React.createContext<UIContextType>(

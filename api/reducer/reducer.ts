@@ -60,6 +60,13 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				cartItems: newCartItems,
 			};
 
+		case 'ADD_PRODUCT_TO_WISHLIST':
+			const wishListItem = [action.payload, ...state.wishListItem];
+			return {
+				...state,
+				wishListItem,
+			};
+
 		case 'REMOVE_PRODUCT_FROM_CART':
 			// all cart items have the same id as their product
 			newCartItems = removeCartItem(state.cartItems, action.payload.id);

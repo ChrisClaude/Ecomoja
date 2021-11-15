@@ -40,6 +40,11 @@ const ProductDetails = ({ product }: { product: Product }) => {
 		storeCartToLocalStorage(cartItems);
 	}, [cartItems]);
 
+	const handleAddToWishList = () => {
+		console.log('Add to wish list');
+		dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: product });
+	};
+
 	return (
 		<div className="flex flex-col w-full">
 			<div className="flex">{showCategories(product)}</div>
@@ -109,7 +114,12 @@ const ProductDetails = ({ product }: { product: Product }) => {
 								<span>Add to Cart</span>
 							</span>
 						</Button>
-						<Button variant="contained" light className="mt-2 py-3">
+						<Button
+							variant="contained"
+							light
+							className="mt-2 py-3"
+							onClick={handleAddToWishList}
+						>
 							<span className="flex items-center justify-center w-full">
 								<span className="material-icons-round mr-2 text-base">
 									favorite_border

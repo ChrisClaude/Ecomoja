@@ -138,12 +138,14 @@ const NavBar = () => {
 					</ul>
 					<ul className="flex items-center ml-1">
 						<li className="mr-2">
-							<a
-								href="#"
-								className="flex items-center justify-center text-white rounded-full w-8 h-8 text-base bg-red-500 hover:bg-red-600 hover:text-white hover:no-underline"
-							>
-								<FontAwesomeIcon icon="heart" />
-							</a>
+							<Link href="/wishlist">
+								<a
+									href="#"
+									className="flex items-center justify-center text-white rounded-full w-8 h-8 text-base bg-red-500 hover:bg-red-600 hover:text-white hover:no-underline"
+								>
+									<FontAwesomeIcon icon="heart" />
+								</a>
+							</Link>
 						</li>
 						<li>
 							<CartNavBarView />
