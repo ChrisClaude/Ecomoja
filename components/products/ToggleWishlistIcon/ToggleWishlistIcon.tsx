@@ -7,6 +7,9 @@ const ToggleWishlistIcon = ({
 }: {
 	isInUsersWishList: boolean;
 }) => {
+	const [checkInUsersWishlist, setCheckInUsersWishlist] =
+		React.useState(isInUsersWishList);
+
 	const toggleToWishlist = (event) => {
 		event.preventDefault();
 		event.stopPropagation();
@@ -21,7 +24,7 @@ const ToggleWishlistIcon = ({
 				progress: undefined,
 			});
 		} else {
-			toast.success("You've added a new item to your wishlist", {
+			toast.info("You've added a new item to your wishlist", {
 				position: 'top-right',
 				autoClose: 1500,
 				hideProgressBar: false,
@@ -30,8 +33,9 @@ const ToggleWishlistIcon = ({
 				draggable: true,
 				progress: undefined,
 			});
+
+			setCheckInUsersWishlist(!isInUsersWishList);
 		}
-		console.log('added to wishlist');
 	};
 
 	return (
@@ -40,7 +44,7 @@ const ToggleWishlistIcon = ({
 				toggleToWishlist(event)
 			}
 		>
-			{isInUsersWishList ? (
+			{checkInUsersWishlist ? (
 				<span className="material-icons-round text-3xl text-red-500">
 					favorite
 				</span>
