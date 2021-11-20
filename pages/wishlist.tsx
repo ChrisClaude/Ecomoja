@@ -2,6 +2,7 @@ import * as React from 'react';
 import Head from 'next/head';
 import { UIContext } from '@/api/context/UIContext';
 import WishListItem from '@/components/WishListItem';
+import { CartModal } from '@/components/cart';
 
 const WishList = () => {
 	const { dispatch, wishList } = React.useContext(UIContext);
@@ -33,6 +34,7 @@ const WishList = () => {
 					</div>
 				</div>
 			</div>
+			<CartModal />
 		</>
 	);
 };

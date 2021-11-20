@@ -4,14 +4,15 @@ import { Product } from '@/types/Product';
 import Image from 'next/image';
 import { Button } from '@/components/common';
 import { UIContext } from '@/api/context/UIContext';
+import { handleAddProductToCart } from '@/helpers/main';
 
 type WishListItemProps = { product: Product };
 
 const WishListItem = ({
 	product,
 }: WishListItemProps) => {
-
 	const { dispatch } = useContext(UIContext);
+	
 	const {
 		id,
 		name,
@@ -25,7 +26,6 @@ const WishListItem = ({
 	} = product;
 
 	const handleOnRemoveWishListItem = () => {
-		console.log('remove from wish list');
 		dispatch({
 			type: 'REMOVE_PRODUCT_FROM_WISHLIST',
 			payload: product,
@@ -64,23 +64,26 @@ const WishListItem = ({
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-col md:flex-row">
-					<p className="flex items-center">
+				<div className='flex flex-col md:flex-row'>
+					<p className='flex items-center'>
 						{isFreeForDelivery
 							? 'Free Delivery'
 							: 'Delivery fees will be charged'}
 					</p>
-					<div className="flex flex-col md:ml-auto">
-						<Button primary className="w-52 mb-2 bg-secondary">
-							<span className="material-icons mr-1">shopping_cart</span>
+					<div className='flex flex-col md:ml-auto'>
+						<Button primary className='w-52 mb-2 bg-secondary' onClick={() => {
+							handleAddProductToCart(product, dispatch);
+							dispatch({ type: 'TOGGLE_MODAL' });
+						}}>
+							<span className='material-icons mr-1'>shopping_cart</span>
 							<span>Add to cart</span>
 						</Button>
 
 						<Button
-							className="w-52 bg-danger text-white"
+							className='w-52 bg-danger text-white'
 							onClick={handleOnRemoveWishListItem}
 						>
-							<span className="material-icons mr-1">delete</span>{' '}
+							<span className='material-icons mr-1'>delete</span>{' '}
 							<span>Remove</span>
 						</Button>
 					</div>
