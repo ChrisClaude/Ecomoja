@@ -3,13 +3,6 @@ import Image from 'next/image';
 import Carousel from '@/components/layout/Carousel';
 
 const HomeBanner = () => {
-	const settings = {
-		className: 'center',
-		infinite: true,
-		centerPadding: '60px',
-		slidesToShow: 5,
-		swipeToSlide: true,
-	};
 	const partners: {
 		id: number;
 		name: string;
@@ -53,7 +46,7 @@ const HomeBanner = () => {
 				<div className="flex w-full">
 					<div className="w-56" />
 					<div className="flex-1 ml-5 overflow-hidden">
-						<div className="w-3/4 h-80">
+						<div className="w-3/4 h-80 overflow-hidden">
 							<Carousel />
 						</div>
 					</div>

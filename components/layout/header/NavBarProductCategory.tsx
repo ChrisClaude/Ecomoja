@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { ProductCategory } from '@/types/ProductCategory';
 import { UIContext } from '@/api/context/UIContext';
+import Link from 'next/link';
 import { productCategories } from '../../../Products';
 
 const ProductCategoryList = ({
@@ -85,16 +86,18 @@ const ShopCategory = () => {
 const NavBarProductCategory = () => (
 	<>
 		{/*#region Mobile daily deals */}
-		<div className="px-2 flex items-center h-12 justify-between bg-secondary md:px-32 lg:hidden">
+		<div className='px-2 flex items-center h-12 justify-between bg-secondary md:px-32 lg:hidden'>
 			<div>
-				<FontAwesomeIcon icon={['far', 'clock']} className="text-white mr-1" />
-				<a href="#" className="text-white">
-					<span className="text-uppercase">Daily Deals</span>
+				<FontAwesomeIcon icon={['far', 'clock']} className='text-white mr-1' />
+				<a href='#' className='text-white'>
+					<span className='text-uppercase'>Daily Deals</span>
 				</a>
 			</div>
-			<a href="#" className="text-white font-weight-bold">
-				View More
-			</a>
+			<Link href='/'>
+				<a className='text-white font-weight-bold'>
+					View More
+				</a>
+			</Link>
 		</div>
 		{/*#endregion */}
 		{/*#region Desktop daily deals */}
