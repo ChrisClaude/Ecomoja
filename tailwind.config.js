@@ -12,11 +12,11 @@ module.exports = {
 			},
 			colors: {
 				primary: '#0b79bf',
-				secondary: '#059669',
+				secondary: '#6BC134',
 				success: '#6bc134',
 				danger: '#e84b4b',
 				'ecolap-gray': '#4d4d4d',
-				'ecolap-green': '#25CD66',
+				'ecolap-green': '#6BC134',
 				'ecolap-gray-h': '#404042',
 			},
 			keyframes: {

@@ -52,6 +52,11 @@ type AddProductToWishList = {
 	payload: Product;
 };
 
+type RemoveProductToWishList = {
+	type: 'REMOVE_PRODUCT_FROM_WISHLIST';
+	payload: Product;
+};
+
 type SetShopByCategory = {
 	type: 'SET_SHOP_BY_CATEGORY';
 	payload: boolean;
@@ -78,6 +83,7 @@ export type UIAction =
 	| AddProductToCart
 	| AddProductToWishList
 	| SetShopByCategory
+	| RemoveProductToWishList
 	| RemoveProductFromCart
 	| PatchCart
 	| IncreaseProductQuantity

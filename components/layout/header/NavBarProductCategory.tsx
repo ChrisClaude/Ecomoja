@@ -85,7 +85,7 @@ const ShopCategory = () => {
 const NavBarProductCategory = () => (
 	<>
 		{/*#region Mobile daily deals */}
-		<div className="px-2 flex items-center h-12 justify-between bg-green-600 md:px-32 lg:hidden">
+		<div className="px-2 flex items-center h-12 justify-between bg-secondary md:px-32 lg:hidden">
 			<div>
 				<FontAwesomeIcon icon={['far', 'clock']} className="text-white mr-1" />
 				<a href="#" className="text-white">
@@ -98,7 +98,7 @@ const NavBarProductCategory = () => (
 		</div>
 		{/*#endregion */}
 		{/*#region Desktop daily deals */}
-		<div className="hidden px-2 py-4 bg-green-600 h-16 lg:flex lg:flex-col lg:px-16 justify-center">
+		<div className="hidden px-2 py-4 bg-secondary h-16 lg:flex lg:flex-col lg:px-16 justify-center">
 			<div className="pb-2 lg:flex">
 				<div className="w-56 mr-5">
 					<ShopCategory />

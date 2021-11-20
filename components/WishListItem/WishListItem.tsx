@@ -1,12 +1,18 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { Product } from '@/types/Product';
 import Image from 'next/image';
 import { Button } from '@/components/common';
+import { UIContext } from '@/api/context/UIContext';
 
 type WishListItemProps = { product: Product };
 
 const WishListItem = ({
-	product: {
+	product,
+}: WishListItemProps) => {
+
+	const { dispatch } = useContext(UIContext);
+	const {
 		id,
 		name,
 		image,
@@ -16,14 +22,18 @@ const WishListItem = ({
 		oldPrice,
 		rating,
 		numberOfVotes,
-	},
-}: WishListItemProps) => {
+	} = product;
+
 	const handleOnRemoveWishListItem = () => {
 		console.log('remove from wish list');
+		dispatch({
+			type: 'REMOVE_PRODUCT_FROM_WISHLIST',
+			payload: product,
+		});
 	};
 
 	return (
-		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
+		<div className='w-full flex flex-col bg-white p-3 lg:flex-row'>
 			<div>
 				<Image
 					loader={() => image}
