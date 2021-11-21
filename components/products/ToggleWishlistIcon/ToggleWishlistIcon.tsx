@@ -2,14 +2,19 @@ import * as React from 'react';
 import { Button } from '@/components/common';
 import { toast } from 'react-toastify';
 import { Product } from '@/types/Product';
-import { type } from 'os';
 import { UIContext } from '@/api/context/UIContext';
+import { isProductInArray } from '@/helpers/main';
 
 const ToggleWishlistIcon = ({ product }: { product: Product }) => {
-	const { dispatch } = React.useContext(UIContext);
+	const { dispatch, wishList } = React.useContext(UIContext);
+	
 	const [isInUsersWishList, setIsInUsersWishList] = React.useState<boolean>(
-		product.isInUsersWishList,
+		true
 	);
+	
+	React.useEffect(() => {
+		setIsInUsersWishList(isProductInArray(product, wishList));
+	}, [wishList]);
 
 	const toggleToWishlist = (event) => {
 		event.preventDefault();

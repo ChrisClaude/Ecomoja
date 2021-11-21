@@ -103,3 +103,9 @@ export const removeCartItem = (
 	cartItems: CartItemType[],
 	id: number,
 ): CartItemType[] => cartItems.filter((cartItem) => cartItem.id !== id);
+
+/**
+ * This method finds if a product exists in a product array. It returns true if the product is found, returns false otherwise.
+ * @return boolean
+ */
+export const isProductInArray = (product: Product, array: Product[]): boolean => array.some(p => p.id === product.id)
