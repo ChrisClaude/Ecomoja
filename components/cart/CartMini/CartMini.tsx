@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import s from '@/components/cart/CartNavBarView/Cart.module.scss';
 import { default as cn } from 'classnames';
 import { calculateCartTotal } from '@/helpers/main';

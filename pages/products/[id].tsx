@@ -1,7 +1,7 @@
 import React from 'react';
 import { getProduct, getProducts } from '@/services/ProductServices';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import Head from 'next/head';
 import { Product } from '@/types/Product';
 import { useRouter } from 'next/router';

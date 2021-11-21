@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button } from '@/components/common';
 import { toast } from 'react-toastify';
 import { Product } from '@/types/Product';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import { isProductInArray } from '@/helpers/main';
 
 const ToggleWishlistIcon = ({ product }: { product: Product }) => {

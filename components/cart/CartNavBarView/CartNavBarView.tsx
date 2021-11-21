@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import { CartMini } from '@/components/cart';
 import s from './Cart.module.scss';
 

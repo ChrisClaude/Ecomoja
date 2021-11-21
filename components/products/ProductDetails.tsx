@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { Product } from '@/types/Product';
 import { Button } from '@/components/common/';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import {
 	handleAddProductToCart,
 	storeCartToLocalStorage,

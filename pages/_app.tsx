@@ -3,7 +3,7 @@ import * as React from 'react';
 import { AppProps } from 'next/app';
 import '@/styles/styles.scss';
 import Layout from '@/components/layout/Layout';
-import { UIProvider } from '@/api/context/UIContext';
+import { UIProvider } from '@/hooks/context/UIContext';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Initiate from '@/components/Initiate';
 

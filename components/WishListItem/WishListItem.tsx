@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Product } from '@/types/Product';
 import Image from 'next/image';
 import { Button } from '@/components/common';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import { handleAddProductToCart } from '@/helpers/main';
 
 type WishListItemProps = { product: Product };

@@ -6,7 +6,7 @@ import Logo from '@/components/layout/header/Logo';
 import { CartNavBarView } from '@/components/cart';
 import { Button } from '@/components/common';
 import { useRouter } from 'next/router';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import { logout } from '@/api/auth';
 
 const NavBar = () => {

@@ -22,6 +22,9 @@
 			"@/api/*": [
 				"api/*"
 			],
+			"@/hooks/*": [
+				"hooks/*"
+			],
 			"@/components/*": [
 				"components/*"
 			],
