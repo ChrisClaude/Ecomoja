@@ -31,14 +31,14 @@ const CartMini = () => {
 						Total: R {calculateCartTotal(cartItems)}
 					</div>
 					<div className="flex justify-between px-6 my-3">
-						<Button secondary className="bg-green-600 w-1/2 mr-2">
+						<Button secondary className="w-1/2 mr-2">
 							<span className="material-icons text-base mr-1">lock</span>
 							<span>Checkout</span>
 						</Button>
 						<Link href="/cart" passHref>
 							<Button
 								secondary
-								className="bg-green-600 w-1/2 hover:text-white hover:no-underline"
+								className="w-1/2 hover:text-white hover:no-underline"
 								as="a"
 							>
 								<span className="material-icons text-base mr-1">
