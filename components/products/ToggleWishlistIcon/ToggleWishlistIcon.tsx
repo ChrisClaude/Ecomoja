@@ -20,6 +20,8 @@ const ToggleWishlistIcon = ({ product }: { product: Product }) => {
 		event.preventDefault();
 		event.stopPropagation();
 		if (isInUsersWishList) {
+			dispatch({ type: 'REMOVE_PRODUCT_FROM_WISHLIST', payload: product });
+			
 			toast.error("You've removed an item from your cart", {
 				position: 'top-right',
 				autoClose: 1500,
@@ -31,6 +33,7 @@ const ToggleWishlistIcon = ({ product }: { product: Product }) => {
 			});
 		} else {
 			dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: product });
+			
 			toast.info("You've added a new item to your wishlist", {
 				position: 'top-right',
 				autoClose: 1500,
