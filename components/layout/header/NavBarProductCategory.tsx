@@ -89,12 +89,12 @@ const NavBarProductCategory = () => (
 		<div className='px-2 flex items-center h-12 justify-between bg-secondary md:px-32 lg:hidden'>
 			<div>
 				<FontAwesomeIcon icon={['far', 'clock']} className='text-white mr-1' />
-				<a href='#' className='text-white'>
+				<a href='#' className='text-white hover:no-underline hover:text-white'>
 					<span className='text-uppercase'>Daily Deals</span>
 				</a>
 			</div>
 			<Link href='/'>
-				<a className='text-white font-weight-bold'>
+				<a className='text-white font-weight-bold hover:no-underline hover:text-white'>
 					View More
 				</a>
 			</Link>
