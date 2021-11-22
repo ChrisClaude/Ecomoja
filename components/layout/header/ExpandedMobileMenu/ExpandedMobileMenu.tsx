@@ -9,6 +9,9 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { UIContext } from '@/hooks/context/UIContext';
+import Logo from '@/components/layout/header/Logo';
+import Link from 'next/link';
+import { Paper } from '@mui/material';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -68,7 +71,21 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		open={isMobileMenuOpen}
 		onClose={toggleDrawer()}
 	>
-		{list()}
+		<Box
+			sx={{ width: 250 }}
+			role='presentation'
+			onClick={toggleDrawer}
+			onKeyDown={toggleDrawer}
+			className="bg-gray-200 h-full"
+		>
+			<div className='bg-white py-1'>
+				<Link href="/">
+					<a className="flex items-center">
+						<Logo width={120} height={30} />
+					</a>
+				</Link>
+			</div>
+		</Box>
 	</Drawer>;
 };
 

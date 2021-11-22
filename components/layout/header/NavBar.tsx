@@ -44,7 +44,7 @@ const NavBar = () => {
 				<div className="flex">
 					<Link href="/">
 						<a className="flex items-center">
-							<Logo />
+							<Logo width={250} height={65} />
 						</a>
 					</Link>
 
