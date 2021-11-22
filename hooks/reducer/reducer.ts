@@ -81,6 +81,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				cartItems: newCartItems,
 			};
 
+		case 'TOGGLE_MOBILE_MENU':
+			return {
+				...state,
+				isMobileMenuOpen: !state.isMobileMenuOpen,
+			};
 		case 'TOGGLE_MODAL':
 			return {
 				...state,

@@ -11,6 +11,7 @@ const initializeUIState: UIState = {
 	isShopByCategoryCollapsed: true,
 	cartItems: [],
 	isModalOpen: false,
+	isMobileMenuOpen: false,
 	user: null,
 	wishList: [],
 };

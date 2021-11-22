@@ -6,14 +6,15 @@ import Head from 'next/head';
 import { Product } from '@/types/Product';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import ProductDetails from '@/components/products/ProductDetails';
 
 const DynamicCartModal = dynamic(() => import('../../components/cart/CartModal'));
-const DynamicProductDetails = dynamic(() => import('../../components/products/ProductDetails'));
 
 const ProductDetail = ({ product }: { product: Product }) => {
 	const router = useRouter();
 	const {
 		dispatch,
+		isModalOpen
 	} = React.useContext(UIContext);
 	const { name } = product;
 
@@ -48,11 +49,11 @@ const ProductDetail = ({ product }: { product: Product }) => {
 			<div className='flex px-2 py-6 lg:px-44'>
 				<div className='flex-1 overflow-hidden'>
 					<div className='w-full'>
-						<DynamicProductDetails product={product} />
+						<ProductDetails product={product} />
 					</div>
 				</div>
 			</div>
-			<DynamicCartModal />
+			{isModalOpen && <DynamicCartModal />}
 		</>
 	);
 };

@@ -12,6 +12,7 @@ export type UIState = {
 	cartItems: CartItem[];
 	wishList?: Product[];
 	isModalOpen: boolean;
+	isMobileMenuOpen: boolean;
 };
 
 export type CartItem = {
@@ -62,6 +63,10 @@ type SetShopByCategory = {
 	payload: boolean;
 };
 
+type ToggleMobileMenu = {
+	type: 'TOGGLE_MOBILE_MENU';
+};
+
 type ToggleModal = {
 	type: 'TOGGLE_MODAL';
 };
@@ -75,10 +80,6 @@ type setCurrentUser = {
 	payload: User;
 };
 
-type removeCurrentUser = {
-	type: 'REMOVE_CURRENT_USER';
-};
-
 export type UIAction =
 	| AddProductToCart
 	| AddProductToWishList
@@ -88,7 +89,12 @@ export type UIAction =
 	| PatchCart
 	| IncreaseProductQuantity
 	| DecreaseProductQuantity
+	| ToggleMobileMenu
 	| ToggleModal
 	| resetModal
 	| setCurrentUser
 	| removeCurrentUser;
+
+type removeCurrentUser = {
+	type: 'REMOVE_CURRENT_USER';
+};
