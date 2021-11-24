@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Product } from '@/types/Product';
 import Link from 'next/link';
 import { Button } from '@/components/common';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import {
 	addNewCartItem,
 	handleAddProductToCart,

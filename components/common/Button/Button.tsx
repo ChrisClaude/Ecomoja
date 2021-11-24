@@ -84,7 +84,7 @@ const createClassNames = (
 				' bg-primary text-white focus-within:border-primary hover:text-white hover:no-underline';
 		} else if (classes.secondary) {
 			result +=
-				' bg-secondary text-white focus-within:border-secondary hover:text-white hover:no-underline';
+				' bg-secondary text-black focus-within:border-secondary hover:text-black hover:no-underline';
 		} else if (classes.dark) {
 			result +=
 				' bg-gray-500 text-white focus-within:border-bg-gray-500 hover:text-white hover:no-underline';

@@ -27,10 +27,10 @@ export const getUserFromToken = (token: string): User | null => {
 	return decoded === null
 		? null
 		: {
-				username: decoded.username,
-				firstName: decoded.first_name,
-				lastName: decoded.last_name,
-		  };
+			username: decoded.username,
+			firstName: decoded.first_name,
+			lastName: decoded.last_name,
+		};
 };
 
 /**

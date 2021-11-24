@@ -1,7 +1,7 @@
 import * as React from 'react';
 // eslint-disable-next-line import/named
 import { UIState, UIAction } from '@/types/AppTypes';
-import reducer from '../reducer/reducer';
+import reducer from '@/hooks/reducer/reducer';
 
 type UIContextType = UIState & {
 	dispatch: React.Dispatch<UIAction>;
@@ -11,6 +11,7 @@ const initializeUIState: UIState = {
 	isShopByCategoryCollapsed: true,
 	cartItems: [],
 	isModalOpen: false,
+	isMobileMenuOpen: false,
 	user: null,
 	wishList: [],
 };

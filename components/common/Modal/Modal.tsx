@@ -3,7 +3,7 @@
 /* eslint-disable react/button-has-type */
 import * as React from 'react';
 import { default as cn } from 'classnames';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 
 type ModalProps = {
 	children: React.ReactNode;

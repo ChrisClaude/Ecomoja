@@ -1,7 +1,7 @@
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import * as React from 'react';
 import Image from 'next/image';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import { removeCartItem, storeCartToLocalStorage } from '@/helpers/main';
 
 const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {

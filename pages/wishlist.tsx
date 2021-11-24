@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import WishListItem from '@/components/WishListItem';
 import { CartModal } from '@/components/cart';
 

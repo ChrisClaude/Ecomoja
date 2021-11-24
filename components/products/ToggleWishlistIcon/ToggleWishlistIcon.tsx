@@ -2,19 +2,26 @@ import * as React from 'react';
 import { Button } from '@/components/common';
 import { toast } from 'react-toastify';
 import { Product } from '@/types/Product';
-import { type } from 'os';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
+import { isProductInArray } from '@/helpers/main';
 
 const ToggleWishlistIcon = ({ product }: { product: Product }) => {
-	const { dispatch } = React.useContext(UIContext);
+	const { dispatch, wishList } = React.useContext(UIContext);
+	
 	const [isInUsersWishList, setIsInUsersWishList] = React.useState<boolean>(
-		product.isInUsersWishList,
+		true
 	);
+	
+	React.useEffect(() => {
+		setIsInUsersWishList(isProductInArray(product, wishList));
+	}, [wishList]);
 
 	const toggleToWishlist = (event) => {
 		event.preventDefault();
 		event.stopPropagation();
 		if (isInUsersWishList) {
+			dispatch({ type: 'REMOVE_PRODUCT_FROM_WISHLIST', payload: product });
+			
 			toast.error("You've removed an item from your cart", {
 				position: 'top-right',
 				autoClose: 1500,
@@ -26,6 +33,7 @@ const ToggleWishlistIcon = ({ product }: { product: Product }) => {
 			});
 		} else {
 			dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: product });
+			
 			toast.info("You've added a new item to your wishlist", {
 				position: 'top-right',
 				autoClose: 1500,

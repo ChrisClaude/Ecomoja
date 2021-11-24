@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Slider from "react-slick";
-import Image from 'next/image';
+import Slider from 'react-slick';
 
 const settings = {
 	infinite: true,
@@ -11,38 +10,34 @@ const settings = {
 	autoplaySpeed: 2000,
 };
 
+const slideImages: { id: string, src: string }[] = [
+	{
+		id: 'home-page1',
+		src: '/assets/HomePage_1.png',
+	},
+	{
+		id: 'home-pag2',
+		src: '/assets/HomePage_2.png',
+	},
+	{
+		id: 'home-page3',
+		src: 'https://images.unsplash.com/photo-1564419320408-38e24e038739?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
+	},
+	{
+		id: 'home-page4',
+		src: 'https://images.pexels.com/photos/4792666/pexels-photo-4792666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+	},
+];
+
 const Carousel = () => (
 	<Slider {...settings}>
-		<div className="">
-			<Image
-				src="/assets/HomePage_1.png"
-				alt="eco friendly product"
-				className="w-full h-full"
-				width={100}
-				height={100}
-			/>
-		</div>
-		<div>
+		{slideImages.map((sldImage) => (<div key={sldImage.id}>
 			<img
-				src="/assets/HomePage_2.png"
-				alt="eco friendly product"
-				className="w-full h-full"
+				src={sldImage.src}
+				alt='eco friendly product'
+				className='w-full h-40 lg:h-80'
 			/>
-		</div>
-		<div>
-			<img
-				src="https://images.unsplash.com/photo-1564419320408-38e24e038739?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-				alt="eco friendly product"
-				className="w-full h-full"
-			/>
-		</div>
-		<div>
-			<img
-				src="https://images.pexels.com/photos/4792666/pexels-photo-4792666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-				alt="eco friendly product"
-				className="w-full h-full"
-			/>
-		</div>
+		</div>))}
 	</Slider>
 );
 

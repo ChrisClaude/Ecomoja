@@ -6,11 +6,16 @@ import Logo from '@/components/layout/header/Logo';
 import { CartNavBarView } from '@/components/cart';
 import { Button } from '@/components/common';
 import { useRouter } from 'next/router';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import { logout } from '@/api/auth';
+import MenuIcon from '@mui/icons-material/Menu';
+import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
 
 const NavBar = () => {
-	const { user, dispatch } = React.useContext(UIContext);
+	const {
+		user,
+		dispatch,
+	} = React.useContext(UIContext);
 	const router = useRouter();
 
 	const handleLogout = () => {
@@ -18,26 +23,28 @@ const NavBar = () => {
 		dispatch({ type: 'REMOVE_CURRENT_USER' });
 	};
 
+	const toggleDrawer = () => {
+		dispatch({ type: 'TOGGLE_MOBILE_MENU' });
+	};
+
 	return (
-		<nav className="px-2 flex bg-white w-full h-16 md:px-32 lg:px-16">
-			<div className="flex w-full">
+		<nav className='px-2 flex bg-white w-full h-16 md:px-32 lg:px-16'>
+			<div className='flex w-full'>
 				{/* Mobile burger menu */}
-				{/* TODO: Implement burger menu with http://negomi.github.io/react-burger-menu/ */}
-				<div className="flex items-center lg:hidden">
+				<div className='flex items-center lg:hidden'>
 					<button
-						type="button"
-						className="hamburger-menu flex w-auto h-full flex-col items-center"
+						type='button'
+						className='hamburger-menu flex w-auto h-full flex-col items-center'
+						onClick={toggleDrawer}
 					>
-						<span className="bar1" />
-						<span className="bar2" />
-						<span className="bar3" />
+						<MenuIcon />
 					</button>
 				</div>
 
 				<div className="flex">
 					<Link href="/">
 						<a className="flex items-center">
-							<Logo />
+							<Logo width={250} height={65} />
 						</a>
 					</Link>
 
@@ -153,20 +160,22 @@ const NavBar = () => {
 					</ul>
 				</div>
 				{/* Mobile Icons */}
-				<div className="flex items-center ml-auto lg:hidden">
+				<div className='flex items-center ml-auto lg:hidden'>
 					<button
-						className="h-8 p-1 text-base flex items-center justify-center"
-						type="button"
+						className='h-8 p-1 text-base flex items-center justify-center'
+						type='button'
 					>
-						<FontAwesomeIcon icon="search" />
+						<FontAwesomeIcon icon='search' />
 					</button>
-					<Link href="/cart">
-						<a className="h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700">
-							<FontAwesomeIcon icon="shopping-cart" />
+					<Link href='/cart'>
+						<a
+							className='h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700'>
+							<FontAwesomeIcon icon='shopping-cart' />
 						</a>
 					</Link>
 				</div>
 			</div>
+			<ExpandedMobileMenu anchor='left' />
 		</nav>
 	);
 };

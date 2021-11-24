@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { getCurrentUser } from '@/api/auth';
-import { UIContext } from '@/api/context/UIContext';
-import { User } from '@/types/AppTypes';
+import { UIContext } from '@/hooks/context/UIContext';
 import { useRouter } from 'next/router';
 
 function withUser<T>(Component: React.ComponentType<T>) {

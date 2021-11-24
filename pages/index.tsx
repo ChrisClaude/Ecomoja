@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Catalogue from '@/components/layout/Catalogue';
 import Head from 'next/head';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
 
 export default function Home() {
