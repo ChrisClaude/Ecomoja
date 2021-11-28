@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Button } from '@/components/common';
 import { toast } from 'react-toastify';
 import { Product } from '@/types/Product';
 import { UIContext } from '@/hooks/context/UIContext';
 import { isProductInArray } from '@/helpers/main';
 
-const ToggleWishlistIcon = ({ product }: { product: Product }) => {
+type ToggleWishlistIconProps = { product: Product } & React.HTMLProps<HTMLButtonElement>;
+
+const ToggleWishlistIcon = ({product, ...props}: ToggleWishlistIconProps) => {
 	const { dispatch, wishList } = React.useContext(UIContext);
 	
 	const [isInUsersWishList, setIsInUsersWishList] = React.useState<boolean>(
@@ -49,10 +50,12 @@ const ToggleWishlistIcon = ({ product }: { product: Product }) => {
 	};
 
 	return (
-		<Button
+		<button
+			{...props}
 			onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
 				toggleToWishlist(event)
 			}
+			type="button"
 		>
 			{isInUsersWishList ? (
 				<span className="material-icons-round text-3xl text-red-500">
@@ -63,7 +66,7 @@ const ToggleWishlistIcon = ({ product }: { product: Product }) => {
 					favorite_border
 				</span>
 			)}
-		</Button>
+		</button>
 	);
 };
 

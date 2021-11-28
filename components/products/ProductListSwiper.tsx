@@ -31,7 +31,7 @@ const ProductListSwiper = ({ products }: ProductListSwiperProps) => {
 	}, [windowWidth]);
 
 	return (
-		<div className="h-96">
+		<div>
 			<Slider {...settings}>
 				{products.map((product) => (
 					<div key={product.id}>
