@@ -73,7 +73,7 @@ const ShopCategory = () => {
 									<FontAwesomeIcon icon={['far', 'clock']} />
 								</span>
 								<span className="text-uppercase text-base font-bold">
-									Daily Deals
+									Ecomoja Deals
 								</span>
 							</a>
 						</div>
@@ -90,7 +90,7 @@ const NavBarProductCategory = () => (
 			<div>
 				<FontAwesomeIcon icon={['far', 'clock']} className='text-white mr-1' />
 				<a href='#' className='text-white hover:no-underline hover:text-white'>
-					<span className='text-uppercase'>Daily Deals</span>
+					<span className='text-uppercase'>Ecomoja Deals</span>
 				</a>
 			</div>
 			<Link href='/'>

@@ -47,14 +47,6 @@ const NavBar = () => {
 							<Logo width={250} height={65} />
 						</a>
 					</Link>
-
-					<ul className="hidden items-center ml-5 lg:flex ">
-						<li className="p-2">
-							<Link href="#">
-								<a>Sell with Us</a>
-							</Link>
-						</li>
-					</ul>
 				</div>
 				<div className="hidden mx-3 lg:flex-1 lg:flex lg:items-center">
 					<input
