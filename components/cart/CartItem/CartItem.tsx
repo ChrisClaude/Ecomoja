@@ -3,9 +3,40 @@ import Image from 'next/image';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
 import { removeCartItem, storeCartToLocalStorage } from '@/helpers/main';
+import { toast } from 'react-toastify';
+import {isProductInArray} from '@/helpers/main';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
-	const { dispatch, cartItems } = React.useContext(UIContext);
+	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
+	
+	const handleAddProductToWishList = () => {
+		const check = isProductInArray(cartItem.product, wishList);
+		
+		if (check){
+			toast.warn("The product is already added to your wish list", {
+				position: 'top-right',
+				autoClose: 1500,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+			return;
+		}
+		
+		dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: cartItem.product });
+
+		toast.info("You've added a new item to your wishlist", {
+			position: 'top-right',
+			autoClose: 1500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+	};
 
 	const handleOnRemoveCartItem = () => {
 		dispatch({
@@ -90,6 +121,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 						<button
 							type="button"
 							className="px-2 py-1 rounded flex items-center justify-center transition duration-300 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
+							onClick={handleAddProductToWishList}
 						>
 							<span className="material-icons mr-1">favorite</span>
 							<span>Add to list</span>
