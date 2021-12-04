@@ -60,8 +60,8 @@ const ProductItem = ({ product }: ProductProps) => {
 								<span className='text-muted'>({numberOfVotes})</span>
 							</div>
 						</div>
-						<div className="flex items-center justify-center mt-1">
-							<ToggleWishlistIcon product={product} className="mr-3" />
+						<div className="flex flex-col items-center justify-center mt-1 md:flex-row">
+							<ToggleWishlistIcon product={product} className="hidden md:block mr-3" />
 							<Button
 								secondary
 								onClick={(event) => {

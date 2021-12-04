@@ -24,7 +24,7 @@ const ProductListSwiper = ({ products }: ProductListSwiperProps) => {
 				className: 'center',
 				infinite: true,
 				centerPadding: '60px',
-				slidesToShow: 1,
+				slidesToShow: 2,
 				swipeToSlide: true,
 			});
 		}	
