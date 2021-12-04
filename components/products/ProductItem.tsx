@@ -43,9 +43,9 @@ const ProductItem = ({ product }: ProductProps) => {
 					/>
 					<CardContent>
 						<div className='flex flex-col'>
-							<div className='w-full flex-1 whitespace-nowrap truncate text-center'>{name}</div>
+							<div className='w-full flex-1 whitespace-nowrap truncate text-center font-bold'>{name}</div>
 							<div className='pricing-info-container w-full flex items-center justify-center flex-1 mt-1'>
-								<span className='text-base mr-2'>R {currentPrice}</span>
+								<span className='text-base mr-2 font-bold'>R {currentPrice}</span>
 								<span className='line-through text-gray-400 mr-2'>R {oldPrice}</span>
 								<img
 									src='/assets/info-product-item-icon.svg'
