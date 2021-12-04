@@ -43,7 +43,7 @@ const ProductItem = ({ product }: ProductProps) => {
 					<CardContent>
 						<div className='flex flex-col'>
 							<div className='w-full flex-1 whitespace-nowrap truncate text-center font-bold text-base'>{name}</div>
-							<div className='pricing-info-container w-full flex items-center justify-center flex-1 mt-1'>
+							<div className='pricing-info-container w-full flex flex-col flex-1 mt-1 items-center justify-center lg:flex-row'>
 								<span className='text-base mr-2 font-bold'>R {currentPrice}</span>
 								<span className='line-through text-gray-400 mr-2'>R {oldPrice}</span>
 								<img
