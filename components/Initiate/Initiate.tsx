@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ToastContainer } from 'react-toastify';
 import { getCartFromLocalStorage } from '@/helpers/main';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 
 const Initiate = () => {
 	const { dispatch } = React.useContext(UIContext);

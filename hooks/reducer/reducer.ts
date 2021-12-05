@@ -60,6 +60,19 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				cartItems: newCartItems,
 			};
 
+		case 'ADD_PRODUCT_TO_WISHLIST':
+			const newWishList = [action.payload, ...state.wishList];
+			return {
+				...state,
+				wishList: newWishList,
+			};
+		case 'REMOVE_PRODUCT_FROM_WISHLIST':
+			const filteredWishList = state.wishList.filter(item => item.id !== action.payload.id);
+			return {
+				...state,
+				wishList: filteredWishList,
+			};
+
 		case 'REMOVE_PRODUCT_FROM_CART':
 			// all cart items have the same id as their product
 			newCartItems = removeCartItem(state.cartItems, action.payload.id);
@@ -68,6 +81,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				cartItems: newCartItems,
 			};
 
+		case 'TOGGLE_MOBILE_MENU':
+			return {
+				...state,
+				isMobileMenuOpen: !state.isMobileMenuOpen,
+			};
 		case 'TOGGLE_MODAL':
 			return {
 				...state,

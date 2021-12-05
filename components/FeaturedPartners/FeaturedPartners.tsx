@@ -1,0 +1,62 @@
+import * as React from 'react';
+import Image from 'next/image';
+
+const FeaturedPartners = () => {
+	const partners: {
+		id: number;
+		name: string;
+		description: string;
+		src: string;
+	}[] = [
+		{
+			id: 1,
+			name: 'Partner 1',
+			description: 'Partner 1',
+			src: '/assets/partners/Partner_1.jpg',
+		},
+		{
+			id: 2,
+			name: 'Partner 2',
+			description: 'Partner 2',
+			src: '/assets/partners/Partner_2.jpg',
+		},
+		{
+			id: 3,
+			name: 'Partner 3',
+			description: 'Partner 3',
+			src: '/assets/partners/Partner_3.jpg',
+		},
+		{
+			id: 4,
+			name: 'Partner 4',
+			description: 'Partner 4',
+			src: '/assets/partners/Partner_4.jpg',
+		},
+		{
+			id: 5,
+			name: 'Partner 5',
+			description: 'Partner 5',
+			src: '/assets/partners/Partner_5.jpg',
+		},
+	];
+
+	return <div className='w-full bg-white py-8 px-4'>
+		<h3 className='pb-2 text-center mb-4'>Featured Partners</h3>
+		<div className='flex flex-wrap justify-center '>
+			{partners.map((p) => (
+				<div key={p.id} className="w-1/2 lg:mr-6 lg:w-auto lg:last:mr-0">
+					<Image
+						loader={() => p.src}
+						width={150}
+						height={130}
+						src={p.src}
+						alt={p.description}
+						objectFit='cover'
+					/>
+				</div>
+			))}
+		</div>
+	</div>;
+};
+
+export default FeaturedPartners;

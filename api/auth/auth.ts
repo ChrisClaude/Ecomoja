@@ -2,7 +2,7 @@ import * as qs from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { User } from '@/types/AppTypes';
 
-export const getDecodedToken = (token: string) => jwtDecode<User>(token as string);
+export const getDecodedToken = (token: string) => jwtDecode(token as string);
 
 /**
  * Parses a utl and returns a jwt token
@@ -28,8 +28,8 @@ export const getUserFromToken = (token: string): User | null => {
 		? null
 		: {
 			username: decoded.username,
-			firstName: decoded.firstName,
-			lastName: decoded.lastName,
+			firstName: decoded.first_name,
+			lastName: decoded.last_name,
 		};
 };
 

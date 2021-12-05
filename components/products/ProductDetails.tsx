@@ -4,11 +4,12 @@ import Image from 'next/image';
 
 import { Product } from '@/types/Product';
 import { Button } from '@/components/common/';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import {
-	handleAddProductToCart,
+	handleAddProductToCart, isProductInArray,
 	storeCartToLocalStorage,
 } from '@/helpers/main';
+import { toast } from 'react-toastify';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
@@ -34,11 +35,39 @@ const showCategories = ({ id, categories }: Product) => {
 };
 
 const ProductDetails = ({ product }: { product: Product }) => {
-	const { dispatch, cartItems } = React.useContext(UIContext);
+	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 
 	React.useEffect(() => {
 		storeCartToLocalStorage(cartItems);
 	}, [cartItems]);
+
+	const handleAddToWishList = () => {
+		const check = isProductInArray(product, wishList);
+
+		if (check){
+			toast.warn("The product is already added to your wish list", {
+				position: 'top-right',
+				autoClose: 1500,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+			return;
+		}
+		
+		dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: product });
+		toast.info("You've added a new item to your wishlist", {
+			position: 'top-right',
+			autoClose: 1500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+	};
 
 	return (
 		<div className="flex flex-col w-full">
@@ -94,7 +123,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 					<div className="flex flex-col mt-3">
 						<Button
 							variant="contained"
-							primary
+							secondary
 							className="py-3"
 							onClick={() => {
 								handleAddProductToCart(product, dispatch);
@@ -109,7 +138,12 @@ const ProductDetails = ({ product }: { product: Product }) => {
 								<span>Add to Cart</span>
 							</span>
 						</Button>
-						<Button variant="contained" light className="mt-2 py-3">
+						<Button
+							variant="contained"
+							light
+							className="mt-2 py-3"
+							onClick={handleAddToWishList}
+						>
 							<span className="flex items-center justify-center w-full">
 								<span className="material-icons-round mr-2 text-base">
 									favorite_border

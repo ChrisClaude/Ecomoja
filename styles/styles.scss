@@ -182,12 +182,6 @@ a:hover {
 **********************
 */
 .product-item {
-	@apply bg-white flex flex-col items-center w-full h-full cursor-pointer overflow-hidden rounded transition-shadow duration-500;
-
-	&:hover {
-		box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.3);
-	}
-
 	.pricing-info-svg {
 		width: 16px;
 		height: 16px;
@@ -213,3 +207,7 @@ a:hover {
 // React slick
 .slick-list {margin: 0 -5px;}
 .slick-slide>div {padding: 0 10px;}
+.slick-prev:before,
+.slick-next:before {
+	@apply text-gray-800;
+}

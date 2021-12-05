@@ -3,7 +3,7 @@
 /* eslint-disable react/button-has-type */
 import * as React from 'react';
 import { Button, Modal } from '@/components/common';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import Image from 'next/image';
 import Link from 'next/link';
 

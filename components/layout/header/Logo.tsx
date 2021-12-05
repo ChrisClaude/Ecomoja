@@ -1,19 +1,35 @@
 import Image from 'next/image';
 import * as React from 'react';
+import { default as cn } from 'classnames';
 
-const Logo = () => {
+type LogoProps = {
+	width: number,
+	height: number,
+	className?: string
+};
+
+const Logo = ({
+	width,
+	height,
+	className,
+}: LogoProps) => {
 	const src =
 		'/assets/EcoMojaLogoDesign_HorizontalLogoAndName_GreenAndBlack.svg';
 	return (
 		<Image
-			width={250}
+			width={width}
 			loader={() => src}
-			height={65}
+			height={height}
 			src={src}
-			objectFit="cover"
-			alt="logo"
+			objectFit='cover'
+			alt='logo'
+			className={cn(className)}
 		/>
 	);
+};
+
+Logo.defaultProps = {
+	className: '',
 };
 
 export default Logo;

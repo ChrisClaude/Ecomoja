@@ -39,7 +39,7 @@ export const products: Product[] = [
 		oldPrice: 494,
 		rating: 5,
 		numberOfVotes: 10,
-		categories: ['Home ]and Decorate'],
+		categories: ['Home land Decorate'],
 		vendor: 'KMB',
 		isInStock: false,
 	},

@@ -2,7 +2,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { ProductCategory } from '@/types/ProductCategory';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
+import Link from 'next/link';
 import { productCategories } from '../../../Products';
 
 const ProductCategoryList = ({
@@ -72,7 +73,7 @@ const ShopCategory = () => {
 									<FontAwesomeIcon icon={['far', 'clock']} />
 								</span>
 								<span className="text-uppercase text-base font-bold">
-									Daily Deals
+									Ecomoja Deals
 								</span>
 							</a>
 						</div>
@@ -85,20 +86,22 @@ const ShopCategory = () => {
 const NavBarProductCategory = () => (
 	<>
 		{/*#region Mobile daily deals */}
-		<div className="px-2 flex items-center h-12 justify-between bg-green-600 md:px-32 lg:hidden">
+		<div className='px-2 flex items-center h-12 justify-between bg-secondary md:px-32 lg:hidden'>
 			<div>
-				<FontAwesomeIcon icon={['far', 'clock']} className="text-white mr-1" />
-				<a href="#" className="text-white">
-					<span className="text-uppercase">Daily Deals</span>
+				<FontAwesomeIcon icon={['far', 'clock']} className='text-white mr-1' />
+				<a href='#' className='text-white hover:no-underline hover:text-white'>
+					<span className='text-uppercase'>Ecomoja Deals</span>
 				</a>
 			</div>
-			<a href="#" className="text-white font-weight-bold">
-				View More
-			</a>
+			<Link href='/'>
+				<a className='text-white font-weight-bold hover:no-underline hover:text-white'>
+					View More
+				</a>
+			</Link>
 		</div>
 		{/*#endregion */}
 		{/*#region Desktop daily deals */}
-		<div className="hidden px-2 py-4 bg-green-600 h-16 lg:flex lg:flex-col lg:px-16 justify-center">
+		<div className="hidden px-2 py-4 bg-secondary h-16 lg:flex lg:flex-col lg:px-16 justify-center">
 			<div className="pb-2 lg:flex">
 				<div className="w-56 mr-5">
 					<ShopCategory />

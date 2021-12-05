@@ -10,6 +10,6 @@ export type Product = {
 	categories: string[];
 	vendor: string;
 	isInStock: boolean;
-	isFreeDelivered?: boolean;
+	isFreeForDelivery?: boolean;
 	deliveryFees?: number;
 };

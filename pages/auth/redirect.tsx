@@ -5,7 +5,7 @@ import {
 	parseUrl,
 	storeUserToken,
 } from '@/api/auth';
-import { UIContext } from '@/api/context/UIContext';
+import { UIContext } from '@/hooks/context/UIContext';
 import { useRouter } from 'next/router';
 
 const Redirect = () => {
