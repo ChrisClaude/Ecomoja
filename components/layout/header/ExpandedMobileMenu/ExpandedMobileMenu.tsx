@@ -25,13 +25,14 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		cartItems
 	} = React.useContext(UIContext);
 	
-	const toggleDrawer = () => (event: React.KeyboardEvent | React.MouseEvent) => {
+	const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
 		console.log('toggle');
 		if (
 			event.type === 'keydown' &&
 			((event as React.KeyboardEvent).key === 'Tab' ||
 				(event as React.KeyboardEvent).key === 'Shift')
 		) {
+			console.log('no toggle');
 			return;
 		}
 
@@ -42,14 +43,12 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		<Box
 			sx={{ width: 250 }}
 			role='presentation'
-			onClick={toggleDrawer}
-			onKeyDown={toggleDrawer}
 			className='mt-4'
 		>
 			<List className='bg-white'>
 				<Link href='/'>
 					<a>
-						<ListItem button key='Home' onClick={toggleDrawer}>
+						<ListItem button key='Home'>
 							<ListItemText primary='Home' />
 						</ListItem>
 					</a>
@@ -98,13 +97,13 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 	return <Drawer
 		anchor={anchor}
 		open={isMobileMenuOpen}
-		onClose={toggleDrawer()}
+		onClose={(event) => toggleDrawer(event as React.MouseEvent)}
 	>
 		<Box
 			sx={{ width: 250 }}
 			role='presentation'
-			onClick={toggleDrawer}
-			onKeyDown={toggleDrawer}
+			onClick={(event) => toggleDrawer(event)}
+			onKeyDown={(event) => toggleDrawer(event)}
 			className='bg-gray-200 h-full'
 		>
 			<Box className='bg-white py-1'>
