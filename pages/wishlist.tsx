@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { UIContext } from '@/hooks/context/UIContext';
-import WishListItem from '@/components/WishListItem';
+import WishListItem from '@/components/core/WishListItem';
 import { CartModal } from '@/components/cart';
 import { default as cn } from 'classnames';
 
