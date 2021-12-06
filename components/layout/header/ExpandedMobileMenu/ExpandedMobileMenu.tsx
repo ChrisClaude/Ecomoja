@@ -47,9 +47,13 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 			className='mt-4'
 		>
 			<List className='bg-white'>
-				<ListItem button key='Home'>
-					<ListItemText primary='Home' />
-				</ListItem>
+				<Link href='/'>
+					<a>
+						<ListItem button key='Home' onClick={toggleDrawer}>
+							<ListItemText primary='Home' />
+						</ListItem>
+					</a>
+				</Link>
 				<ListItem button key='Shop by Category'>
 					<ListItemText primary='Shop by Category' />
 				</ListItem>
@@ -65,20 +69,27 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 			</List>
 			<Divider />
 			<List className='bg-white mt-6'>
-				<ListItem button key='Cart'>
-					<ListItemIcon>
-						<ShoppingCartIcon className="text-secondary" />
-					</ListItemIcon>
-					<ListItemText primary='Cart' />
-					{`${cartItems.length} item(s)`}
-				</ListItem>
-
-				<ListItem button key='List'>
-					<ListItemIcon>
-						<FavoriteIcon className="text-red-500" />
-					</ListItemIcon>
-					<ListItemText primary='List' />
-				</ListItem>
+				<Link href='/cart'>
+					<a>
+						<ListItem button key='Cart'>
+							<ListItemIcon>
+								<ShoppingCartIcon className='text-secondary' />
+							</ListItemIcon>
+							<ListItemText primary='Cart' />
+							{`${cartItems.length} item(s)`}
+						</ListItem>
+					</a>
+				</Link>
+				<Link href='/wishlist'>
+					<a>
+						<ListItem button key='List'>
+							<ListItemIcon>
+								<FavoriteIcon className='text-red-500' />
+							</ListItemIcon>
+							<ListItemText primary='List' />
+						</ListItem>
+					</a>
+				</Link>
 			</List>
 			<Divider />
 		</Box>
