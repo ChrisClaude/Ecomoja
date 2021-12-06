@@ -25,6 +25,7 @@ import Footer from './Footer';
 
 type LayoutProp = {
 	children: React.ReactNode;
+	showFooter?: boolean;
 };
 
 library.add(
@@ -44,7 +45,7 @@ library.add(
 	faSortUp,
 );
 
-const Layout = ({ children }: LayoutProp) => {
+const Layout = ({ children, showFooter }: LayoutProp) => {
 	const { isModalOpen } = React.useContext(UIContext);
 	return (
 		<div
@@ -54,9 +55,13 @@ const Layout = ({ children }: LayoutProp) => {
 		>
 			<Header />
 			<main>{children}</main>
-			<Footer />
+			<Footer className={cn({'hidden': showFooter})} />
 		</div>
 	);
+};
+
+Layout.defaultProps = {
+	showFooter: true
 };
 
 export default Layout;

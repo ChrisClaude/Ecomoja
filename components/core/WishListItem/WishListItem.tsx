@@ -71,7 +71,7 @@ const WishListItem = ({
 							: 'Delivery fees will be charged'}
 					</p>
 					<div className='flex flex-col md:ml-auto'>
-						<Button primary className='w-52 mb-2 bg-secondary' onClick={() => {
+						<Button secondary className='w-52 mb-2 bg-secondary' onClick={() => {
 							handleAddProductToCart(product, dispatch);
 							dispatch({ type: 'TOGGLE_MODAL' });
 						}}>

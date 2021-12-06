@@ -16,7 +16,7 @@ const Cart = () => {
 				type: 'SET_SHOP_BY_CATEGORY',
 				payload: false,
 			}),
-		[dispatch],
+		[],
 	);
 
 	return (

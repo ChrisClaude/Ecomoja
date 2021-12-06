@@ -10,11 +10,14 @@ import { UIContext } from '@/hooks/context/UIContext';
 import { logout } from '@/api/auth';
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const NavBar = () => {
 	const {
 		user,
 		dispatch,
+		cartItems
 	} = React.useContext(UIContext);
 	const router = useRouter();
 
@@ -162,7 +165,9 @@ const NavBar = () => {
 					<Link href='/cart'>
 						<a
 							className='h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700'>
-							<FontAwesomeIcon icon='shopping-cart' />
+							<Badge badgeContent={cartItems.length} color="secondary">
+								<ShoppingCartIcon color="action" />
+							</Badge>
 						</a>
 					</Link>
 				</div>

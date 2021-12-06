@@ -3,7 +3,7 @@ import Catalogue from '@/components/layout/Catalogue';
 import Head from 'next/head';
 import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
-import FeaturedPartners from '@/components/FeaturedPartners';
+import FeaturedPartners from '@/components/core/FeaturedPartners';
 
 export default function Home() {
 	const { dispatch } = React.useContext(UIContext);
