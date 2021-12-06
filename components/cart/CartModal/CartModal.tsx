@@ -18,7 +18,7 @@ const CartModal = () => {
 		<Modal>
 			<div className="w-full h-full flex justify-end">
 				<div
-					className="w-1/2 bg-gray-200"
+					className="bg-gray-200 w-4/5 lg:w-1/2"
 					onClick={(event) => event.stopPropagation()}
 				>
 					<div className="flex bg-white">
@@ -32,8 +32,8 @@ const CartModal = () => {
 					<div className="pt-8 px-5">
 						{cartItem && (
 							<div className="bg-white">
-								<div className="flex px-5 py-4 shadow">
-									<div className="border border-gray-400">
+								<div className="flex flex-col px-5 py-4 shadow lg:flex-row">
+									<div className="flex justify-center items-center border border-gray-400">
 										<Image
 											loader={() => cartItem.product.image}
 											width={100}
@@ -41,9 +41,10 @@ const CartModal = () => {
 											src={cartItem.product.image}
 											alt={cartItem.product.name}
 											objectFit="cover"
+											className="w-full object-cover"
 										/>
 									</div>
-									<div className="ml-6 flex flex-col flex-1 justify-between">
+									<div className="mt-2 flex flex-col flex-1 justify-between lg:mt-0 lg:ml-6">
 										<div>
 											<div className="text-base font-semibold">
 												{cartItem.product.name}
