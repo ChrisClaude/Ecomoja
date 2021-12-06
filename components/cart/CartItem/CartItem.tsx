@@ -2,9 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartToLocalStorage } from '@/helpers/main';
+import { removeCartItem, storeCartToLocalStorage, isProductInArray } from '@/helpers/main';
 import { toast } from 'react-toastify';
-import {isProductInArray} from '@/helpers/main';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
@@ -69,7 +68,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 
 	return (
 		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
-			<div>
+			<div className="flex items-center justify-center w-full">
 				<Image
 					loader={() => cartItem.product.image}
 					src={cartItem.product.image}
@@ -77,9 +76,10 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 					height={200}
 					alt={cartItem.product.name}
 					objectFit="cover"
+					className="w-full"
 				/>
 			</div>
-			<div className="flex flex-col justify-between lg:flex-1 ml-2">
+			<div className="flex flex-col justify-between ml-2 mt-2 lg:mt-0 lg:flex-1">
 				<div className="flex flex-col md:flex-row">
 					<div className="flex flex-col">
 						<p className="text-2xl font-semibold">{cartItem.product.name}</p>
