@@ -11,6 +11,10 @@ const FeaturedPartners = () => {
 		centerPadding: '60px',
 		slidesToShow: 3,
 		swipeToSlide: true,
+		autoPlay: true,
+		autoplaySpeed: 2000,
+		speed: 500,
+		slidesToScroll: 1,
 	});
 
 	React.useEffect(() => {
@@ -21,6 +25,10 @@ const FeaturedPartners = () => {
 				centerPadding: '60px',
 				slidesToShow: 2,
 				swipeToSlide: true,
+				autoPlay: true,
+				autoplaySpeed: 2000,
+				speed: 500,
+				slidesToScroll: 1,
 			});
 		}
 	}, [windowWidth]);
