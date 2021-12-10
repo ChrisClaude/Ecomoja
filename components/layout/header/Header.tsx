@@ -3,10 +3,11 @@ import NavBarProductCategory from '@/components/layout/header/NavBarProductCateg
 import NavBar from '@/components/layout/header/NavBar';
 import {default as cn} from 'classnames';
 import { UIContext } from '@/hooks/context/UIContext';
+import { useWindowSize } from '@/hooks/custom';
 
 const Header = () => {
-	const [isHeaderSticky, setIsHeaderSticky] = React.useState(false);
-	const {dispatch} = React.useContext(UIContext);
+	const {dispatch, isShopByCategoryCollapsed} = React.useContext(UIContext);
+	const {width: windowWidth} = useWindowSize();
 	
 	React.useEffect(() => {
 		const handleScroll = () => {
@@ -14,16 +15,14 @@ const Header = () => {
 			
 			const yOffset = window.pageYOffset;
 			if (yOffset >= checkOffset) {
-				if (isHeaderSticky === false) {
-					setIsHeaderSticky(true);
+				if (isShopByCategoryCollapsed) {
 					dispatch({
 						type: 'SET_SHOP_BY_CATEGORY',
 						payload: false,
 					});
 				}
 			} else if (yOffset < checkOffset) {
-				if (isHeaderSticky === true) {
-					setIsHeaderSticky(false);
+				if (!isShopByCategoryCollapsed) {
 					dispatch({
 						type: 'SET_SHOP_BY_CATEGORY',
 						payload: true,
@@ -35,10 +34,10 @@ const Header = () => {
 		window.addEventListener('scroll', handleScroll);
 		
 		return () => window.removeEventListener('scroll', handleScroll);
-	}, [isHeaderSticky]);
+	}, [isShopByCategoryCollapsed, dispatch]);
 	
 	return (
-		<header className={cn('z-10 w-full', {'fixed': isHeaderSticky})}>
+		<header className={cn('z-10 w-full sticky top-0')}>
 			<NavBar />
 			<NavBarProductCategory />
 		</header>

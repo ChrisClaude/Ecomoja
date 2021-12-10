@@ -86,7 +86,7 @@ const ShopCategory = () => {
 const NavBarProductCategory = () => (
 	<>
 		{/*#region Mobile daily deals */}
-		<div className='px-2 flex items-center h-12 justify-between bg-secondary md:px-32 lg:hidden'>
+		<div className='px-2 flex items-center h-12 justify-between bg-secondary lg:px-16 lg:hidden'>
 			<div>
 				<FontAwesomeIcon icon={['far', 'clock']} className='text-white mr-1' />
 				<a href='#' className='text-white hover:no-underline hover:text-white'>

@@ -31,7 +31,7 @@ const NavBar = () => {
 	};
 
 	return (
-		<nav className='px-2 flex bg-white w-full h-16 md:px-32 lg:px-16'>
+		<nav className='px-2 flex bg-white w-full h-16 lg:px-16'>
 			<div className='flex w-full'>
 				{/* Mobile burger menu */}
 				<div className='flex items-center lg:hidden'>
