@@ -1,0 +1,7 @@
+.category:hover .subcategories {
+	@apply block opacity-100;
+}
+
+.subcategories {
+	@apply hidden opacity-0 transition-all duration-1000;
+}

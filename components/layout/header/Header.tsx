@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NavBarProductCategory from '@/components/layout/header/NavBarProductCategory';
+import NavBarProductCategory from '@/components/layout/header/NavBarProductCategory/NavBarProductCategory';
 import NavBar from '@/components/layout/header/NavBar';
 import {default as cn} from 'classnames';
 import { UIContext } from '@/hooks/context/UIContext';
