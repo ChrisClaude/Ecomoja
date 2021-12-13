@@ -4,8 +4,8 @@ import * as React from 'react';
 import { ProductCategory } from '@/types/ProductCategory';
 import { UIContext } from '@/hooks/context/UIContext';
 import Link from 'next/link';
-import {default as cn} from 'classnames';
-import s from './NavBarProductCategory.module.scss'
+import { default as cn } from 'classnames';
+import s from './NavBarProductCategory.module.scss';
 import { productCategories } from '../../../../Products';
 
 const ProductCategoryList = ({
@@ -13,7 +13,7 @@ const ProductCategoryList = ({
 }: {
 	categoryList: ProductCategory[];
 }) => (
-	<ul className="flex flex-col my-2">
+	<ul className='flex flex-col my-2'>
 		{categoryList.map((category) => (
 			<li
 				key={category.id}
@@ -21,14 +21,17 @@ const ProductCategoryList = ({
 			>
 				<span>{category.name}</span>
 				<span>
-					<FontAwesomeIcon icon="chevron-right" />
+					<FontAwesomeIcon icon='chevron-right' />
 				</span>
-				
-				<ul className={cn('absolute bg-white w-52 h-52 text-black top-0 -right-full shadow-lg', s.subcategories)}>
-					<li>
-						Text
-					</li>
-				</ul>
+				{category.subcategories.length > 0 && <>
+					<ul
+						className={cn('absolute bg-white w-52 h-52 text-black top-0 left-full shadow-lg', s.subcategories)}>
+						<li className="py-1 px-5 mb-2 font-semibold text-base">{category.name}</li>
+						{category.subcategories.map(subCategory => <li
+							key={subCategory.id}
+							className='py-1 px-5 flex items-center justify-between cursor-pointer hover:bg-secondary'>{subCategory.name}</li>)}
+					</ul>
+				</>}
 			</li>
 		))}
 	</ul>
@@ -70,7 +73,7 @@ const ShopCategory = () => {
 							</div>
 						</div>
 						<div
-							className={isShopByCategoryCollapsed ? 'inline-block' : 'hidden'}
+							className={isShopByCategoryCollapsed ? 'relative inline-block' : 'hidden'}
 						>
 							<ProductCategoryList categoryList={productCategories} />
 							<a
