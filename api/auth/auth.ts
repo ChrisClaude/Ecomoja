@@ -2,7 +2,15 @@ import * as qs from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { User } from '@/types/AppTypes';
 
-export const getDecodedToken = (token: string) => jwtDecode(token as string);
+type JwtUser = {
+	username: string;
+	// eslint-disable-next-line camelcase
+	first_name: string;
+	// eslint-disable-next-line camelcase
+	last_name: string;
+}
+
+export const getDecodedToken = (token: string) => jwtDecode<JwtUser>(token as string);
 
 /**
  * Parses a utl and returns a jwt token

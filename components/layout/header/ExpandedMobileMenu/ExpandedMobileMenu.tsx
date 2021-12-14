@@ -26,7 +26,6 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 	} = React.useContext(UIContext);
 	
 	const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
-		console.log('toggle');
 		if (
 			event.type === 'keydown' &&
 			((event as React.KeyboardEvent).key === 'Tab' ||
