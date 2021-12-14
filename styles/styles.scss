@@ -126,7 +126,7 @@ a:hover {
 }
 
 .hamburger-menu {
-	@apply md:hidden cursor-pointer flex-col items-center justify-center;
+	@apply cursor-pointer flex-col items-center justify-center;
 	color: #212529;
 	vertical-align: middle;
 	user-select: none;

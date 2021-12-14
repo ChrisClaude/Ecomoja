@@ -339,5 +339,10 @@ export const productCategories: ProductCategory[] = [
 	{
 		id: 14,
 		name: 'Groceries',
+		subcategories: [
+			{id:1, name: 'Fruits'},
+			{id:2, name: 'Breakfast, Cereal and bars'},
+			{id:3, name: 'Coffee'},
+		]
 	},
 ];
