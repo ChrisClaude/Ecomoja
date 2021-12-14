@@ -12,8 +12,6 @@ const Footer = (props: React.HTMLProps<HTMLDivElement>) => (
 							<a href="#">About Us</a>
 						</li>
 						<li className="mb-1">
-						</li>
-						<li className="mb-1">
 							<a href="#">Deliver for Ecomoja</a>
 						</li>
 						<li className="mb-2">

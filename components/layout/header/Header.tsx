@@ -3,11 +3,9 @@ import NavBarProductCategory from '@/components/layout/header/NavBarProductCateg
 import NavBar from '@/components/layout/header/NavBar';
 import {default as cn} from 'classnames';
 import { UIContext } from '@/hooks/context/UIContext';
-import { useWindowSize } from '@/hooks/custom';
 
 const Header = () => {
 	const {dispatch, isShopByCategoryCollapsed} = React.useContext(UIContext);
-	const {width: windowWidth} = useWindowSize();
 	
 	React.useEffect(() => {
 		const handleScroll = () => {

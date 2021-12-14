@@ -14,15 +14,12 @@ const WishListItem = ({
 	const { dispatch } = useContext(UIContext);
 	
 	const {
-		id,
 		name,
 		image,
 		currentPrice,
 		description,
 		isFreeForDelivery,
 		oldPrice,
-		rating,
-		numberOfVotes,
 	} = product;
 
 	const handleOnRemoveWishListItem = () => {
