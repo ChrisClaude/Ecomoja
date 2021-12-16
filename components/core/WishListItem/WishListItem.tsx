@@ -31,7 +31,7 @@ const WishListItem = ({
 
 	return (
 		<div className='w-full flex flex-col bg-white p-3 lg:flex-row'>
-			<div>
+			<div className="flex items-center justify-center">
 				<Image
 					loader={() => image}
 					src={image}
