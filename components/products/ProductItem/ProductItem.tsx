@@ -10,7 +10,9 @@ import { addNewCartItem, handleAddProductToCart, storeCartToLocalStorage } from 
 import { Product } from '@/types/Product';
 import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 import { UIContext } from '@/hooks/context/UIContext';
-import { Button } from '../common';
+import Button from '@/components/common/Button';
+import s from './ProductItem.module.scss';
+import {default as cn} from 'classnames';
 
 type ProductProps = { product: Product };
 
@@ -32,7 +34,7 @@ const ProductItem = ({ product }: ProductProps) => {
 
 	return (
 		<Link href={`/products/${id}`}>
-			<a className='product-item block hover:text-gray-700 hover:no-underline'>
+			<a className={cn('product-item block hover:text-gray-700 hover:no-underline', s.ProductItemContainer)}>
 				<Card sx={{ maxWidth: 345 }} className='relative'>
 					<CardMedia
 						component='img'
@@ -65,7 +67,7 @@ const ProductItem = ({ product }: ProductProps) => {
 						<div className='flex flex-col items-center justify-center mt-1 md:flex-row'>
 							<ToggleWishlistIcon
 								product={product}
-								className='absolute top-1 right-1 md:block mr-3'
+								className={cn('absolute top-1 right-1 md:block mr-3', s.wishListToggleIcon)}
 							/>
 							<Button
 								secondary
