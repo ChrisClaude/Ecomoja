@@ -68,7 +68,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 
 	return (
 		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
-			<div className="flex items-center justify-center w-full">
+			<div className="flex items-center justify-center w-full lg:w-1/3">
 				<Image
 					loader={() => cartItem.product.image}
 					src={cartItem.product.image}

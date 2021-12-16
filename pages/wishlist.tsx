@@ -24,7 +24,7 @@ const WishList = () => {
 			</Head>
 			<div>
 				<div className="px-6 py-8 grid lg:gap-y-3 lg:grid-cols-5 lg:px-16 relative">
-					<div className="md:hidden lg:block">Menu</div>
+					<div className='md:hidden lg:block'/>
 					<div className="col-span-3">
 						<div
 							className={cn(

@@ -46,7 +46,7 @@ const Cart = () => {
 						))}
 					</div>
 
-					<aside className="mt-4 w-full h-auto bg-white px-4 py-6 lg:ml-5 lg:mt-0 lg:w-80">
+					<aside className="fixed bottom-0 left-0 w-full h-auto bg-white mt-4 px-4 py-6 lg:relative lg:ml-5 lg:mt-0 lg:w-80">
 						<h2>Cart Summary</h2>
 						<div className="mt-5 flex items-end">
 							<div>
