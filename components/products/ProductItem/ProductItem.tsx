@@ -6,13 +6,13 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {default as cn} from 'classnames';
 import { addNewCartItem, handleAddProductToCart, storeCartToLocalStorage } from '@/helpers/main';
 import { Product } from '@/types/Product';
 import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 import { UIContext } from '@/hooks/context/UIContext';
 import Button from '@/components/common/Button';
 import s from './ProductItem.module.scss';
-import {default as cn} from 'classnames';
 
 type ProductProps = { product: Product };
 
