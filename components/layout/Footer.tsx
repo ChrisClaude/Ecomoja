@@ -11,9 +11,6 @@ const Footer = (props: React.HTMLProps<HTMLDivElement>) => (
 						<li className="mb-1">
 							<a href="#">About Us</a>
 						</li>
-						<li className="mb-1">
-							<a href="#">Deliver for Ecomoja</a>
-						</li>
 						<li className="mb-2">
 							<a href="#">Terms & Conditions</a>
 						</li>
@@ -29,18 +26,6 @@ const Footer = (props: React.HTMLProps<HTMLDivElement>) => (
 						<li className="mb-1">
 							<a href="#">My Ecomoja</a>
 						</li>
-						<li className="mb-1">
-							<a href="#">Track Order</a>
-						</li>
-						<li className="mb-1">
-							<a href="#">Exchanges & Returns</a>
-						</li>
-						<li className="mb-1">
-							<a href="#"> Personal Details</a>
-						</li>
-						<li className="mb-1">
-							<a href="#">Invoices</a>
-						</li>
 					</ul>
 				</div>
 				<div className="mt-4 lg:mt-0">
@@ -48,12 +33,6 @@ const Footer = (props: React.HTMLProps<HTMLDivElement>) => (
 					<ul>
 						<li className="mb-1">
 							<a href="#">Contact Us</a>
-						</li>
-						<li className="mb-1">
-							<a href="#">Recommendation</a>
-						</li>
-						<li className="mb-1">
-							<a href="#">Shipping & Delivery</a>
 						</li>
 					</ul>
 				</div>
