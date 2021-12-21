@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import {
 	getCurrentUser,
 	getUserFromToken,
@@ -6,7 +7,6 @@ import {
 	storeUserToken,
 } from '@/api/auth';
 import { UIContext } from '@/hooks/context/UIContext';
-import { useRouter } from 'next/router';
 
 const Redirect = () => {
 	const { user, dispatch } = React.useContext(UIContext);

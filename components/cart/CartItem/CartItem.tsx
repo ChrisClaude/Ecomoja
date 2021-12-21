@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
 import { removeCartItem, storeCartToLocalStorage, isProductInArray } from '@/helpers/main';
-import { toast } from 'react-toastify';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);

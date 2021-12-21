@@ -2,10 +2,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/button-has-type */
 import * as React from 'react';
-import { Button, Modal } from '@/components/common';
-import { UIContext } from '@/hooks/context/UIContext';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button, Modal } from '@/components/common';
+import { UIContext } from '@/hooks/context/UIContext';
 
 const CartModal = () => {
 	const { dispatch, cartItems } = React.useContext(UIContext);

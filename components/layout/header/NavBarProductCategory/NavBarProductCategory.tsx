@@ -1,10 +1,10 @@
 /* eslint-disable spaced-comment */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
-import { ProductCategory } from '@/types/ProductCategory';
-import { UIContext } from '@/hooks/context/UIContext';
 import Link from 'next/link';
 import { default as cn } from 'classnames';
+import { ProductCategory } from '@/types/ProductCategory';
+import { UIContext } from '@/hooks/context/UIContext';
 import s from './NavBarProductCategory.module.scss';
 import { productCategories } from '../../../../Products';
 

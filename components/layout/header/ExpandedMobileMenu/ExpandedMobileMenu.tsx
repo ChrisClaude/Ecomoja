@@ -6,11 +6,11 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { UIContext } from '@/hooks/context/UIContext';
-import Logo from '@/components/layout/header/Logo';
 import Link from 'next/link';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Logo from '@/components/layout/header/Logo';
+import { UIContext } from '@/hooks/context/UIContext';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
