@@ -22,7 +22,8 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 	const {
 		isMobileMenuOpen,
 		dispatch,
-		cartItems
+		cartItems,
+		user,
 	} = React.useContext(UIContext);
 	
 	const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -76,6 +77,10 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 				<ListItem button key='Terms and Conditions'>
 					<ListItemText primary='Terms and Conditions' />
 				</ListItem>
+				{user && (
+					<ListItem button key='Log out'>
+						<ListItemText primary='Log out' />
+					</ListItem>)}
 			</List>
 			<Divider />
 			<List className='bg-white mt-6'>

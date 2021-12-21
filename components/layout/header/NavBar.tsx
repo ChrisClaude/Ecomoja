@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
 import styles from '@/styles/NavBar.module.scss';
 import Logo from '@/components/layout/header/Logo';
 import { CartNavBarView } from '@/components/cart';
@@ -11,7 +12,6 @@ import { UIContext } from '@/hooks/context/UIContext';
 import { logout } from '@/api/auth';
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
-import Badge from '@mui/material/Badge';
 
 const NavBar = () => {
 	const {
