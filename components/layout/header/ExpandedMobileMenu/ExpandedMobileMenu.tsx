@@ -52,17 +52,29 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 						</ListItem>
 					</a>
 				</Link>
-				<ListItem button key='Shop by Category'>
-					<ListItemText primary='Shop by Category' />
+				<ListItem button key='My Ecomoja'>
+					<ListItemText primary='My Ecomoja' />
 				</ListItem>
-				<ListItem button key='Orders'>
-					<ListItemText primary='Orders' />
+				<ListItem button key='Categories'>
+					<ListItemText primary='Categories' />
 				</ListItem>
-				<ListItem button key='Ecomoja Deals'>
-					<ListItemText primary='Ecomoja Deals' />
+				<ListItem button key='Notifications'>
+					<ListItemText primary='Notifications' />
 				</ListItem>
-				<ListItem button key='My account'>
-					<ListItemText primary='My Account' />
+				<ListItem button key='Settings'>
+					<ListItemText primary='Settings' />
+				</ListItem>
+				<ListItem button key='Share with friends'>
+					<ListItemText primary='Share with friends' />
+				</ListItem>
+				<ListItem button key='Support'>
+					<ListItemText primary='Support' />
+				</ListItem>
+				<ListItem button key='Privacy Policy'>
+					<ListItemText primary='Privacy Policy' />
+				</ListItem>
+				<ListItem button key='Terms and Conditions'>
+					<ListItemText primary='Terms and Conditions' />
 				</ListItem>
 			</List>
 			<Divider />
