@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+	.ProductItemContainer .wishListToggleIcon {
+		@apply opacity-60 transition-all duration-300;
+	}
+
+	.ProductItemContainer:hover .wishListToggleIcon {
+		@apply opacity-100;
+	}
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import { getProduct, getProducts } from '@/services/ProductServices';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { UIContext } from '@/hooks/context/UIContext';
 import Head from 'next/head';
-import { Product } from '@/types/Product';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import { getProduct, getProducts } from '@/services/ProductServices';
+import { UIContext } from '@/hooks/context/UIContext';
+import { Product } from '@/types/Product';
 import ProductDetails from '@/components/products/ProductDetails';
 
 const DynamicCartModal = dynamic(() => import('../../components/cart/CartModal'));

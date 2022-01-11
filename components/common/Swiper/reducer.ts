@@ -1,8 +1,8 @@
+import { JSX } from '@babel/types';
 import {
 	SwiperAction,
 	SwiperState,
 } from '@/components/common/Swiper/SwiperTypes';
-import { JSX } from '@babel/types';
 
 const reducer = (state: SwiperState, action: SwiperAction): SwiperState => {
 	const { type, payload } = action;

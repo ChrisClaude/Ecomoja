@@ -6,11 +6,11 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { UIContext } from '@/hooks/context/UIContext';
-import Logo from '@/components/layout/header/Logo';
 import Link from 'next/link';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Logo from '@/components/layout/header/Logo';
+import { UIContext } from '@/hooks/context/UIContext';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -22,7 +22,8 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 	const {
 		isMobileMenuOpen,
 		dispatch,
-		cartItems
+		cartItems,
+		user,
 	} = React.useContext(UIContext);
 	
 	const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -52,18 +53,34 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 						</ListItem>
 					</a>
 				</Link>
-				<ListItem button key='Shop by Category'>
-					<ListItemText primary='Shop by Category' />
+				<ListItem button key='My Ecomoja'>
+					<ListItemText primary='My Ecomoja' />
 				</ListItem>
-				<ListItem button key='Orders'>
-					<ListItemText primary='Orders' />
+				<ListItem button key='Categories'>
+					<ListItemText primary='Categories' />
 				</ListItem>
-				<ListItem button key='Ecomoja Deals'>
-					<ListItemText primary='Ecomoja Deals' />
+				<ListItem button key='Notifications'>
+					<ListItemText primary='Notifications' />
 				</ListItem>
-				<ListItem button key='My account'>
-					<ListItemText primary='My Account' />
+				<ListItem button key='Settings'>
+					<ListItemText primary='Settings' />
 				</ListItem>
+				<ListItem button key='Share with friends'>
+					<ListItemText primary='Share with friends' />
+				</ListItem>
+				<ListItem button key='Support'>
+					<ListItemText primary='Support' />
+				</ListItem>
+				<ListItem button key='Privacy Policy'>
+					<ListItemText primary='Privacy Policy' />
+				</ListItem>
+				<ListItem button key='Terms and Conditions'>
+					<ListItemText primary='Terms and Conditions' />
+				</ListItem>
+				{user && (
+					<ListItem button key='Log out'>
+						<ListItemText primary='Log out' />
+					</ListItem>)}
 			</List>
 			<Divider />
 			<List className='bg-white mt-6'>

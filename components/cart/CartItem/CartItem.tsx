@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
 import { removeCartItem, storeCartToLocalStorage, isProductInArray } from '@/helpers/main';
-import { toast } from 'react-toastify';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
@@ -68,7 +68,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 
 	return (
 		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
-			<div className="flex items-center justify-center w-full">
+			<div className="flex items-center justify-center w-full lg:w-1/3">
 				<Image
 					loader={() => cartItem.product.image}
 					src={cartItem.product.image}

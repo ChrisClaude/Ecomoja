@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useContext } from 'react';
-import { Product } from '@/types/Product';
 import Image from 'next/image';
+import { Product } from '@/types/Product';
 import { Button } from '@/components/common';
 import { UIContext } from '@/hooks/context/UIContext';
 import { handleAddProductToCart } from '@/helpers/main';
@@ -31,7 +31,7 @@ const WishListItem = ({
 
 	return (
 		<div className='w-full flex flex-col bg-white p-3 lg:flex-row'>
-			<div>
+			<div className="flex items-center justify-center">
 				<Image
 					loader={() => image}
 					src={image}
@@ -68,7 +68,7 @@ const WishListItem = ({
 							: 'Delivery fees will be charged'}
 					</p>
 					<div className='flex flex-col md:ml-auto'>
-						<Button secondary className='w-52 mb-2 bg-secondary' onClick={() => {
+						<Button secondary className='w-full mb-2 bg-secondary lg:w-52' onClick={() => {
 							handleAddProductToCart(product, dispatch);
 							dispatch({ type: 'TOGGLE_MODAL' });
 						}}>
@@ -77,7 +77,7 @@ const WishListItem = ({
 						</Button>
 
 						<Button
-							className='w-52 bg-danger text-white'
+							className='w-full bg-danger text-white lg:w-52'
 							onClick={handleOnRemoveWishListItem}
 						>
 							<span className='material-icons mr-1'>delete</span>{' '}

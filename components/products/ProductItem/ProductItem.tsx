@@ -1,16 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
-import { Product } from '@/types/Product';
 import Link from 'next/link';
-import { addNewCartItem, handleAddProductToCart, storeCartToLocalStorage } from '@/helpers/main';
 import { toast } from 'react-toastify';
-import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
-import { UIContext } from '@/hooks/context/UIContext';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '../common';
+import {default as cn} from 'classnames';
+import { addNewCartItem, handleAddProductToCart, storeCartToLocalStorage } from '@/helpers/main';
+import { Product } from '@/types/Product';
+import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
+import { UIContext } from '@/hooks/context/UIContext';
+import Button from '@/components/common/Button';
+import s from './ProductItem.module.scss';
 
 type ProductProps = { product: Product };
 
@@ -32,8 +34,8 @@ const ProductItem = ({ product }: ProductProps) => {
 
 	return (
 		<Link href={`/products/${id}`}>
-			<a className='product-item block hover:text-gray-700 hover:no-underline'>
-				<Card sx={{ maxWidth: 345 }}>
+			<a className={cn('product-item block hover:text-gray-700 hover:no-underline', s.ProductItemContainer)}>
+				<Card sx={{ maxWidth: 345 }} className='relative'>
 					<CardMedia
 						component='img'
 						height='194'
@@ -42,8 +44,10 @@ const ProductItem = ({ product }: ProductProps) => {
 					/>
 					<CardContent>
 						<div className='flex flex-col'>
-							<div className='w-full flex-1 whitespace-nowrap truncate text-center font-bold text-base'>{name}</div>
-							<div className='pricing-info-container w-full flex flex-col flex-1 mt-1 items-center justify-center lg:flex-row'>
+							<div
+								className='w-full flex-1 whitespace-nowrap truncate text-center font-bold text-base'>{name}</div>
+							<div
+								className='pricing-info-container w-full flex flex-col flex-1 mt-1 items-center justify-center lg:flex-row'>
 								<span className='text-base mr-2 font-bold'>R {currentPrice}</span>
 								<span className='line-through text-gray-400 mr-2'>R {oldPrice}</span>
 								<img
@@ -60,8 +64,11 @@ const ProductItem = ({ product }: ProductProps) => {
 								<span className='text-muted'>({numberOfVotes})</span>
 							</div>
 						</div>
-						<div className="flex flex-col items-center justify-center mt-1 md:flex-row">
-							<ToggleWishlistIcon product={product} className="hidden md:block mr-3" />
+						<div className='flex flex-col items-center justify-center mt-1 md:flex-row'>
+							<ToggleWishlistIcon
+								product={product}
+								className={cn('absolute top-1 right-1 md:block mr-3', s.wishListToggleIcon)}
+							/>
 							<Button
 								secondary
 								onClick={(event) => {

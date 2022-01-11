@@ -1,17 +1,17 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
+import { useRouter } from 'next/router';
+import MenuIcon from '@mui/icons-material/Menu';
 import styles from '@/styles/NavBar.module.scss';
 import Logo from '@/components/layout/header/Logo';
 import { CartNavBarView } from '@/components/cart';
 import { Button } from '@/components/common';
-import { useRouter } from 'next/router';
 import { UIContext } from '@/hooks/context/UIContext';
 import { logout } from '@/api/auth';
-import MenuIcon from '@mui/icons-material/Menu';
 import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
-import Badge from '@mui/material/Badge';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const NavBar = () => {
 	const {

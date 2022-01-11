@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { toast } from 'react-toastify';
 import { Product } from '@/types/Product';
 import { Button } from '@/components/common/';
 import { UIContext } from '@/hooks/context/UIContext';
@@ -9,7 +10,6 @@ import {
 	handleAddProductToCart, isProductInArray,
 	storeCartToLocalStorage,
 } from '@/helpers/main';
-import { toast } from 'react-toastify';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
