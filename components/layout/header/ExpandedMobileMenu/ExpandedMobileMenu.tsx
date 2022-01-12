@@ -14,6 +14,7 @@ import { Avatar } from '@mui/material';
 import Logo from '@/components/layout/header/Logo';
 import { UIContext } from '@/hooks/context/UIContext';
 import { isAuthenticated } from '@/api/auth';
+import LoginIcon from '@mui/icons-material/Login';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -26,6 +27,7 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		isMobileMenuOpen,
 		dispatch,
 		cartItems,
+		user,
 	} = React.useContext(UIContext);
 	
 	const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -81,6 +83,7 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 				{!isAuthenticated() && (
 					<ListItem button key='Log in'>
 						<ListItemText primary='Log in' />
+						<LoginIcon />
 					</ListItem>)}
 			</List>
 			<Divider />
@@ -131,9 +134,9 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 				</Link>
 			</Box>}
 			{isAuthenticated() && <Box className='flex items-center bg-white py-3 px-3'>
-				<Avatar sx={{ bgcolor: green[500] }}>A</Avatar>
+				<Avatar sx={{ bgcolor: green[500] }}>{user.username[0].toUpperCase()}</Avatar>
 				<span className='text-base ml-3 flex'>
-					Alex	
+					{user.username.toUpperCase()}	
 				</span>
 				<button type='button' className="text-base ml-auto text-primary bold">
 					logout
