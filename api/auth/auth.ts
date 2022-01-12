@@ -8,6 +8,8 @@ type JwtUser = {
 	first_name: string;
 	// eslint-disable-next-line camelcase
 	last_name: string;
+	
+	exp: number;
 }
 
 export const getDecodedToken = (token: string) => jwtDecode<JwtUser>(token as string);
@@ -42,7 +44,7 @@ export const getUserFromToken = (token: string): User | null => {
 };
 
 /**
- * This methods store the user token in local store
+ * This method store the user token in local store
  * @param token user token
  */
 export const storeUserToken = (token: string) => {
@@ -50,19 +52,32 @@ export const storeUserToken = (token: string) => {
 };
 
 /**
- * This methods gets the current user from the local storage stored token
+ * This method gets the current user from the local storage stored token
  */
 export const getCurrentUser = (): User | null => {
-	if (
-		localStorage.getItem('token') === null ||
-		localStorage.getItem('token') === 'null' ||
-		localStorage.getItem('token') === undefined
-	) {
+	const token = localStorage.getItem('token');
+	if (token === null || token === 'null' || token === undefined) {
+		return null;
+	}
+	
+	const decoded = getDecodedToken(token as string);
+	const currentTime = Date.now() / 1000;
+	
+	if (decoded === null || decoded.exp < currentTime) {
 		return null;
 	}
 
-	console.log(typeof localStorage.getItem('token'));
-	return getUserFromToken(localStorage.getItem('token'));
+	return getUserFromToken(token);
+};
+
+/**
+ * This method verifies if the user is logged in.
+ */
+export const isAuthenticated = (): boolean => {
+	const user = getCurrentUser();
+	// TODO: uncomment this line and remove the following line 
+	 return user !== null;
+	// return user == null;
 };
 
 export const logout = () => {

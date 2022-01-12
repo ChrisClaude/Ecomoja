@@ -9,8 +9,11 @@ import ListItemText from '@mui/material/ListItemText';
 import Link from 'next/link';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { green } from '@mui/material/colors';
+import { Avatar } from '@mui/material';
 import Logo from '@/components/layout/header/Logo';
 import { UIContext } from '@/hooks/context/UIContext';
+import { isAuthenticated } from '@/api/auth';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -23,7 +26,6 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		isMobileMenuOpen,
 		dispatch,
 		cartItems,
-		user,
 	} = React.useContext(UIContext);
 	
 	const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -32,7 +34,6 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 			((event as React.KeyboardEvent).key === 'Tab' ||
 				(event as React.KeyboardEvent).key === 'Shift')
 		) {
-			console.log('no toggle');
 			return;
 		}
 
@@ -77,9 +78,9 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 				<ListItem button key='Terms and Conditions'>
 					<ListItemText primary='Terms and Conditions' />
 				</ListItem>
-				{user && (
-					<ListItem button key='Log out'>
-						<ListItemText primary='Log out' />
+				{!isAuthenticated() && (
+					<ListItem button key='Log in'>
+						<ListItemText primary='Log in' />
 					</ListItem>)}
 			</List>
 			<Divider />
@@ -122,13 +123,22 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 			onKeyDown={(event) => toggleDrawer(event)}
 			className='bg-gray-200 h-full'
 		>
-			<Box className='bg-white py-1'>
+			{!isAuthenticated() && <Box className='bg-white py-1'>
 				<Link href='/'>
 					<a className='flex items-center'>
 						<Logo width={150} height={40} />
 					</a>
 				</Link>
-			</Box>
+			</Box>}
+			{isAuthenticated() && <Box className='flex items-center bg-white py-3 px-3'>
+				<Avatar sx={{ bgcolor: green[500] }}>A</Avatar>
+				<span className='text-base ml-3 flex'>
+					Alex	
+				</span>
+				<button type='button' className="text-base ml-auto text-primary bold">
+					logout
+				</button>
+			</Box>}
 			<Divider />
 			{list()}
 		</Box>
