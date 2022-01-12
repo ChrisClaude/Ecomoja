@@ -11,10 +11,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { green } from '@mui/material/colors';
 import { Avatar } from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
 import Logo from '@/components/layout/header/Logo';
 import { UIContext } from '@/hooks/context/UIContext';
 import { isAuthenticated } from '@/api/auth';
-import LoginIcon from '@mui/icons-material/Login';
+import {useRouter } from 'next/router';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -29,6 +30,8 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		cartItems,
 		user,
 	} = React.useContext(UIContext);
+	
+	const router = useRouter();
 	
 	const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
 		if (
@@ -81,7 +84,7 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 					<ListItemText primary='Terms and Conditions' />
 				</ListItem>
 				{!isAuthenticated() && (
-					<ListItem button key='Log in'>
+					<ListItem button key='Log in' onClick={() => router.push(process.env.NEXT_PUBLIC_LOGIN_OR_REGISTER)}>
 						<ListItemText primary='Log in' />
 						<LoginIcon />
 					</ListItem>)}
