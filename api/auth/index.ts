@@ -5,4 +5,5 @@ export {
 	getCurrentUser,
 	parseUrl,
 	logout,
+	isAuthenticated,
 } from './auth';
