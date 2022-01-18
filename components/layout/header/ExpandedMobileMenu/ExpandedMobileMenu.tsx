@@ -12,10 +12,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { green } from '@mui/material/colors';
 import { Avatar } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
-import Logo from '@/components/layout/header/Logo';
+import {useRouter } from 'next/router';
 import { UIContext } from '@/hooks/context/UIContext';
 import { isAuthenticated } from '@/api/auth';
-import {useRouter } from 'next/router';
+import Logo from '@/components/layout/header/Logo';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
