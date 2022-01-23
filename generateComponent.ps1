@@ -24,6 +24,6 @@ export { default } from './$FileName';
 New-Item -Name "$ComponentName" -ItemType "directory" -Force
 New-Item -Path "$ComponentName" -Name "$FileName.tsx" -ItemType "file" -Value $InitialReactComponentContent
 New-Item -Path "$ComponentName" -Name "$FileName.module.scss" -ItemType "file"
-New-Item -Path "$ComponentName" -Name "index.ts" -ItemType "file" -Value $ExportContent 
+New-Item -Path "$ComponentName" -Name "index.tsx" -ItemType "file" -Value $ExportContent 
 
 Write-Output "----> Successfully generated component: $ComponentName"

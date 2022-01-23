@@ -1,14 +1,18 @@
 import * as React from 'react';
 import Carousel from '@/components/layout/Carousel';
 
-const HomeBanner = () => (
+type HomeBannerProps = {
+	slides: {id: string; image: string}[];
+};
+
+const HomeBanner = ({slides}: HomeBannerProps) => (
 	<>
 		<section className='px-2 py-6 flex-col bg-white md:px-32 lg:px-16 lg:flex'>
 			<div className='flex w-full'>
 				<div className='md:hidden lg:block lg:w-56' />
 				<div className='flex-1 overflow-hidden lg:ml-5'>
 					<div className='w-full overflow-hidden lg:w-3/4'>
-						<Carousel />
+						<Carousel slides={slides} />
 					</div>
 				</div>
 			</div>

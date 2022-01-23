@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import Link from 'next/link';
 import { default as cn } from 'classnames';
+import { useRouter } from 'next/router';
 import { ProductCategory } from '@/types/ProductCategory';
 import { UIContext } from '@/hooks/context/UIContext';
 import s from './NavBarProductCategory.module.scss';
@@ -94,37 +95,58 @@ const ShopCategory = () => {
 		</>
 	);
 };
-const NavBarProductCategory = () => (
-	<>
-		{/*#region Mobile daily deals */}
-		<div className='px-2 flex items-center h-12 justify-between bg-secondary lg:px-16 lg:hidden'>
-			<div>
-				<FontAwesomeIcon icon={['far', 'clock']} className='text-white mr-1' />
-				<a href='#' className='text-white hover:no-underline hover:text-white'>
-					<span className='text-uppercase'>Promotions</span>
-				</a>
-			</div>
-			<Link href='/'>
-				<a className='text-white font-weight-bold hover:no-underline hover:text-white'>
-					View More
-				</a>
-			</Link>
-		</div>
-		{/*#endregion */}
-		{/*#region Desktop daily deals */}
-		<div className="hidden px-2 py-4 bg-secondary h-16 lg:flex lg:flex-col lg:px-16 justify-center">
-			<div className="pb-2 lg:flex">
-				<div className="w-56 mr-5">
-					<ShopCategory />
-				</div>
+const NavBarProductCategory = () => {
+	const router = useRouter();
 
-				<div className="rounded-lg shadow-lg p-3 bg-gray-300 cursor-pointer">
-					Promotions
+	const navigateToShoppingHome = () => {
+		router.push('/');
+	};
+
+	const navigateToMobilityHome = () => {
+		router.push('/mobility');
+	};
+
+	return (
+		<>
+			{/*#region Mobile daily deals */}
+			<div className='px-2 flex items-center h-12 justify-between bg-secondary lg:px-16 lg:hidden'>
+				<div>
+					<FontAwesomeIcon icon={['far', 'clock']} className='text-white mr-1' />
+					<a href='#' className='text-white hover:no-underline hover:text-white'>
+						<span className='text-uppercase'>Promotions</span>
+					</a>
+				</div>
+				<Link href='/'>
+					<a className='text-white font-weight-bold hover:no-underline hover:text-white'>
+						View More
+					</a>
+				</Link>
+			</div>
+			{/*#endregion */}
+			{/*#region Desktop daily deals */}
+			<div
+				className='hidden px-2 py-4 bg-secondary h-16 lg:flex lg:flex-col lg:px-16 justify-center'>
+				<div className='pb-2 lg:flex'>
+					<div className='w-56 mr-5'>
+						<ShopCategory />
+					</div>
+
+					<div className='flex-1 flex justify-around'>
+						<button onClick={navigateToShoppingHome} type='button'
+							className='block w-2/5 rounded-lg drop-shadow-lg p-3 bg-slate-300 cursor-pointer hover:animate-heartbeat hover:scale-105'>
+							<p className='text-center'>Shopping</p>
+						</button>
+						<button onClick={navigateToMobilityHome}
+							type='button'
+							className='block w-2/5 rounded-lg drop-shadow-lg p-3 bg-slate-300 cursor-pointer hover:animate-heartbeat hover:scale-105'>
+							<p className='text-center'>Mobility</p>
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		{/*#endregion */}
-	</>
-);
+			{/*#endregion */}
+		</>
+	);
+};
 
 export default NavBarProductCategory;
