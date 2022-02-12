@@ -385,25 +385,25 @@ export const bikes: Bike[] = [
 	{
 		id: 189748,
 		name: 'Yamaha',
-		image: '/assets/mobility/bikes/16-inch-lowres-1.jpg',
+		image: '/assets/mobility/bikes/E-bikes.jpg',
 		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 89612,
 		name: 'Suzuki',
-		image: '/assets/mobility/bikes/16-inch-lowres-1.jpg',
+		image: '/assets/mobility/bikes/Mountain bike.jpg',
 		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 8961322,
 		name: 'Toyota',
-		image: '/assets/mobility/bikes/16-inch-lowres-1.jpg',
+		image: '/assets/mobility/bikes/normal-fleet-bike.jpg',
 		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 8954612,
 		name: 'XTreme',
-		image: '/assets/mobility/bikes/16-inch-lowres-1.jpg',
+		image: '/assets/mobility/bikes/Road bike.png',
 		getCustomTypeName: getBikeTypeName,
 	},
 	{
@@ -415,7 +415,7 @@ export const bikes: Bike[] = [
 	{
 		id: 89612,
 		name: 'Cool B',
-		image: '/assets/mobility/bikes/16-inch-lowres-1.jpg',
+		image: '/assets/mobility/bikes/E-bikes.jpg',
 		getCustomTypeName: getBikeTypeName,
 	},
 ];
