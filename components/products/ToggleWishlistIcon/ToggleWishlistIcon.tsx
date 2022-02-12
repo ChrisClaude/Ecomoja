@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { toast } from 'react-toastify';
-import { Product } from '@/types/Product';
 import { UIContext } from '@/hooks/context/UIContext';
 import { isProductInArray } from '@/helpers/main';
+import { Product } from '@/types/AppTypes';
 
-type ToggleWishlistIconProps = { product: Product } & React.HTMLProps<HTMLButtonElement>;
+type ToggleWishlistIconProps = {
+	product: Product;
+} & React.HTMLProps<HTMLButtonElement>;
 
-const ToggleWishlistIcon = ({product, ...props}: ToggleWishlistIconProps) => {
+const ToggleWishlistIcon = ({ product, ...props }: ToggleWishlistIconProps) => {
 	const { dispatch, wishList } = React.useContext(UIContext);
-	
-	const [isInUsersWishList, setIsInUsersWishList] = React.useState<boolean>(
-		true
-	);
-	
+
+	const [isInUsersWishList, setIsInUsersWishList] =
+		React.useState<boolean>(true);
+
 	React.useEffect(() => {
 		setIsInUsersWishList(isProductInArray(product, wishList));
 	}, [wishList]);
@@ -22,7 +23,7 @@ const ToggleWishlistIcon = ({product, ...props}: ToggleWishlistIconProps) => {
 		event.stopPropagation();
 		if (isInUsersWishList) {
 			dispatch({ type: 'REMOVE_PRODUCT_FROM_WISHLIST', payload: product });
-			
+
 			toast.error("You've removed an item from your cart", {
 				position: 'top-right',
 				autoClose: 1500,
@@ -34,7 +35,7 @@ const ToggleWishlistIcon = ({product, ...props}: ToggleWishlistIconProps) => {
 			});
 		} else {
 			dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: product });
-			
+
 			toast.info("You've added a new item to your wishlist", {
 				position: 'top-right',
 				autoClose: 1500,

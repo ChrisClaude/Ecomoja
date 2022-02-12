@@ -1,4 +1,4 @@
-import { Product } from '@/types/Product';
+import { Product } from '@/types/AppTypes';
 import { products } from '../Products';
 
 export const getProduct = (id: number) => {

@@ -1,6 +1,10 @@
-import { CartItem, CartItem as CartItemType, UIAction } from '@/types/AppTypes';
-import { Product } from '@/types/Product';
 import * as React from 'react';
+import {
+	CartItem,
+	CartItem as CartItemType,
+	Product,
+	UIAction,
+} from '@/types/AppTypes';
 import { addProduct } from '@/services/ProductServices';
 
 /**
@@ -108,4 +112,5 @@ export const removeCartItem = (
  * This method finds if a product exists in a product array. It returns true if the product is found, returns false otherwise.
  * @return boolean
  */
-export const isProductInArray = (product: Product, array: Product[]): boolean => array.some(p => p.id === product.id)
+export const isProductInArray = (product: Product, array: Product[]): boolean =>
+	array.some((p) => p.id === product.id);

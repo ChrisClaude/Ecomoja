@@ -3,8 +3,9 @@ import Head from 'next/head';
 import { Banner } from '@/components/layout';
 import Catalogue from '@/components/layout/Catalogue';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
+import { products } from '../../Products';
 
-const slideImages: { id: string, image: string }[] = [
+const slideImages: { id: string; image: string }[] = [
 	{
 		id: 'home-page1',
 		image: '/assets/mobility/Banner_1_GreenMobility.jpg',
@@ -13,10 +14,6 @@ const slideImages: { id: string, image: string }[] = [
 		id: 'home-pag2',
 		image: '/assets/mobility/Banner_2_GreenMobility.jpg',
 	},
-	{
-		id: 'home-pag3',
-		image: '/assets/mobility/up-cycles logo.jpg',
-	}
 ];
 
 const Index = () => (
@@ -25,7 +22,7 @@ const Index = () => (
 			<title>Ecomoja | Mobility | Home</title>
 		</Head>
 		<Banner slides={slideImages} />
-		<Catalogue />
+		<Catalogue catalogue={products} />
 		<FeaturedPartners />
 	</>
 );
