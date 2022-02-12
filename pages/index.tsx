@@ -45,7 +45,7 @@ export default function Home() {
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages} />
-			<Catalogue catalogue={products} />
+			<Catalogue catalogue={products} title="Groceries" />
 			<FeaturedPartners />
 		</>
 	);

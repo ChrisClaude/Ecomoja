@@ -1,12 +1,18 @@
 import * as React from 'react';
 import CardList from '@/components/products/CardList';
-import { Product } from '@/types/AppTypes';
+import { Bike, Product } from '@/types/AppTypes';
 
-const Catalogue = ({ catalogue }: { catalogue: Product[] | any[] }) => (
+const Catalogue = ({
+	catalogue,
+	title,
+}: {
+	catalogue: Product[] | Bike[];
+	title: string;
+}) => (
 	<div className="px-7 py-8 lg:px-16 lg:block">
 		<div className="bg-white">
 			<CardList
-				title="Groceries"
+				title={title}
 				buttonText="View more"
 				buttonType="contained"
 				items={catalogue}
@@ -14,7 +20,7 @@ const Catalogue = ({ catalogue }: { catalogue: Product[] | any[] }) => (
 		</div>
 		<div className="mt-6">
 			<CardList
-				title="Groceries"
+				title={title}
 				buttonText="View more"
 				buttonType="outlined"
 				items={catalogue}

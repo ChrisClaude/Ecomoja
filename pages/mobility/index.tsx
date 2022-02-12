@@ -22,7 +22,7 @@ const Index = () => (
 			<title>Ecomoja | Mobility | Home</title>
 		</Head>
 		<Banner slides={slideImages} />
-		<Catalogue catalogue={bikes} />
+		<Catalogue catalogue={bikes} title="New bikes" />
 		<FeaturedPartners />
 	</>
 );

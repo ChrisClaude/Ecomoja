@@ -120,4 +120,5 @@ export type Product = {
 export type Bike = {
 	id: number;
 	name: string;
+	image: string;
 } & GetCustomTypeName;
