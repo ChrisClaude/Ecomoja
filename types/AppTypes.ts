@@ -118,5 +118,6 @@ export type Product = {
 } & GetCustomTypeName;
 
 export type Bike = {
+	id: number;
 	name: string;
 } & GetCustomTypeName;

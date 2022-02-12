@@ -14,11 +14,7 @@ import { logout } from '@/api/auth';
 import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
 
 const NavBar = () => {
-	const {
-		user,
-		dispatch,
-		cartItems
-	} = React.useContext(UIContext);
+	const { user, dispatch, cartItems } = React.useContext(UIContext);
 	const router = useRouter();
 
 	const handleLogout = () => {
@@ -31,13 +27,13 @@ const NavBar = () => {
 	};
 
 	return (
-		<nav className='px-2 flex bg-white w-full h-16 lg:px-16'>
-			<div className='flex w-full'>
+		<nav className="px-2 flex bg-white w-full h-16 lg:px-16">
+			<div className="flex w-full">
 				{/* Mobile burger menu */}
-				<div className='flex items-center lg:hidden'>
+				<div className="flex items-center lg:hidden">
 					<button
-						type='button'
-						className='hamburger-menu flex w-auto h-full flex-col items-center'
+						type="button"
+						className="hamburger-menu flex w-auto h-full flex-col items-center"
 						onClick={toggleDrawer}
 					>
 						<MenuIcon />
@@ -155,16 +151,15 @@ const NavBar = () => {
 					</ul>
 				</div>
 				{/* Mobile Icons */}
-				<div className='flex items-center ml-auto lg:hidden'>
+				<div className="flex items-center ml-auto lg:hidden">
 					<button
-						className='h-8 p-1 text-base flex items-center justify-center'
-						type='button'
+						className="h-8 p-1 text-base flex items-center justify-center"
+						type="button"
 					>
-						<FontAwesomeIcon icon='search' />
+						<FontAwesomeIcon icon="search" />
 					</button>
-					<Link href='/cart'>
-						<a
-							className='h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700'>
+					<Link href="/cart">
+						<a className="h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700">
 							<Badge badgeContent={cartItems.length} color="secondary">
 								<ShoppingCartIcon color="action" />
 							</Badge>
@@ -172,7 +167,7 @@ const NavBar = () => {
 					</Link>
 				</div>
 			</div>
-			<ExpandedMobileMenu anchor='left' />
+			<ExpandedMobileMenu anchor="left" />
 		</nav>
 	);
 };

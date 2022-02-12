@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Banner } from '@/components/layout';
 import Catalogue from '@/components/layout/Catalogue';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
-import { products } from '../../Products';
+import { bikes } from '../../MockData';
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -22,7 +22,7 @@ const Index = () => (
 			<title>Ecomoja | Mobility | Home</title>
 		</Head>
 		<Banner slides={slideImages} />
-		<Catalogue catalogue={products} />
+		<Catalogue catalogue={bikes} />
 		<FeaturedPartners />
 	</>
 );

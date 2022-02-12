@@ -1,5 +1,5 @@
 import { ProductCategory } from '@/types/ProductCategory';
-import { Product } from './types/AppTypes';
+import { Bike, Product } from './types/AppTypes';
 
 const getProductTypeName = () => 'Product';
 
@@ -370,5 +370,25 @@ export const productCategories: ProductCategory[] = [
 			{ id: 2, name: 'Breakfast, Cereal and bars' },
 			{ id: 3, name: 'Coffee' },
 		],
+	},
+];
+
+const getBikeTypeName = () => 'Bike';
+
+export const bikes: Bike[] = [
+	{
+		id: 18975,
+		name: 'BMW',
+		getCustomTypeName: getBikeTypeName,
+	},
+	{
+		id: 189748,
+		name: 'Yamaha',
+		getCustomTypeName: getBikeTypeName,
+	},
+	{
+		id: 89612,
+		name: 'Suzuki',
+		getCustomTypeName: getBikeTypeName,
 	},
 ];

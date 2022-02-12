@@ -4,7 +4,7 @@ import Catalogue from '@/components/layout/Catalogue';
 import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
-import { products } from '../Products';
+import { products } from '../MockData';
 
 const slideImages: { id: string; image: string }[] = [
 	{
