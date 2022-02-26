@@ -4,8 +4,9 @@ import Catalogue from '@/components/layout/Catalogue';
 import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
+import { products } from '../MockData';
 
-const slideImages: { id: string, image: string }[] = [
+const slideImages: { id: string; image: string }[] = [
 	{
 		id: 'home-page1',
 		image: '/assets/HomePage_1.png',
@@ -16,11 +17,13 @@ const slideImages: { id: string, image: string }[] = [
 	},
 	{
 		id: 'home-page3',
-		image: 'https://images.unsplash.com/photo-1564419320408-38e24e038739?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
+		image:
+			'https://images.unsplash.com/photo-1564419320408-38e24e038739?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
 	},
 	{
 		id: 'home-page4',
-		image: 'https://images.pexels.com/photos/4792666/pexels-photo-4792666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+		image:
+			'https://images.pexels.com/photos/4792666/pexels-photo-4792666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
 	},
 ];
 
@@ -42,7 +45,7 @@ export default function Home() {
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages} />
-			<Catalogue />
+			<Catalogue catalogue={products} title="Groceries" />
 			<FeaturedPartners />
 		</>
 	);

@@ -1,23 +1,23 @@
 import * as React from 'react';
 import Slider from 'react-slick';
-import ProductItem from '@/components/products/ProductItem';
-import { Product } from '@/types/Product';
 import { useWindowSize } from '@/hooks/custom';
+import { Product } from '@/types/AppTypes';
 
-type ProductListSwiperProps = {
-	products: Product[];
+type ItemListSwiperProps = {
+	items: Product[] | any[];
+	component: React.ComponentType<any>;
 };
 
-const ProductListSwiper = ({ products }: ProductListSwiperProps) => {
-	const {width: windowWidth} = useWindowSize();
+const ItemListSwiper = ({ items, component }: ItemListSwiperProps) => {
+	const { width: windowWidth } = useWindowSize();
 	const [settings, setSettings] = React.useState({
 		className: 'center',
 		infinite: true,
 		centerPadding: '60px',
 		slidesToShow: 5,
 		swipeToSlide: true,
-	})
-	
+	});
+
 	React.useEffect(() => {
 		if (windowWidth < 768) {
 			setSettings({
@@ -27,15 +27,17 @@ const ProductListSwiper = ({ products }: ProductListSwiperProps) => {
 				slidesToShow: 2,
 				swipeToSlide: true,
 			});
-		}	
+		}
 	}, [windowWidth]);
+
+	const ItemComponent = component;
 
 	return (
 		<div>
 			<Slider {...settings}>
-				{products.map((product) => (
-					<div key={product.id}>
-						<ProductItem product={product} />
+				{items.map((item) => (
+					<div key={item.id}>
+						<ItemComponent item={item} />
 					</div>
 				))}
 			</Slider>
@@ -43,4 +45,4 @@ const ProductListSwiper = ({ products }: ProductListSwiperProps) => {
 	);
 };
 
-export default ProductListSwiper;
+export default ItemListSwiper;

@@ -1,32 +1,21 @@
-/* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
-import Link from 'next/link';
-import { toast } from 'react-toastify';
+import { default as cn } from 'classnames';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { default as cn } from 'classnames';
-import {
-	addNewCartItem,
-	handleAddProductToCart,
-	storeCartToLocalStorage,
-} from '@/helpers/main';
-import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
-import { UIContext } from '@/hooks/context/UIContext';
-import Button from '@/components/common/Button';
-import s from './ProductItem.module.scss';
-import { Product } from '@/types/AppTypes';
+import { toast } from 'react-toastify';
+import Link from 'next/link';
+import Button from '../../common/Button';
+import s from '@/components/products/ProductItem/ProductItem.module.scss';
+import { Bike } from '@/types/AppTypes';
 
-type ProductProps = { item: Product };
+type BikeProps = { item: Bike };
 
-const ProductItem = ({ item }: ProductProps) => {
-	const { dispatch, cartItems } = React.useContext(UIContext);
-	const { id, name, image, currentPrice, oldPrice, rating, numberOfVotes } =
-		item;
-
+const BikeItem = ({ item }: BikeProps) => {
+	const [currentPrice, oldPrice, rating, numberOfVotes] = [985, 1220, 5, 15];
 	return (
-		<Link href={`/products/${id}`}>
+		<Link href={`/bikes/${item.id}`}>
 			<a
 				className={cn(
 					'product-item block hover:text-gray-700 hover:no-underline',
@@ -37,13 +26,13 @@ const ProductItem = ({ item }: ProductProps) => {
 					<CardMedia
 						component="img"
 						height="194"
-						image={image}
-						alt="Paella dish"
+						image={item.image}
+						alt="My new bike"
 					/>
 					<CardContent>
 						<div className="flex flex-col">
 							<div className="w-full flex-1 whitespace-nowrap truncate text-center font-bold text-base">
-								{name}
+								{item.name}
 							</div>
 							<div className="pricing-info-container w-full flex flex-col flex-1 mt-1 items-center justify-center lg:flex-row">
 								<span className="text-base mr-2 font-bold">
@@ -67,13 +56,11 @@ const ProductItem = ({ item }: ProductProps) => {
 							</div>
 						</div>
 						<div className="flex flex-col items-center justify-center mt-1 md:flex-row">
-							<ToggleWishlistIcon
-								product={item}
-								className={cn(
-									'absolute top-1 right-1 md:block mr-3',
-									s.wishListToggleIcon,
-								)}
-							/>
+							<button type="button">
+								<span className="material-icons-round text-3xl text-gray-500">
+									favorite_border
+								</span>
+							</button>
 							<Button
 								secondary
 								onClick={(event) => {
@@ -88,9 +75,9 @@ const ProductItem = ({ item }: ProductProps) => {
 										draggable: true,
 										progress: undefined,
 									});
-									handleAddProductToCart(item, dispatch);
-									const newCartItems = addNewCartItem(cartItems, item);
-									storeCartToLocalStorage(newCartItems);
+									// handleAddProductToCart(item, dispatch);
+									// const newCartItems = addNewCartItem(cartItems, item);
+									// storeCartToLocalStorage(newCartItems);
 								}}
 							>
 								Add to cart
@@ -102,4 +89,5 @@ const ProductItem = ({ item }: ProductProps) => {
 		</Link>
 	);
 };
-export default ProductItem;
+
+export default BikeItem;

@@ -1,20 +1,26 @@
 import * as React from 'react';
 import { default as cn } from 'classnames';
-import { Product } from '@/types/Product';
-import ProductListSwiper from '@/components/products/ProductListSwiper';
+import ItemListSwiper from '@/components/products/ItemListSwiper';
 import Button from '@/components/common/Button';
+import BikeItem from '@/components/core/BikeItem';
+import { Bike, Product } from '@/types/AppTypes';
+import ProductItem from './ProductItem';
 
-type ProductCardListProps = ProductListProps & ProductListCardListHeaderProps;
+type CardListProps = ItemListProps & CardListHeaderProps;
 
-type ProductListCardListHeaderProps = {
+type CardListHeaderProps = {
 	title: string;
 	buttonText: string;
 	buttonType: 'contained' | 'outlined';
 } & React.HTMLProps<HTMLDivElement>;
 
-type ProductListProps = {
-	products: Product[];
+type ItemListProps = {
+	items: (Product | Bike)[];
 };
+
+// determines if type of items is Product array or Bike array
+const isProductArray = (items: (Product | Bike)[]): items is Product[] =>
+	items[0].getCustomTypeName() === 'Product';
 
 const pickButtonType = (
 	buttonText: string,
@@ -38,12 +44,12 @@ const pickButtonType = (
 	return jsxResult;
 };
 
-const ProductCardListHeader = ({
+const CardListHeader = ({
 	title,
 	buttonText,
 	buttonType,
 	...props
-}: ProductListCardListHeaderProps) => (
+}: CardListHeaderProps) => (
 	<div
 		{...props}
 		className={cn(
@@ -56,21 +62,20 @@ const ProductCardListHeader = ({
 	</div>
 );
 
-const ProductCardList = ({
-	products,
-	title,
-	buttonText,
-	buttonType,
-}: ProductCardListProps) => (
+const CardList = ({ items, title, buttonText, buttonType }: CardListProps) => (
 	<div className="w-full">
-		<ProductCardListHeader
+		<CardListHeader
 			title={title}
 			buttonText={buttonText}
 			buttonType={buttonType}
 			className="mb-2"
 		/>
-		<ProductListSwiper products={products} />
+
+		<ItemListSwiper
+			items={items}
+			component={isProductArray(items) ? ProductItem : BikeItem}
+		/>
 	</div>
 );
 
-export default ProductCardList;
+export default CardList;

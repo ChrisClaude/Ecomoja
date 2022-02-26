@@ -1,5 +1,3 @@
-import { Product } from './Product';
-
 export type User = {
 	username: string;
 	firstName: string;
@@ -98,3 +96,29 @@ export type UIAction =
 type removeCurrentUser = {
 	type: 'REMOVE_CURRENT_USER';
 };
+
+type GetCustomTypeName = {
+	getCustomTypeName: () => string;
+};
+
+export type Product = {
+	id: number;
+	name: string;
+	image: string;
+	description: string;
+	currentPrice: number;
+	oldPrice?: number;
+	rating?: number;
+	numberOfVotes?: number;
+	categories: string[];
+	vendor: string;
+	isInStock: boolean;
+	isFreeForDelivery?: boolean;
+	deliveryFees?: number;
+} & GetCustomTypeName;
+
+export type Bike = {
+	id: number;
+	name: string;
+	image: string;
+} & GetCustomTypeName;

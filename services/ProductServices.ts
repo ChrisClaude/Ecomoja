@@ -1,5 +1,5 @@
-import { Product } from '@/types/Product';
-import { products } from '../Products';
+import { Product } from '@/types/AppTypes';
+import { products } from '../MockData';
 
 export const getProduct = (id: number) => {
 	const result = products.filter((p) => p.id === id);

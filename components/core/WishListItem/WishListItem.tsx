@@ -1,18 +1,16 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import Image from 'next/image';
-import { Product } from '@/types/Product';
 import { Button } from '@/components/common';
 import { UIContext } from '@/hooks/context/UIContext';
 import { handleAddProductToCart } from '@/helpers/main';
+import { Product } from '@/types/AppTypes';
 
 type WishListItemProps = { product: Product };
 
-const WishListItem = ({
-	product,
-}: WishListItemProps) => {
+const WishListItem = ({ product }: WishListItemProps) => {
 	const { dispatch } = useContext(UIContext);
-	
+
 	const {
 		name,
 		image,
@@ -30,7 +28,7 @@ const WishListItem = ({
 	};
 
 	return (
-		<div className='w-full flex flex-col bg-white p-3 lg:flex-row'>
+		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
 			<div className="flex items-center justify-center">
 				<Image
 					loader={() => image}
@@ -61,26 +59,30 @@ const WishListItem = ({
 						</div>
 					</div>
 				</div>
-				<div className='flex flex-col md:flex-row'>
-					<p className='flex items-center'>
+				<div className="flex flex-col md:flex-row">
+					<p className="flex items-center">
 						{isFreeForDelivery
 							? 'Free Delivery'
 							: 'Delivery fees will be charged'}
 					</p>
-					<div className='flex flex-col md:ml-auto'>
-						<Button secondary className='w-full mb-2 bg-secondary lg:w-52' onClick={() => {
-							handleAddProductToCart(product, dispatch);
-							dispatch({ type: 'TOGGLE_MODAL' });
-						}}>
-							<span className='material-icons mr-1'>shopping_cart</span>
+					<div className="flex flex-col md:ml-auto">
+						<Button
+							secondary
+							className="w-full mb-2 bg-secondary lg:w-52"
+							onClick={() => {
+								handleAddProductToCart(product, dispatch);
+								dispatch({ type: 'TOGGLE_MODAL' });
+							}}
+						>
+							<span className="material-icons mr-1">shopping_cart</span>
 							<span>Add to cart</span>
 						</Button>
 
 						<Button
-							className='w-full bg-danger text-white lg:w-52'
+							className="w-full bg-danger text-white lg:w-52"
 							onClick={handleOnRemoveWishListItem}
 						>
-							<span className='material-icons mr-1'>delete</span>{' '}
+							<span className="material-icons mr-1">delete</span>{' '}
 							<span>Remove</span>
 						</Button>
 					</div>

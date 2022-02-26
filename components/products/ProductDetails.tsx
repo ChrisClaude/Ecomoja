@@ -3,13 +3,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { toast } from 'react-toastify';
-import { Product } from '@/types/Product';
 import { Button } from '@/components/common/';
 import { UIContext } from '@/hooks/context/UIContext';
 import {
-	handleAddProductToCart, isProductInArray,
+	handleAddProductToCart,
+	isProductInArray,
 	storeCartToLocalStorage,
 } from '@/helpers/main';
+import { Product } from '@/types/AppTypes';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
@@ -44,8 +45,8 @@ const ProductDetails = ({ product }: { product: Product }) => {
 	const handleAddToWishList = () => {
 		const check = isProductInArray(product, wishList);
 
-		if (check){
-			toast.warn("The product is already added to your wish list", {
+		if (check) {
+			toast.warn('The product is already added to your wish list', {
 				position: 'top-right',
 				autoClose: 1500,
 				hideProgressBar: false,
@@ -56,7 +57,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 			});
 			return;
 		}
-		
+
 		dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: product });
 		toast.info("You've added a new item to your wishlist", {
 			position: 'top-right',
