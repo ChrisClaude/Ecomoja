@@ -72,7 +72,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const { id } = context.params;
-	const product = getProduct(+id);
+	const product = JSON.parse(JSON.stringify(getProduct(+id)));
 
 	return {
 		props: {
