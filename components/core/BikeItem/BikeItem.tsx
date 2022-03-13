@@ -28,6 +28,7 @@ const BikeItem = ({ item }: BikeProps) => {
 						height="194"
 						image={item.image}
 						alt="My new bike"
+						className="h-52 bg-cover"
 					/>
 					<CardContent>
 						<div className="flex flex-col">
@@ -35,34 +36,16 @@ const BikeItem = ({ item }: BikeProps) => {
 								{item.name}
 							</div>
 							<div className="pricing-info-container w-full flex flex-col flex-1 mt-1 items-center justify-center lg:flex-row">
+								<span className="text-base mr-1">From</span>
 								<span className="text-base mr-2 font-bold">
 									R {currentPrice}
 								</span>
-								<span className="line-through text-gray-400 mr-2">
-									R {oldPrice}
-								</span>
-								<img
-									src="/assets/info-product-item-icon.svg"
-									className="w-4 h-4"
-									alt="Pricing info icon"
-								/>
-							</div>
-							<div className="w-full flex-1 flex items-center justify-center mt-1">
-								<span className="mr-1">
-									<FontAwesomeIcon icon="star" className="text-yellow-500" />
-								</span>
-								<span className="mr-1">{rating}</span>
-								<span className="text-muted">({numberOfVotes})</span>
 							</div>
 						</div>
 						<div className="flex flex-col items-center justify-center mt-1 md:flex-row">
-							<button type="button">
-								<span className="material-icons-round text-3xl text-gray-500">
-									favorite_border
-								</span>
-							</button>
 							<Button
 								secondary
+								className="w-24"
 								onClick={(event) => {
 									event.preventDefault();
 									event.stopPropagation();
@@ -80,7 +63,7 @@ const BikeItem = ({ item }: BikeProps) => {
 									// storeCartToLocalStorage(newCartItems);
 								}}
 							>
-								Add to cart
+								Rent
 							</Button>
 						</div>
 					</CardContent>
