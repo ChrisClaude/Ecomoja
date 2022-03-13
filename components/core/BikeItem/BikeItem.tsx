@@ -3,7 +3,6 @@ import { default as cn } from 'classnames';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 import Button from '../../common/Button';
@@ -13,9 +12,9 @@ import { Bike } from '@/types/AppTypes';
 type BikeProps = { item: Bike };
 
 const BikeItem = ({ item }: BikeProps) => {
-	const [currentPrice, oldPrice, rating, numberOfVotes] = [985, 1220, 5, 15];
+	const currentPrice = 985;
 	return (
-		<Link href={`/bikes/${item.id}`}>
+		<Link href={`/mobility/bikes/${item.id}`}>
 			<a
 				className={cn(
 					'product-item block hover:text-gray-700 hover:no-underline',
