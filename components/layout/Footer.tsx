@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer = (props: React.HTMLProps<HTMLDivElement>) => (
 	<footer {...props} className="footer">
-		<div className="bg-footer-img bg-center bg-cover px-2 py-6 bg-white md:px-32 lg:px-44">
+		<div className="bg-gray-300 px-2 py-6 bg-white md:px-32 lg:px-44">
 			<div className="flex flex-col lg:justify-between lg:flex-row">
 				<div>
 					<h5 className="mb-2 font-semibold">Company</h5>
