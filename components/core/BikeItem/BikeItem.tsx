@@ -34,8 +34,9 @@ const BikeItem = ({ item }: BikeProps) => {
 							<div className="w-full flex-1 whitespace-nowrap truncate text-center font-bold text-base">
 								{item.name}
 							</div>
+							<div className="text-center">BMW</div>
 							<div className="pricing-info-container w-full flex flex-col flex-1 mt-1 items-center justify-center lg:flex-row">
-								<span className="text-base mr-1">From</span>
+								<span className="text-xs mr-1">From</span>
 								<span className="text-base mr-2 font-bold">
 									R {currentPrice}
 								</span>

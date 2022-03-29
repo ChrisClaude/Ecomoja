@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import { Button } from '@/components/common/';
 import { Bike } from '@/types/AppTypes';
+import Paper from '@mui/material/Paper';
 
 const BikeDetails = ({ bike }: { bike: Bike }) => (
 	<div className="flex flex-col w-full">
@@ -52,6 +53,11 @@ const BikeDetails = ({ bike }: { bike: Bike }) => (
 				</div>
 				<span className="mt-1 font-bold uppercase text-xs">Free delivery</span>
 				<div className="flex flex-col mt-3">
+					<div className="flex mb-3 justify-between">
+						<Paper variant="outlined" square className="w-16 h-16" />
+						<Paper variant="outlined" square className="w-16 h-16" />
+						<Paper variant="outlined" square className="w-16 h-16" />
+					</div>
 					<Button
 						variant="contained"
 						secondary
@@ -62,24 +68,10 @@ const BikeDetails = ({ bike }: { bike: Bike }) => (
 							}} */
 					>
 						<span className="flex items-center justify-center w-full">
-							<span className="material-icons-round mr-1 text-base">add</span>
-							<span className="material-icons-round mr-2 text-base">
-								shopping_cart
+							<span className="material-icons-round mr-1 text-base">
+								directions_bike
 							</span>
-							<span>Rent</span>
-						</span>
-					</Button>
-					<Button
-						variant="contained"
-						light
-						className="mt-2 py-3"
-						// onClick={handleAddToWishList}
-					>
-						<span className="flex items-center justify-center w-full">
-							<span className="material-icons-round mr-2 text-base">
-								favorite_border
-							</span>
-							<span>Rent</span>
+							<span>Rent and ride</span>
 						</span>
 					</Button>
 				</div>
