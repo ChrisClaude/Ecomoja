@@ -2,9 +2,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import Paper from '@mui/material/Paper';
 import { Button } from '@/components/common/';
 import { Bike } from '@/types/AppTypes';
-import Paper from '@mui/material/Paper';
 
 const BikeDetails = ({ bike }: { bike: Bike }) => (
 	<div className="flex flex-col w-full">
@@ -13,7 +13,7 @@ const BikeDetails = ({ bike }: { bike: Bike }) => (
 				<div className="flex p-5">
 					<Image
 						loader={() => bike.image}
-						width={300}
+						width={400}
 						height={300}
 						src={bike.image}
 						alt={bike.name}
@@ -28,8 +28,27 @@ const BikeDetails = ({ bike }: { bike: Bike }) => (
 								<a className="text-primary">BMW</a>
 							</Link>
 						</div>
-						<div className="mt-1">bike.description</div>
-						<div className="mt-3">bike.rating</div>
+						<div className="mt-1">
+							description Lorem ipsum dolor sit amet, consectetur adipisicing
+							elit. Inventore, sunt!
+						</div>
+						<div className="mt-3">
+							<span className="material-icons-round mr-1 text-lg text-yellow-400">
+								star
+							</span>
+							<span className="material-icons-round mr-1 text-lg text-yellow-400">
+								star
+							</span>
+							<span className="material-icons-round mr-1 text-lg text-yellow-400">
+								star
+							</span>
+							<span className="material-icons-round mr-1 text-lg text-yellow-400">
+								star
+							</span>
+							<span className="material-icons-round mr-1 text-lg text-yellow-400">
+								star_half
+							</span>
+						</div>
 						<div className="flex justify-between border-t-2 border-b-2 border-gray-300 border-solid py-3 mt-4">
 							<span className="font-bold">Available</span>
 							<Link href="#">
@@ -51,12 +70,27 @@ const BikeDetails = ({ bike }: { bike: Bike }) => (
 					<span className="mr-1 relative top-1">From</span>
 					<span className="text-4xl font-bold">R 700</span>
 				</div>
-				<span className="mt-1 font-bold uppercase text-xs">Free delivery</span>
 				<div className="flex flex-col mt-3">
 					<div className="flex mb-3 justify-between">
-						<Paper variant="outlined" square className="w-16 h-16" />
-						<Paper variant="outlined" square className="w-16 h-16" />
-						<Paper variant="outlined" square className="w-16 h-16" />
+						<Paper variant="outlined" square>
+							<div className="w-16 h-16 flex items-center justify-center cursor-pointer">
+								3 hours
+							</div>
+						</Paper>
+						<Paper
+							variant="outlined"
+							square
+							className="border-secondary border-2"
+						>
+							<div className="w-16 h-16 flex items-center justify-center cursor-pointer">
+								Half day
+							</div>
+						</Paper>
+						<Paper variant="outlined" square>
+							<div className="w-16 h-16 flex items-center justify-center cursor-pointer">
+								Full day
+							</div>
+						</Paper>
 					</div>
 					<Button
 						variant="contained"
