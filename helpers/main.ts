@@ -1,11 +1,13 @@
 import * as React from 'react';
 import {
+	Bike,
 	CartItem,
 	CartItem as CartItemType,
 	Product,
 	UIAction,
 } from '@/types/AppTypes';
 import { addProduct } from '@/services/ProductServices';
+import { addBike } from '@/services/BikeServices';
 
 /**
  * Stores cart state to local storage
@@ -81,19 +83,30 @@ export const handleAddProductToCart = (
 	addProduct(product);
 };
 
+export const handleAddBikeToCart = (
+	bike: Bike,
+	dispatch: React.Dispatch<UIAction>,
+) => {
+	dispatch({
+		type: 'ADD_BIKE_TO_CART',
+		payload: bike,
+	});
+	addBike(bike);
+};
+
 export const addNewCartItem = (
 	cartItems: CartItemType[],
-	product: Product,
+	newItem: Product,
 ): CartItemType[] => {
 	const filteredCartItems = cartItems.filter(
-		(cartItem) => cartItem.id === product.id,
+		(cartItem) => cartItem.id === newItem.id,
 	);
 
 	// there is no existing cart item in the cart - we then create an new cart item
 	if (filteredCartItems.length === 0) {
 		const cartItem: CartItem = {
-			id: product.id,
-			product,
+			id: newItem.id,
+			product: newItem,
 			productInstances: 1,
 		};
 		return [cartItem, ...cartItems];

@@ -13,10 +13,16 @@ export type UIState = {
 	isMobileMenuOpen: boolean;
 };
 
-export type CartItem = {
-	/** CartNavBarView Items are expected to have the same id as the one of its product instance */
+export type BikeCartItem = {
+	/** id: Items are expected to have the same id as the one of its product instance */
 	id: number;
 	/** This is an array of the instance(s) of the same product */
+	bike: Bike;
+};
+
+export type CartItem = {
+	/** id: Items are expected to have the same id as the one of its product instance */
+	id: number;
 	product: Product;
 	productInstances: number;
 };
@@ -34,6 +40,11 @@ type DecreaseProductQuantity = {
 type PatchCart = {
 	type: 'PATCH_CART';
 	payload: CartItem[];
+};
+
+type AddBikeToCart = {
+	type: 'ADD_BIKE_TO_CART';
+	payload: Bike;
 };
 
 type AddProductToCart = {
@@ -79,6 +90,7 @@ type setCurrentUser = {
 };
 
 export type UIAction =
+	| AddBikeToCart
 	| AddProductToCart
 	| AddProductToWishList
 	| SetShopByCategory

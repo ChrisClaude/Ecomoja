@@ -8,10 +8,13 @@ import Link from 'next/link';
 import Button from '../../common/Button';
 import s from '@/components/products/ProductItem/ProductItem.module.scss';
 import { Bike } from '@/types/AppTypes';
+import { UIContext } from '@/hooks/context/UIContext';
+import { handleAddBikeToCart, addNewCartItem, storeCartToLocalStorage } from '@/helpers/main';
 
 type BikeProps = { item: Bike };
 
 const BikeItem = ({ item }: BikeProps) => {
+	const {cartItems, dispatch } = React.useContext(UIContext);
 	const currentPrice = 985;
 	return (
 		<Link href={`/mobility/bikes/${item.id}`}>
@@ -58,7 +61,7 @@ const BikeItem = ({ item }: BikeProps) => {
 										draggable: true,
 										progress: undefined,
 									});
-									// handleAddProductToCart(item, dispatch);
+									handleAddBikeToCart(item, dispatch);
 									// const newCartItems = addNewCartItem(cartItems, item);
 									// storeCartToLocalStorage(newCartItems);
 								}}
