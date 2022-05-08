@@ -12,6 +12,7 @@ import { Button } from '@/components/common';
 import { UIContext } from '@/hooks/context/UIContext';
 import { logout } from '@/api/auth';
 import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
+import LoginButton from '@/components/core/LoginButton';
 
 const NavBar = () => {
 	const { user, dispatch, cartItems } = React.useContext(UIContext);
@@ -59,28 +60,8 @@ const NavBar = () => {
 				</div>
 				<div className="justify-end hidden lg:flex">
 					<ul className="flex justify-end items-center">
-						{user && (
-							<li className="p-2">
-								<Link href="#">
-									<a className="whitespace-nowrap">Hi {user.username}</a>
-								</Link>
-							</li>
-						)}
 						<li className="p-2">
-							{user ? (
-								<Button onClick={handleLogout} className="whitespace-nowrap">
-									Logout
-								</Button>
-							) : (
-								<Button
-									onClick={() =>
-										router.push(process.env.NEXT_PUBLIC_LOGIN_OR_REGISTER)
-									}
-									className="whitespace-nowrap font-normal"
-								>
-									Login or register
-								</Button>
-							)}
+							<LoginButton />
 						</li>
 						<li className="p-2">
 							<Link href="#">
