@@ -10,6 +10,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				user: action.payload,
 			};
+		case 'UPDATE_LAYOUT':
+			return {
+				...state,
+				layoutProp: action.payload,
+			};
 		case 'REMOVE_CURRENT_USER':
 			return {
 				...state,

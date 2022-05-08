@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export type User = {
 	username: string;
 	firstName: string;
@@ -11,6 +13,13 @@ export type UIState = {
 	wishList?: Product[];
 	isModalOpen: boolean;
 	isMobileMenuOpen: boolean;
+	layoutProp: LayoutProp;
+};
+
+export type LayoutProp = {
+	children: React.ReactNode;
+	showFooter?: boolean;
+	showHeader?: boolean;
 };
 
 export type BikeCartItem = {
@@ -103,10 +112,16 @@ export type UIAction =
 	| ToggleModal
 	| resetModal
 	| setCurrentUser
-	| removeCurrentUser;
+	| removeCurrentUser
+	| UpdateLayout;
 
 type removeCurrentUser = {
 	type: 'REMOVE_CURRENT_USER';
+};
+
+type UpdateLayout = {
+	type: 'UPDATE_LAYOUT';
+	payload: LayoutProp;
 };
 
 type GetCustomTypeName = {

@@ -4,7 +4,11 @@ import NavBarProductCategory from '@/components/layout/header/NavBarProductCateg
 import NavBar from '@/components/layout/header/NavBar';
 import { UIContext } from '@/hooks/context/UIContext';
 
-const Header = () => {
+type HeaderProps = {
+	className: string,
+};
+
+const Header = ({className}: HeaderProps) => {
 	const {dispatch, isShopByCategoryCollapsed} = React.useContext(UIContext);
 	
 	React.useEffect(() => {
@@ -35,7 +39,7 @@ const Header = () => {
 	}, [isShopByCategoryCollapsed, dispatch]);
 	
 	return (
-		<header className={cn('z-10 w-full sticky top-0')}>
+		<header className={cn('z-10 w-full sticky top-0', className)}>
 			<NavBar />
 			<NavBarProductCategory />
 		</header>

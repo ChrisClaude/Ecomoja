@@ -14,6 +14,7 @@ const initializeUIState: UIState = {
 	isMobileMenuOpen: false,
 	user: null,
 	wishList: [],
+	layoutProp: null,
 };
 
 export const UIContext = React.createContext<UIContextType>(

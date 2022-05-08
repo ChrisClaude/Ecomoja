@@ -22,11 +22,7 @@ import { default as cn } from 'classnames';
 import { UIContext } from '@/hooks/context/UIContext';
 import Header from './header/Header';
 import Footer from './Footer';
-
-type LayoutProp = {
-	children: React.ReactNode;
-	showFooter?: boolean;
-};
+import { LayoutProp } from '@/types/AppTypes';
 
 library.add(
 	fab,
@@ -45,7 +41,7 @@ library.add(
 	faSortUp,
 );
 
-const Layout = ({ children, showFooter }: LayoutProp) => {
+const Layout = ({ children, showFooter, showHeader }: LayoutProp) => {
 	const { isModalOpen } = React.useContext(UIContext);
 	return (
 		<div
@@ -53,15 +49,16 @@ const Layout = ({ children, showFooter }: LayoutProp) => {
 				'h-screen w-screen overflow-hidden': isModalOpen,
 			})}
 		>
-			<Header />
+			<Header className={cn({'hidden': !showHeader})} />
 			<main>{children}</main>
-			<Footer className={cn({'hidden': showFooter})} />
+			<Footer className={cn({'hidden': !showFooter})} />
 		</div>
 	);
 };
 
 Layout.defaultProps = {
-	showFooter: true
+	showFooter: true,
+	showHeader: true
 };
 
 export default Layout;
