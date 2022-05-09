@@ -2,8 +2,8 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { default as cn } from 'classnames';
 
-const Footer = (props: React.HTMLProps<HTMLDivElement>) => (
-	<footer {...props} className={cn('footer', props.className)}>
+const Footer = ({className}: React.HTMLProps<HTMLDivElement>) => (
+	<footer className={cn('footer', className)}>
 		<div className="bg-gray-300 px-2 py-6 bg-white md:px-32 lg:px-44">
 			<div className="flex flex-col lg:justify-between lg:flex-row">
 				<div>

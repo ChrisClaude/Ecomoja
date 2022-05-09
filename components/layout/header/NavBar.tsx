@@ -8,7 +8,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styles from '@/styles/NavBar.module.scss';
 import Logo from '@/components/layout/header/Logo';
 import { CartNavBarView } from '@/components/cart';
-import { Button } from '@/components/common';
 import { UIContext } from '@/hooks/context/UIContext';
 import { logout } from '@/api/auth';
 import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
