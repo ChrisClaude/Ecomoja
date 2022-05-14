@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { UIContext } from '@/hooks/context/UIContext';
 import Logo from '@/components/layout/header/Logo';
 
-const Login = () => {
+const Register = () => {
 	const {
 		dispatch,
 		layoutProp,
@@ -35,23 +35,27 @@ const Login = () => {
 	return (
 		<>
 			<Head>
-				<title>Ecomoja | Login</title>
+				<title>Ecomoja | Register</title>
 			</Head>
 			<div className='flex h-screen'>
-				<div className='flex flex-1 bg-gray-600 items-center justify-center'>
-					<Link href="/">
-						<a>
-							<Logo width={250} height={65} />
-						</a>
-					</Link>
-				</div>
 				<div className='flex-1 flex items-center'>
 					<section className='pt-8 pb-8 pl-8 w-full md:pr-32 lg:pr-48'>
 						<div className='mb-4'>
-							<h1 className="mb-2">Log in</h1>
-							<p className="">or <Link href='/register'><a>create an account</a></Link></p>
+							<h1 className="mb-2">Create an account</h1>
+							<p className="">or <Link href='/login'><a>log in to your account</a></Link></p>
 						</div>
 						<form onSubmit={handleSubmit(onSubmit)}>
+							<div className='mb-4'>
+								<TextField
+									error={errors.username}
+									fullWidth
+									id='username'
+									label='Username'
+									variant='standard'
+									helperText={errors.username && 'Username is required'}
+									{...register('username', { required: true })}
+								/>
+							</div>
 							<div className='mb-4'>
 								<TextField
 									error={errors.email}
@@ -66,23 +70,30 @@ const Login = () => {
 							<div className='mb-6'>
 								<TextField
 									error={errors.password}
-									fullWidth 
-									id='password' 
-									label='Password' 
+									fullWidth
+									id='password'
+									label='Password'
 									variant='standard'
 									helperText={errors.password && 'Incorrect entry.'}
 									{...register('password', { required: true })}
 								/>
 							</div>
 							<div>
-								<Button variant="contained" type="submit">Log in</Button>
+								<Button variant="contained" type="submit">Register</Button>
 							</div>
 						</form>
 					</section>
+				</div>
+				<div className='flex flex-1 bg-gray-600 items-center justify-center'>
+					<Link href="/">
+						<a>
+							<Logo width={250} height={65} />
+						</a>
+					</Link>
 				</div>
 			</div>
 		</>
 	);
 }
 
-export default Login;
+export default Register;
