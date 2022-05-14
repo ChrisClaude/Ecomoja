@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useContext, useEffect } from 'react';
 import { Button, TextField } from '@mui/material';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
 import { UIContext } from '@/hooks/context/UIContext';
 import Logo from '@/components/layout/header/Logo';
 
@@ -11,6 +12,14 @@ const Login = () => {
 		dispatch,
 		layoutProp,
 	} = useContext(UIContext);
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+
+	const onSubmit = (data) => console.log(data);
 
 	useEffect(() => {
 		dispatch({
@@ -39,15 +48,31 @@ const Login = () => {
 				<div className='flex-1 flex items-center'>
 					<section className='pt-8 pb-8 pl-8 w-full md:pr-32 lg:pr-48'>
 						<h1 className='mb-4'>Log in</h1>
-						<form>
+						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className='mb-4'>
-								<TextField fullWidth id='email' label='Email' variant='standard' required />
+								<TextField 
+									error={errors.email}
+									fullWidth 
+									id='email' 
+									label='Email' 
+									variant='standard'
+									helperText={errors.email && 'Email is required'}
+									{...register('email', { required: true })} 
+								/>
 							</div>
 							<div className='mb-6'>
-								<TextField fullWidth id='password' label='Password' variant='standard' required />
+								<TextField
+									error={errors.password}
+									fullWidth 
+									id='password' 
+									label='Password' 
+									variant='standard'
+									helperText={errors.password && 'Incorrect entry.'}
+									{...register('password', { required: true })}
+								/>
 							</div>
 							<div>
-								<Button variant="contained">Log in</Button>
+								<Button variant="contained" type="submit">Log in</Button>
 							</div>
 						</form>
 					</section>
