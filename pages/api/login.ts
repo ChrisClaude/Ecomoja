@@ -1,10 +1,11 @@
 import cookie from 'cookie';
+import { API_URL } from '@/config/index';
 
 export default async (req: any, res: any) => {
 	if (req.method === 'POST') {
 		const { identifier, password } = req.body;
 		
-		const apiRes = await fetch(`${process.env.API_URL}/auth/local`, {
+		const apiRes = await fetch(`${API_URL}/auth/local`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

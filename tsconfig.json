@@ -42,7 +42,10 @@
       ],
       "@/utils/*": [
         "utils/*"
-      ]
+      ],
+			"@/config/*": [
+				"config/*"
+			]
     },
     "incremental": true
   },
