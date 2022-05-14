@@ -1,6 +1,8 @@
 import * as qs from 'query-string';
 import jwtDecode from 'jwt-decode';
-import { User } from '@/types/AppTypes';
+import { User, UserLogin } from '@/types/AppTypes';
+
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 type JwtUser = {
 	username: string;
@@ -8,7 +10,7 @@ type JwtUser = {
 	first_name: string;
 	// eslint-disable-next-line camelcase
 	last_name: string;
-	
+
 	exp: number;
 }
 
@@ -23,6 +25,11 @@ export const parseUrl = (url: string) => {
 	const token = parsedUrl.id_token || null;
 	return token as string;
 };
+
+export const login = (user: UserLogin) => fetch(`${apiUrl}/auth/local`, {
+	method: 'POST',
+	body: JSON.stringify(user),
+});
 
 /**
  * This method takes a token and returns the associated user object

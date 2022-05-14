@@ -6,6 +6,11 @@ export type User = {
 	lastName: string;
 };
 
+export type UserLogin = {
+	identifier: string;
+	password: string;
+}
+
 export type UIState = {
 	user: User | null;
 	isShopByCategoryCollapsed: boolean;
