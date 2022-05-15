@@ -8,7 +8,7 @@ import { UIContext, UIProvider } from '@/hooks/context/UIContext';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Initiate from '@/components/core/Initiate';
 import MuiThemeProvider from '@/components/core/MuiThemeProvider';
-
+import { AuthProvider } from '@/hooks/context/AuthContext';
 
 const InitiateLayout = ({ children }: {children: React.ReactNode}) => {
 	const { layoutProp } = React.useContext(UIContext);
@@ -27,14 +27,16 @@ const MyApp = ({ Component,
 	},
 }: AppProps) => (
 	<SessionProvider session={session}>
-		<UIProvider>
-			<MuiThemeProvider>
-				<InitiateLayout>
-					<Component {...pageProps} />
-				</InitiateLayout>
-				<Initiate />
-			</MuiThemeProvider>
-		</UIProvider>
+		<AuthProvider>
+			<UIProvider>
+				<MuiThemeProvider>
+					<InitiateLayout>
+						<Component {...pageProps} />
+					</InitiateLayout>
+					<Initiate />
+				</MuiThemeProvider>
+			</UIProvider>
+		</AuthProvider>
 	</SessionProvider>
 );
 
