@@ -28,14 +28,29 @@ const slideImages: { id: string; image: string }[] = [
 ];
 
 export default function Home() {
-	const { dispatch } = React.useContext(UIContext);
+	const {
+		dispatch,
+		layoutProp,
+	} = React.useContext(UIContext);
 
 	React.useEffect(
-		() =>
+		() => {
 			dispatch({
 				type: 'SET_SHOP_BY_CATEGORY',
 				payload: true,
-			}),
+			});
+
+			if (layoutProp != null && !(layoutProp.showHeader || layoutProp.showFooter)) {
+				dispatch({
+					type: 'UPDATE_LAYOUT',
+					payload: {
+						...layoutProp,
+						showHeader: true,
+						showFooter: true,
+					},
+				});
+			}
+		},
 		[dispatch],
 	);
 

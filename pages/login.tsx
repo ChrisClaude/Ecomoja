@@ -25,14 +25,16 @@ const Login = () => {
 	const onSubmit = (data) => login(data.email, data.password);
 
 	useEffect(() => {
-		dispatch({
-			type: 'UPDATE_LAYOUT',
-			payload: {
-				...layoutProp,
-				showHeader: false,
-				showFooter: false,
-			},
-		});
+		if (layoutProp == null || layoutProp.showHeader || layoutProp.showFooter) {
+			dispatch({
+				type: 'UPDATE_LAYOUT',
+				payload: {
+					...layoutProp,
+					showHeader: false,
+					showFooter: false,
+				},
+			});
+		}
 	}, []);
 
 	return (
