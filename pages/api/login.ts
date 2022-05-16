@@ -5,7 +5,7 @@ export default async (req: any, res: any) => {
 	if (req.method === 'POST') {
 		const { identifier, password } = req.body;
 		
-		const apiRes = await fetch(`${API_URL}/auth/local`, {
+		const apiRes = await fetch(`${API_URL}/api/auth/local`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

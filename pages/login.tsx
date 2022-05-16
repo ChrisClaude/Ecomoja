@@ -6,12 +6,15 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { UIContext } from '@/hooks/context/UIContext';
 import Logo from '@/components/layout/header/Logo';
+import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const Login = () => {
 	const {
 		dispatch,
 		layoutProp,
 	} = useContext(UIContext);
+	
+	const { login } = useContext<AuthState>(AuthContext);
 
 	const {
 		register,
@@ -19,7 +22,7 @@ const Login = () => {
 		formState: { errors },
 	} = useForm();
 
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = (data) => login(data.email, data.password);
 
 	useEffect(() => {
 		dispatch({

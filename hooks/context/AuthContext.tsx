@@ -1,8 +1,17 @@
 import { useRouter } from 'next/router';
-import { createContext, useState, useEffect, useCallback } from 'react';
-import { NEXT_URL } from '@/config/index'
+import { createContext, useCallback, useEffect, useState } from 'react';
+import { NEXT_URL } from '@/config/index';
 
-const AuthContext = createContext({});
+export type AuthState = {
+	user: any;
+	error: any;
+	register: (username: string, email: string, password: string) => void;
+	login: (email: string, password: string) => void;
+	logout: () => void;
+	isAuthenticated: () => boolean;
+}
+
+const AuthContext = createContext<AuthState | any>({});
 
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
@@ -26,13 +35,17 @@ export const AuthProvider = ({ children }) => {
 	}, [checkIfUserLoggedIn]);
 
 	// Register
-	const register = async userData => {
+	const register = async (username: string, email: string, password: string) => {
 		const res = await fetch(`${NEXT_URL}/api/register`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(userData),
+			body: JSON.stringify({
+				username,
+				email,
+				password,
+			}),
 		});
 
 		const data = await res.json();
@@ -81,11 +94,22 @@ export const AuthProvider = ({ children }) => {
 			router.push('/');
 		}
 	};
-
+	
+	// Check if user is authenticated
+	const isAuthenticated = () => !!user
 
 	return (
-		<AuthContext.Provider value={{ user, error, register, login, logout }}>
+		<AuthContext.Provider value={{
+			user,
+			error,
+			register,
+			login,
+			logout,
+			isAuthenticated,
+		}}>
 			{children}
 		</AuthContext.Provider>
 	);
 }
+
+export default AuthContext;

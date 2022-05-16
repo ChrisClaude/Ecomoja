@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { UIContext } from '@/hooks/context/UIContext';
 import Logo from '@/components/layout/header/Logo';
+import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const Register = () => {
 	const {
@@ -13,13 +14,15 @@ const Register = () => {
 		layoutProp,
 	} = useContext(UIContext);
 
+	const { register } = useContext<AuthState>(AuthContext);
+
 	const {
-		register,
+		register: registerForm,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = (data) => register(data.username, data.email, data.password);
 
 	useEffect(() => {
 		dispatch({
@@ -53,7 +56,7 @@ const Register = () => {
 									label='Username'
 									variant='standard'
 									helperText={errors.username && 'Username is required'}
-									{...register('username', { required: true })}
+									{...registerForm('username', { required: true })}
 								/>
 							</div>
 							<div className='mb-4'>
@@ -64,7 +67,7 @@ const Register = () => {
 									label='Email'
 									variant='standard'
 									helperText={errors.email && 'Email is required'}
-									{...register('email', { required: true })}
+									{...registerForm('email', { required: true })}
 								/>
 							</div>
 							<div className='mb-6'>
@@ -75,7 +78,8 @@ const Register = () => {
 									label='Password'
 									variant='standard'
 									helperText={errors.password && 'Incorrect entry.'}
-									{...register('password', { required: true })}
+									type="password"
+									{...registerForm('password', { required: true })}
 								/>
 							</div>
 							<div>
