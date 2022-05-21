@@ -77,6 +77,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 					alt={cartItem.product.name}
 					objectFit="cover"
 					className="w-full"
+					unoptimized
 				/>
 			</div>
 			<div className="flex flex-col justify-between ml-2 mt-2 lg:mt-0 lg:flex-1">

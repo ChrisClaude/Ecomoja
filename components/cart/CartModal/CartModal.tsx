@@ -42,6 +42,7 @@ const CartModal = () => {
 											alt={cartItem.product.name}
 											objectFit="cover"
 											className="w-full object-cover"
+											unoptimized
 										/>
 									</div>
 									<div className="mt-2 flex flex-col flex-1 justify-between lg:mt-0 lg:ml-6">

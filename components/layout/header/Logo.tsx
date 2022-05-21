@@ -24,6 +24,7 @@ const Logo = ({
 			objectFit='cover'
 			alt='logo'
 			className={cn(className)}
+			unoptimized
 		/>
 	);
 };

@@ -25,6 +25,7 @@ const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 					src={cartItem.product.image}
 					alt={cartItem.product.name}
 					objectFit="cover"
+					unoptimized
 				/>
 			</div>
 			<div className="flex flex-col flex-1">

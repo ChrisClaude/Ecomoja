@@ -83,6 +83,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 							src={product.image}
 							alt={product.name}
 							objectFit="cover"
+							unoptimized
 						/>
 					</div>
 					<div className="flex-1 p-5">

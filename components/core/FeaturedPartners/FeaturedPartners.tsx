@@ -86,6 +86,7 @@ const FeaturedPartners = () => {
 									src={p.src}
 									alt={p.description}
 									objectFit='cover'
+									unoptimized
 								/>
 							</div>
 						))}

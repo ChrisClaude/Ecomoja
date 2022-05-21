@@ -18,6 +18,7 @@ const BikeDetails = ({ bike }: { bike: Bike }) => (
 						src={bike.image}
 						alt={bike.name}
 						objectFit="cover"
+						unoptimized
 					/>
 				</div>
 				<div className="flex-1 p-5">

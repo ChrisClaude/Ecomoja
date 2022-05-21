@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
 
 	const checkIfUserLoggedIn = useCallback(async () => {
 		const res = await fetch(`${NEXT_URL}/api/user`);
+		console.log(res);
 		const data = await res.json();
 		if (res.ok) {
 			setUser(data.user);
@@ -96,23 +97,7 @@ export const AuthProvider = ({ children }) => {
 	};
 	
 	// Check if user is authenticated
-	const isAuthenticated = () => async () => {
-		if (user) {
-			return true;
-		}
-		
-		const res = await fetch(`${NEXT_URL}/api/user`, {
-			method: 'GET',
-		});
-
-		if (res.ok) {
-			const data = await res.json();
-			setUser(data.user);
-			return true;
-		}
-		
-		return false;
-	};
+	const isAuthenticated = () => !!user;
 
 	return (
 		<AuthContext.Provider value={{

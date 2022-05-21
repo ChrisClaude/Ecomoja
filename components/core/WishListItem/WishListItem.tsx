@@ -37,6 +37,7 @@ const WishListItem = ({ product }: WishListItemProps) => {
 					height={200}
 					alt={name}
 					objectFit="cover"
+					unoptimized
 				/>
 			</div>
 			<div className="flex flex-col justify-between lg:flex-1 ml-2">
