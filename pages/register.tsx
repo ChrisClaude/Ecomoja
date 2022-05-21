@@ -4,9 +4,23 @@ import { useContext, useEffect } from 'react';
 import { Button, TextField } from '@mui/material';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { UIContext } from '@/hooks/context/UIContext';
 import Logo from '@/components/layout/header/Logo';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+
+const userRegistrationSchema = yup.object({
+	username: yup.string()
+		.required('Username is required'),
+	email: yup.string()
+		.required('Email is required'),
+	password: yup.string()
+		.required('Password is required'),
+	confirmPassword: yup.string()
+		.required('Confirm password is required')
+		.oneOf([yup.ref('password'), null], 'Passwords must match'),
+});
 
 const Register = () => {
 	const {
@@ -20,7 +34,9 @@ const Register = () => {
 		register: registerForm,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
+	} = useForm({
+		resolver: yupResolver(userRegistrationSchema),
+	});
 
 	const onSubmit = (data) => register(data.username, data.email, data.password);
 
@@ -72,7 +88,7 @@ const Register = () => {
 									{...registerForm('email', { required: true })}
 								/>
 							</div>
-							<div className='mb-6'>
+							<div className='mb-4'>
 								<TextField
 									error={errors.password}
 									fullWidth
@@ -80,12 +96,24 @@ const Register = () => {
 									label='Password'
 									variant='standard'
 									helperText={errors.password && 'Incorrect entry.'}
-									type="password"
+									type='password'
 									{...registerForm('password', { required: true })}
 								/>
 							</div>
+							<div className='mb-6'>
+								<TextField
+									error={errors.confirmPassword}
+									fullWidth
+									id='confirmPassword'
+									label='Confirm password'
+									variant='standard'
+									helperText={errors.password && 'Passwords must match.'}
+									type='password'
+									{...registerForm('confirmPassword', { required: true })}
+								/>
+							</div>
 							<div>
-								<Button variant="contained" type="submit">Register</Button>
+								<Button variant='contained' type='submit'>Register</Button>
 							</div>
 						</form>
 					</section>
