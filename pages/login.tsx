@@ -22,7 +22,10 @@ const Login = () => {
 		formState: { errors },
 	} = useForm();
 
-	const onSubmit = (data) => login(data.email, data.password);
+	const onSubmit = (data) => {
+		console.log(data);
+		login(data.email, data.password);
+	};
 
 	useEffect(() => {
 		if (layoutProp == null || layoutProp.showHeader || layoutProp.showFooter) {
@@ -75,6 +78,7 @@ const Login = () => {
 									id='password' 
 									label='Password' 
 									variant='standard'
+									type='password'
 									helperText={errors.password && 'Incorrect entry.'}
 									{...register('password', { required: true })}
 								/>

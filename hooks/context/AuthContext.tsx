@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	// Login user
-	const login = async ({ email: identifier, password }) => {
+	const login = async ( identifier, password ) => {
 		const res = await fetch(`${NEXT_URL}/api/login`, {
 			method: 'POST',
 			headers: {
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
 		if (res.ok) {
 			setUser(data.user);
-			router.push('/account/dashboard');
+			router.push('/');
 		} else {
 			setError(data.message);
 			setError(null);
@@ -96,7 +96,23 @@ export const AuthProvider = ({ children }) => {
 	};
 	
 	// Check if user is authenticated
-	const isAuthenticated = () => !!user
+	const isAuthenticated = () => async () => {
+		if (user) {
+			return true;
+		}
+		
+		const res = await fetch(`${NEXT_URL}/api/user`, {
+			method: 'GET',
+		});
+
+		if (res.ok) {
+			const data = await res.json();
+			setUser(data.user);
+			return true;
+		}
+		
+		return false;
+	};
 
 	return (
 		<AuthContext.Provider value={{

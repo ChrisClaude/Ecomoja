@@ -6,15 +6,16 @@ import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 const LoginButton = () => {
 	const { isAuthenticated } = useContext<AuthState>(AuthContext);
 	return (<>
-		{isAuthenticated ? (
-			<Link href='/login'>
-				<a>
-					Login
-				</a>
-			</Link>) : (
-			<button type="button">
+		{isAuthenticated() ? (
+			<button type='button'>
 				Log out
 			</button>
+		) : (
+			<Link href='/login'>
+				<a>
+					Log in
+				</a>
+			</Link>
 		)}
 	</>);
 };
