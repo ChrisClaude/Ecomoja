@@ -11,10 +11,21 @@ export type AuthState = {
 	isAuthenticated: () => boolean;
 }
 
+export type User = {
+	id: number;
+	username: string;
+	email: string; 
+	provider: string;
+	confirmed: string;
+	blocked: string;
+	createdAt: string;
+	updatedAt: string;
+};
+
 const AuthContext = createContext<AuthState | any>({});
 
 export const AuthProvider = ({ children }) => {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<User>(null);
 	const [error, setError] = useState(null);
 
 	const router = useRouter();

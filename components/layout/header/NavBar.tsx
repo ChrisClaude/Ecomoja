@@ -3,25 +3,19 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-import { useRouter } from 'next/router';
 import MenuIcon from '@mui/icons-material/Menu';
 import styles from '@/styles/NavBar.module.scss';
 import Logo from '@/components/layout/header/Logo';
 import { CartNavBarView } from '@/components/cart';
 import { UIContext } from '@/hooks/context/UIContext';
-import { logout } from '@/api/auth';
 import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
 import LoginButton from '@/components/core/LoginButton';
+import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const NavBar = () => {
-	const { user, dispatch, cartItems } = React.useContext(UIContext);
-	const router = useRouter();
-
-	const handleLogout = () => {
-		logout();
-		dispatch({ type: 'REMOVE_CURRENT_USER' });
-	};
-
+	const { dispatch, cartItems } = React.useContext(UIContext);
+	const { isAuthenticated, user } = React.useContext<AuthState>(AuthContext);
+	
 	const toggleDrawer = () => {
 		dispatch({ type: 'TOGGLE_MOBILE_MENU' });
 	};
@@ -86,6 +80,11 @@ const NavBar = () => {
 
 							<div className={styles['nav-expand']}>
 								<ul className="pb-2">
+									{
+										isAuthenticated() && <li className="py-1 px-3">
+											<p>Signed in as {user.username}</p>
+										</li>	
+									}
 									<li className="py-1 px-3">
 										<a href="#">My Ecomoja</a>
 									</li>

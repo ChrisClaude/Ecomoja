@@ -26,7 +26,7 @@ export default async (req: any, res: any) => {
 				path: '/'
 			}));
 			
-			res.status(200).json({ur: data.user});
+			res.status(200).json({user: data.user});
 		} else {
 			res.setHeader('Allow', ['POST']);
 			res.status(405).json({ message: `Method ${req.method} not allowed` });
