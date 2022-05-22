@@ -9,7 +9,6 @@ import * as yup from 'yup';
 import { UIContext } from '@/hooks/context/UIContext';
 import Logo from '@/components/layout/header/Logo';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
-import { type } from 'os';
 
 const userRegistrationSchema = yup.object({
 	username: yup.string()

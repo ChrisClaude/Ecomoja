@@ -12,21 +12,25 @@ export type SwiperState = {
 
 type NextSlide = {
 	type: 'NEXT_SLIDE';
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	payload?: {};
 };
 
 type PrevSlide = {
 	type: 'PREV_SLIDE';
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	payload?: {};
 };
 
 type ToggleActionButtons = {
 	type: 'TOGGLE_ACTION_BUTTONS';
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	payload?: {};
 };
 
 type ResetSlide = {
 	type: 'RESET_SLIDE';
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	payload?: {};
 };
 

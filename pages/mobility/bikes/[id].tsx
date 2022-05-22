@@ -73,9 +73,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
 	const { id } = context.params;
 	const bike = JSON.parse(JSON.stringify(getBike(+id)));
-
-	console.log(bike);
-
+	
 	return {
 		props: {
 			bike,

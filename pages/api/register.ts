@@ -4,8 +4,6 @@ import { API_URL } from '@/config/index';
 export default async (req: any, res: any) => {
 	if (req.method === 'POST') {
 		const { username, email, password } = req.body;
-
-		console.log(API_URL);
 		
 		const apiRes = await fetch(`${API_URL}/api/auth/local/register`, {
 			method: 'POST',

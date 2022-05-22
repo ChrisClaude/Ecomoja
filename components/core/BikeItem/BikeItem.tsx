@@ -9,12 +9,12 @@ import Button from '../../common/Button';
 import s from '@/components/products/ProductItem/ProductItem.module.scss';
 import { Bike } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { handleAddBikeToCart, addNewCartItem, storeCartToLocalStorage } from '@/helpers/main';
+import { handleAddBikeToCart} from '@/helpers/main';
 
 type BikeProps = { item: Bike };
 
 const BikeItem = ({ item }: BikeProps) => {
-	const {cartItems, dispatch } = React.useContext(UIContext);
+	const {dispatch } = React.useContext(UIContext);
 	const currentPrice = 985;
 	return (
 		<Link href={`/mobility/bikes/${item.id}`}>
