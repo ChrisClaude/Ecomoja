@@ -26,7 +26,7 @@ const Spinner = () => {
 			event.preventDefault();
 			event.stopPropagation();
 		}}>
-			<PacmanLoader color='#35F151' loading={loading} size={40} />
+			<PacmanLoader color='#6BC134' loading={loading} size={40} />
 		</div>
 	</Modal>;
 };

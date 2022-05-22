@@ -101,7 +101,7 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				isModalOpen: false,
 			};
-		case 'UPDATE_SPINNER_STATE':
+		case 'SET_LOADING':
 			return {
 				...state,
 				loading: action.payload,

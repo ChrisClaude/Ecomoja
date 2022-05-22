@@ -23,7 +23,17 @@ const Login = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		login(data.email, data.password);
+		dispatch({
+			type: 'SET_LOADING',
+			payload: true,
+		});
+		login(data.email, data.password)
+			.then(() => {
+				dispatch({
+					type: 'SET_LOADING',
+					payload: false,
+				});
+			});
 	};
 
 	useEffect(() => {

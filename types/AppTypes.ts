@@ -123,7 +123,7 @@ export type UIAction =
 	| UpdateSpinnerState;
 
 type UpdateSpinnerState = {
-	type: 'UPDATE_SPINNER_STATE';
+	type: 'SET_LOADING';
 	payload: boolean;
 };
 

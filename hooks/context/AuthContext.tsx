@@ -5,8 +5,8 @@ import { NEXT_URL } from '@/config/index';
 export type AuthState = {
 	user: any;
 	error: any;
-	register: (username: string, email: string, password: string) => void;
-	login: (email: string, password: string) => void;
+	register: (username: string, email: string, password: string) => Promise<void>;
+	login: (email: string, password: string) => Promise<void>;
 	logout: () => void;
 	isAuthenticated: () => boolean;
 }

@@ -9,6 +9,7 @@ import * as yup from 'yup';
 import { UIContext } from '@/hooks/context/UIContext';
 import Logo from '@/components/layout/header/Logo';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+import { type } from 'os';
 
 const userRegistrationSchema = yup.object({
 	username: yup.string()
@@ -38,7 +39,12 @@ const Register = () => {
 		resolver: yupResolver(userRegistrationSchema),
 	});
 
-	const onSubmit = (data) => register(data.username, data.email, data.password);
+	const onSubmit = (data) => {
+		dispatch({type: 'SET_LOADING', payload: true});
+		register(data.username, data.email, data.password).then(() => {
+			dispatch({type: 'SET_LOADING', payload: false});
+		});
+	};
 
 	useEffect(() => {
 		if (layoutProp == null || layoutProp.showHeader || layoutProp.showFooter) {
