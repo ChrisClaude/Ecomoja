@@ -19,6 +19,7 @@ export type UIState = {
 	isModalOpen: boolean;
 	isMobileMenuOpen: boolean;
 	layoutProp: LayoutProp;
+	loading: boolean;
 };
 
 export type LayoutProp = {
@@ -94,11 +95,11 @@ type ToggleModal = {
 	type: 'TOGGLE_MODAL';
 };
 
-type resetModal = {
+type ResetModal = {
 	type: 'RESET_MODAL';
 };
 
-type setCurrentUser = {
+type SetCurrentUser = {
 	type: 'SET_CURRENT_USER';
 	payload: User;
 };
@@ -115,12 +116,18 @@ export type UIAction =
 	| DecreaseProductQuantity
 	| ToggleMobileMenu
 	| ToggleModal
-	| resetModal
-	| setCurrentUser
-	| removeCurrentUser
-	| UpdateLayout;
+	| ResetModal
+	| SetCurrentUser
+	| RemoveCurrentUser
+	| UpdateLayout
+	| UpdateSpinnerState;
 
-type removeCurrentUser = {
+type UpdateSpinnerState = {
+	type: 'UPDATE_SPINNER_STATE';
+	payload: boolean;
+};
+
+type RemoveCurrentUser = {
 	type: 'REMOVE_CURRENT_USER';
 };
 

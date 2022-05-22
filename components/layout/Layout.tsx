@@ -23,6 +23,7 @@ import { UIContext } from '@/hooks/context/UIContext';
 import Header from './header/Header';
 import Footer from './Footer';
 import { LayoutProp } from '@/types/AppTypes';
+import Spinner from '@/components/common/Spinner';
 
 library.add(
 	fab,
@@ -52,6 +53,7 @@ const Layout = ({ children, showFooter, showHeader }: LayoutProp) => {
 			<Header className={cn({'hidden': !showHeader})} />
 			<main>{children}</main>
 			<Footer className={cn({'hidden': !showFooter})} />
+			<Spinner />
 		</div>
 	);
 };
