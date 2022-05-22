@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getCurrentUser } from '@/api/auth';
+import { getCurrentUser } from '@/services/auth';
 import { UIContext } from '@/hooks/context/UIContext';
 import { useRouter } from 'next/router';
 

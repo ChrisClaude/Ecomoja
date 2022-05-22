@@ -14,7 +14,7 @@ import { Avatar } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import {useRouter } from 'next/router';
 import { UIContext } from '@/hooks/context/UIContext';
-import { isAuthenticated } from '@/api/auth';
+import { isAuthenticated } from '@/services/auth';
 import Logo from '@/components/layout/header/Logo';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';

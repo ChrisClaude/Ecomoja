@@ -5,7 +5,7 @@ import {
 	getUserFromToken,
 	parseUrl,
 	storeUserToken,
-} from '@/api/auth';
+} from '@/services/auth';
 import { UIContext } from '@/hooks/context/UIContext';
 
 const Redirect = () => {
