@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
+import axios from 'axios';
 import Catalogue from '@/components/layout/Catalogue';
 import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
@@ -28,6 +29,17 @@ const slideImages: { id: string; image: string }[] = [
 ];
 
 export default function Home() {
+
+	//
+	const [initialProducts, setProducts] = React.useState([]);
+
+	//Fetching data from Strapi API
+	React.useEffect(()=>{
+		axios.get("http://localhost:1337/api/products/").then((response)=>{
+			setProducts(response.data.data)
+		})
+	}, []);
+
 	const {
 		dispatch,
 		layoutProp,
@@ -39,6 +51,9 @@ export default function Home() {
 				type: 'SET_SHOP_BY_CATEGORY',
 				payload: true,
 			});
+
+			  
+
 
 			if (layoutProp != null && !(layoutProp.showHeader || layoutProp.showFooter)) {
 				dispatch({
@@ -61,6 +76,14 @@ export default function Home() {
 			</Head>
 			<Banner slides={slideImages} />
 			<Catalogue catalogue={products} title="Groceries" />
+			
+			{/* map method used to display products */}
+			<div>
+				<h1>Products</h1>
+				{initialProducts.length > 0 ? initialProducts.map(product =>(
+					<p key={product.id}>{product.attributes.name}</p>
+				)): <p>not an array</p>}
+			</div>
 			<FeaturedPartners />
 		</>
 	);
