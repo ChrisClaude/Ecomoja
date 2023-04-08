@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Head from 'next/head';
+import axios from 'axios';
 import Catalogue from '@/components/layout/Catalogue';
 import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
 import { products } from '../MockData';
+
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -28,6 +30,10 @@ const slideImages: { id: string; image: string }[] = [
 ];
 
 export default function Home() {
+
+	const [initialProducts, setProducts] = React.useState([]);
+
+
 	const {
 		dispatch,
 		layoutProp,
@@ -52,7 +58,25 @@ export default function Home() {
 			}
 		},
 		[dispatch],
+		
 	);
+
+	React.useEffect(()=>{
+		axios.get("http://localhost:1337/api/products/").then((response)=>{
+			setProducts(response.data.data)
+			console.log(response.data.data)
+		})
+	}, []);
+
+
+	// let productArray = initialProducts.map(product =>{
+	// 	product.attributes.id,
+	// 	product.attributes.name,
+	// 	product.attributes.description,
+	// 	product.attributes.price,
+	// 	product.attributes.oldPrice,
+	// 	product.attributes.isInStock,
+	// });
 
 	return (
 		<>
@@ -61,7 +85,14 @@ export default function Home() {
 			</Head>
 			<Banner slides={slideImages} />
 			<Catalogue catalogue={products} title="Groceries" />
-			<FeaturedPartners />
+			<div>
+				<h1>Products</h1>
+				{initialProducts.length > 0 ? initialProducts.map(product =>(
+					<p key={product.id}>{product.attributes.name}</p>
+				)): <p>not an array</p>}
+			</div>
+			<FeaturedPartners /> 
 		</>
 	);
 }
+
