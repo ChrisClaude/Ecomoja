@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Head from 'next/head';
-import axios from 'axios';
 import Catalogue from '@/components/layout/Catalogue';
 import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
 import { products } from '../MockData';
-
+import {Product} from "@/types/AppTypes";
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -30,14 +29,12 @@ const slideImages: { id: string; image: string }[] = [
 ];
 
 export default function Home() {
-
-	const [initialProducts, setProducts] = React.useState([]);
-
-
 	const {
 		dispatch,
 		layoutProp,
 	} = React.useContext(UIContext);
+	
+	const [productItems, setProductItems] = React.useState<Product[]>([]);
 
 	React.useEffect(
 		() => {
@@ -58,25 +55,30 @@ export default function Home() {
 			}
 		},
 		[dispatch],
-		
 	);
-
-	React.useEffect(()=>{
-		axios.get("http://localhost:1337/api/products/").then((response)=>{
-			setProducts(response.data.data)
-			console.log(response.data.data)
-		})
+	
+	React.useEffect(() => {
+		fetch('http://localhost:1337/api/products')
+			.then(response => response.json())
+			.then(resBody => {
+				console.log(resBody);
+				setProductItems(resBody.data.map(productItem => ({
+					id: productItem.id,
+					name: productItem.attributes.name,
+					description: productItem.attributes.description,
+					image: '/assets/products/apple_1.jpg',
+					currentPrice: productItem.attributes.price,
+					oldPrice: productItem.attributes.oldPrice,
+					rating: 4,
+					numberOfVotes: 90,
+					categories: ['Gardening'],
+					vendor: 'CMK',
+					isInStock: productItem.attributes.isInStock,
+					getCustomTypeName: () => 'Product',
+				})));
+			})
+			.catch(error => console.error(error));
 	}, []);
-
-
-	// let productArray = initialProducts.map(product =>{
-	// 	product.attributes.id,
-	// 	product.attributes.name,
-	// 	product.attributes.description,
-	// 	product.attributes.price,
-	// 	product.attributes.oldPrice,
-	// 	product.attributes.isInStock,
-	// });
 
 	return (
 		<>
@@ -84,15 +86,8 @@ export default function Home() {
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages} />
-			<Catalogue catalogue={products} title="Groceries" />
-			<div>
-				<h1>Products</h1>
-				{initialProducts.length > 0 ? initialProducts.map(product =>(
-					<p key={product.id}>{product.attributes.name}</p>
-				)): <p>not an array</p>}
-			</div>
-			<FeaturedPartners /> 
+			<Catalogue catalogue={productItems} title="Groceries" />
+			<FeaturedPartners />
 		</>
 	);
 }
-
