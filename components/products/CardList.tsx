@@ -20,7 +20,7 @@ type ItemListProps = {
 
 // determines if type of items is Product array or Bike array
 const isProductArray = (items: (Product | Bike)[]): items is Product[] =>
-	items[0].getCustomTypeName() === 'Product';
+	true;
 
 const pickButtonType = (
 	buttonText: string,
