@@ -5,7 +5,6 @@ import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
 import { products } from '../MockData';
-import {Product} from "@/types/AppTypes";
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -33,8 +32,6 @@ export default function Home() {
 		dispatch,
 		layoutProp,
 	} = React.useContext(UIContext);
-	
-	const [productItems, setProductItems] = React.useState<Product[]>([]);
 
 	React.useEffect(
 		() => {
@@ -56,29 +53,6 @@ export default function Home() {
 		},
 		[dispatch],
 	);
-	
-	React.useEffect(() => {
-		fetch('http://localhost:1337/api/products')
-			.then(response => response.json())
-			.then(resBody => {
-				console.log(resBody);
-				setProductItems(resBody.data.map(productItem => ({
-					id: productItem.id,
-					name: productItem.attributes.name,
-					description: productItem.attributes.description,
-					image: '/assets/products/apple_1.jpg',
-					currentPrice: productItem.attributes.price,
-					oldPrice: productItem.attributes.oldPrice,
-					rating: 4,
-					numberOfVotes: 90,
-					categories: ['Gardening'],
-					vendor: 'CMK',
-					isInStock: productItem.attributes.isInStock,
-					getCustomTypeName: () => 'Product',
-				})));
-			})
-			.catch(error => console.error(error));
-	}, []);
 
 	return (
 		<>
@@ -86,7 +60,7 @@ export default function Home() {
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages} />
-			<Catalogue catalogue={productItems} title="Groceries" />
+			<Catalogue catalogue={products} title="Groceries" />
 			<FeaturedPartners />
 		</>
 	);
