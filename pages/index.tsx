@@ -4,7 +4,7 @@ import Catalogue from '@/components/layout/Catalogue';
 import { UIContext } from '@/hooks/context/UIContext';
 import { Banner } from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
-import { products } from '../MockData';
+import { Product } from '@/types/AppTypes';
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -53,6 +53,40 @@ export default function Home() {
 		},
 		[dispatch],
 	);
+
+	const [products, setProducts] = React.useState<Product[]>([]);
+
+	React.useEffect(
+		() =>{
+			fetch('http://localhost:1337/api/products?populate=*')
+		 	.then((res) => res.json())
+	 		.then((resBody) => {
+
+				   const generatedProducts:Product[] = [];
+
+				   resBody.data.forEach((productItem)=>{
+
+				 	generatedProducts.push({
+					 	id: productItem.id,
+					 	name: productItem.attributes.name,
+					 	description: productItem.attributes.description,
+					 	image: productItem.attributes.displayImage.data.attributes.url,
+					 	currentPrice: productItem.attributes.price,
+					 	oldPrice: productItem.attributes.oldPrice,
+					 	rating: 4,
+					 	numberOfVotes: 90,
+					 	categories: ['Gardening'],
+					 	vendor: 'CMK',
+					 	isInStock: productItem.attributes.isInStock,
+					 	getCustomTypeName: () => 'Product',
+			        });
+
+					 setProducts(generatedProducts); 
+				   })
+			  })
+			  .catch(error => console.error(error));
+		},
+		[]);
 
 	return (
 		<>
