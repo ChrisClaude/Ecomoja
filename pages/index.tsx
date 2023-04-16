@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Head from 'next/head';
 import Catalogue from '@/components/layout/Catalogue';
-import { UIContext } from '@/hooks/context/UIContext';
-import { Banner } from '@/components/layout';
+import {UIContext} from '@/hooks/context/UIContext';
+import {Banner} from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
-import { Product } from '@/types/AppTypes';
+import {Product} from '@/types/AppTypes';
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -57,34 +57,33 @@ export default function Home() {
 	const [products, setProducts] = React.useState<Product[]>([]);
 
 	React.useEffect(
-		() =>{
+		() => {
 			fetch('http://localhost:1337/api/products?populate=*')
-		 	.then((res) => res.json())
-	 		.then((resBody) => {
+				.then((res) => res.json())
+				.then((resBody) => {
 
-				   const generatedProducts:Product[] = [];
+					const generatedProducts: Product[] = [];
 
-				   resBody.data.forEach((productItem)=>{
+					resBody.data.forEach((productItem) => {
+						generatedProducts.push({
+							id: productItem.id,
+							name: productItem.attributes.name,
+							description: productItem.attributes.description,
+							image: productItem.attributes.images.data[0].attributes.formats.thumbnail.url,
+							currentPrice: productItem.attributes.price,
+							oldPrice: productItem.attributes.oldPrice,
+							rating: 4,
+							numberOfVotes: 90,
+							categories: ['Gardening'],
+							vendor: 'CMK',
+							isInStock: productItem.attributes.isInStock,
+							getCustomTypeName: () => 'Product',
+						});
 
-				 	generatedProducts.push({
-					 	id: productItem.id,
-					 	name: productItem.attributes.name,
-					 	description: productItem.attributes.description,
-					 	image: productItem.attributes.displayImage.data.attributes.url,
-					 	currentPrice: productItem.attributes.price,
-					 	oldPrice: productItem.attributes.oldPrice,
-					 	rating: 4,
-					 	numberOfVotes: 90,
-					 	categories: ['Gardening'],
-					 	vendor: 'CMK',
-					 	isInStock: productItem.attributes.isInStock,
-					 	getCustomTypeName: () => 'Product',
-			        });
-
-					 setProducts(generatedProducts); 
-				   })
-			  })
-			  .catch(error => console.error(error));
+						setProducts(generatedProducts);
+					})
+				})
+				.catch(error => console.error(error));
 		},
 		[]);
 
@@ -93,9 +92,9 @@ export default function Home() {
 			<Head>
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
-			<Banner slides={slideImages} />
-			<Catalogue catalogue={products} title="Groceries" />
-			<FeaturedPartners />
+			<Banner slides={slideImages}/>
+			<Catalogue catalogue={products} title="Groceries"/>
+			<FeaturedPartners/>
 		</>
 	);
 }
