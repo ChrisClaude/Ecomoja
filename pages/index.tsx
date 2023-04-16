@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Head from 'next/head';
 import Catalogue from '@/components/layout/Catalogue';
-import { UIContext } from '@/hooks/context/UIContext';
-import { Banner } from '@/components/layout';
+import {UIContext} from '@/hooks/context/UIContext';
+import {Banner} from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
-import { products } from '../MockData';
-import {Product} from "@/types/AppTypes";
+import {Product} from '@/types/AppTypes';
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -33,8 +32,6 @@ export default function Home() {
 		dispatch,
 		layoutProp,
 	} = React.useContext(UIContext);
-	
-	const [productItems, setProductItems] = React.useState<Product[]>([]);
 
 	React.useEffect(
 		() => {
@@ -56,38 +53,48 @@ export default function Home() {
 		},
 		[dispatch],
 	);
-	
-	React.useEffect(() => {
-		fetch('http://localhost:1337/api/products')
-			.then(response => response.json())
-			.then(resBody => {
-				console.log(resBody);
-				setProductItems(resBody.data.map(productItem => ({
-					id: productItem.id,
-					name: productItem.attributes.name,
-					description: productItem.attributes.description,
-					image: '/assets/products/apple_1.jpg',
-					currentPrice: productItem.attributes.price,
-					oldPrice: productItem.attributes.oldPrice,
-					rating: 4,
-					numberOfVotes: 90,
-					categories: ['Gardening'],
-					vendor: 'CMK',
-					isInStock: productItem.attributes.isInStock,
-					getCustomTypeName: () => 'Product',
-				})));
-			})
-			.catch(error => console.error(error));
-	}, []);
+
+	const [products, setProducts] = React.useState<Product[]>([]);
+
+	React.useEffect(
+		() => {
+			fetch('http://localhost:1337/api/products?populate=*')
+				.then((res) => res.json())
+				.then((resBody) => {
+
+					const generatedProducts: Product[] = [];
+
+					resBody.data.forEach((productItem) => {
+						generatedProducts.push({
+							id: productItem.id,
+							name: productItem.attributes.name,
+							description: productItem.attributes.description,
+							image: productItem.attributes.images.data[0].attributes.formats.thumbnail.url,
+							currentPrice: productItem.attributes.price,
+							oldPrice: productItem.attributes.oldPrice,
+							rating: 4,
+							numberOfVotes: 90,
+							categories: ['Gardening'],
+							vendor: 'CMK',
+							isInStock: productItem.attributes.isInStock,
+							getCustomTypeName: () => 'Product',
+						});
+
+						setProducts(generatedProducts);
+					})
+				})
+				.catch(error => console.error(error));
+		},
+		[]);
 
 	return (
 		<>
 			<Head>
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
-			<Banner slides={slideImages} />
-			<Catalogue catalogue={productItems} title="Groceries" />
-			<FeaturedPartners />
+			<Banner slides={slideImages}/>
+			<Catalogue catalogue={products} title="Groceries"/>
+			<FeaturedPartners/>
 		</>
 	);
 }
