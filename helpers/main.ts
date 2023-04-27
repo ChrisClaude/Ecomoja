@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+	BackendCart,
 	Bike,
 	CartItem,
 	CartItem as CartItemType,
@@ -8,13 +9,162 @@ import {
 } from '@/types/AppTypes';
 import { addProduct } from '@/services/ProductServices';
 import { addBike } from '@/services/BikeServices';
+import { products } from 'MockData';
+
+
+/* Method for querying and returning products from backend */
+
+async function getProducts():Promise<Product[]>{
+
+	let products: Product[];
+
+	try{
+		const response = await fetch('http://localhost:1337/api/products?populate=*')
+		const result = await response.json();
+	
+		products = result.data.map((productItem): Product => ({
+			id: productItem.id,
+			name: productItem.attributes.name,
+			description: productItem.attributes.description,
+			image: productItem.attributes.images.data[0].attributes.formats.thumbnail.url,
+			currentPrice: productItem.attributes.price,
+			oldPrice: productItem.attributes.oldPrice,
+			rating: 4,
+			numberOfVotes: 90,
+			categories: ['Gardening'],
+			vendor: 'CMK',
+			isInStock: productItem.attributes.isInStock,
+			getCustomTypeName: () => 'Product',
+		}));
+
+	}catch(error){
+		console.log(error);
+	}
+
+	return products;
+}
 
 /**
- * Stores cart state to local storage
+ *  Method for storing cart Items to the backend */
+async function SaveCartItems(backendCartItem:BackendCart){
+	try {
+	  const response = await fetch("http://localhost:1337/api/carts", {
+			method: "POST", 
+			headers: {
+		  "Content-Type": "application/json",
+			},
+			body: JSON.stringify(backendCartItem),
+	  });
+  
+	  const result = await response.json();
+	  console.log("Success:", result);
+	} catch (error) {
+	  console.error("Error:", error);
+	}
+}
+
+/* Method for creating cart Items */
+async function recreateCartItems(cartItemsAPI):Promise<CartItemType[]>{
+
+	const cartItems: CartItemType[] = [];
+
+	try{
+		const products: Product[] = await getProducts();
+		
+		cartItemsAPI.data.forEach((productItem) => {
+
+			const product: Product = products.find(({ id }) => 
+				id === productItem.attributes.products.data[0].id);
+
+			cartItems.push({
+				id:productItem.id, product , productInstances:productItem.attributes.quantity
+			});
+		
+		});
+
+	}catch(err){
+		console.log(err);
+	}
+
+	return cartItems;
+
+}
+
+/**
+ *  Method for getting all cart Items */
+async function getCartItems():Promise<CartItemType[]>{
+
+	let cartItems: CartItemType[] = [];
+
+	try {
+	  const cartAPIResponse = await fetch("http://localhost:1337/api/carts?populate=*");
+	  const cartAPI = await cartAPIResponse.json();
+	  const items = await recreateCartItems(cartAPI);
+	  cartItems = items;
+	
+	  console.log("Success:", cartItems);
+	} 
+	catch (error) {
+	  console.error("Error:", error);
+	}
+
+	return cartItems;
+}
+
+/**
+ * Stores cart state to local storage or Backend if the user is loggedIn
  * @param cart the cart array containing the user selected items
  */
-export const storeCartToLocalStorage = (cart: CartItemType[]) => {
-	localStorage.setItem('cartitems', JSON.stringify(cart));
+
+const getBackendCartFormat = (cart: CartItem):BackendCart => 
+({
+		data:{
+			id: cart.id,
+			products: cart.product.id,
+			quality: cart.productInstances,
+		},
+});
+
+/**
+ * Returns true or false if cartItem exits */
+const cartItemExits = (userCartItem: CartItem[]):boolean => {
+	const cartItem: CartItem = userCartItem.find(({ id }) => 
+				id === id);
+    return cartItem? true:false;
+}
+
+/**
+ * 
+ * @param cart Store Items to the backend or localStorage if user is logged in
+ */
+export const StoreCartItems = (cart: CartItemType[]) => {
+
+	const isLoggedIn = true;
+	
+	if(isLoggedIn)
+	{
+		cart.forEach( async (item) => {
+
+			  try{
+				const itemExists = cartItemExits(cart);
+
+				if(!itemExists){
+					const backendCartItem = getBackendCartFormat(item);
+					await SaveCartItems(backendCartItem);
+				}
+
+			  }
+			  catch(err){
+				console.log(err);
+			  }
+
+		});
+
+	}
+	else{
+		localStorage.setItem('cartitems', JSON.stringify(cart));
+	}
+
 };
 
 /**
@@ -25,10 +175,23 @@ export const removeCartFromLocalStorage = () => {
 };
 
 /**
- * Returns car items state from local storage if it exists else returns null
+ * Returns car items state from local storage or Backend if it exists else returns null
  */
-export const getCartFromLocalStorage = (): CartItemType[] | null =>
-	JSON.parse(localStorage.getItem('cartitems'));
+export async function getAllCartItems():Promise<CartItemType[]> {
+
+	const isLoggedIn = true;
+	let cartItems : CartItemType[];
+
+	try{
+		cartItems = await getCartItems();
+		return isLoggedIn? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+	}
+	catch(err){
+		console.log(err);
+	}
+	
+	return isLoggedIn? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+}
 
 /**
  * Computes the total price from the cart items
