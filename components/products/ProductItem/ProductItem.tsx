@@ -10,7 +10,7 @@ import { default as cn } from 'classnames';
 import {
 	addNewCartItem,
 	handleAddProductToCart,
-	storeCartToLocalStorage,
+	StoreCartItems,
 } from '@/helpers/main';
 import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 import { UIContext } from '@/hooks/context/UIContext';
@@ -90,7 +90,7 @@ const ProductItem = ({ item }: ProductProps) => {
 									});
 									handleAddProductToCart(item, dispatch);
 									const newCartItems = addNewCartItem(cartItems, item);
-									storeCartToLocalStorage(newCartItems);
+									StoreCartItems(newCartItems);
 								}}
 							>
 								Add to cart
