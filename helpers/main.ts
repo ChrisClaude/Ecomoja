@@ -48,6 +48,7 @@ async function getProducts():Promise<Product[]>{
  *  Method for storing cart Items to the backend */
 async function SaveCartItems(backendCartItem:BackendCart){
 	try {
+	
 	  const response = await fetch("http://localhost:1337/api/carts", {
 			method: "POST", 
 			headers: {
@@ -127,9 +128,10 @@ const getBackendCartFormat = (cart: CartItem):BackendCart =>
 
 /**
  * Returns true or false if cartItem exits */
-const cartItemExits = (userCartItem: CartItem[]):boolean => {
-	const cartItem: CartItem = userCartItem.find(({ id }) => 
-				id === id);
+async function cartItemExits(CartItem:CartItem):Promise<boolean>{
+	const cartItems = await getAllCartItems();
+	const cartItem: CartItem = cartItems.find(({ id }) => 
+				id === CartItem.id);
     return cartItem? true:false;
 }
 
@@ -141,18 +143,18 @@ export const StoreCartItems = (cart: CartItemType[]) => {
 
 	const isLoggedIn = true;
 	
-	if(isLoggedIn)
+	if(isLoggedIn && cart !== null)
 	{
 		cart.forEach( async (item) => {
 
 			  try{
-				const itemExists = cartItemExits(cart);
-
-				if(!itemExists){
+				
+				const itemExists = cartItemExits(item);
+				
+				if(!itemExists){	
 					const backendCartItem = getBackendCartFormat(item);
 					await SaveCartItems(backendCartItem);
 				}
-
 			  }
 			  catch(err){
 				console.log(err);
@@ -191,6 +193,18 @@ export async function getAllCartItems():Promise<CartItemType[]> {
 	}
 	
 	return isLoggedIn? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+}
+
+async function removeItemFromCart(cartId:number){
+	try{
+		const deletedcart = await fetch(`http://localhost:1337/api/carts/${cartId}`,
+		{ method: 'DELETE' });
+		const res = await deletedcart.json();
+		console.log(res)
+	}
+	catch(err){
+		console.log(err);
+	}
 }
 
 /**
@@ -279,10 +293,32 @@ export const addNewCartItem = (
 	return cartItems;
 };
 
-export const removeCartItem = (
+export async function removeCartItem(
 	cartItems: CartItemType[],
-	id: number,
-): CartItemType[] => cartItems.filter((cartItem) => cartItem.id !== id);
+	product_id: number,
+): Promise<CartItemType[]>{
+	
+	const isLoggedIn = true;
+	let usercartItems: CartItemType[];
+	
+	try{
+		const cartItem: CartItem = cartItems.find(({ product }) => 
+		product.id === product_id);
+		
+		const deletedcartItem = await removeItemFromCart(cartItem.product.id);
+		usercartItems = await getCartItems();
+		console.log(`Deleted cart item: ${deletedcartItem}`);
+
+		return isLoggedIn? usercartItems : cartItems.filter((cartItem) => cartItem.product.id !== product_id);
+
+	}
+	catch(err){
+		console.log(err);
+	}
+
+	return isLoggedIn? usercartItems : cartItems.filter((cartItem) => cartItem.id !== product_id);
+
+};
 
 /**
  * This method finds if a product exists in a product array. It returns true if the product is found, returns false otherwise.
