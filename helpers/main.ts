@@ -122,7 +122,7 @@ const getBackendCartFormat = (cart: CartItem):BackendCart =>
 		data:{
 			id: cart.id,
 			products: cart.product.id,
-			quality: cart.productInstances,
+			quantity: cart.productInstances,
 		},
 });
 
@@ -149,7 +149,7 @@ export const StoreCartItems = (cart: CartItemType[]) => {
 
 			  try{
 				
-				const itemExists = cartItemExits(item);
+				const itemExists = await cartItemExits(item);
 				
 				if(!itemExists){	
 					const backendCartItem = getBackendCartFormat(item);
@@ -304,12 +304,14 @@ export async function removeCartItem(
 	try{
 		const cartItem: CartItem = cartItems.find(({ product }) => 
 		product.id === product_id);
-		
-		const deletedcartItem = await removeItemFromCart(cartItem.product.id);
-		usercartItems = await getCartItems();
-		console.log(`Deleted cart item: ${deletedcartItem}`);
 
-		return isLoggedIn? usercartItems : cartItems.filter((cartItem) => cartItem.product.id !== product_id);
+		if(cartItem !== null && isLoggedIn){
+			const deletedcartItem = await removeItemFromCart(cartItem.product.id);
+			usercartItems = await getCartItems();
+			return usercartItems;
+		}
+		
+		return cartItems.filter((cartItem) => cartItem.product.id !== product_id);
 
 	}
 	catch(err){

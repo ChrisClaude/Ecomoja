@@ -81,13 +81,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 
 		case 'REMOVE_PRODUCT_FROM_CART':
 			// all cart items have the same id as their product
-			removeCartItem(state.cartItems, action.payload.id)
-			.then((items)=>{
-				newCartItems = items;
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+			const loadNewCartItems = async () => {
+				const newCartItems = await removeCartItem(state.cartItems, action.payload.id);
+			}
+			loadNewCartItems();
+
 			return {
 				...state,
 				cartItems: newCartItems,
