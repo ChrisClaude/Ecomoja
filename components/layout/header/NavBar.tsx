@@ -139,7 +139,7 @@ const NavBar = () => {
 					</button>
 					<Link href="/cart">
 						<a className="h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700">
-							<Badge badgeContent={cartItems.length} color="secondary">
+							<Badge badgeContent={cartItems?cartItems.length:""} color="secondary">
 								<ShoppingCartIcon color="action" />
 							</Badge>
 						</a>
