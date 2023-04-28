@@ -12,8 +12,16 @@ const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			type: 'REMOVE_PRODUCT_FROM_CART',
 			payload: cartItem.product,
 		});
-		const newCartItems = removeCartItem(cartItems, cartItem.product.id);
-		StoreCartItems(newCartItems);
+		
+		removeCartItem(cartItems, cartItem.product.id)
+		.then((items)=>{
+			const newCartItems = items;
+			StoreCartItems(newCartItems);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
 	};
 	return (
 		<div className="flex px-5 py-2 h-20">

@@ -42,9 +42,16 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			type: 'REMOVE_PRODUCT_FROM_CART',
 			payload: cartItem.product,
 		});
+	
 
-		const newCartItems = removeCartItem(cartItems, cartItem.product.id);
-		StoreCartItems(newCartItems);
+		removeCartItem(cartItems, cartItem.product.id)
+			.then((items)=>{
+				const newCartItems = items;
+				StoreCartItems(newCartItems);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
