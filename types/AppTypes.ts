@@ -46,7 +46,7 @@ export type BackendCart = {
 	data:{
 		id: number;
 		products: number;
-		quality: number;
+		quantity: number;
 	};
 }
 
