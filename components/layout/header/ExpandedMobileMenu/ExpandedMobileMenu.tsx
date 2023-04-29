@@ -98,7 +98,7 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 								<ShoppingCartIcon className='text-secondary' />
 							</ListItemIcon>
 							<ListItemText primary='Cart' />
-							{`${cartItems? cartItems.length:0} item(s)`}
+							{`${cartItems.length} item(s)`}
 						</ListItem>
 					</a>
 				</Link>
