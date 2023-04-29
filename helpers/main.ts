@@ -9,12 +9,11 @@ import {
 } from '@/types/AppTypes';
 import { addProduct } from '@/services/ProductServices';
 import { addBike } from '@/services/BikeServices';
-import { products } from 'MockData';
 
 
-/* Method for querying and returning products from backend */
-
-async function getProducts():Promise<Product[]>{
+/**
+ *  Method for querying and returning products all from backend */
+export async function getAllProducts():Promise<Product[]>{
 
 	let products: Product[];
 
@@ -70,7 +69,7 @@ async function recreateCartItems(cartItemsAPI):Promise<CartItemType[]>{
 	const cartItems: CartItemType[] = [];
 
 	try{
-		const products: Product[] = await getProducts();
+		const products: Product[] = await getAllProducts();
 		
 		cartItemsAPI.data.forEach((productItem) => {
 
