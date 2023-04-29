@@ -275,6 +275,7 @@ export const addNewCartItem = (
 	cartItems: CartItemType[],
 	newItem: Product,
 ): CartItemType[] => {
+	
 	const filteredCartItems = cartItems.filter(
 		(cartItem) => cartItem.id === newItem.id,
 	);
