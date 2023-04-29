@@ -5,6 +5,7 @@ import {UIContext} from '@/hooks/context/UIContext';
 import {Banner} from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
 import {Product} from '@/types/AppTypes';
+import {getAllProducts} from '@/helpers/main';
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -58,32 +59,17 @@ export default function Home() {
 
 	React.useEffect(
 		() => {
-			fetch('http://localhost:1337/api/products?populate=*')
-				.then((res) => res.json())
-				.then((resBody) => {
+			const loadAllProducts = async ():Promise<void> => {
+				try{
+					const ecoProducts:Product[] = await getAllProducts();
+					setProducts(ecoProducts);
+				}
+				catch(err){
 
-					const generatedProducts: Product[] = [];
-
-					resBody.data.forEach((productItem) => {
-						generatedProducts.push({
-							id: productItem.id,
-							name: productItem.attributes.name,
-							description: productItem.attributes.description,
-							image: productItem.attributes.images.data[0].attributes.formats.thumbnail.url,
-							currentPrice: productItem.attributes.price,
-							oldPrice: productItem.attributes.oldPrice,
-							rating: 4,
-							numberOfVotes: 90,
-							categories: ['Gardening'],
-							vendor: 'CMK',
-							isInStock: productItem.attributes.isInStock,
-							getCustomTypeName: () => 'Product',
-						});
-
-						setProducts(generatedProducts);
-					})
-				})
-				.catch(error => console.error(error));
+					console.log(err);
+				}
+			}
+			loadAllProducts();
 		},
 		[]);
 
