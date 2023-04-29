@@ -293,6 +293,17 @@ export const addNewCartItem = (
 	return cartItems;
 };
 
+/**
+ * Remove cart from state before async removeCartItem() function finishes
+*/
+export const removeStateCartItem = (
+	cartItems: CartItemType[],
+	id: number,
+): CartItemType[] => cartItems !== null ? cartItems.filter((cartItem) => cartItem.id !== id) : [];
+
+/**
+ * Remove cart from backend
+*/
 export async function removeCartItem(
 	cartItems: CartItemType[],
 	product_id: number,

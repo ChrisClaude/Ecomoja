@@ -1,5 +1,5 @@
 import { CartItem, UIAction, UIState } from '@/types/AppTypes';
-import { addNewCartItem, removeCartItem } from '@/helpers/main';
+import { addNewCartItem, removeCartItem, removeStateCartItem } from '@/helpers/main';
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[] = [];
@@ -86,11 +86,13 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			}
 			loadNewCartItems()
 
-			console.log(newCartItems);
+			const stateCartItem = removeStateCartItem(state.cartItems, action.payload.id);
+
+			console.log(stateCartItem);
 			
 			return {
 				...state,
-				cartItems: newCartItems,
+				cartItems: stateCartItem,
 			};
 
 		case 'TOGGLE_MOBILE_MENU':
