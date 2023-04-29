@@ -82,13 +82,10 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			// all cart items have the same id as their product
 			const loadNewCartItems = async () => {
 				 newCartItems = await removeCartItem(state.cartItems, action.payload.id);
-				 console.log(newCartItems);
 			}
 			loadNewCartItems()
 
 			const stateCartItem = removeStateCartItem(state.cartItems, action.payload.id);
-
-			console.log(stateCartItem);
 			
 			return {
 				...state,

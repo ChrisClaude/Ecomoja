@@ -9,8 +9,6 @@ export const getProduct = (id: number) => {
 export const addProduct = (product: Product) => {
 	// TODO: Add product to user cart on server
 	// TODO: Persist cart on cookies or local storage if user not logged in
-	console.warn(`Added product`);
-	console.log(product);
 };
 
 export const getProducts = () => products;

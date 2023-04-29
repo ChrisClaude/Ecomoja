@@ -56,8 +56,6 @@ async function SaveCartItems(backendCartItem:BackendCart){
 			body: JSON.stringify(backendCartItem),
 	  });
   
-	  const result = await response.json();
-	  console.log("Success:", result);
 	} catch (error) {
 	  console.error("Error:", error);
 	}
@@ -101,8 +99,6 @@ async function getCartItems():Promise<CartItemType[]>{
 	  const cartAPI = await cartAPIResponse.json();
 	  const items = await recreateCartItems(cartAPI);
 	  cartItems = items;
-	
-	  console.log("Success:", cartItems);
 	} 
 	catch (error) {
 	  console.error("Error:", error);
@@ -198,8 +194,6 @@ async function removeItemFromCart(cartId:number){
 	try{
 		const deletedcart = await fetch(`http://localhost:1337/api/carts/${cartId}`,
 		{ method: 'DELETE' });
-		const res = await deletedcart.json();
-		console.log(res)
 	}
 	catch(err){
 		console.log(err);
