@@ -8,7 +8,7 @@ import { UIContext } from '@/hooks/context/UIContext';
 import {
 	handleAddProductToCart,
 	isProductInArray,
-	StoreCartItems,
+	storeCartItems,
 } from '@/helpers/main';
 import { Product } from '@/types/AppTypes';
 
@@ -39,7 +39,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 
 	React.useEffect(() => {
-		StoreCartItems(cartItems);
+		storeCartItems(cartItems);
 	}, [cartItems]);
 
 	const handleAddToWishList = () => {

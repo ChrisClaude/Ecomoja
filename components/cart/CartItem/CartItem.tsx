@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, StoreCartItems, isProductInArray } from '@/helpers/main';
+import { removeCartItem, storeCartItems, isProductInArray } from '@/helpers/main';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
@@ -47,7 +47,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 		removeCartItem(cartItems, cartItem.product.id)
 			.then((items)=>{
 				const newCartItems = items;
-				StoreCartItems(newCartItems);
+				storeCartItems(newCartItems);
 			})
 			.catch((err) => {
 				console.log(err);

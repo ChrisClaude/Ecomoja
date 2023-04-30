@@ -134,7 +134,7 @@ async function cartItemExits(CartItem:CartItem):Promise<boolean>{
  * 
  * @param cart Store Items to the backend or localStorage if user is logged in
  */
-export const StoreCartItems = (cart: CartItemType[]) => {
+export const storeCartItems = (cart: CartItemType[]) => {
 
 	const isLoggedIn = true;
 	

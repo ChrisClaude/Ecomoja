@@ -2,7 +2,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, StoreCartItems } from '@/helpers/main';
+import { removeCartItem, storeCartItems } from '@/helpers/main';
 
 const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
@@ -16,7 +16,7 @@ const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 		removeCartItem(cartItems, cartItem.product.id)
 		.then((items)=>{
 			const newCartItems = items;
-			StoreCartItems(newCartItems);
+			storeCartItems(newCartItems);
 		})
 		.catch((err) => {
 			console.log(err);
