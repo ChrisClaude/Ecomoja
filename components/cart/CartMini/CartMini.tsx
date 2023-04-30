@@ -14,21 +14,21 @@ const CartMini = () => {
 		<div className={s.cartMini}>
 			<div
 				className={cn(
-					{ hidden: cartItems.length > 0 },
+					cartItems?{ hidden: cartItems.length > 0 }:"",
 					'h-40 flex items-center justify-center',
 				)}
 			>
 				<p>Your cart is empty</p>
 			</div>
-			<div className={cn({ hidden: cartItems.length === 0 })}>
+			<div className={cn(cartItems?{ hidden: cartItems.length === 0 }:"")}>
 				<div>
-					{cartItems.map((item) => (
+				{cartItems? cartItems.map((item) => (
 						<CartMiniItem cartItem={item} key={item.id} />
-					))}
+					)):""}
 				</div>
 				<div>
 					<div className="py-2 px-5 border-t-2 border-b-2 border-solid border-gray-300 flex justify-end font-bold">
-						Total: R {calculateCartTotal(cartItems)}
+						Total: R {cartItems?calculateCartTotal(cartItems):""}
 					</div>
 					<div className="flex justify-between px-6 my-3">
 						<Button secondary className="w-1/2 mr-2">

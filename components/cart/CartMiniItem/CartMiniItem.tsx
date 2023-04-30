@@ -2,7 +2,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartToLocalStorage } from '@/helpers/main';
+import { removeCartItem, storeCartItems } from '@/helpers/main';
 
 const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
@@ -12,8 +12,16 @@ const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			type: 'REMOVE_PRODUCT_FROM_CART',
 			payload: cartItem.product,
 		});
-		const newCartItems = removeCartItem(cartItems, cartItem.product.id);
-		storeCartToLocalStorage(newCartItems);
+		
+		removeCartItem(cartItems, cartItem.product.id)
+		.then((items)=>{
+			const newCartItems = items;
+			storeCartItems(newCartItems);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
 	};
 	return (
 		<div className="flex px-5 py-2 h-20">

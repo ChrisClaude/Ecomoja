@@ -1,8 +1,8 @@
 import { CartItem, UIAction, UIState } from '@/types/AppTypes';
-import { addNewCartItem, removeCartItem } from '@/helpers/main';
+import { addNewCartItem, removeCartItem, removeStateCartItem } from '@/helpers/main';
 
 const reducer = (state: UIState, action: UIAction): UIState => {
-	let newCartItems: CartItem[];
+	let newCartItems: CartItem[] = [];
 
 	switch (action.type) {
 		case 'SET_CURRENT_USER':
@@ -80,10 +80,16 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 
 		case 'REMOVE_PRODUCT_FROM_CART':
 			// all cart items have the same id as their product
-			newCartItems = removeCartItem(state.cartItems, action.payload.id);
+			const loadNewCartItems = async () => {
+				 newCartItems = await removeCartItem(state.cartItems, action.payload.id);
+			}
+			loadNewCartItems()
+
+			const stateCartItem = removeStateCartItem(state.cartItems, action.payload.id);
+			
 			return {
 				...state,
-				cartItems: newCartItems,
+				cartItems: stateCartItem,
 			};
 
 		case 'TOGGLE_MOBILE_MENU':

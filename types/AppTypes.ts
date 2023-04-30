@@ -42,6 +42,14 @@ export type CartItem = {
 	productInstances: number;
 };
 
+export type BackendCart = {
+	data:{
+		id: number;
+		products: number;
+		quantity: number;
+	};
+}
+
 type IncreaseProductQuantity = {
 	type: 'INCREASE_PRODUCT_QUANTITY';
 	payload: Product;
