@@ -143,9 +143,8 @@ export const storeCartItems = (cart: CartItemType[]) => {
 		cart.forEach( async (item) => {
 
 			  try{
-				
 				const itemExists = await cartItemExits(item);
-				
+			
 				if(!itemExists){	
 					const backendCartItem = getBackendCartFormat(item);
 					await SaveCartItems(backendCartItem);
