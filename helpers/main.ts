@@ -9,7 +9,8 @@ import {
 } from '@/types/AppTypes';
 import { addProduct } from '@/services/ProductServices';
 import { addBike } from '@/services/BikeServices';
-
+import { useContext } from 'react';
+import AuthContext, {AuthState, User as AuthUser} from '@/hooks/context/AuthContext';
 
 /**
  *  Method for querying and returning products all from backend */
@@ -45,7 +46,7 @@ export async function getAllProducts():Promise<Product[]>{
 
 /**
  *  Method for storing cart Items to the backend */
-async function SaveCartItems(backendCartItem:BackendCart){
+async function saveCartItems(backendCartItem:BackendCart){
 	try {
 	
 	  const response = await fetch("http://localhost:1337/api/carts", {
@@ -75,7 +76,7 @@ async function recreateCartItems(cartItemsAPI):Promise<CartItemType[]>{
 				id === productItem.attributes.products.data[0].id);
 
 			cartItems.push({
-				id:productItem.id, product , productInstances:productItem.attributes.quantity
+				id:productItem.id, Users_permissions_user:productItem.attributes.user,product , productInstances:productItem.attributes.quantity
 			});
 		
 		});
@@ -116,15 +117,16 @@ const getBackendCartFormat = (cart: CartItem):BackendCart =>
 ({
 		data:{
 			id: cart.id,
-			products: cart.product.id,
+			users_permissions_user: cart.Users_permissions_user.id,
+			product: cart.product.id,
 			quantity: cart.productInstances,
 		},
 });
 
 /**
  * Returns true or false if cartItem exits */
-async function cartItemExits(CartItem:CartItem):Promise<boolean>{
-	const cartItems = await getAllCartItems();
+async function cartItemExits(CartItem:CartItem, auth):Promise<boolean>{
+	const cartItems = await getAllCartItems(auth);
 	const cartItem: CartItem = cartItems.find(({ id }) => 
 				id === CartItem.id);
     return cartItem? true:false;
@@ -134,20 +136,18 @@ async function cartItemExits(CartItem:CartItem):Promise<boolean>{
  * 
  * @param cart Store Items to the backend or localStorage if user is logged in
  */
-export const storeCartItems = (cart: CartItemType[]) => {
+export const storeCartItems = (cart: CartItemType[], auth:Boolean) => {
 
-	const isLoggedIn = true;
-	
-	if(isLoggedIn && cart !== null)
+	if(auth && cart !== null)
 	{
 		cart.forEach( async (item) => {
 
 			  try{
-				const itemExists = await cartItemExits(item);
+				const itemExists = await cartItemExits(item, auth);
 			
 				if(!itemExists){	
 					const backendCartItem = getBackendCartFormat(item);
-					await SaveCartItems(backendCartItem);
+					await saveCartItems(backendCartItem);
 				}
 			  }
 			  catch(err){
@@ -173,20 +173,20 @@ export const removeCartFromLocalStorage = () => {
 /**
  * Returns car items state from local storage or Backend if it exists else returns null
  */
-export async function getAllCartItems():Promise<CartItemType[]> {
+export async function getAllCartItems(auth:boolean):Promise<CartItemType[]> {
 
-	const isLoggedIn = true;
 	let cartItems : CartItemType[];
+	console.log(auth);
 
 	try{
 		cartItems = await getCartItems();
-		return isLoggedIn? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+		return auth? cartItems : JSON.parse(localStorage.getItem('cartitems'));
 	}
 	catch(err){
 		console.log(err);
 	}
 	
-	return isLoggedIn? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+	return auth? cartItems : JSON.parse(localStorage.getItem('cartitems'));
 }
 
 async function removeItemFromCart(cartId:number){
@@ -243,11 +243,13 @@ export const purgeClasses = (classNames: string): string => {
 
 export const handleAddProductToCart = (
 	product: Product,
+	user: AuthUser,
 	dispatch: React.Dispatch<UIAction>,
 ) => {
 	dispatch({
 		type: 'ADD_PRODUCT_TO_CART',
 		payload: product,
+		authUser:user,
 	});
 	addProduct(product);
 };
@@ -266,6 +268,7 @@ export const handleAddBikeToCart = (
 export const addNewCartItem = (
 	cartItems: CartItemType[],
 	newItem: Product,
+	user: AuthUser,
 ): CartItemType[] => {
 	
 	const filteredCartItems = cartItems.filter(
@@ -276,6 +279,7 @@ export const addNewCartItem = (
 	if (filteredCartItems.length === 0) {
 		const cartItem: CartItem = {
 			id: newItem.id,
+			Users_permissions_user: user,
 			product: newItem,
 			productInstances: 1,
 		};

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const LoginButton = () => {
-	const { isAuthenticated, logout } = useContext<AuthState>(AuthContext);
+	const { isAuthenticated, logout} = useContext<AuthState>(AuthContext);
 	
 	return (<>
 		{isAuthenticated() ? (

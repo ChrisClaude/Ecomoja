@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {User as AuthUser} from '@/hooks/context/AuthContext';
+
 
 export type User = {
 	username: string;
@@ -12,7 +14,7 @@ export type UserLogin = {
 }
 
 export type UIState = {
-	user: User | null;
+	user?: AuthUser;
 	isShopByCategoryCollapsed: boolean;
 	cartItems: CartItem[];
 	wishList?: Product[];
@@ -38,6 +40,7 @@ export type BikeCartItem = {
 export type CartItem = {
 	/** id: Items are expected to have the same id as the one of its product instance */
 	id: number;
+	Users_permissions_user?: AuthUser;
 	product: Product;
 	productInstances: number;
 };
@@ -45,7 +48,8 @@ export type CartItem = {
 export type BackendCart = {
 	data:{
 		id: number;
-		products: number;
+		users_permissions_user: number;
+		product: number;
 		quantity: number;
 	};
 }
@@ -73,6 +77,7 @@ type AddBikeToCart = {
 type AddProductToCart = {
 	type: 'ADD_PRODUCT_TO_CART';
 	payload: Product;
+	authUser: AuthUser;
 };
 
 type RemoveProductFromCart = {
@@ -109,7 +114,7 @@ type ResetModal = {
 
 type SetCurrentUser = {
 	type: 'SET_CURRENT_USER';
-	payload: User;
+	payload: AuthUser;
 };
 
 export type UIAction =

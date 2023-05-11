@@ -17,6 +17,8 @@ import { UIContext } from '@/hooks/context/UIContext';
 import Button from '@/components/common/Button';
 import s from './ProductItem.module.scss';
 import { Product } from '@/types/AppTypes';
+import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+import { useContext } from 'react';
 
 type ProductProps = { item: Product };
 
@@ -24,6 +26,8 @@ const ProductItem = ({ item }: ProductProps) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
 	const { id, name, image, currentPrice, oldPrice, rating, numberOfVotes } =
 		item;
+		const {isAuthenticated ,user } = useContext<AuthState>(AuthContext);
+		const auth = isAuthenticated(); 
 
 	return (
 		<Link href={`/products/${id}`}>
@@ -88,9 +92,9 @@ const ProductItem = ({ item }: ProductProps) => {
 										draggable: true,
 										progress: undefined,
 									});
-									handleAddProductToCart(item, dispatch);
-									const newCartItems = addNewCartItem(cartItems, item);
-									storeCartItems(newCartItems);
+									handleAddProductToCart(item, user, dispatch);
+									const newCartItems = addNewCartItem(cartItems, item, user);
+									storeCartItems(newCartItems, auth);
 								}}
 							>
 								Add to cart
