@@ -251,7 +251,6 @@ export const handleAddProductToCart = (
 		payload: product,
 		authUser:user,
 	});
-	addProduct(product);
 };
 
 export const handleAddBikeToCart = (
