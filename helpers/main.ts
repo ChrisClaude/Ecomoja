@@ -1,4 +1,4 @@
-import { isAuthenticated } from './../services/auth/auth';
+import { CartRequest } from './../services/EcomojaApiService';
 import * as React from 'react';
 import {
 	BackendCart,
@@ -8,13 +8,11 @@ import {
 	Product,
 	UIAction,
 } from '@/types/AppTypes';
-import { addProduct } from '@/services/ProductServices';
 import { addBike } from '@/services/BikeServices';
-import { useContext } from 'react';
-import AuthContext, {
-	AuthState,
+import {
 	User as AuthUser,
 } from '@/hooks/context/AuthContext';
+import { Api } from '@/services/EcomojaApiService';
 
 /**
  *  Method for querying and returning products all from backend */
@@ -128,25 +126,18 @@ const getBackendCartFormat = (cart: CartItem): BackendCart => ({
 });
 
 /**
- * Returns true or false if cartItem exits */
-async function cartItemExits(CartItem: CartItem, auth): Promise<boolean> {
-	const cartItems = await getAllCartItems(auth);
-	const cartItem: CartItem = cartItems.find(({ id }) => id === CartItem.id);
-	return cartItem ? true : false;
-}
-
-/**
  *
  * @param cart Saves a product to the user cart on the backend
  */
 export const saveProductToUserCart = (product: Product, user: any) => {
-	saveCartItems({
-		data: {
-			users_permissions_user: user.id,
-			product: product.id,
-			quantity: 1,
-		}
-	});
+	const cartRequest: CartRequest = {
+		data : {
+			product: product.id.toString(),
+			quantity: '1',
+			users_permissions_user: user.id.ToString(),
+	 }};
+	const api = new Api();
+	api.carts.postCarts(cartRequest);
 };
 
 /**

@@ -21,7 +21,8 @@ export interface Error {
 
 export interface CartRequest {
   data: {
-    products?: (number | string)[];
+    /** @example "string or id" */
+    product?: number | string;
     /**
      * @pattern ^\d*$
      * @example "123456789"
@@ -52,7 +53,7 @@ export interface CartListResponse {
 }
 
 export interface Cart {
-  products?: {
+  product?: {
     data?: {
       id?: number;
       attributes?: {
@@ -425,7 +426,7 @@ export interface Cart {
           };
         };
       };
-    }[];
+    };
   };
   /**
    * @pattern ^\d*$
