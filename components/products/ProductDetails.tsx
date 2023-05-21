@@ -6,9 +6,9 @@ import { toast } from 'react-toastify';
 import { Button } from '@/components/common/';
 import { UIContext } from '@/hooks/context/UIContext';
 import {
-	handleAddProductToCart,
+	addProductToCart,
 	isProductInArray,
-	storeCartItems,
+	storeCartItemsInLocalStorage,
 } from '@/helpers/main';
 import { Product } from '@/types/AppTypes';
 
@@ -39,7 +39,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 
 	React.useEffect(() => {
-		storeCartItems(cartItems);
+		storeCartItemsInLocalStorage(cartItems);
 	}, [cartItems]);
 
 	const handleAddToWishList = () => {
@@ -128,7 +128,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 							secondary
 							className="py-3"
 							onClick={() => {
-								handleAddProductToCart(product, dispatch);
+								addProductToCart(product, dispatch);
 								dispatch({ type: 'TOGGLE_MODAL' });
 							}}
 						>

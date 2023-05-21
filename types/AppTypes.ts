@@ -47,7 +47,7 @@ export type CartItem = {
 
 export type BackendCart = {
 	data:{
-		id: number;
+		id?: number;
 		users_permissions_user: number;
 		product: number;
 		quantity: number;

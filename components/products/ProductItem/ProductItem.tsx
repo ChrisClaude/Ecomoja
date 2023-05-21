@@ -7,10 +7,12 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { default as cn } from 'classnames';
+import { useContext } from 'react';
 import {
 	addNewCartItem,
-	handleAddProductToCart,
-	storeCartItems,
+	addProductToCart,
+	saveProductToUserCart,
+	storeCartItemsInLocalStorage,
 } from '@/helpers/main';
 import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 import { UIContext } from '@/hooks/context/UIContext';
@@ -18,7 +20,6 @@ import Button from '@/components/common/Button';
 import s from './ProductItem.module.scss';
 import { Product } from '@/types/AppTypes';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
-import { useContext } from 'react';
 
 type ProductProps = { item: Product };
 
@@ -26,8 +27,31 @@ const ProductItem = ({ item }: ProductProps) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
 	const { id, name, image, currentPrice, oldPrice, rating, numberOfVotes } =
 		item;
-		const {isAuthenticated ,user } = useContext<AuthState>(AuthContext);
-		const auth = isAuthenticated(); 
+	const {isAuthenticated ,user } = useContext<AuthState>(AuthContext);
+	const auth = isAuthenticated();
+
+	const handleAddProductToCart = (event) => {
+		event.preventDefault();
+		event.stopPropagation();
+		toast.success("You've added a new item to your cart", {
+			position: 'top-right',
+			autoClose: 1500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+		addProductToCart(item, user, dispatch);
+		const newCartItems = addNewCartItem(cartItems, item, user);
+		console.log("Logging from handleAddProductToCart", auth);
+
+		if (auth) {
+			saveProductToUserCart(item, user);
+		} else {
+			storeCartItemsInLocalStorage(newCartItems);
+		}
+	}
 
 	return (
 		<Link href={`/products/${id}`}>
@@ -80,22 +104,7 @@ const ProductItem = ({ item }: ProductProps) => {
 							/>
 							<Button
 								secondary
-								onClick={(event) => {
-									event.preventDefault();
-									event.stopPropagation();
-									toast.success("You've added a new item to your cart", {
-										position: 'top-right',
-										autoClose: 1500,
-										hideProgressBar: false,
-										closeOnClick: true,
-										pauseOnHover: true,
-										draggable: true,
-										progress: undefined,
-									});
-									handleAddProductToCart(item, user, dispatch);
-									const newCartItems = addNewCartItem(cartItems, item, user);
-									storeCartItems(newCartItems, auth);
-								}}
+								onClick={handleAddProductToCart}
 							>
 								Add to cart
 							</Button>

@@ -3,17 +3,17 @@ import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItems, isProductInArray } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 	const {isAuthenticated} = useContext<AuthState>(AuthContext);
-		const auth = isAuthenticated(); 
-	
+		const auth = isAuthenticated();
+
 	const handleAddProductToWishList = () => {
 		const check = isProductInArray(cartItem.product, wishList);
-		
+
 		if (check){
 			toast.warn("The product is already added to your wish list", {
 				position: 'top-right',
@@ -26,7 +26,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			});
 			return;
 		}
-		
+
 		dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: cartItem.product });
 
 		toast.info("You've added a new item to your wishlist", {
@@ -45,12 +45,12 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			type: 'REMOVE_PRODUCT_FROM_CART',
 			payload: cartItem.product,
 		});
-	
+
 
 		removeCartItem(cartItems, cartItem.product.id)
 			.then((items)=>{
 				const newCartItems = items;
-				storeCartItems(newCartItems, auth);
+				storeCartItemsInLocalStorage(newCartItems, auth);
 			})
 			.catch((err) => {
 				console.log(err);
