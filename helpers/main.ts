@@ -134,7 +134,7 @@ export const saveProductToUserCart = (product: Product, user: any) => {
 		data : {
 			product: product.id.toString(),
 			quantity: '1',
-			users_permissions_user: user.id.ToString(),
+			users_permissions_user: user.id.toString(),
 	 }};
 	const api = new Api();
 	api.carts.postCarts(cartRequest);
