@@ -10,7 +10,7 @@ export default async (req, res) => {
 
 		const { token } = cookie.parse(req.headers.cookie);
 
-		const strapiRes = await fetch(`${API_URL}/api/users/me`, {
+		const strapiRes = await fetch(`${API_URL}/users/me`, {
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${token}`,

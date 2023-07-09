@@ -1,4 +1,3 @@
-import { CartRequest } from './../services/EcomojaApiService';
 import * as React from 'react';
 import {
 	BackendCart,
@@ -12,7 +11,9 @@ import { addBike } from '@/services/BikeServices';
 import {
 	User as AuthUser,
 } from '@/hooks/context/AuthContext';
-import { Api } from '@/services/EcomojaApiService';
+import { NEXT_URL } from '@/config/index';
+import { CartRequest } from '@/services/ApiService';
+
 
 /**
  *  Method for querying and returning products all from backend */
@@ -129,15 +130,23 @@ const getBackendCartFormat = (cart: CartItem): BackendCart => ({
  *
  * @param cart Saves a product to the user cart on the backend
  */
-export const saveProductToUserCart = (product: Product, user: any) => {
+export const saveProductToUserCart = async (product: Product, user: any) => {
 	const cartRequest: CartRequest = {
 		data : {
 			product: product.id.toString(),
 			quantity: '1',
 			users_permissions_user: user.id.toString(),
 	 }};
-	const api = new Api();
-	api.carts.postCarts(cartRequest);
+
+	fetch(`${NEXT_URL}/api/cart`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(cartRequest),
+	})
+	 .then(res => res.json())
+	 .catch(err => console.log(err));
 };
 
 /**
