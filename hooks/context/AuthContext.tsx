@@ -14,7 +14,7 @@ export type AuthState = {
 export type User = {
 	id: number;
 	username: string;
-	email: string; 
+	email: string;
 	provider: string;
 	confirmed: string;
 	blocked: string;
@@ -32,7 +32,6 @@ export const AuthProvider = ({ children }) => {
 
 	const checkIfUserLoggedIn = useCallback(async () => {
 		const res = await fetch(`${NEXT_URL}/api/user`);
-		console.log(res);
 		const data = await res.json();
 		if (res.ok) {
 			setUser(data.user);
@@ -106,7 +105,7 @@ export const AuthProvider = ({ children }) => {
 			router.push('/');
 		}
 	};
-	
+
 	// Check if user is authenticated
 	const isAuthenticated = () => !!user;
 

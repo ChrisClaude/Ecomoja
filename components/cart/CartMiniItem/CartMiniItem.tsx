@@ -2,21 +2,24 @@ import * as React from 'react';
 import Image from 'next/image';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItems } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage } from '@/helpers/main';
+import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
+	const {isAuthenticated} = React.useContext<AuthState>(AuthContext);
+		const auth = isAuthenticated();
 
 	const handleOnRemoveCartItem = () => {
 		dispatch({
 			type: 'REMOVE_PRODUCT_FROM_CART',
 			payload: cartItem.product,
 		});
-		
-		removeCartItem(cartItems, cartItem.product.id)
+
+		removeCartItem(cartItems, cartItem.product.id, auth)
 		.then((items)=>{
 			const newCartItems = items;
-			storeCartItems(newCartItems);
+			storeCartItemsInLocalStorage(newCartItems, auth);
 		})
 		.catch((err) => {
 			console.log(err);

@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/common';
 import { UIContext } from '@/hooks/context/UIContext';
-import { handleAddProductToCart } from '@/helpers/main';
+import { addProductToCart } from '@/helpers/main';
 import { Product } from '@/types/AppTypes';
 
 type WishListItemProps = { product: Product };
@@ -71,7 +71,7 @@ const WishListItem = ({ product }: WishListItemProps) => {
 							secondary
 							className="w-full mb-2 bg-secondary lg:w-52"
 							onClick={() => {
-								handleAddProductToCart(product, dispatch);
+								addProductToCart(product, dispatch);
 								dispatch({ type: 'TOGGLE_MODAL' });
 							}}
 						>

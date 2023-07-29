@@ -7,36 +7,44 @@ import {
 	Product,
 	UIAction,
 } from '@/types/AppTypes';
-import { addProduct } from '@/services/ProductServices';
 import { addBike } from '@/services/BikeServices';
+import {
+	User as AuthUser,
+} from '@/hooks/context/AuthContext';
+import { NEXT_URL } from '@/config/index';
+import { CartRequest } from '@/services/ApiService';
 
 
 /**
  *  Method for querying and returning products all from backend */
-export async function getAllProducts():Promise<Product[]>{
-
+export async function getAllProducts(): Promise<Product[]> {
 	let products: Product[];
 
-	try{
-		const response = await fetch('http://localhost:1337/api/products?populate=*')
+	try {
+		const response = await fetch(
+			'http://localhost:1337/api/products?populate=*',
+		);
 		const result = await response.json();
-	
-		products = result.data.map((productItem): Product => ({
-			id: productItem.id,
-			name: productItem.attributes.name,
-			description: productItem.attributes.description,
-			image: productItem.attributes.images.data[0].attributes.formats.thumbnail.url,
-			currentPrice: productItem.attributes.price,
-			oldPrice: productItem.attributes.oldPrice,
-			rating: 4,
-			numberOfVotes: 90,
-			categories: ['Gardening'],
-			vendor: 'CMK',
-			isInStock: productItem.attributes.isInStock,
-			getCustomTypeName: () => 'Product',
-		}));
 
-	}catch(error){
+		products = result.data.map(
+			(productItem): Product => ({
+				id: productItem.id,
+				name: productItem.attributes.name,
+				description: productItem.attributes.description,
+				image:
+					productItem.attributes.images.data[0].attributes.formats.thumbnail
+						.url,
+				currentPrice: productItem.attributes.price,
+				oldPrice: productItem.attributes.oldPrice,
+				rating: 4,
+				numberOfVotes: 90,
+				categories: ['Gardening'],
+				vendor: 'CMK',
+				isInStock: productItem.attributes.isInStock,
+				getCustomTypeName: () => 'Product',
+			}),
+		);
+	} catch (error) {
 		console.log(error);
 	}
 
@@ -45,63 +53,60 @@ export async function getAllProducts():Promise<Product[]>{
 
 /**
  *  Method for storing cart Items to the backend */
-async function SaveCartItems(backendCartItem:BackendCart){
+async function saveCartItems(backendCartItem: BackendCart) {
 	try {
-	
-	  const response = await fetch("http://localhost:1337/api/carts", {
-			method: "POST", 
+		await fetch("http://localhost:1337/api/carts", {
+			method: "POST",
 			headers: {
 		  "Content-Type": "application/json",
 			},
 			body: JSON.stringify(backendCartItem),
-	  });
-  
+		});
 	} catch (error) {
-	  console.error("Error:", error);
+		console.error('Error:', error);
 	}
 }
 
 /* Method for creating cart Items */
-async function recreateCartItems(cartItemsAPI):Promise<CartItemType[]>{
-
+async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 	const cartItems: CartItemType[] = [];
 
-	try{
+	try {
 		const products: Product[] = await getAllProducts();
-		
-		cartItemsAPI.data.forEach((productItem) => {
 
-			const product: Product = products.find(({ id }) => 
-				id === productItem.attributes.products.data[0].id);
+		cartItemsAPI.data.forEach((productItem) => {
+			const product: Product = products.find(
+				({ id }) => id === productItem.attributes.products.data[0].id,
+			);
 
 			cartItems.push({
-				id:productItem.id, product , productInstances:productItem.attributes.quantity
+				id: productItem.id,
+				Users_permissions_user: productItem.attributes.user,
+				product,
+				productInstances: productItem.attributes.quantity,
 			});
-		
 		});
-
-	}catch(err){
-		console.log(err);
+	} catch (err) {
+		console.log("An error occurred while recreating cart items");
 	}
 
 	return cartItems;
-
 }
 
 /**
  *  Method for getting all cart Items */
-async function getCartItems():Promise<CartItemType[]>{
-
+async function getCartItems(): Promise<CartItemType[]> {
 	let cartItems: CartItemType[] = [];
 
 	try {
-	  const cartAPIResponse = await fetch("http://localhost:1337/api/carts?populate=*");
-	  const cartAPI = await cartAPIResponse.json();
-	  const items = await recreateCartItems(cartAPI);
-	  cartItems = items;
-	} 
-	catch (error) {
-	  console.error("Error:", error);
+		const cartAPIResponse = await fetch(
+			'http://localhost:1337/api/carts?populate=*',
+		);
+		const cartAPI = await cartAPIResponse.json();
+		const items = await recreateCartItems(cartAPI);
+		cartItems = items;
+	} catch (error) {
+		console.error('Error:', error);
 	}
 
 	return cartItems;
@@ -112,56 +117,46 @@ async function getCartItems():Promise<CartItemType[]>{
  * @param cart the cart array containing the user selected items
  */
 
-const getBackendCartFormat = (cart: CartItem):BackendCart => 
-({
-		data:{
-			id: cart.id,
-			products: cart.product.id,
-			quantity: cart.productInstances,
-		},
+const getBackendCartFormat = (cart: CartItem): BackendCart => ({
+	data: {
+		id: cart.id,
+		users_permissions_user: cart.Users_permissions_user.id,
+		product: cart.product.id,
+		quantity: cart.productInstances,
+	},
 });
 
 /**
- * Returns true or false if cartItem exits */
-async function cartItemExits(CartItem:CartItem):Promise<boolean>{
-	const cartItems = await getAllCartItems();
-	const cartItem: CartItem = cartItems.find(({ id }) => 
-				id === CartItem.id);
-    return cartItem? true:false;
-}
+ *
+ * @param cart Saves a product to the user cart on the backend
+ */
+export const saveProductToUserCart = async (product: Product, user: any) => {
+	const cartRequest: CartRequest = {
+		data : {
+			product: product.id.toString(),
+			quantity: '1',
+			users_permissions_user: user.id.toString(),
+	 }};
+
+	fetch(`${NEXT_URL}/api/cart`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(cartRequest),
+	})
+	 .then(res => res.json())
+	 .catch(err => console.log(err));
+};
 
 /**
- * 
- * @param cart Store Items to the backend or localStorage if user is logged in
+ *
+ * @param cart Store Items to the backend
  */
-export const storeCartItems = (cart: CartItemType[]) => {
-
-	const isLoggedIn = true;
-	
-	if(isLoggedIn && cart !== null)
-	{
-		cart.forEach( async (item) => {
-
-			  try{
-				const itemExists = await cartItemExits(item);
-			
-				if(!itemExists){	
-					const backendCartItem = getBackendCartFormat(item);
-					await SaveCartItems(backendCartItem);
-				}
-			  }
-			  catch(err){
-				console.log(err);
-			  }
-
-		});
-
-	}
-	else{
-		localStorage.setItem('cartitems', JSON.stringify(cart));
-	}
-
+export const storeCartItemsInLocalStorage = (cart: CartItemType[]) => {
+	localStorage.setItem('cartitems', JSON.stringify(cart));
 };
+
 
 /**
  * Removes cart state from local storage
@@ -173,28 +168,26 @@ export const removeCartFromLocalStorage = () => {
 /**
  * Returns car items state from local storage or Backend if it exists else returns null
  */
-export async function getAllCartItems():Promise<CartItemType[]> {
+export async function getAllCartItems(auth: boolean): Promise<CartItemType[]> {
+	let cartItems: CartItemType[];
 
-	const isLoggedIn = true;
-	let cartItems : CartItemType[];
-
-	try{
+	try {
 		cartItems = await getCartItems();
-		return isLoggedIn? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+		return auth ? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+	} catch (err) {
+		console.error(err);
 	}
-	catch(err){
-		console.log(err);
-	}
-	
-	return isLoggedIn? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+
+	return auth ? cartItems : JSON.parse(localStorage.getItem('cartitems'));
 }
 
-async function removeItemFromCart(cartId:number){
-	try{
-		const deletedcart = await fetch(`http://localhost:1337/api/carts/${cartId}`,
-		{ method: 'DELETE' });
-	}
-	catch(err){
+async function removeItemFromCart(cartId: number) {
+	try {
+		const deletedcart = await fetch(
+			`http://localhost:1337/api/carts/${cartId}`,
+			{ method: 'DELETE' },
+		);
+	} catch (err) {
 		console.log(err);
 	}
 }
@@ -241,15 +234,16 @@ export const purgeClasses = (classNames: string): string => {
 	return '';
 };
 
-export const handleAddProductToCart = (
+export const addProductToCart = (
 	product: Product,
+	user: AuthUser,
 	dispatch: React.Dispatch<UIAction>,
 ) => {
 	dispatch({
 		type: 'ADD_PRODUCT_TO_CART',
 		payload: product,
+		authUser: user,
 	});
-	addProduct(product);
 };
 
 export const handleAddBikeToCart = (
@@ -266,8 +260,8 @@ export const handleAddBikeToCart = (
 export const addNewCartItem = (
 	cartItems: CartItemType[],
 	newItem: Product,
+	user: AuthUser,
 ): CartItemType[] => {
-	
 	const filteredCartItems = cartItems.filter(
 		(cartItem) => cartItem.id === newItem.id,
 	);
@@ -276,6 +270,7 @@ export const addNewCartItem = (
 	if (filteredCartItems.length === 0) {
 		const cartItem: CartItem = {
 			id: newItem.id,
+			Users_permissions_user: user,
 			product: newItem,
 			productInstances: 1,
 		};
@@ -288,43 +283,43 @@ export const addNewCartItem = (
 
 /**
  * Remove cart from state before async removeCartItem() function finishes
-*/
+ */
 export const removeStateCartItem = (
 	cartItems: CartItemType[],
 	id: number,
-): CartItemType[] => cartItems !== null ? cartItems.filter((cartItem) => cartItem.id !== id) : [];
+): CartItemType[] =>
+	cartItems !== null ? cartItems.filter((cartItem) => cartItem.id !== id) : [];
 
 /**
  * Remove cart from backend
-*/
+ */
 export async function removeCartItem(
 	cartItems: CartItemType[],
 	product_id: number,
-): Promise<CartItemType[]>{
-	
+): Promise<CartItemType[]> {
 	const isLoggedIn = true;
 	let usercartItems: CartItemType[];
-	
-	try{
-		const cartItem: CartItem = cartItems.find(({ product }) => 
-		product.id === product_id);
 
-		if(cartItem !== null && isLoggedIn){
+	try {
+		const cartItem: CartItem = cartItems.find(
+			({ product }) => product.id === product_id,
+		);
+
+		if (cartItem !== null && isLoggedIn) {
 			const deletedcartItem = await removeItemFromCart(cartItem.product.id);
 			usercartItems = await getCartItems();
 			return usercartItems;
 		}
-		
-		return cartItems.filter((cartItem) => cartItem.product.id !== product_id);
 
-	}
-	catch(err){
+		return cartItems.filter((cartItem) => cartItem.product.id !== product_id);
+	} catch (err) {
 		console.log(err);
 	}
 
-	return isLoggedIn? usercartItems : cartItems.filter((cartItem) => cartItem.id !== product_id);
-
-};
+	return isLoggedIn
+		? usercartItems
+		: cartItems.filter((cartItem) => cartItem.id !== product_id);
+}
 
 /**
  * This method finds if a product exists in a product array. It returns true if the product is found, returns false otherwise.
