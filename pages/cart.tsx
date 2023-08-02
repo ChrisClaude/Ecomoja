@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import { default as cn } from 'classnames';
 import { UIContext } from '@/hooks/context/UIContext';
 import { CartItem } from '@/components/cart';
@@ -59,11 +58,27 @@ const Cart = () => {
 								R {calculateCartTotal(cartItems)}
 							</span>
 						</div>
-						<Link href="#" passHref>
-							<Button secondary as="a" className="w-full mt-3">
-								Proceed to checkout
+						<form action="https://www.payfast.co.za/eng/process" method="post">
+							<input type="hidden" name="merchant_id" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_ID} />
+							<input type="hidden" name="merchant_key" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_KEY} />
+
+							{/* TODO: Add the following */}
+							{/* <input type="hidden" name="return_url" value="https://www.example.com/success" /> */}
+							{/* <input type="hidden" name="cancel_url" value="https://www.example.com/cancel" /> */}
+							{/* <input type="hidden" name="notify_url" value="https://www.example.com/notify" /> */}
+							<input type="hidden" name="amount" value={calculateCartTotal(cartItems)} />
+
+							{/* <input type="hidden" name="name_first" value="John" /> */}
+							{/* <input type="hidden" name="name_last" value="Doe" /> */}
+							{/* <input type="hidden" name="email_address" value="john@doe.com" /> */}
+							{/* <input type="hidden" name="cell_number" value="0823456789" /> */}
+
+							{/* TODO: Test product should be replaced with an order number */}
+							<input type="hidden" name="item_name" value="Test Product" />
+							<Button secondary type="submit" className="w-full mt-3">
+								Pay Now
 							</Button>
-						</Link>
+						</form>
 					</aside>
 				</div>
 			</section>
