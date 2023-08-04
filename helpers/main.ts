@@ -70,13 +70,12 @@ async function saveCartItems(backendCartItem: BackendCart) {
 /* Method for creating cart Items */
 async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 	const cartItems: CartItemType[] = [];
-
+	console.log(cartItemsAPI.response);
 	try {
 		const products: Product[] = await getAllProducts();
-
-		cartItemsAPI.data.forEach((productItem) => {
+		cartItemsAPI.response.data.forEach((productItem) => {
 			const product: Product = products.find(
-				({ id }) => id === productItem.attributes.products.data[0].id,
+				({ id }) => id === productItem.id,
 			);
 
 			cartItems.push({
@@ -87,7 +86,7 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 			});
 		});
 	} catch (err) {
-		console.log("An error occurred while recreating cart items");
+		console.log(err.message);
 	}
 
 	return cartItems;
@@ -99,9 +98,13 @@ async function getCartItems(): Promise<CartItemType[]> {
 	let cartItems: CartItemType[] = [];
 
 	try {
-		const cartAPIResponse = await fetch(
-			'http://localhost:1337/api/carts?populate=*',
-		);
+		const cartAPIResponse = await fetch(`${NEXT_URL}/api/cart?id=${1}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+
 		const cartAPI = await cartAPIResponse.json();
 		const items = await recreateCartItems(cartAPI);
 		cartItems = items;
@@ -146,7 +149,7 @@ export const saveProductToUserCart = async (product: Product, user: any) => {
 		body: JSON.stringify(cartRequest),
 	})
 	 .then(res => res.json())
-	 .catch(err => console.log(err));
+	 .catch(err => console.log(err.message));
 };
 
 /**
