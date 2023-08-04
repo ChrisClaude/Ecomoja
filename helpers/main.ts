@@ -70,19 +70,18 @@ async function saveCartItems(backendCartItem: BackendCart) {
 /* Method for creating cart Items */
 async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 	const cartItems: CartItemType[] = [];
-	console.log(cartItemsAPI.response);
 	try {
 		const products: Product[] = await getAllProducts();
-		cartItemsAPI.response.data.forEach((productItem) => {
+		cartItemsAPI.response.forEach((productItem) => {
 			const product: Product = products.find(
-				({ id }) => id === productItem.id,
+				({ id }) => id === productItem.product.id,
 			);
 
 			cartItems.push({
 				id: productItem.id,
-				Users_permissions_user: productItem.attributes.user,
+				Users_permissions_user: productItem.users_permissions_user,
 				product,
-				productInstances: productItem.attributes.quantity,
+				productInstances: productItem.quantity,
 			});
 		});
 	} catch (err) {
@@ -94,20 +93,23 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 
 /**
  *  Method for getting all cart Items */
-async function getCartItems(): Promise<CartItemType[]> {
+async function getCartItems(userId:number): Promise<CartItemType[]> {
 	let cartItems: CartItemType[] = [];
 
 	try {
-		const cartAPIResponse = await fetch(`${NEXT_URL}/api/cart?id=${1}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
+		if(userId){
+			const cartAPIResponse = await fetch(`${NEXT_URL}/api/cart?id=${userId}`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+	
+			const cartAPI = await cartAPIResponse.json();
+			const items = await recreateCartItems(cartAPI);
+			cartItems = items;
+		}
 
-		const cartAPI = await cartAPIResponse.json();
-		const items = await recreateCartItems(cartAPI);
-		cartItems = items;
 	} catch (error) {
 		console.error('Error:', error);
 	}
@@ -171,17 +173,20 @@ export const removeCartFromLocalStorage = () => {
 /**
  * Returns car items state from local storage or Backend if it exists else returns null
  */
-export async function getAllCartItems(auth: boolean): Promise<CartItemType[]> {
+export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 	let cartItems: CartItemType[];
 
 	try {
-		cartItems = await getCartItems();
-		return auth ? cartItems : JSON.parse(localStorage.getItem('cartitems'));
+		if(user){
+			cartItems = await getCartItems(user.id);
+			return cartItems;
+		}
+		else{
+			return JSON.parse(localStorage.getItem('cartitems'));
+		}
 	} catch (err) {
 		console.error(err);
 	}
-
-	return auth ? cartItems : JSON.parse(localStorage.getItem('cartitems'));
 }
 
 async function removeItemFromCart(cartId: number) {
@@ -310,7 +315,7 @@ export async function removeCartItem(
 
 		if (cartItem !== null && isLoggedIn) {
 			const deletedcartItem = await removeItemFromCart(cartItem.product.id);
-			usercartItems = await getCartItems();
+			//usercartItems = await getCartItems();
 			return usercartItems;
 		}
 
