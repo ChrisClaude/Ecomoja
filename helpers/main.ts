@@ -173,6 +173,7 @@ export const removeCartFromLocalStorage = () => {
 /**
  * Returns car items state from local storage or Backend if it exists else returns null
  */
+// eslint-disable-next-line consistent-return
 export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 	let cartItems: CartItemType[];
 
@@ -181,9 +182,9 @@ export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 			cartItems = await getCartItems(user.id);
 			return cartItems;
 		}
-		else{
-			return JSON.parse(localStorage.getItem('cartitems'));
-		}
+		
+		return JSON.parse(localStorage.getItem('cartitems'));
+		
 	} catch (err) {
 		console.error(err);
 	}
@@ -315,7 +316,7 @@ export async function removeCartItem(
 
 		if (cartItem !== null && isLoggedIn) {
 			const deletedcartItem = await removeItemFromCart(cartItem.product.id);
-			//usercartItems = await getCartItems();
+			// usercartItems = await getCartItems();
 			return usercartItems;
 		}
 

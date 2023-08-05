@@ -17,12 +17,12 @@ const Initiate = () => {
 				if(user){
 					const cartItems: CartItem[] = await getAllCartItems(user);
 					if (cartItems !== null) {
-					dispatch({ type: 'PATCH_CART', payload: cartItems });
+						dispatch({ type: 'PATCH_CART', payload: cartItems });
+					}
 				}
+			}catch(err){
+				console.log(err);
 			}
-		}catch(err){
-			console.log(err);
-		}
 
 		}
 		getCartItems();
