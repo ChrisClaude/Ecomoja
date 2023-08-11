@@ -98,7 +98,7 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 
 	try {
 		if(userId){
-			const cartAPIResponse = await fetch(`${NEXT_URL}/api/cart?id=${userId}`, {
+			const cartAPIResponse = await fetch(`${NEXT_URL}/api/getCartByUserId?id=${userId}`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
