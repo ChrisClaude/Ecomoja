@@ -220,12 +220,7 @@ export const calculateCartTotal = (cart: CartItemType[]): number => {
  * @param cart the cart array containing the user selected items
  */
 export const calculateNumberOfCartItems = (cart: CartItemType[]): number => {
-	let total = 0;
-
-	cart.forEach((item) => {
-		total += item.productInstances;
-	});
-
+	const total  = cart.length
 	return total;
 };
 
