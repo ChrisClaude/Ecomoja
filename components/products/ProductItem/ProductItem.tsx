@@ -47,7 +47,7 @@ const ProductItem = ({ item }: ProductProps) => {
 		console.log("Logging from handleAddProductToCart", auth);
 
 		if (auth) {
-			saveProductToUserCart(item, user);
+			saveProductToUserCart(item, user, cartItems);
 		} else {
 			storeCartItemsInLocalStorage(newCartItems);
 		}
