@@ -1,14 +1,15 @@
 import * as React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import { default as cn } from 'classnames';
 import { UIContext } from '@/hooks/context/UIContext';
+import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 import { CartItem } from '@/components/cart';
 import { calculateCartTotal, calculateNumberOfCartItems } from '@/helpers/main';
 import { Button } from '@/components/common';
 
 const Cart = () => {
 	const { cartItems, dispatch } = React.useContext(UIContext);
+	const { user } = React.useContext<AuthState>(AuthContext);
 
 	React.useEffect(
 		() =>
@@ -59,11 +60,42 @@ const Cart = () => {
 								R {calculateCartTotal(cartItems)}
 							</span>
 						</div>
-						<Link href="#" passHref>
-							<Button secondary as="a" className="w-full mt-3">
-								Proceed to checkout
-							</Button>
-						</Link>
+						{user && (
+							<form
+								action="https://www.payfast.co.za/eng/process"
+								method="post"
+							>
+								<input
+									type="hidden"
+									name="merchant_id"
+									value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_ID}
+								/>
+								<input
+									type="hidden"
+									name="merchant_key"
+									value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_KEY}
+								/>
+
+								{/* TODO: Add the following */}
+								{/* <input type="hidden" name="return_url" value="https://www.example.com/success" /> */}
+								{/* <input type="hidden" name="cancel_url" value="https://www.example.com/cancel" /> */}
+								{/* <input type="hidden" name="notify_url" value="https://www.example.com/notify" /> */}
+								<input
+									type="hidden"
+									name="amount"
+									value={calculateCartTotal(cartItems)}
+								/>
+
+								<input type="hidden" name="name_first" value={user.username} />
+								<input type="hidden" name="email_address" value={user.email} />
+
+								{/* TODO: Test product should be replaced with an order number */}
+								<input type="hidden" name="item_name" value="Test Product" />
+								<Button secondary type="submit" className="w-full mt-3">
+									Pay Now
+								</Button>
+							</form>
+						)}
 					</aside>
 				</div>
 			</section>
