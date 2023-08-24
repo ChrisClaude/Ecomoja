@@ -218,7 +218,10 @@ async function removeItemFromCart(cartId: number) {
  * @param cart the cart array containing the user selected items
  */
 export const calculateCartTotal = (cart: CartItemType[]): number => {
-	const total = cart.length
+	let total = 0;
+	cart.forEach((item) => {
+		total += item.product.currentPrice * item.productInstances;
+	});
 	return total;
 };
 
