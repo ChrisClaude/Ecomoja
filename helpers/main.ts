@@ -131,28 +131,40 @@ const getBackendCartFormat = (cart: CartItem): BackendCart => ({
 	},
 });
 
+const checkCartItem = (cart:CartItem[], newProduct:Product):boolean => {
+	const cartItem: CartItem = cart.find(
+		({ product }) => product === newProduct,
+	);
+	return !!cartItem; 
+}
+
 /**
  *
  * @param cart Saves a product to the user cart on the backend
  */
-export const saveProductToUserCart = async (product: Product, user: any) => {
-	const cartRequest: CartRequest = {
-		data : {
-			product: product.id.toString(),
-			quantity: '1',
-			users_permissions_user: user.id.toString(),
-	 }};
+export const saveProductToUserCart = async (product: Product, user: any, cartItems: CartItem[]) => {
+	const itemExists:boolean = checkCartItem(cartItems, product)
 
-	fetch(`${NEXT_URL}/api/cart`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(cartRequest),
-	})
-	 .then(res => res.json())
-	 .catch(err => console.log(err.message));
-};
+	if(!itemExists){
+		const cartRequest: CartRequest = {
+			data : {
+				product: product.id.toString(),
+				quantity: '1',
+				users_permissions_user: user.id.toString(),
+		 }};
+
+		 fetch(`${NEXT_URL}/api/cart`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(cartRequest),
+		})
+		 .then(res => res.json())
+		 .catch(err => console.log(err.message));
+	}// end if
+	// else update quantity
+}
 
 /**
  *
@@ -206,12 +218,7 @@ async function removeItemFromCart(cartId: number) {
  * @param cart the cart array containing the user selected items
  */
 export const calculateCartTotal = (cart: CartItemType[]): number => {
-	let total = 0;
-
-	cart.forEach((item) => {
-		total += item.product.currentPrice * item.productInstances;
-	});
-
+	const total = cart.length
 	return total;
 };
 
@@ -220,12 +227,7 @@ export const calculateCartTotal = (cart: CartItemType[]): number => {
  * @param cart the cart array containing the user selected items
  */
 export const calculateNumberOfCartItems = (cart: CartItemType[]): number => {
-	let total = 0;
-
-	cart.forEach((item) => {
-		total += item.productInstances;
-	});
-
+	const total  = cart.length
 	return total;
 };
 
