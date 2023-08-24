@@ -252,13 +252,13 @@ export const purgeClasses = (classNames: string): string => {
 
 export const addProductToCart = (
 	product: Product,
-	user: AuthUser,
 	dispatch: React.Dispatch<UIAction>,
 ) => {
 	dispatch({
 		type: 'ADD_PRODUCT_TO_CART',
 		payload: product,
-		authUser: user,
+		// TODO: review this
+		authUser: null,
 	});
 };
 

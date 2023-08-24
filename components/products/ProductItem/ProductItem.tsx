@@ -42,7 +42,7 @@ const ProductItem = ({ item }: ProductProps) => {
 			draggable: true,
 			progress: undefined,
 		});
-		addProductToCart(item, user, dispatch);
+		addProductToCart(item, dispatch);
 		const newCartItems = addNewCartItem(cartItems, item, user);
 		console.log("Logging from handleAddProductToCart", auth);
 
