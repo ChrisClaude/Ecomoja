@@ -22,7 +22,7 @@ const CartMini = () => {
 			</div>
 			<div className={cn(cartItems?{ hidden: cartItems.length === 0 }:"")}>
 				<div>
-				{cartItems? cartItems.map((item) => (
+					{cartItems? cartItems.map((item) => (
 						<CartMiniItem cartItem={item} key={item.id} />
 					)):""}
 				</div>

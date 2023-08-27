@@ -3,12 +3,9 @@ import Image from 'next/image';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
 import { removeCartItem, storeCartItemsInLocalStorage } from '@/helpers/main';
-import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
-	const {isAuthenticated} = React.useContext<AuthState>(AuthContext);
-		const auth = isAuthenticated();
 
 	const handleOnRemoveCartItem = () => {
 		dispatch({
@@ -16,14 +13,14 @@ const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			payload: cartItem.product,
 		});
 
-		removeCartItem(cartItems, cartItem.product.id, auth)
-		.then((items)=>{
-			const newCartItems = items;
-			storeCartItemsInLocalStorage(newCartItems, auth);
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+		removeCartItem(cartItems, cartItem.product.id)
+			.then((items)=>{
+				const newCartItems = items;
+				storeCartItemsInLocalStorage(newCartItems);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 
 	};
 	return (

@@ -9,7 +9,7 @@ import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 	const {isAuthenticated} = useContext<AuthState>(AuthContext);
-		const auth = isAuthenticated();
+	const auth = isAuthenticated();
 
 	const handleAddProductToWishList = () => {
 		const check = isProductInArray(cartItem.product, wishList);
