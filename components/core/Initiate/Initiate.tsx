@@ -1,16 +1,15 @@
-import * as React from 'react';
+import { useContext, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { getAllCartItems } from '@/helpers/main';
 import { UIContext } from '@/hooks/context/UIContext';
 import { CartItem } from '@/types/AppTypes';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
-import { useContext } from 'react';
 
 const Initiate = () => {
-	const { dispatch } = React.useContext(UIContext);
+	const { dispatch } = useContext(UIContext);
 	const { user } = useContext<AuthState>(AuthContext);
 
-	React.useEffect(() => {
+	useEffect(() => {
 
 		const getCartItems = async()=> {
 			try{
