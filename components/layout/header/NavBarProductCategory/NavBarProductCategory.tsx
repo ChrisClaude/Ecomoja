@@ -1,5 +1,5 @@
 /* eslint-disable spaced-comment */
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import Link from 'next/link';
 import { default as cn } from 'classnames';
@@ -25,7 +25,7 @@ const ProductCategoryList = ({
 			>
 				<span>{category.name}</span>
 				<span>
-					<FontAwesomeIcon icon="chevron-right" />
+					{/* <FontAwesomeIcon icon="chevron-right" /> */}
 				</span>
 				{category.subcategories.length > 0 && (
 					<>
@@ -73,7 +73,7 @@ const ShopCategory = () => {
 							<div className="flex items-center justify-between relative text-white bg-ecolap-gray py-3 px-5 rounded-t-md hover:bg-ecolap-gray-h">
 								Shop by Department
 								<span>
-									{isShopByCategoryCollapsed ? (
+									{/*isShopByCategoryCollapsed ? (
 										<FontAwesomeIcon
 											icon="chevron-up"
 											onClick={toggleShopBuCategory}
@@ -85,7 +85,7 @@ const ShopCategory = () => {
 											onClick={toggleShopBuCategory}
 											className="cursor-pointer"
 										/>
-									)}
+									)*/}
 								</span>
 							</div>
 						</div>
@@ -100,7 +100,7 @@ const ShopCategory = () => {
 								className="w-full block py-3 px-5 bg-ecolap-green text-white rounded-b-md hover:no-underline hover:text-white"
 							>
 								<span className="mr-1 text-base">
-									<FontAwesomeIcon icon={['far', 'clock']} />
+									{/* <FontAwesomeIcon icon={['far', 'clock']} /> */}
 								</span>
 								<span className="text-uppercase text-base font-bold">
 									Promotions
@@ -129,10 +129,10 @@ const NavBarProductCategory = () => {
 			{/*#region Mobile daily deals */}
 			<div className="px-2 flex items-center h-12 justify-between bg-secondary lg:px-16 lg:hidden">
 				<div>
-					<FontAwesomeIcon
+					{/* <FontAwesomeIcon
 						icon={['far', 'clock']}
 						className="text-white mr-1"
-					/>
+					/> */}
 					<a
 						href="#"
 						className="text-white hover:no-underline hover:text-white"
@@ -140,10 +140,8 @@ const NavBarProductCategory = () => {
 						<span className="text-uppercase">Promotions</span>
 					</a>
 				</div>
-				<Link href="/">
-					<a className="text-white font-weight-bold hover:no-underline hover:text-white">
+				<Link href="/" className="text-white font-weight-bold hover:no-underline hover:text-white">
 						View More
-					</a>
 				</Link>
 			</div>
 			{/*#endregion */}

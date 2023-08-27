@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { default as cn } from 'classnames';
 
 const Footer = ({className}: React.HTMLProps<HTMLDivElement>) => (
@@ -42,17 +42,17 @@ const Footer = ({className}: React.HTMLProps<HTMLDivElement>) => (
 					<ul className="flex lg:justify-between m-0 pl-0 overflow-hidden">
 						<li className="mr-2 mr-md-0">
 							<a href="#" className="inline-block w-8 text-3xl">
-								<FontAwesomeIcon icon={['fab', 'facebook']} />
+								{/* <FontAwesomeIcon icon={['fab', 'facebook']} /> */}
 							</a>
 						</li>
 						<li className="mr-2 mr-md-0">
 							<a href="#" className="inline-block w-8 text-3xl">
-								<FontAwesomeIcon icon={['fab', 'instagram-square']} />
+								{/* <FontAwesomeIcon icon={['fab', 'instagram-square']} /> */}
 							</a>
 						</li>
 						<li className="mr-2 mr-md-0">
 							<a href="#" className="inline-block w-8 text-3xl">
-								<FontAwesomeIcon icon={['fab', 'twitter-square']} />
+								{/* <FontAwesomeIcon icon={['fab', 'twitter-square']} /> */}
 							</a>
 						</li>
 					</ul>

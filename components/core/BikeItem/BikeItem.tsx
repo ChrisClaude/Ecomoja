@@ -17,8 +17,7 @@ const BikeItem = ({ item }: BikeProps) => {
 	const {dispatch } = React.useContext(UIContext);
 	const currentPrice = 985;
 	return (
-		<Link href={`/mobility/bikes/${item.id}`}>
-			<a
+		<Link href={`/mobility/bikes/${item.id}`}
 				className={cn(
 					'product-item block hover:text-gray-700 hover:no-underline',
 					s.ProductItemContainer,
@@ -71,7 +70,6 @@ const BikeItem = ({ item }: BikeProps) => {
 						</div>
 					</CardContent>
 				</Card>
-			</a>
 		</Link>
 	);
 };

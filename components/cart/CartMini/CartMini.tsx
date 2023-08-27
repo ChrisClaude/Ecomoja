@@ -39,7 +39,6 @@ const CartMini = () => {
 							<Button
 								secondary
 								className="w-1/2 hover:text-white hover:no-underline"
-								as="a"
 							>
 								<span className="material-icons text-base mr-1">
 									shopping_cart

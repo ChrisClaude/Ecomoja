@@ -9,7 +9,7 @@ import BikeDetails from '@/components/bikes/BikeDetails';
 import { Bike } from '@/types/AppTypes';
 
 const DynamicCartModal = dynamic(
-	() => import('../../../components/cart/CartModal'),
+	() => import('../../../components/cart/CartModal/CartModal'),
 );
 
 const BikeDetail = ({ bike }: { bike: Bike }) => {
@@ -73,7 +73,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
 	const { id } = context.params;
 	const bike = JSON.parse(JSON.stringify(getBike(+id)));
-	
+
 	return {
 		props: {
 			bike,

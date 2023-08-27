@@ -41,7 +41,6 @@ export async function getAllProducts(): Promise<Product[]> {
 				categories: ['Gardening'],
 				vendor: 'CMK',
 				isInStock: productItem.attributes.isInStock,
-				getCustomTypeName: () => 'Product',
 			}),
 		);
 	} catch (error) {
@@ -104,7 +103,7 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 					'Content-Type': 'application/json',
 				},
 			})
-	
+
 			const cartAPI = await cartAPIResponse.json();
 			const items = await recreateCartItems(cartAPI);
 			cartItems = items;
@@ -135,7 +134,7 @@ const checkCartItem = (cart:CartItem[], newProduct:Product):boolean => {
 	const cartItem: CartItem = cart.find(
 		({ product }) => product === newProduct,
 	);
-	return !!cartItem; 
+	return !!cartItem;
 }
 
 /**
@@ -194,9 +193,9 @@ export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 			cartItems = await getCartItems(user.id);
 			return cartItems;
 		}
-		
+
 		return JSON.parse(localStorage.getItem('cartitems'));
-		
+
 	} catch (err) {
 		console.error(err);
 	}

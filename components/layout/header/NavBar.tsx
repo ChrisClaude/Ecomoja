@@ -15,7 +15,7 @@ import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 const NavBar = () => {
 	const { dispatch, cartItems } = React.useContext(UIContext);
 	const { isAuthenticated, user } = React.useContext<AuthState>(AuthContext);
-	
+
 	const toggleDrawer = () => {
 		dispatch({ type: 'TOGGLE_MOBILE_MENU' });
 	};
@@ -35,10 +35,8 @@ const NavBar = () => {
 				</div>
 
 				<div className="flex">
-					<Link href="/">
-						<a className="flex items-center">
+					<Link href="/" className="flex items-center">
 							<Logo width={250} height={65} />
-						</a>
 					</Link>
 				</div>
 				<div className="hidden mx-3 lg:flex-1 lg:flex lg:items-center">
@@ -57,25 +55,22 @@ const NavBar = () => {
 							<LoginButton />
 						</li>
 						<li className="p-2">
-							<Link href="#">
-								<a className="whitespace-nowrap">Orders</a>
+							<Link href="#" className="whitespace-nowrap">Orders
 							</Link>
 						</li>
 						<li className="p-2 relative">
-							<Link href="#">
-								<a className="whitespace-nowrap">
+							<Link href="#" className="whitespace-nowrap">
 									<span>My Ecomoja</span>
 									<span className="ml-1">
 										<span>
-											<FontAwesomeIcon
+											{/* <FontAwesomeIcon
 												icon="sort-down"
 												className={styles['sort-down']}
-											/>
+											/> */}
 										</span>
 										{/* TODO: Add sort up icon */}
 										{/* <FontAwesomeIcon icon="sort-up" className={styles['sort-up']} /> */}
 									</span>
-								</a>
 							</Link>
 
 							<div className={styles['nav-expand']}>
@@ -83,7 +78,7 @@ const NavBar = () => {
 									{
 										isAuthenticated() && <li className="py-1 px-3">
 											<p>Signed in as {user.username}</p>
-										</li>	
+										</li>
 									}
 									<li className="py-1 px-3">
 										<a href="#">My Ecomoja</a>
@@ -115,13 +110,10 @@ const NavBar = () => {
 					</ul>
 					<ul className="flex items-center ml-1">
 						<li className="mr-2">
-							<Link href="/wishlist">
-								<a
-									href="#"
+							<Link href="/wishlist"
 									className="flex items-center justify-center text-white rounded-full w-8 h-8 text-base bg-red-500 hover:bg-red-600 hover:text-white hover:no-underline"
 								>
-									<FontAwesomeIcon icon="heart" />
-								</a>
+									{/* <FontAwesomeIcon icon="heart" /> */}
 							</Link>
 						</li>
 						<li>
@@ -135,14 +127,12 @@ const NavBar = () => {
 						className="h-8 p-1 text-base flex items-center justify-center"
 						type="button"
 					>
-						<FontAwesomeIcon icon="search" />
+						{/* <FontAwesomeIcon icon="search" /> */}
 					</button>
-					<Link href="/cart">
-						<a className="h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700">
+					<Link href="/cart"className="h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700">
 							<Badge badgeContent={cartItems.length} color="secondary">
 								<ShoppingCartIcon color="action" />
 							</Badge>
-						</a>
 					</Link>
 				</div>
 			</div>

@@ -5,7 +5,7 @@ import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const LoginButton = () => {
 	const { isAuthenticated, logout} = useContext<AuthState>(AuthContext);
-	
+
 	return (<>
 		{isAuthenticated() ? (
 			<button type='button' className='bg-transparent' onClick={logout}>
@@ -13,9 +13,7 @@ const LoginButton = () => {
 			</button>
 		) : (
 			<Link href='/login'>
-				<a>
 					Log in
-				</a>
 			</Link>
 		)}
 	</>);

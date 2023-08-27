@@ -1,7 +1,6 @@
 import '../scripts/wdyr';
 import * as React from 'react';
 import { AppProps } from 'next/app';
-import { SessionProvider } from 'next-auth/react';
 import '@/styles/styles.scss';
 import Layout from '@/components/layout/Layout';
 import { UIContext, UIProvider } from '@/hooks/context/UIContext';
@@ -22,11 +21,9 @@ const InitiateLayout = ({ children }: {children: React.ReactNode}) => {
 
 const MyApp = ({ Component,
 	pageProps: {
-		session,
 		...pageProps
 	},
 }: AppProps) => (
-	<SessionProvider session={session}>
 		<AuthProvider>
 			<UIProvider>
 				<MuiThemeProvider>
@@ -37,7 +34,6 @@ const MyApp = ({ Component,
 				</MuiThemeProvider>
 			</UIProvider>
 		</AuthProvider>
-	</SessionProvider>
 );
 
 export default MyApp;

@@ -19,10 +19,8 @@ const showCategories = ({ id, categories }: Product) => {
 		<div className="flex py-3 pr-4">
 			{categories.map((category, index) => (
 				<div key={`${category}`}>
-					<Link href="#">
-						<a className="text-primary" key={`${id}-${category}`}>
+					<Link href="#" className="text-primary" key={`${id}-${category}`}>
 							{category}
-						</a>
 					</Link>
 					{!(length === 1) && index !== lastElement ? (
 						<span className="mx-3">/</span>
@@ -90,8 +88,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 						<div>
 							<h3>{product.name}</h3>
 							<div className="mt-1">
-								<Link href="#">
-									<a className="text-primary">{product.vendor}</a>
+								<Link href="#" className="text-primary">{product.vendor}
 								</Link>
 							</div>
 							<div className="mt-1">{product.description}</div>
@@ -100,8 +97,8 @@ const ProductDetails = ({ product }: { product: Product }) => {
 								<span className="font-bold">
 									{product.isInStock ? 'In stock' : 'Out of Stock'}
 								</span>
-								<Link href="#">
-									<a className="text-primary">When do I get it?</a>
+								<Link href="#" className="text-primary">
+									When do I get it?
 								</Link>
 							</div>
 							<div className="mt-3">

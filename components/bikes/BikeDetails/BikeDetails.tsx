@@ -25,8 +25,7 @@ const BikeDetails = ({ bike }: { bike: Bike }) => (
 					<div>
 						<h3>{bike.name}</h3>
 						<div className="mt-1">
-							<Link href="#">
-								<a className="text-primary">BMW</a>
+							<Link href="#" className="text-primary">BMW
 							</Link>
 						</div>
 						<div className="mt-1">
@@ -52,8 +51,7 @@ const BikeDetails = ({ bike }: { bike: Bike }) => (
 						</div>
 						<div className="flex justify-between border-t-2 border-b-2 border-gray-300 border-solid py-3 mt-4">
 							<span className="font-bold">Available</span>
-							<Link href="#">
-								<a className="text-primary">When do I get it?</a>
+							<Link href="#" className="text-primary">When do I get it?
 							</Link>
 						</div>
 						<div className="mt-3">

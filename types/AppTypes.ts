@@ -14,7 +14,7 @@ export type UserLogin = {
 }
 
 export type UIState = {
-	user?: AuthUser;
+	user?: User;
 	isShopByCategoryCollapsed: boolean;
 	cartItems: CartItem[];
 	wishList?: Product[];
@@ -114,7 +114,7 @@ type ResetModal = {
 
 type SetCurrentUser = {
 	type: 'SET_CURRENT_USER';
-	payload: AuthUser;
+	payload: User;
 };
 
 export type UIAction =
@@ -167,10 +167,10 @@ export type Product = {
 	isInStock: boolean;
 	isFreeForDelivery?: boolean;
 	deliveryFees?: number;
-} & GetCustomTypeName;
+};
 
 export type Bike = {
 	id: number;
 	name: string;
 	image: string;
-} & GetCustomTypeName;
+};
