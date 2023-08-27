@@ -136,7 +136,9 @@ const Button = React.forwardRef(
 			},
 			variant,
 		);
-		const TagName = as || defaultElement;
+
+		// TODO: The following has to be improved
+		const TagName = as? 'a' : defaultElement;
 		// TODO: Currently if a user passes a classes such as py-4, the component will render classes with duplicate padding classes. This should be avoided
 		return (
 			<TagName className={cn(buttonStyling, className)} {...props} ref={ref}>
