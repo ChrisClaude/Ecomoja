@@ -3,10 +3,10 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { getProduct, getProducts } from '@/services/ProductServices';
 import { UIContext } from '@/hooks/context/UIContext';
 import ProductDetails from '@/components/products/ProductDetails';
 import { Product } from '@/types/AppTypes';
+import { getProduct, getProducts } from '@/services/ProductServices';
 
 const DynamicCartModal = dynamic(
 	() => import('../../components/cart/CartModal'),

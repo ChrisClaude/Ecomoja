@@ -5,7 +5,7 @@ import { UIContext } from '@/hooks/context/UIContext';
 import s from '@/components/cart/CartNavBarView/Cart.module.scss';
 import { calculateCartTotal } from '@/helpers/main';
 import { Button } from '@/components/common';
-import { CartMiniItem } from '@/components/cart';
+import CartMiniItem from '@/components/cart/CartItem';
 
 const CartMini = () => {
 	const { cartItems } = React.useContext(UIContext);

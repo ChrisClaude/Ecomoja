@@ -22,13 +22,11 @@ class MyDocument extends Document {
 					<link
 						rel="stylesheet"
 						type="text/css"
-						charSet="UTF-8"
 						href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&display=swap"
 					/>
 					<link
 						rel="stylesheet"
 						type="text/css"
-						charSet="UTF-8"
 						href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
 					/>
 					<link

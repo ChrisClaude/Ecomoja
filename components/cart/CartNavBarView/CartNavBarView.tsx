@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UIContext } from '@/hooks/context/UIContext';
-import { CartMini } from '@/components/cart';
+import CartMini from '../CartMini/CartMini';
 import s from './Cart.module.scss';
 
 const CartNavICon = () => {

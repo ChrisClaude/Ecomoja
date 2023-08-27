@@ -17,9 +17,9 @@ import {
 import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 import { UIContext } from '@/hooks/context/UIContext';
 import Button from '@/components/common/Button';
-import s from './ProductItem.module.scss';
 import { Product } from '@/types/AppTypes';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+import s from './ProductItem.module.scss';
 
 type ProductProps = { item: Product };
 

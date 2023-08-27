@@ -17,13 +17,13 @@ import {
 	faSortUp,
 	faStar,
 } from '@fortawesome/free-solid-svg-icons';
+import { LayoutProp } from '@/types/AppTypes';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { default as cn } from 'classnames';
 import { UIContext } from '@/hooks/context/UIContext';
+import Spinner from '@/components/common/Spinner';
 import Header from './header/Header';
 import Footer from './Footer';
-import { LayoutProp } from '@/types/AppTypes';
-import Spinner from '@/components/common/Spinner';
 
 library.add(
 	fab,
