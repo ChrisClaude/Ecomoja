@@ -13,7 +13,7 @@ const Login = () => {
 		dispatch,
 		layoutProp,
 	} = useContext(UIContext);
-	
+
 	const { login } = useContext<AuthState>(AuthContext);
 
 	const {
@@ -57,9 +57,7 @@ const Login = () => {
 			<div className='flex h-screen'>
 				<div className='flex flex-1 bg-gray-600 items-center justify-center'>
 					<Link href="/">
-						<a>
 							<Logo width={250} height={65} />
-						</a>
 					</Link>
 				</div>
 				<div className='flex-1 flex items-center'>
@@ -71,7 +69,7 @@ const Login = () => {
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className='mb-4'>
 								<TextField
-									error={errors.email}
+									error={!!errors.email}
 									fullWidth
 									id='email'
 									label='Email'
@@ -82,10 +80,10 @@ const Login = () => {
 							</div>
 							<div className='mb-6'>
 								<TextField
-									error={errors.password}
-									fullWidth 
-									id='password' 
-									label='Password' 
+									error={!!errors.password}
+									fullWidth
+									id='password'
+									label='Password'
 									variant='standard'
 									type='password'
 									helperText={errors.password && 'Incorrect entry.'}

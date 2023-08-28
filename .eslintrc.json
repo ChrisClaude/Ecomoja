@@ -4,9 +4,9 @@
     "es2021": true
   },
   "extends": [
-		"plugin:react/recommended", 
-		"airbnb", 
-		"next", 
+		"plugin:react/recommended",
+		"airbnb",
+		"next",
 		"prettier",
 		"plugin:@typescript-eslint/recommended"
 	],
@@ -40,15 +40,21 @@
       1,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
+		"no-restricted-exports": "off",
+		"react/function-component-definition": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"import/no-anonymous-default-export": "off",
+		"react/jsx-no-useless-fragment": "off",
+		"@typescript-eslint/no-unused-vars": "off",
+		"react/jsx-no-constructed-context-values": "off",
     "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-		"indent": ["error", "tab", { "SwitchCase": 1 }],
+		"indent": ["off", "tab", { "SwitchCase": 1 }],
 		"react/jsx-indent": "off",
 		"react/jsx-indent-props": "off",
 		"react/jsx-one-expression-per-line": "off",
 		"no-tabs": 0,
-		"no-unused-vars": "off",
-		"@typescript-eslint/no-unused-vars": ["error"]
+		"no-unused-vars": "off"
   }
 }

@@ -4,12 +4,12 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { toast } from 'react-toastify';
-import Link from 'next/link';
-import Button from '../../common/Button';
-import s from '@/components/products/ProductItem/ProductItem.module.scss';
 import { Bike } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
 import { handleAddBikeToCart} from '@/helpers/main';
+import Link from 'next/link';
+import s from '@/components/products/ProductItem/ProductItem.module.scss';
+import Button from '../../common/Button';
 
 type BikeProps = { item: Bike };
 
@@ -17,8 +17,7 @@ const BikeItem = ({ item }: BikeProps) => {
 	const {dispatch } = React.useContext(UIContext);
 	const currentPrice = 985;
 	return (
-		<Link href={`/mobility/bikes/${item.id}`}>
-			<a
+		<Link href={`/mobility/bikes/${item.id}`}
 				className={cn(
 					'product-item block hover:text-gray-700 hover:no-underline',
 					s.ProductItemContainer,
@@ -71,7 +70,6 @@ const BikeItem = ({ item }: BikeProps) => {
 						</div>
 					</CardContent>
 				</Card>
-			</a>
 		</Link>
 	);
 };

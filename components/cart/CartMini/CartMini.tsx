@@ -5,7 +5,7 @@ import { UIContext } from '@/hooks/context/UIContext';
 import s from '@/components/cart/CartNavBarView/Cart.module.scss';
 import { calculateCartTotal } from '@/helpers/main';
 import { Button } from '@/components/common';
-import { CartMiniItem } from '@/components/cart';
+import CartMiniItem from '@/components/cart/CartItem';
 
 const CartMini = () => {
 	const { cartItems } = React.useContext(UIContext);
@@ -22,7 +22,7 @@ const CartMini = () => {
 			</div>
 			<div className={cn(cartItems?{ hidden: cartItems.length === 0 }:"")}>
 				<div>
-				{cartItems? cartItems.map((item) => (
+					{cartItems? cartItems.map((item) => (
 						<CartMiniItem cartItem={item} key={item.id} />
 					)):""}
 				</div>
@@ -39,7 +39,6 @@ const CartMini = () => {
 							<Button
 								secondary
 								className="w-1/2 hover:text-white hover:no-underline"
-								as="a"
 							>
 								<span className="material-icons text-base mr-1">
 									shopping_cart

@@ -30,9 +30,9 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		cartItems,
 		user,
 	} = React.useContext(UIContext);
-	
+
 	const router = useRouter();
-	
+
 	const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
 		if (
 			event.type === 'keydown' &&
@@ -44,7 +44,7 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 
 		dispatch({ type: 'TOGGLE_MOBILE_MENU' });
 	};
-	
+
 	const list = () => (
 		<Box
 			sx={{ width: 250 }}
@@ -53,11 +53,9 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		>
 			<List className='bg-white'>
 				<Link href='/'>
-					<a>
 						<ListItem button key='Home'>
 							<ListItemText primary='Home' />
 						</ListItem>
-					</a>
 				</Link>
 				<ListItem button key='My Ecomoja'>
 					<ListItemText primary='My Ecomoja' />
@@ -92,7 +90,6 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 			<Divider />
 			<List className='bg-white mt-6'>
 				<Link href='/cart'>
-					<a>
 						<ListItem button key='Cart'>
 							<ListItemIcon>
 								<ShoppingCartIcon className='text-secondary' />
@@ -100,17 +97,14 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 							<ListItemText primary='Cart' />
 							{`${cartItems.length} item(s)`}
 						</ListItem>
-					</a>
 				</Link>
 				<Link href='/wishlist'>
-					<a>
-						<ListItem button key='List'>
+						<ListItem>
 							<ListItemIcon>
 								<FavoriteIcon className='text-red-500' />
 							</ListItemIcon>
 							<ListItemText primary='List' />
 						</ListItem>
-					</a>
 				</Link>
 			</List>
 			<Divider />
@@ -130,16 +124,14 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 			className='bg-gray-200 h-full'
 		>
 			{!isAuthenticated() && <Box className='bg-white py-1'>
-				<Link href='/'>
-					<a className='flex items-center'>
+				<Link href='/' className='flex items-center'>
 						<Logo width={150} height={40} />
-					</a>
 				</Link>
 			</Box>}
 			{isAuthenticated() && <Box className='flex items-center bg-white py-3 px-3'>
 				<Avatar sx={{ bgcolor: green[500] }}>{user.username[0].toUpperCase()}</Avatar>
 				<span className='text-base ml-3 flex'>
-					{user.username.toUpperCase()}	
+					{user.username.toUpperCase()}
 				</span>
 				<button type='button' className="text-base ml-auto text-primary bold">
 					logout

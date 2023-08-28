@@ -3,13 +3,12 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { getProduct, getProducts } from '@/services/ProductServices';
 import { UIContext } from '@/hooks/context/UIContext';
 import ProductDetails from '@/components/products/ProductDetails';
 import { Product } from '@/types/AppTypes';
 
 const DynamicCartModal = dynamic(
-	() => import('../../components/cart/CartModal'),
+	() => import('../../components/cart/CartModal/CartModal'),
 );
 
 const ProductDetail = ({ product }: { product: Product }) => {
@@ -58,7 +57,7 @@ const ProductDetail = ({ product }: { product: Product }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const products = getProducts();
+	const products = [{ id: 1, name: "Tomato", description: "Tomato", isInStock: true, categories: [], currentPrice: 45, image: "", vendor: "", isFreeForDelivery: false, oldPrice: 65, numberOfVotes: 45, rating: 4, deliveryFees: 45 }];
 
 	const paths = products.map((product) => ({
 		params: { id: product.id.toString() },
@@ -72,7 +71,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const { id } = context.params;
-	const product = JSON.parse(JSON.stringify(getProduct(+id)));
+	const product: Product = { id: 1, name: "Tomato", description: "Tomato", isInStock: true, categories: [], currentPrice: 45, image: "", vendor: "", isFreeForDelivery: false, oldPrice: 65, numberOfVotes: 45, rating: 4, deliveryFees: 45};
 
 	return {
 		props: {

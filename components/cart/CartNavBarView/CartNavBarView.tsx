@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UIContext } from '@/hooks/context/UIContext';
-import { CartMini } from '@/components/cart';
+import CartMini from '../CartMini/CartMini';
 import s from './Cart.module.scss';
 
 const CartNavICon = () => {
@@ -12,7 +12,7 @@ const CartNavICon = () => {
 			href="#"
 			className="flex text-black items-center justify-center rounded-3xl w-12 h-8 bg-secondary hover:bg-green-800 hover:text-white hover:no-underline"
 		>
-			<FontAwesomeIcon icon="shopping-cart" className="w-6" />
+			{/* <FontAwesomeIcon icon="shopping-cart" className="w-6" /> */}
 			<span className="ml-1">{cartItems.length}</span>
 		</a>
 	);

@@ -1,4 +1,4 @@
-import * as qs from 'query-string';
+import queryString from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { User, UserLogin } from '@/types/AppTypes';
 
@@ -21,7 +21,7 @@ export const getDecodedToken = (token: string) => jwtDecode<JwtUser>(token as st
  * @param url url containing a jwt token under id_token url param
  */
 export const parseUrl = (url: string) => {
-	const parsedUrl = qs.parse(url);
+	const parsedUrl = queryString.parse(url);
 	const token = parsedUrl.id_token || null;
 	return token as string;
 };
@@ -72,10 +72,10 @@ export const getCurrentUser = (): User | null => {
 	if (token === null || token === 'null' || token === undefined) {
 		return null;
 	}
-	
+
 	const decoded = getDecodedToken(token as string);
 	const currentTime = Date.now() / 1000;
-	
+
 	if (decoded === null || decoded.exp < currentTime) {
 		return null;
 	}

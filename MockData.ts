@@ -16,7 +16,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 112,
@@ -31,7 +30,6 @@ export const products: Product[] = [
 		categories: ['Eco', 'Natural'],
 		vendor: 'Cougar',
 		isInStock: false,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 113,
@@ -45,7 +43,6 @@ export const products: Product[] = [
 		categories: ['Home land Decorate'],
 		vendor: 'KMB',
 		isInStock: false,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 114,
@@ -59,7 +56,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'WBx',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 115,
@@ -73,7 +69,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Crazee Sales',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 116,
@@ -87,7 +82,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 11234,
@@ -102,7 +96,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: false,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 15213,
@@ -116,7 +109,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eco services',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 1825414,
@@ -130,7 +122,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 110755,
@@ -144,7 +135,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 114731,
@@ -158,7 +148,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 115555555732,
@@ -173,7 +162,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 1186798563,
@@ -187,7 +175,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 116374,
@@ -201,7 +188,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 1157439670,
@@ -215,7 +201,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Cougar',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 11657681,
@@ -229,7 +214,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 119875,
@@ -244,7 +228,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 113637675879,
@@ -258,7 +241,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Crazee Style',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 114654875497,
@@ -272,7 +254,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 1167895,
@@ -286,7 +267,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 11497091,
@@ -300,7 +280,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 1160934462,
@@ -315,7 +294,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 117569703,
@@ -329,7 +307,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Cougar',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 113276474,
@@ -343,7 +320,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'CMK',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 	{
 		id: 1198745635,
@@ -357,7 +333,6 @@ export const products: Product[] = [
 		categories: ['Gardening'],
 		vendor: 'Eaglestack',
 		isInStock: true,
-		getCustomTypeName: getProductTypeName,
 	},
 ];
 
@@ -380,42 +355,35 @@ export const bikes: Bike[] = [
 		id: 18975,
 		name: 'BMW',
 		image: '/assets/mobility/bikes/16-inch-lowres-1.jpg',
-		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 189748,
 		name: 'E bike',
 		image: '/assets/mobility/bikes/E-bikes.jpg',
-		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 89612,
 		name: 'Mountain Bike',
 		image: '/assets/mobility/bikes/Mountain bike.jpg',
-		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 8961322,
 		name: 'City Bike',
 		image: '/assets/mobility/bikes/normal-fleet-bike.jpg',
-		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 8954612,
 		name: 'Road Bike',
 		image: '/assets/mobility/bikes/Road bike.png',
-		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 89279612,
 		name: 'Honda',
 		image: '/assets/mobility/bikes/16-inch-lowres-1.jpg',
-		getCustomTypeName: getBikeTypeName,
 	},
 	{
 		id: 89612,
 		name: 'Cool B',
 		image: '/assets/mobility/bikes/E-bikes.jpg',
-		getCustomTypeName: getBikeTypeName,
 	},
 ];

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { default as cn } from 'classnames';
 import { useContext } from 'react';
 import {
@@ -17,9 +17,9 @@ import {
 import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 import { UIContext } from '@/hooks/context/UIContext';
 import Button from '@/components/common/Button';
-import s from './ProductItem.module.scss';
 import { Product } from '@/types/AppTypes';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+import s from './ProductItem.module.scss';
 
 type ProductProps = { item: Product };
 
@@ -54,13 +54,10 @@ const ProductItem = ({ item }: ProductProps) => {
 	}
 
 	return (
-		<Link href={`/products/${id}`}>
-			<a
-				className={cn(
-					'product-item block hover:text-gray-700 hover:no-underline',
-					s.ProductItemContainer,
-				)}
-			>
+		<Link href={`/products/${id}`} className={cn(
+			'product-item block hover:text-gray-700 hover:no-underline',
+			s.ProductItemContainer,
+		)}>
 				<Card sx={{ maxWidth: 345 }} className="relative">
 					<CardMedia
 						component="img"
@@ -88,7 +85,7 @@ const ProductItem = ({ item }: ProductProps) => {
 							</div>
 							<div className="w-full flex-1 flex items-center justify-center mt-1">
 								<span className="mr-1">
-									<FontAwesomeIcon icon="star" className="text-yellow-500" />
+									{/* <FontAwesomeIcon icon="star" className="text-yellow-500" /> */}
 								</span>
 								<span className="mr-1">{rating}</span>
 								<span className="text-muted">({numberOfVotes})</span>
@@ -111,7 +108,6 @@ const ProductItem = ({ item }: ProductProps) => {
 						</div>
 					</CardContent>
 				</Card>
-			</a>
 		</Link>
 	);
 };
