@@ -11,7 +11,7 @@ import { addBike } from '@/services/BikeServices';
 import {
 	User as AuthUser,
 } from '@/hooks/context/AuthContext';
-import { NEXT_URL } from '@/config/index';
+import { NEXT_URL, API_URL } from '@/config/index';
 import { CartRequest } from '@/services/ApiService';
 
 
@@ -22,7 +22,7 @@ export async function getAllProducts(): Promise<Product[]> {
 
 	try {
 		const response = await fetch(
-			'http://localhost:1337/api/products?populate=*',
+			`${API_URL}/products?populate=*`,
 		);
 		const result = await response.json();
 
