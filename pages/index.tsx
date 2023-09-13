@@ -5,7 +5,14 @@ import {UIContext} from '@/hooks/context/UIContext';
 import {Banner} from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
 import {Product} from '@/types/AppTypes';
-import {getAllProducts} from '@/helpers/main';
+import {getEcoProducts} from '@/helpers/main';
+import { NEXT_URL } from '../config';
+
+export const getServerSideProps = (async (context) => {
+	const res = await fetch(`${NEXT_URL}/api/getAllProducts?populate=*`)
+	const allProducts = await res.json()
+	return { props: { allProducts } }
+  })
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -28,7 +35,7 @@ const slideImages: { id: string; image: string }[] = [
 	},
 ];
 
-export default function Home() {
+export default function Home({allProducts}) {
 	const {
 		dispatch,
 		layoutProp,
@@ -57,21 +64,10 @@ export default function Home() {
 
 	const [products, setProducts] = React.useState<Product[]>([]);
 
-	React.useEffect(
-		() => {
-			const loadAllProducts = async ():Promise<void> => {
-				try{
-					const ecoProducts:Product[] = await getAllProducts();
-					setProducts(ecoProducts);
-				}
-				catch(err){
-
-					console.log(err);
-				}
-			}
-			loadAllProducts();
-		},
-		[]);
+	React.useEffect(()=>{
+	const ecoProducts:Product[] = getEcoProducts(allProducts);
+	setProducts(ecoProducts);
+	},[])
 
 	return (
 		<>
@@ -79,7 +75,7 @@ export default function Home() {
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages}/>
-			<Catalogue catalogue={products} title="Groceries"/>
+			{products? <Catalogue catalogue={products} title="Groceries"/> : ""}
 			<FeaturedPartners/>
 		</>
 	);
