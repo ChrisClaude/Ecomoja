@@ -11,7 +11,8 @@ import { NEXT_URL } from '../config';
 export const getServerSideProps = (async (context) => {
 	const res = await fetch(`${NEXT_URL}/api/getAllProducts?populate=*`)
 	const allProducts = await res.json()
-	return { props: { allProducts } }
+	const ecoProducts:Product[] = getEcoProducts(allProducts);
+	return { props: { ecoProducts } }
   })
 
 const slideImages: { id: string; image: string }[] = [
@@ -35,7 +36,7 @@ const slideImages: { id: string; image: string }[] = [
 	},
 ];
 
-export default function Home({allProducts}) {
+export default function Home({ecoProducts}) {
 	const {
 		dispatch,
 		layoutProp,
@@ -62,12 +63,6 @@ export default function Home({allProducts}) {
 		[dispatch],
 	);
 
-	const [products, setProducts] = React.useState<Product[]>([]);
-
-	React.useEffect(()=>{
-	const ecoProducts:Product[] = getEcoProducts(allProducts);
-	setProducts(ecoProducts);
-	},[])
 
 	return (
 		<>
@@ -75,7 +70,7 @@ export default function Home({allProducts}) {
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages}/>
-			{products? <Catalogue catalogue={products} title="Groceries"/> : ""}
+			{ecoProducts? <Catalogue catalogue={ecoProducts} title="Groceries"/> : ""}
 			<FeaturedPartners/>
 		</>
 	);

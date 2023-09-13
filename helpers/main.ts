@@ -125,19 +125,6 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 	return cartItems;
 }
 
-/**
- * Stores cart state to local storage or Backend if the user is loggedIn
- * @param cart the cart array containing the user selected items
- */
-
-const getBackendCartFormat = (cart: CartItem): BackendCart => ({
-	data: {
-		id: cart.id,
-		users_permissions_user: cart.Users_permissions_user.id,
-		product: cart.product.id,
-		quantity: cart.productInstances,
-	},
-});
 
 const checkCartItem = (cart:CartItem[], newProduct:Product):boolean => {
 	const cartItem: CartItem = cart.find(
