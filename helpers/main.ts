@@ -22,7 +22,7 @@ export async function getAllProducts(): Promise<Product[]> {
 
 	try {
 		const response = await fetch(
-			`${API_URL}/products?populate=*`,
+			`${NEXT_URL}/api/getAllProducts?populate=*`,
 		);
 		const result = await response.json();
 
@@ -50,20 +50,29 @@ export async function getAllProducts(): Promise<Product[]> {
 	return products;
 }
 
-/**
- *  Method for storing cart Items to the backend */
-async function saveCartItems(backendCartItem: BackendCart) {
-	try {
-		await fetch("http://localhost:1337/api/carts", {
-			method: "POST",
-			headers: {
-		  "Content-Type": "application/json",
-			},
-			body: JSON.stringify(backendCartItem),
-		});
-	} catch (error) {
-		console.error('Error:', error);
-	}
+export function getEcoProducts(ecoProducts): Product[] {
+	let products: Product[];
+
+		// eslint-disable-next-line prefer-const
+		products = ecoProducts.response.data.map(
+			(productItem): Product => ({
+				id: productItem.id,
+				name: productItem.attributes.name,
+				description: productItem.attributes.description,
+				image:
+					productItem.attributes.images.data[0].attributes.formats.thumbnail
+						.url,
+				currentPrice: productItem.attributes.price,
+				oldPrice: productItem.attributes.oldPrice,
+				rating: 4,
+				numberOfVotes: 90,
+				categories: ['Gardening'],
+				vendor: 'CMK',
+				isInStock: productItem.attributes.isInStock,
+			}),
+		);
+
+	return products;
 }
 
 /* Method for creating cart Items */
@@ -116,19 +125,6 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 	return cartItems;
 }
 
-/**
- * Stores cart state to local storage or Backend if the user is loggedIn
- * @param cart the cart array containing the user selected items
- */
-
-const getBackendCartFormat = (cart: CartItem): BackendCart => ({
-	data: {
-		id: cart.id,
-		users_permissions_user: cart.Users_permissions_user.id,
-		product: cart.product.id,
-		quantity: cart.productInstances,
-	},
-});
 
 const checkCartItem = (cart:CartItem[], newProduct:Product):boolean => {
 	const cartItem: CartItem = cart.find(

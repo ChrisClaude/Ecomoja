@@ -5,7 +5,15 @@ import {UIContext} from '@/hooks/context/UIContext';
 import {Banner} from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
 import {Product} from '@/types/AppTypes';
-import {getAllProducts} from '@/helpers/main';
+import {getEcoProducts} from '@/helpers/main';
+import { NEXT_URL } from '../config';
+
+export const getServerSideProps = (async (context) => {
+	const res = await fetch(`${NEXT_URL}/api/getAllProducts?populate=*`)
+	const allProducts = await res.json()
+	const ecoProducts:Product[] = getEcoProducts(allProducts);
+	return { props: { ecoProducts } }
+  })
 
 const slideImages: { id: string; image: string }[] = [
 	{
@@ -28,7 +36,7 @@ const slideImages: { id: string; image: string }[] = [
 	},
 ];
 
-export default function Home() {
+export default function Home({ecoProducts}) {
 	const {
 		dispatch,
 		layoutProp,
@@ -55,23 +63,6 @@ export default function Home() {
 		[dispatch],
 	);
 
-	const [products, setProducts] = React.useState<Product[]>([]);
-
-	React.useEffect(
-		() => {
-			const loadAllProducts = async ():Promise<void> => {
-				try{
-					const ecoProducts:Product[] = await getAllProducts();
-					setProducts(ecoProducts);
-				}
-				catch(err){
-
-					console.log(err);
-				}
-			}
-			loadAllProducts();
-		},
-		[]);
 
 	return (
 		<>
@@ -79,7 +70,7 @@ export default function Home() {
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages}/>
-			<Catalogue catalogue={products} title="Groceries"/>
+			{ecoProducts? <Catalogue catalogue={ecoProducts} title="Groceries"/> : ""}
 			<FeaturedPartners/>
 		</>
 	);
