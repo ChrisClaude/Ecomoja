@@ -64,7 +64,7 @@ const Login = () => {
 					<section className='pt-8 pb-8 pl-8 w-full md:pr-32 lg:pr-48'>
 						<div className='mb-4'>
 							<h1 className="mb-2">Log in</h1>
-							<p className="">or <Link href='/register'><a>create an account</a></Link></p>
+							<p className="">or <Link href='/register'>create an account</Link></p>
 						</div>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className='mb-4'>

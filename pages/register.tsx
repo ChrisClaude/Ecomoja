@@ -68,7 +68,7 @@ const Register = () => {
 					<section className='pt-8 pb-8 pl-8 w-full md:pr-32 lg:pr-48'>
 						<div className='mb-4'>
 							<h1 className="mb-2">Create an account</h1>
-							<p className="">or <Link href='/login'><a>log in to your account</a></Link></p>
+							<p className="">or <Link href='/login'>log in to your account</Link></p>
 						</div>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className='mb-4'>
