@@ -11,7 +11,7 @@ import { addBike } from '@/services/BikeServices';
 import {
 	User as AuthUser,
 } from '@/hooks/context/AuthContext';
-import { NEXT_URL } from '@/config/index';
+import { NEXT_URL, API_URL } from '@/config/index';
 import { CartRequest } from '@/services/ApiService';
 
 
@@ -52,7 +52,7 @@ export async function getAllProducts(): Promise<Product[]> {
 
 export function getEcoProducts(ecoProducts): Product[] {
 	let products: Product[];
-	
+
 		// eslint-disable-next-line prefer-const
 		products = ecoProducts.response.data.map(
 			(productItem): Product => ({
