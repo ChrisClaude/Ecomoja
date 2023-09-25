@@ -30,15 +30,15 @@ const CartMini = () => {
 					<div className="py-2 px-5 border-t-2 border-b-2 border-solid border-gray-300 flex justify-end font-bold">
 						Total: R {cartItems?calculateCartTotal(cartItems):""}
 					</div>
-					<div className="flex justify-between px-6 my-3">
+					<div className="flex space-evenly px-2 my-3">
 						<Button secondary className="w-1/2 mr-2">
 							<span className="material-icons text-base mr-1">lock</span>
 							<span>Checkout</span>
 						</Button>
-						<Link href="/cart" passHref>
+						<Link className="hover:no-underline" href="/cart" passHref>
 							<Button
 								secondary
-								className="w-1/2 hover:text-white hover:no-underline"
+								className="w-full hover:text-white hover:no-underline"
 							>
 								<span className="material-icons text-base mr-1">
 									shopping_cart

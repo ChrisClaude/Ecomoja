@@ -111,9 +111,12 @@ const NavBar = () => {
 					<ul className="flex items-center ml-1">
 						<li className="mr-2">
 							<Link href="/wishlist"
-									className="flex items-center justify-center text-white rounded-full w-8 h-8 text-base bg-red-500 hover:bg-red-600 hover:text-white hover:no-underline"
+									className="flex text-white items-center justify-center rounded-3xl w-12 h-8 text-base bg-red-500 hover:bg-red-600 hover:text-white hover:no-underline"
 								>
-									{/* <FontAwesomeIcon icon="heart" /> */}
+								<span className="material-icons text-base mr-1">
+								favorite
+								</span>
+								<span>0</span>
 							</Link>
 						</li>
 						<li>
