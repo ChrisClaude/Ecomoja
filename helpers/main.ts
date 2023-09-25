@@ -25,8 +25,7 @@ export async function getAllProducts(): Promise<Product[]> {
 			`${NEXT_URL}/api/getAllProducts?populate=*`,
 		);
 		const result = await response.json();
-
-		products = result.data.map(
+		products = result.response.data.map(
 			(productItem): Product => ({
 				id: productItem.id,
 				name: productItem.attributes.name,
