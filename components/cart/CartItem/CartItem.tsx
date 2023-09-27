@@ -75,7 +75,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 
 	return (
 		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
-			<div className="flex items-center justify-center w-full lg:w-1/3">
+			<div className="items-center justify-center w-full lg:w-1/3">
 				<Image
 					loader={() => cartItem.product.image}
 					src={cartItem.product.image}
@@ -90,48 +90,47 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			<div className="flex flex-col justify-between ml-2 mt-2 lg:mt-0 lg:flex-1">
 				<div className="flex flex-col md:flex-row">
 					<div className="flex flex-col">
-						<p className="text-2xl font-semibold">{cartItem.product.name}</p>
+						<p className="text-lg font-semibold">{cartItem.product.name}</p>
 						<p>{cartItem.product.description}</p>
 					</div>
 					<div className="my-4 flex flex-col md:ml-auto md:my-0">
-						<span className="text-2xl font-bold">
+						<span className="text-lg font-bold">
 							R {cartItem.product.currentPrice}
 						</span>
-						<div className="mt-1">
-							<label htmlFor="qty">
-								Qty:
+						<div className="flex flex-row mt-1">
+							<span className="">Qty:</span>
 								<input
 									type="number"
 									id="qty"
-									className="w-12 ml-2 px-2 py-1"
+									className="border-black border-2 rounded w-12 ml-2 px-2 py-1"
 									value={cartItem.productInstances}
 									onChange={handleOnQtyChange}
 								/>
-							</label>
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-col md:flex-row">
-					<p className="flex items-center">
+				<div className='mt-4'>
 						{cartItem.product.isFreeForDelivery
 							? 'Free Delivery'
 							: 'Delivery fees will be charged'}
-					</p>
+					</div>
+				<div className="flex flex-row mt-4 md:flex-row">
+					
 					<div className="flex md:ml-auto">
 						<button
 							type="button"
-							className="px-2 py-1 rounded flex items-center justify-center transition duration-300 mr-2 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
+							className="px-2 rounded flex items-center justify-center transition duration-300 mr-2 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
 							onClick={handleOnRemoveCartItem}
 						>
-							<span className="material-icons mr-1">delete</span>{' '}
+							<span className="material-icons mr-1 text-lg">delete</span>{' '}
 							<span>Remove</span>
 						</button>
 						<button
 							type="button"
-							className="px-2 py-1 rounded flex items-center justify-center transition duration-300 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
+							className="px-2 rounded flex items-center justify-center transition duration-300 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
 							onClick={handleAddProductToWishList}
 						>
-							<span className="material-icons mr-1">favorite</span>
+							<span className="material-icons mr-1 text-lg">favorite</span>
 							<span>Add to list</span>
 						</button>
 					</div>
