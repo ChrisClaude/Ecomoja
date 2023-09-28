@@ -70,7 +70,7 @@ const ShopCategory = () => {
 				<div className="absolute w-56 z-20 bg-white  shadow-lg">
 					<div className="flex flex-col">
 						<div className="w-full">
-							<div className="flex items-center justify-between relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h">
+							<div className="flex items-center justify-between relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h font-bold">
 								Shop by Department
 								<span>
 									{/*isShopByCategoryCollapsed ? (
@@ -158,14 +158,14 @@ const NavBarProductCategory = () => {
 							type="button"
 							className="block w-2/5  drop-shadow-lg p-3 bg-slate-100 cursor-pointer hover:animate-heartbeat hover:scale-105"
 						>
-							<p className="text-center">Shopping</p>
+							<p className="text-center font-medium ">Shopping</p>
 						</button>
 						<button
 							onClick={navigateToMobilityHome}
 							type="button"
 							className="block w-2/5 drop-shadow-lg p-3 bg-zinc-950 cursor-pointer hover:animate-heartbeat hover:scale-105"
 						>
-							<p className="text-center text-white">Mobility</p>
+							<p className="text-center text-white font-medium">Mobility</p>
 						</button>
 					</div>
 				</div>
