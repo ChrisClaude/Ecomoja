@@ -3,11 +3,11 @@ import Slider from 'react-slick';
 
 const settings = {
 	infinite: true,
-	speed: 500,
+	speed: 2000,
 	slidesToShow: 1,
 	slidesToScroll: 1,
 	autoplay: true,
-	autoplaySpeed: 2000,
+	autoplaySpeed: 5000,
 };
 
 type CarouselProps = {
@@ -20,7 +20,7 @@ const Carousel = ({slides}: CarouselProps) => (
 			<img
 				src={sldImage.image}
 				alt='eco friendly product'
-				className='w-full h-40 lg:h-80'
+				className='w-full h-45 lg:h-80 object-contain'
 			/>
 		</div>))}
 	</Slider>
