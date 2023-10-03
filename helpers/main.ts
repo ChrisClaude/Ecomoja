@@ -199,8 +199,10 @@ export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 async function removeItemFromCart(cartId: number) {
 	try {
 		const deletedcart = await fetch(
-			`http://localhost:1337/api/carts/${cartId}`,
-			{ method: 'DELETE' },
+			`${NEXT_URL}/api/deleteCartByUserId?id=${cartId}`,
+			{ method: 'DELETE',
+		},
+			
 		);
 	} catch (err) {
 		console.log(err);
@@ -303,14 +305,14 @@ export const removeStateCartItem = (
  */
 export async function removeCartItem(
 	cartItems: CartItemType[],
-	product_id: number,
+	productId: number,
 ): Promise<CartItemType[]> {
 	const isLoggedIn = true;
 	let usercartItems: CartItemType[];
 
 	try {
 		const cartItem: CartItem = cartItems.find(
-			({ product }) => product.id === product_id,
+			({ product }) => product.id === productId,
 		);
 
 		if (cartItem !== null && isLoggedIn) {
@@ -319,14 +321,14 @@ export async function removeCartItem(
 			return usercartItems;
 		}
 
-		return cartItems.filter((cartItem) => cartItem.product.id !== product_id);
+		return cartItems.filter((item) => item.product.id !== productId);
 	} catch (err) {
 		console.log(err);
 	}
 
 	return isLoggedIn
 		? usercartItems
-		: cartItems.filter((cartItem) => cartItem.id !== product_id);
+		: cartItems.filter((cartItem) => cartItem.id !== productId);
 }
 
 /**
