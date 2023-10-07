@@ -199,7 +199,7 @@ export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 async function removeItemFromCart(cartId: number) {
 	try {
 		const deletedcart = await fetch(
-			`${NEXT_URL}/api/deleteCartByUserId?id=${cartId}`,
+			`${NEXT_URL}/api/deleteCartItem?id=${cartId}`,
 			{ method: 'DELETE',
 		},
 			
@@ -316,7 +316,7 @@ export async function removeCartItem(
 		);
 
 		if (cartItem !== null && isLoggedIn) {
-			const deletedcartItem = await removeItemFromCart(cartItem.product.id);
+			const deletedcartItem = await removeItemFromCart(cartItem.id);
 			// usercartItems = await getCartItems();
 			return usercartItems;
 		}
