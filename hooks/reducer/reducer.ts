@@ -77,11 +77,6 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 
 		case 'REMOVE_PRODUCT_FROM_CART':
 			// all cart items have the same id as their product
-			// TODO: review this
-			const loadNewCartItems = async () => {
-				 newCartItems = await removeCartItem(state.cartItems, action.payload.id);
-			}
-			loadNewCartItems()
 
 			return {
 				...state,

@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { default as cn } from 'classnames';
 import { useContext } from 'react';
 import {
@@ -42,12 +41,13 @@ const ProductItem = ({ item }: ProductProps) => {
 			draggable: true,
 			progress: undefined,
 		});
-		addProductToCart(item, dispatch);
+		addProductToCart(item, dispatch, user);
 		const newCartItems = addNewCartItem(cartItems, item, user);
 		console.log("Logging from handleAddProductToCart", auth);
 
 		if (auth) {
 			saveProductToUserCart(item, user, cartItems);
+			storeCartItemsInLocalStorage(newCartItems);
 		} else {
 			storeCartItemsInLocalStorage(newCartItems);
 		}

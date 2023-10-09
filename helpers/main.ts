@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-	BackendCart,
 	Bike,
 	CartItem,
 	CartItem as CartItemType,
@@ -11,7 +10,7 @@ import { addBike } from '@/services/BikeServices';
 import {
 	User as AuthUser,
 } from '@/hooks/context/AuthContext';
-import { NEXT_URL, API_URL } from '@/config/index';
+import { NEXT_URL } from '@/config/index';
 import { CartRequest } from '@/services/ApiService';
 
 
@@ -196,11 +195,13 @@ export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 	}
 }
 
-async function removeItemFromCart(cartId: number) {
+export async function removeItemFromCart(cartId: number) {
 	try {
-		const deletedcart = await fetch(
-			`http://localhost:1337/api/carts/${cartId}`,
-			{ method: 'DELETE' },
+		await fetch(
+			`${NEXT_URL}/api/deleteCartItem?id=${cartId}`,
+			{ method: 'DELETE',
+		},
+			
 		);
 	} catch (err) {
 		console.log(err);
@@ -245,12 +246,13 @@ export const purgeClasses = (classNames: string): string => {
 export const addProductToCart = (
 	product: Product,
 	dispatch: React.Dispatch<UIAction>,
+	user: AuthUser
 ) => {
 	dispatch({
 		type: 'ADD_PRODUCT_TO_CART',
 		payload: product,
 		// TODO: review this
-		authUser: null,
+		authUser: user,
 	});
 };
 
@@ -299,34 +301,13 @@ export const removeStateCartItem = (
 	cartItems !== null ? cartItems.filter((cartItem) => cartItem.id !== id) : [];
 
 /**
- * Remove cart from backend
+ * Update cart items after removing an item
  */
-export async function removeCartItem(
+export function removeCartItem(
 	cartItems: CartItemType[],
-	product_id: number,
-): Promise<CartItemType[]> {
-	const isLoggedIn = true;
-	let usercartItems: CartItemType[];
-
-	try {
-		const cartItem: CartItem = cartItems.find(
-			({ product }) => product.id === product_id,
-		);
-
-		if (cartItem !== null && isLoggedIn) {
-			const deletedcartItem = await removeItemFromCart(cartItem.product.id);
-			// usercartItems = await getCartItems();
-			return usercartItems;
-		}
-
-		return cartItems.filter((cartItem) => cartItem.product.id !== product_id);
-	} catch (err) {
-		console.log(err);
-	}
-
-	return isLoggedIn
-		? usercartItems
-		: cartItems.filter((cartItem) => cartItem.id !== product_id);
+	productId: number,
+): CartItemType[] {
+	return cartItems.filter((item) => item.product.id !== productId);
 }
 
 /**
