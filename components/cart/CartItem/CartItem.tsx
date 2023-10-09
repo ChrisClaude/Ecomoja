@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart } from '@/helpers/main';
+import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
+	const {user } = useContext<AuthState>(AuthContext);
 
 	const handleAddProductToWishList = () => {
 		const check = isProductInArray(cartItem.product, wishList);
@@ -38,20 +40,25 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	};
 
 	const handleOnRemoveCartItem = () => {
+
+		if(user){
+			dispatch({
+				type: 'REMOVE_PRODUCT_FROM_CART',
+				payload: cartItem.product,
+			});
+
+			const newCartItems = removeCartItem(cartItems, cartItem.product.id);
+			removeItemFromCart(cartItem.id);
+			storeCartItemsInLocalStorage(newCartItems);
+		}
+
 		dispatch({
 			type: 'REMOVE_PRODUCT_FROM_CART',
 			payload: cartItem.product,
 		});
+		const newCartItems = removeCartItem(cartItems, cartItem.product.id);
+		storeCartItemsInLocalStorage(newCartItems);
 
-
-		removeCartItem(cartItems, cartItem.product.id)
-			.then((items)=>{
-				const newCartItems = items;
-				storeCartItemsInLocalStorage(newCartItems);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
 	};
 
 	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
