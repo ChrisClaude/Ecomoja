@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { getAllCartItems, storeCartItemsInLocalStorage } from '@/helpers/main';
+import { getAllCartItems, getLocalStorageCart, getLocalStorageUserCart, saveTempCart, storeCartItemsInLocalStorage } from '@/helpers/main';
 import { UIContext } from '@/hooks/context/UIContext';
 import { CartItem } from '@/types/AppTypes';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
@@ -15,26 +15,22 @@ const Initiate = () => {
 			try{
 				let cartItems: CartItem[] = [];
 				if(user){
+					const userCart = getLocalStorageUserCart(user);
+					await saveTempCart(userCart);
 					cartItems = await getAllCartItems(user);
 					if (cartItems !== null) {
-						console.log(1)
-						storeCartItemsInLocalStorage(cartItems);
-						const lStorageCart = JSON.parse(localStorage.getItem('cartitems'));
-						dispatch({ type: 'PATCH_CART', payload: lStorageCart });
+						console.log(cartItems);
+						dispatch({ type: 'PATCH_CART', payload: cartItems });
 					}
 				}
-				const lStorageCart = JSON.parse(localStorage.getItem('cartitems'));
-
-				if(lStorageCart !== null){
-					console.log(2)
+				const lStorageCart = getLocalStorageCart();
+				if(lStorageCart.length > 0){
 					dispatch({ type: 'PATCH_CART', payload: lStorageCart });
 				}
 				else{
-					console.log(3)
 					dispatch({ type: 'PATCH_CART', payload: cartItems });
 					storeCartItemsInLocalStorage(cartItems);
 				}
-				
 			}catch(err){
 				console.log(err);
 			}

@@ -13,7 +13,6 @@ import {
 import { NEXT_URL } from '@/config/index';
 import { CartRequest } from '@/services/ApiService';
 
-
 /**
  *  Method for querying and returning products all from backend */
 export async function getAllProducts(): Promise<Product[]> {
@@ -131,6 +130,44 @@ const checkCartItem = (cart:CartItem[], newProduct:Product):boolean => {
 	return !!cartItem;
 }
 
+export function getLocalStorageCart():CartItem[]{
+	const userCart:CartItem[] = [];
+	const lStorageCart:CartItem[] = JSON.parse(localStorage.getItem('cartitems'));
+	if(lStorageCart !== null){
+		return lStorageCart;
+	}
+	return userCart
+}
+
+export function getLocalStorageUserCart(user):CartItem[]{
+	let userCart:CartItem[] = [];
+	const lStorageCart:CartItem[] = JSON.parse(localStorage.getItem('cartitems'));
+	if(lStorageCart !== null && user){
+		userCart = lStorageCart.slice();
+		userCart.forEach((cart)=>{
+			// eslint-disable-next-line no-param-reassign
+			cart.Users_permissions_user = user;
+		});
+		return userCart;
+	}
+	return userCart	
+}
+
+export const saveTempCart = async (cartItems: CartItem[]) => {
+	try{
+		if(cartItems.length > 0){
+			await fetch(`${NEXT_URL}/api/saveCart`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(cartItems),
+			});
+		}
+	}catch(error){
+		console.log(error.message);
+	}
+}
 /**
  *
  * @param cart Saves a product to the user cart on the backend
@@ -278,7 +315,9 @@ export const addNewCartItem = (
 
 	// there is no existing cart item in the cart - we then create an new cart item
 	if (filteredCartItems.length === 0) {
-		const cartItem: CartItem = {
+		let cartItem: CartItem = null;
+
+		cartItem = {
 			id: newItem.id,
 			Users_permissions_user: user,
 			product: newItem,
