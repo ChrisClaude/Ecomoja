@@ -15,10 +15,9 @@ const Initiate = () => {
 			try{
 				if(user){
 					const userCart = getLocalStorageUserCart(user);
-					await saveTempCart(userCart);
+					const saveItems = await saveTempCart(userCart);
 					cartItems = await getAllCartItems(user);
 					if (cartItems !== null) {
-						console.log(cartItems);
 						dispatch({ type: 'PATCH_CART', payload: cartItems });
 					}
 				}
@@ -28,7 +27,7 @@ const Initiate = () => {
 				}
 				else{
 					dispatch({ type: 'PATCH_CART', payload: cartItems });
-					storeCartItemsInLocalStorage(cartItems);
+					storeCartItemsInLocalStorage(lStorageCart);
 				}
 			}catch(err){
 				console.log(err);

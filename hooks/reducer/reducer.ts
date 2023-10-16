@@ -1,5 +1,5 @@
 import { CartItem, UIAction, UIState } from '@/types/AppTypes';
-import { addNewCartItem, removeCartItem, removeStateCartItem } from '@/helpers/main';
+import { addNewCartItem, removeStateCartItem } from '@/helpers/main';
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[] = [];

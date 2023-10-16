@@ -17,7 +17,6 @@ const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				payload: cartItem.product,
 			});
 
-			const newCartItems = removeCartItem(cartItems, cartItem.product.id);
 			removeItemFromCart(cartItem.id);
 			getAllCartItems(user).then((allCartItems)=>{
 				dispatch({ type: 'PATCH_CART', payload: allCartItems });

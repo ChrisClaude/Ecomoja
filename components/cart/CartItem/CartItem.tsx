@@ -8,7 +8,7 @@ import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
-	const {user } = useContext<AuthState>(AuthContext);
+	const {user} = useContext<AuthState>(AuthContext);
 
 	const handleAddProductToWishList = () => {
 		const check = isProductInArray(cartItem.product, wishList);
@@ -47,7 +47,6 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				payload: cartItem.product,
 			});
 
-			const newCartItems = removeCartItem(cartItems, cartItem.product.id);
 			removeItemFromCart(cartItem.id);
 			getAllCartItems(user).then((allCartItems)=>{
 				dispatch({ type: 'PATCH_CART', payload: allCartItems });
