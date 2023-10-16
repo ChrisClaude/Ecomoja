@@ -148,6 +148,7 @@ export function getLocalStorageUserCart(user):CartItem[]{
 			// eslint-disable-next-line no-param-reassign
 			cart.Users_permissions_user = user;
 		});
+		localStorage.setItem('cartitems', JSON.stringify([]));
 		return userCart;
 	}
 	return userCart	
@@ -224,8 +225,6 @@ export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 			cartItems = await getCartItems(user.id);
 			return cartItems;
 		}
-
-		return JSON.parse(localStorage.getItem('cartitems'));
 
 	} catch (err) {
 		console.error(err);

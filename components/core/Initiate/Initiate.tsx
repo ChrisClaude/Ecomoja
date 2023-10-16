@@ -8,12 +8,11 @@ import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 const Initiate = () => {
 	const { dispatch } = useContext(UIContext);
 	const { user } = useContext<AuthState>(AuthContext);
+	let cartItems: CartItem[] = [];
 
 	useEffect(() => {
-
 		const getCartItems = async()=> {
 			try{
-				let cartItems: CartItem[] = [];
 				if(user){
 					const userCart = getLocalStorageUserCart(user);
 					await saveTempCart(userCart);
