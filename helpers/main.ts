@@ -1,3 +1,5 @@
+/* eslint-disable no-else-return */
+/* eslint-disable no-lonely-if */
 import * as React from 'react';
 import {
 	Bike,
@@ -311,20 +313,41 @@ export const addNewCartItem = (
 	const filteredCartItems = cartItems.filter(
 		(cartItem) => cartItem.id === newItem.id,
 	);
+	let cartItem: CartItem = null;
+	const allCartItems = cartItems.slice();
 
 	// there is no existing cart item in the cart - we then create an new cart item
-	if (filteredCartItems.length === 0) {
-		let cartItem: CartItem = null;
+	if(user){
+		if (filteredCartItems.length === 0) {
+			cartItem = {
+				id: newItem.id,
+				Users_permissions_user: user,
+				product: newItem,
+				productInstances: 1,
+			};
+			return [cartItem, ...cartItems];
+		// eslint-disable-next-line no-else-return
+		}else{
+			const qty = filteredCartItems[0].productInstances + 1;
+			allCartItems[0].productInstances += 1;
+			return [allCartItems[0], ...cartItems];  
+		}
+	}
 
+	if (filteredCartItems.length === 0) {
 		cartItem = {
 			id: newItem.id,
-			Users_permissions_user: user,
+			Users_permissions_user: null,
 			product: newItem,
 			productInstances: 1,
 		};
 		return [cartItem, ...cartItems];
+	// eslint-disable-next-line no-else-return
+	}else{
+		allCartItems[0].productInstances += 1;
+		return [allCartItems[0], ...cartItems]; 
 	}
-
+	
 	// there is an existing cart item in the cart - we do nothing, just return the exist cart items array as is
 	return cartItems;
 };

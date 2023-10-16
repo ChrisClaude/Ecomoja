@@ -10,6 +10,7 @@ import { useContext } from 'react';
 import {
 	addNewCartItem,
 	addProductToCart,
+	getAllCartItems,
 	saveProductToUserCart,
 	storeCartItemsInLocalStorage,
 } from '@/helpers/main';
@@ -46,8 +47,14 @@ const ProductItem = ({ item }: ProductProps) => {
 		console.log("Logging from handleAddProductToCart", auth);
 
 		if (auth) {
-			saveProductToUserCart(item, user, cartItems);
-			storeCartItemsInLocalStorage(newCartItems);
+			saveProductToUserCart(item, user, cartItems).then(()=>{
+				getAllCartItems(user).then((allCartItems)=>{
+					dispatch({ type: 'PATCH_CART', payload: allCartItems });
+				}).catch((err)=>{
+					console.log(err);
+					
+				});
+			});
 		} else {
 			storeCartItemsInLocalStorage(newCartItems);
 		}
