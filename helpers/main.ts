@@ -156,47 +156,52 @@ export function getLocalStorageUserCart(user):CartItem[]{
 	return userCart	
 }
 
-export const saveTempCart = async (cartItems: CartItem[]) => {
+export async function saveTempCart(cartItems: CartItem[]){
+	let response:Response = null;
 	try{
 		if(cartItems.length > 0){
-			await fetch(`${NEXT_URL}/api/saveCart`, {
+			response = await fetch(`${NEXT_URL}/api/saveCart`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(cartItems),
 			});
+			return response
 		}
 	}catch(error){
 		console.log(error.message);
 	}
+	return response
 }
 /**
  *
  * @param cart Saves a product to the user cart on the backend
  */
 export const saveProductToUserCart = async (product: Product, user: any, cartItems: CartItem[]) => {
-	const itemExists:boolean = checkCartItem(cartItems, product)
+	let res:Response = null;
+	const cartRequest: CartRequest = {
+		data : {
+			product: product.id.toString(),
+			quantity: '1',
+			users_permissions_user: user.id.toString(),
+	 }};
 
-	if(!itemExists){
-		const cartRequest: CartRequest = {
-			data : {
-				product: product.id.toString(),
-				quantity: '1',
-				users_permissions_user: user.id.toString(),
-		 }};
-
-		 fetch(`${NEXT_URL}/api/cart`, {
+	 try{
+		res = await fetch(`${NEXT_URL}/api/cart`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(cartRequest),
-		})
-		 .then(res => res.json())
-		 .catch(err => console.log(err.message));
-	}// end if
-	// else update quantity
+		});
+
+		return res;
+	 }
+	 catch(err){
+		console.log(err);
+	 }
+	 return res;
 }
 
 /**
@@ -238,9 +243,7 @@ export async function removeItemFromCart(cartId: number) {
 		await fetch(
 			`${NEXT_URL}/api/deleteCartItem?id=${cartId}`,
 			{ method: 'DELETE',
-		},
-			
-		);
+		},);
 	} catch (err) {
 		console.log(err);
 	}

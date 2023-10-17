@@ -47,12 +47,13 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				payload: cartItem.product,
 			});
 
-			removeItemFromCart(cartItem.id);
-			getAllCartItems(user).then((allCartItems)=>{
-				dispatch({ type: 'PATCH_CART', payload: allCartItems });
-			}).catch((err)=>{
-				console.log(err);
-				
+			removeItemFromCart(cartItem.id).then(()=>{
+				getAllCartItems(user).then((allCartItems)=>{
+					dispatch({ type: 'PATCH_CART', payload: allCartItems });
+				}).catch((err)=>{
+					console.log(err);
+					
+				});
 			});
 		}
 

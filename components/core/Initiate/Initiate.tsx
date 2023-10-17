@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { getAllCartItems, getLocalStorageCart, getLocalStorageUserCart, saveTempCart, storeCartItemsInLocalStorage } from '@/helpers/main';
 import { UIContext } from '@/hooks/context/UIContext';
@@ -8,34 +8,46 @@ import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 const Initiate = () => {
 	const { dispatch } = useContext(UIContext);
 	const { user } = useContext<AuthState>(AuthContext);
-	let cartItems: CartItem[] = [];
+	const cart = useRef(null);
+	const saveLocalStorage = useRef(null);
 
 	useEffect(() => {
+		
 		const getCartItems = async()=> {
 			try{
 				if(user){
 					const userCart = getLocalStorageUserCart(user);
-					const saveItems = await saveTempCart(userCart);
-					cartItems = await getAllCartItems(user);
-					if (cartItems !== null) {
-						dispatch({ type: 'PATCH_CART', payload: cartItems });
-					}
-				}
-				const lStorageCart = getLocalStorageCart();
-				if(lStorageCart.length > 0){
-					dispatch({ type: 'PATCH_CART', payload: lStorageCart });
-				}
-				else{
-					dispatch({ type: 'PATCH_CART', payload: cartItems });
-					storeCartItemsInLocalStorage(lStorageCart);
+					if(userCart.length > 0){
+						saveLocalStorage.current = await saveTempCart(userCart);
+						if(saveLocalStorage.current.ok){
+							cart.current = await getAllCartItems(user);
+							if (cart.current !== null){
+								dispatch({ type: 'PATCH_CART', payload: cart.current });
+							}	
+						}			
+					}// end if
+					cart.current = await getAllCartItems(user);
+					if (cart.current !== null){
+						dispatch({ type: 'PATCH_CART', payload: cart.current });
+					}// end if
 				}
 			}catch(err){
 				console.log(err);
 			}
-
 		}
 		getCartItems();
 	}, [user]);
+
+	useEffect(() => {
+		const lStorageCart = getLocalStorageCart();
+		if(lStorageCart.length > 0){
+			dispatch({ type: 'PATCH_CART', payload: lStorageCart });
+		}
+		else{
+			dispatch({ type: 'PATCH_CART', payload: lStorageCart });
+			storeCartItemsInLocalStorage(lStorageCart);
+		}
+	}, []);
 
 	return (
 		<>

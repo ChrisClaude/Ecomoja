@@ -43,19 +43,18 @@ const ProductItem = ({ item }: ProductProps) => {
 			progress: undefined,
 		});
 		addProductToCart(item, dispatch, user);
-		const newCartItems = addNewCartItem(cartItems, item, user);
-		console.log("Logging from handleAddProductToCart", auth);
-
 		if (auth) {
-			saveProductToUserCart(item, user, cartItems).then(()=>{
-				getAllCartItems(user).then((allCartItems)=>{
-					dispatch({ type: 'PATCH_CART', payload: allCartItems });
-				}).catch((err)=>{
-					console.log(err);
-					
-				});
+			saveProductToUserCart(item, user, cartItems).then((res)=>{
+				if(res.ok){
+					getAllCartItems(user).then((allCartItems)=>{
+						dispatch({ type: 'PATCH_CART', payload: allCartItems });
+					}).catch((err)=>{
+						console.log(err);
+					});
+				}
 			});
 		} else {
+			const newCartItems = addNewCartItem(cartItems, item, user);
 			storeCartItemsInLocalStorage(newCartItems);
 		}
 	}
