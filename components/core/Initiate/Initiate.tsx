@@ -35,7 +35,6 @@ const Initiate = () => {
 
 		}
 		getCartItems();
-
 	}, [user]);
 
 	return (
