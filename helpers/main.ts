@@ -111,7 +111,7 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 					'Content-Type': 'application/json',
 				},
 			})
-
+			
 			const cartAPI = await cartAPIResponse.json();
 			const items = await recreateCartItems(cartAPI);
 			cartItems = items;
@@ -380,3 +380,61 @@ export function removeCartItem(
  */
 export const isProductInArray = (product: Product, array: Product[]): boolean =>
 	array.some((p) => p.id === product.id);
+
+/**
+ * send and save user local storage if user is logged in
+ */	
+export async function saveTempUserCart(user:AuthUser):Promise<boolean>{
+	const userCart = getLocalStorageUserCart(user);
+	if(userCart.length > 0){
+		// send and save local storage
+		const res = await saveTempCart(userCart);
+		return res.ok;
+	}
+	return false;
+}
+
+/**
+ * Get all user cart Items if user is logged in
+ */	
+export async function getAllCarts(dispatch, user:AuthUser) {
+	try{
+		const cartItems:CartItem[] = await getAllCartItems(user);
+		if(cartItems !== null){
+			dispatch({ type: 'PATCH_CART', payload: cartItems });
+		}
+	}
+	catch(err){
+		console.log(err);
+	}
+}
+
+/**
+ * Initialize user cart when user is logged in
+ */	
+export async function initializeCartItems(user:AuthUser, dispatch){
+	try{
+		if(user){
+			const saved = await saveTempUserCart(user);
+			if(saved){
+				await getAllCarts(dispatch, user);
+			}
+			await getAllCarts(dispatch, user);
+		}	
+	}
+	catch(err){
+		console.log(err);
+	}
+}
+
+/**
+ * Update cart from local storage if user signed out
+ */	
+export function updateFromLocalStorage(dispatch){
+	const lStorageCart = getLocalStorageCart();
+	if(lStorageCart.length > 0){
+		dispatch({ type: 'PATCH_CART', payload: lStorageCart });
+	}
+	dispatch({ type: 'PATCH_CART', payload: lStorageCart });
+	storeCartItemsInLocalStorage(lStorageCart);
+}
