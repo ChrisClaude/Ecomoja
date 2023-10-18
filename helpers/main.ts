@@ -150,10 +150,31 @@ export function getLocalStorageUserCart(user):CartItem[]{
 			// eslint-disable-next-line no-param-reassign
 			cart.Users_permissions_user = user;
 		});
-		localStorage.setItem('cartitems', JSON.stringify([]));
+		// eslint-disable-next-line @typescript-eslint/no-use-before-define
+		storeCartItemsInLocalStorage([]);
 		return userCart;
 	}
 	return userCart	
+}
+
+
+/**
+ *
+ * @param cart remove user and insert items in local storage
+ */
+export function insertItemsInLocalStorage(cartItems: CartItem[]){
+	const localStorageCartItems:CartItem[] = [];
+	if(cartItems !== null){
+		cartItems.forEach((item) => {
+			// eslint-disable-next-line no-param-reassign
+			item.Users_permissions_user = null;
+			// eslint-disable-next-line no-param-reassign
+			item.id = item.product.id;
+			localStorageCartItems.push(item);
+		});
+		// eslint-disable-next-line @typescript-eslint/no-use-before-define
+		storeCartItemsInLocalStorage(localStorageCartItems);
+	}
 }
 
 export async function saveTempCart(cartItems: CartItem[]){
@@ -381,6 +402,7 @@ export async function getAllCarts(dispatch, user:AuthUser) {
 		const cartItems:CartItem[] = await getAllCartItems(user);
 		if(cartItems !== null){
 			dispatch({ type: 'PATCH_CART', payload: cartItems });
+			insertItemsInLocalStorage(cartItems);
 		}
 	}
 	catch(err){
