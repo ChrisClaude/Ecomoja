@@ -316,43 +316,22 @@ export const addNewCartItem = (
 	const filteredCartItems = cartItems.filter(
 		(cartItem) => cartItem.id === newItem.id,
 	);
-	let cartItem: CartItem = null;
-	const allCartItems = cartItems.slice();
-
-	// there is no existing cart item in the cart - we then create an new cart item
-	if(user){
-		if (filteredCartItems.length === 0) {
-			cartItem = {
-				id: newItem.id,
-				Users_permissions_user: user,
-				product: newItem,
-				productInstances: 1,
-			};
-			return [cartItem, ...cartItems];
-		// eslint-disable-next-line no-else-return
-		}else{
-			const qty = filteredCartItems[0].productInstances + 1;
-			allCartItems[0].productInstances += 1;
-			return [allCartItems[0], ...cartItems];  
-		}
-	}
-
+	const existingItem = filteredCartItems.slice();
+	// there is no existing cart item in the cart - we then create a new cart item
 	if (filteredCartItems.length === 0) {
-		cartItem = {
+		const cartItem: CartItem = {
 			id: newItem.id,
-			Users_permissions_user: null,
+			Users_permissions_user: user,
 			product: newItem,
 			productInstances: 1,
 		};
 		return [cartItem, ...cartItems];
-	// eslint-disable-next-line no-else-return
-	}else{
-		allCartItems[0].productInstances += 1;
-		return [allCartItems[0], ...cartItems]; 
 	}
-	
-	// there is an existing cart item in the cart - we do nothing, just return the exist cart items array as is
-	return cartItems;
+	// remove existing cart item from passed array
+	const tempCartItems = cartItems.filter((item) => item.product.id !== existingItem[0].product.id);
+	// increment quantity of the existing cart item
+	existingItem[0].productInstances += 1;
+	return [existingItem[0], ...tempCartItems]; 
 };
 
 /**

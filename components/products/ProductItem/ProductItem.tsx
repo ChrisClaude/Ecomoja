@@ -42,7 +42,7 @@ const ProductItem = ({ item }: ProductProps) => {
 			draggable: true,
 			progress: undefined,
 		});
-		addProductToCart(item, dispatch, user);
+		
 		if (auth) {
 			saveProductToUserCart(item, user, cartItems).then((res)=>{
 				if(res.ok){
@@ -55,6 +55,7 @@ const ProductItem = ({ item }: ProductProps) => {
 			});
 		} else {
 			const newCartItems = addNewCartItem(cartItems, item, user);
+			dispatch({ type: 'PATCH_CART', payload: newCartItems });
 			storeCartItemsInLocalStorage(newCartItems);
 		}
 	}
