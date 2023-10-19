@@ -160,7 +160,7 @@ export function getLocalStorageUserCart(user):CartItem[]{
 
 /**
  *
- * @param cart remove user and insert items in local storage
+ * @param cart remove user object and insert items in local storage when the user logs out
  */
 export function insertItemsInLocalStorage(cartItems: CartItem[]){
 	const localStorageCartItems:CartItem[] = [];
@@ -177,6 +177,10 @@ export function insertItemsInLocalStorage(cartItems: CartItem[]){
 	}
 }
 
+/**
+ *
+ * @param cart Send local storage items to the backend when user logs in
+ */
 export async function saveTempCart(cartItems: CartItem[]){
 	let response:Response = null;
 	try{
@@ -227,7 +231,7 @@ export const saveProductToUserCart = async (product: Product, user: any, cartIte
 
 /**
  *
- * @param cart Store Items to the backend
+ * @param cart Store Items to the localstorage
  */
 export const storeCartItemsInLocalStorage = (cart: CartItemType[]) => {
 	localStorage.setItem('cartitems', JSON.stringify(cart));
@@ -242,7 +246,7 @@ export const removeCartFromLocalStorage = () => {
 };
 
 /**
- * Returns car items state from local storage or Backend if it exists else returns null
+ * Returns cart items from Backend if it exists else returns null
  */
 // eslint-disable-next-line consistent-return
 export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
@@ -259,6 +263,9 @@ export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 	}
 }
 
+/**
+ * Removes cart items from backend by cart Id, not to be mistaken with product id
+ */
 export async function removeItemFromCart(cartId: number) {
 	try {
 		await fetch(
@@ -402,7 +409,6 @@ export async function getAllCarts(dispatch, user:AuthUser) {
 		const cartItems:CartItem[] = await getAllCartItems(user);
 		if(cartItems !== null){
 			dispatch({ type: 'PATCH_CART', payload: cartItems });
-			insertItemsInLocalStorage(cartItems);
 		}
 	}
 	catch(err){

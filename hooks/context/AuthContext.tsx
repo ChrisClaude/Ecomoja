@@ -1,13 +1,18 @@
 import { useRouter } from 'next/router';
 import { createContext, useCallback, useEffect, useState } from 'react';
 import { NEXT_URL } from '@/config/index';
+// eslint-disable-next-line import/no-cycle
+import { CartItem } from '@/types/AppTypes';
+// eslint-disable-next-line import/no-cycle
+import { insertItemsInLocalStorage } from '@/helpers/main';
+
 
 export type AuthState = {
 	user: any;
 	error: any;
 	register: (username: string, email: string, password: string) => Promise<void>;
 	login: (email: string, password: string) => Promise<void>;
-	logout: () => void;
+	logout: (cartItems:CartItem[]) => void;
 	isAuthenticated: () => boolean;
 }
 
@@ -95,12 +100,13 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	// Logout user
-	const logout = async () => {
+	const logout = async (cartItems) => {
 		const res = await fetch(`${NEXT_URL}/api/logout`, {
 			method: 'POST',
 		});
 
 		if (res.ok) {
+			insertItemsInLocalStorage(cartItems);
 			setUser(null);
 			router.push('/');
 		}
