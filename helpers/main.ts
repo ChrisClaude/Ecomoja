@@ -84,7 +84,6 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 			const product: Product = products.find(
 				({ id }) => id === productItem.product.id,
 			);
-
 			cartItems.push({
 				id: productItem.id,
 				Users_permissions_user: productItem.users_permissions_user,
@@ -95,7 +94,6 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 	} catch (err) {
 		console.log(err.message);
 	}
-
 	return cartItems;
 }
 
@@ -112,7 +110,6 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 					'Content-Type': 'application/json',
 				},
 			})
-			
 			const cartAPI = await cartAPIResponse.json();
 			const items = await recreateCartItems(cartAPI);
 			cartItems = items;
@@ -125,14 +122,10 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 	return cartItems;
 }
 
-
-const checkCartItem = (cart:CartItem[], newProduct:Product):boolean => {
-	const cartItem: CartItem = cart.find(
-		({ product }) => product === newProduct,
-	);
-	return !!cartItem;
-}
-
+/**
+ *
+ * Get the local storage items
+ */
 export function getLocalStorageCart():CartItem[]{
 	const userCart:CartItem[] = [];
 	const lStorageCart:CartItem[] = JSON.parse(localStorage.getItem('cartitems'));
@@ -142,6 +135,10 @@ export function getLocalStorageCart():CartItem[]{
 	return userCart
 }
 
+/**
+ *
+ * Get the local storage and override the user object with that of the logged in user
+ */
 export function getLocalStorageUserCart(user):CartItem[]{
 	let userCart:CartItem[] = [];
 	const lStorageCart:CartItem[] = JSON.parse(localStorage.getItem('cartitems'));
@@ -157,7 +154,6 @@ export function getLocalStorageUserCart(user):CartItem[]{
 	}
 	return userCart	
 }
-
 
 /**
  *
