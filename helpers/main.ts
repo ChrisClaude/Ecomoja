@@ -1,6 +1,7 @@
 /* eslint-disable no-else-return */
 /* eslint-disable no-lonely-if */
 import * as React from 'react';
+// eslint-disable-next-line import/no-cycle
 import {
 	Bike,
 	CartItem,
@@ -361,6 +362,20 @@ export const addNewCartItem = (
 	existingItem[0].productInstances += 1;
 	return [existingItem[0], ...tempCartItems]; 
 };
+
+/**
+ * Filter the new cart item to avoid duplicates
+ */
+export const createNewCartItem = (
+	cartItems: CartItemType[],
+	newItem: Product
+):CartItemType[] => {
+	const newCartItem = cartItems.filter(
+		(cartItem) => cartItem.product.id === newItem.id,
+	);
+
+	return newCartItem;
+}
 
 /**
  * Remove cart from state before async removeCartItem() function finishes

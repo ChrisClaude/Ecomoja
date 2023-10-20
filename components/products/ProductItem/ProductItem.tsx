@@ -9,15 +9,16 @@ import { default as cn } from 'classnames';
 import { useContext } from 'react';
 import {
 	addNewCartItem,
-	addProductToCart,
+	createNewCartItem,
 	getAllCartItems,
 	saveProductToUserCart,
+	saveTempCart,
 	storeCartItemsInLocalStorage,
 } from '@/helpers/main';
 import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 import { UIContext } from '@/hooks/context/UIContext';
 import Button from '@/components/common/Button';
-import { Product } from '@/types/AppTypes';
+import { CartItem, Product } from '@/types/AppTypes';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 import s from './ProductItem.module.scss';
 
@@ -44,15 +45,30 @@ const ProductItem = ({ item }: ProductProps) => {
 		});
 		
 		if (auth) {
-			saveProductToUserCart(item, user, cartItems).then((res)=>{
-				if(res.ok){
-					getAllCartItems(user).then((allCartItems)=>{
-						dispatch({ type: 'PATCH_CART', payload: allCartItems });
-					}).catch((err)=>{
-						console.log(err);
-					});
-				}
-			});
+			const newCartItem = createNewCartItem(cartItems, item);
+			if(newCartItem.length === 0){
+				saveProductToUserCart(item, user, cartItems).then((res)=>{
+					if(res.ok){
+						getAllCartItems(user).then((allCartItems)=>{
+							dispatch({ type: 'PATCH_CART', payload: allCartItems });
+						}).catch((err)=>{
+							console.log(err);
+						});
+					}
+				});	
+			}else{
+				const cart:CartItem[] = newCartItem.slice();
+				cart[0].productInstances = 1;
+				saveTempCart(cart).then((res) => {
+					if(res.ok && res !== null){
+						getAllCartItems(user).then((allCartItems)=>{
+							dispatch({ type: 'PATCH_CART', payload: allCartItems });
+						}).catch((err)=>{
+							console.log(err);
+						});
+					}
+				});
+			}
 		} else {
 			const newCartItems = addNewCartItem(cartItems, item, user);
 			dispatch({ type: 'PATCH_CART', payload: newCartItems });
