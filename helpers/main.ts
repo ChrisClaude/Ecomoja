@@ -1,4 +1,7 @@
+/* eslint-disable no-else-return */
+/* eslint-disable no-lonely-if */
 import * as React from 'react';
+// eslint-disable-next-line import/no-cycle
 import {
 	Bike,
 	CartItem,
@@ -12,7 +15,6 @@ import {
 } from '@/hooks/context/AuthContext';
 import { NEXT_URL } from '@/config/index';
 import { CartRequest } from '@/services/ApiService';
-
 
 /**
  *  Method for querying and returning products all from backend */
@@ -82,7 +84,6 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 			const product: Product = products.find(
 				({ id }) => id === productItem.product.id,
 			);
-
 			cartItems.push({
 				id: productItem.id,
 				Users_permissions_user: productItem.users_permissions_user,
@@ -93,7 +94,6 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 	} catch (err) {
 		console.log(err.message);
 	}
-
 	return cartItems;
 }
 
@@ -110,7 +110,6 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 					'Content-Type': 'application/json',
 				},
 			})
-
 			const cartAPI = await cartAPIResponse.json();
 			const items = await recreateCartItems(cartAPI);
 			cartItems = items;
@@ -123,45 +122,113 @@ async function getCartItems(userId:number): Promise<CartItemType[]> {
 	return cartItems;
 }
 
-
-const checkCartItem = (cart:CartItem[], newProduct:Product):boolean => {
-	const cartItem: CartItem = cart.find(
-		({ product }) => product === newProduct,
-	);
-	return !!cartItem;
+/**
+ *
+ * Get the local storage items
+ */
+export function getLocalStorageCart():CartItem[]{
+	const userCart:CartItem[] = [];
+	const lStorageCart:CartItem[] = JSON.parse(localStorage.getItem('cartitems'));
+	if(lStorageCart !== null){
+		return lStorageCart;
+	}
+	return userCart
 }
 
+/**
+ *
+ * Get the local storage and override the user object with that of the logged in user
+ */
+export function getLocalStorageUserCart(user):CartItem[]{
+	let userCart:CartItem[] = [];
+	const lStorageCart:CartItem[] = JSON.parse(localStorage.getItem('cartitems'));
+	if(lStorageCart !== null && user){
+		userCart = lStorageCart.slice();
+		userCart.forEach((cart)=>{
+			// eslint-disable-next-line no-param-reassign
+			cart.Users_permissions_user = user;
+		});
+		// eslint-disable-next-line @typescript-eslint/no-use-before-define
+		storeCartItemsInLocalStorage([]);
+		return userCart;
+	}
+	return userCart	
+}
+
+/**
+ *
+ * @param cart remove user object and insert items in local storage when the user logs out
+ */
+export function insertItemsInLocalStorage(cartItems: CartItem[]){
+	const localStorageCartItems:CartItem[] = [];
+	if(cartItems !== null){
+		cartItems.forEach((item) => {
+			// eslint-disable-next-line no-param-reassign
+			item.Users_permissions_user = null;
+			// eslint-disable-next-line no-param-reassign
+			item.id = item.product.id;
+			localStorageCartItems.push(item);
+		});
+		// eslint-disable-next-line @typescript-eslint/no-use-before-define
+		storeCartItemsInLocalStorage(localStorageCartItems);
+	}
+}
+
+/**
+ *
+ * @param cart Send local storage items to the backend when user logs in
+ */
+export async function saveTempCart(cartItems: CartItem[]){
+	let response:Response = null;
+	try{
+		if(cartItems.length > 0){
+			response = await fetch(`${NEXT_URL}/api/saveCart`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(cartItems),
+			});
+			return response
+		}
+	}catch(error){
+		console.log(error.message);
+	}
+	return response
+}
 /**
  *
  * @param cart Saves a product to the user cart on the backend
  */
 export const saveProductToUserCart = async (product: Product, user: any, cartItems: CartItem[]) => {
-	const itemExists:boolean = checkCartItem(cartItems, product)
+	let res:Response = null;
+	const cartRequest: CartRequest = {
+		data : {
+			product: product.id.toString(),
+			quantity: '1',
+			users_permissions_user: user.id.toString(),
+	 }};
 
-	if(!itemExists){
-		const cartRequest: CartRequest = {
-			data : {
-				product: product.id.toString(),
-				quantity: '1',
-				users_permissions_user: user.id.toString(),
-		 }};
-
-		 fetch(`${NEXT_URL}/api/cart`, {
+	 try{
+		res = await fetch(`${NEXT_URL}/api/cart`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(cartRequest),
-		})
-		 .then(res => res.json())
-		 .catch(err => console.log(err.message));
-	}// end if
-	// else update quantity
+		});
+
+		return res;
+	 }
+	 catch(err){
+		console.log(err);
+	 }
+	 return res;
 }
 
 /**
  *
- * @param cart Store Items to the backend
+ * @param cart Store Items to the localstorage
  */
 export const storeCartItemsInLocalStorage = (cart: CartItemType[]) => {
 	localStorage.setItem('cartitems', JSON.stringify(cart));
@@ -176,7 +243,7 @@ export const removeCartFromLocalStorage = () => {
 };
 
 /**
- * Returns car items state from local storage or Backend if it exists else returns null
+ * Returns cart items from Backend if it exists else returns null
  */
 // eslint-disable-next-line consistent-return
 export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
@@ -188,21 +255,20 @@ export async function getAllCartItems(user:AuthUser): Promise<CartItemType[]> {
 			return cartItems;
 		}
 
-		return JSON.parse(localStorage.getItem('cartitems'));
-
 	} catch (err) {
 		console.error(err);
 	}
 }
 
+/**
+ * Removes cart items from backend by cart Id, not to be mistaken with product id
+ */
 export async function removeItemFromCart(cartId: number) {
 	try {
 		await fetch(
 			`${NEXT_URL}/api/deleteCartItem?id=${cartId}`,
 			{ method: 'DELETE',
-		},
-			
-		);
+		},);
 	} catch (err) {
 		console.log(err);
 	}
@@ -275,8 +341,8 @@ export const addNewCartItem = (
 	const filteredCartItems = cartItems.filter(
 		(cartItem) => cartItem.id === newItem.id,
 	);
-
-	// there is no existing cart item in the cart - we then create an new cart item
+	const existingItem = filteredCartItems.slice();
+	// there is no existing cart item in the cart - we then create a new cart item
 	if (filteredCartItems.length === 0) {
 		const cartItem: CartItem = {
 			id: newItem.id,
@@ -286,10 +352,26 @@ export const addNewCartItem = (
 		};
 		return [cartItem, ...cartItems];
 	}
-
-	// there is an existing cart item in the cart - we do nothing, just return the exist cart items array as is
-	return cartItems;
+	// remove existing cart item from passed array
+	const tempCartItems = cartItems.filter((item) => item.product.id !== existingItem[0].product.id);
+	// increment quantity of the existing cart item
+	existingItem[0].productInstances += 1;
+	return [existingItem[0], ...tempCartItems]; 
 };
+
+/**
+ * Filter the new cart item to avoid duplicates
+ */
+export const createNewCartItem = (
+	cartItems: CartItemType[],
+	newItem: Product
+):CartItemType[] => {
+	const newCartItem = cartItems.filter(
+		(cartItem) => cartItem.product.id === newItem.id,
+	);
+
+	return newCartItem;
+}
 
 /**
  * Remove cart from state before async removeCartItem() function finishes
@@ -316,3 +398,61 @@ export function removeCartItem(
  */
 export const isProductInArray = (product: Product, array: Product[]): boolean =>
 	array.some((p) => p.id === product.id);
+
+/**
+ * send and save user local storage if user is logged in
+ */	
+export async function saveTempUserCart(user:AuthUser):Promise<boolean>{
+	const userCart = getLocalStorageUserCart(user);
+	if(userCart.length > 0){
+		// send and save local storage
+		const res = await saveTempCart(userCart);
+		return res.ok;
+	}
+	return false;
+}
+
+/**
+ * Get all user cart Items if user is logged in
+ */	
+export async function getAllCarts(dispatch, user:AuthUser) {
+	try{
+		const cartItems:CartItem[] = await getAllCartItems(user);
+		if(cartItems !== null){
+			dispatch({ type: 'PATCH_CART', payload: cartItems });
+		}
+	}
+	catch(err){
+		console.log(err);
+	}
+}
+
+/**
+ * Initialize user cart when user is logged in
+ */	
+export async function initializeCartItems(user:AuthUser, dispatch){
+	try{
+		if(user){
+			const saved = await saveTempUserCart(user);
+			if(saved){
+				await getAllCarts(dispatch, user);
+			}
+			await getAllCarts(dispatch, user);
+		}	
+	}
+	catch(err){
+		console.log(err);
+	}
+}
+
+/**
+ * Update cart from local storage if user signed out
+ */	
+export function updateFromLocalStorage(dispatch){
+	const lStorageCart = getLocalStorageCart();
+	if(lStorageCart.length > 0){
+		dispatch({ type: 'PATCH_CART', payload: lStorageCart });
+	}
+	dispatch({ type: 'PATCH_CART', payload: lStorageCart });
+	storeCartItemsInLocalStorage(lStorageCart);
+}

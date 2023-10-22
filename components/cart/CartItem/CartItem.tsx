@@ -3,12 +3,12 @@ import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
-	const {user } = useContext<AuthState>(AuthContext);
+	const {user} = useContext<AuthState>(AuthContext);
 
 	const handleAddProductToWishList = () => {
 		const check = isProductInArray(cartItem.product, wishList);
@@ -47,9 +47,14 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				payload: cartItem.product,
 			});
 
-			const newCartItems = removeCartItem(cartItems, cartItem.product.id);
-			removeItemFromCart(cartItem.id);
-			storeCartItemsInLocalStorage(newCartItems);
+			removeItemFromCart(cartItem.id).then(()=>{
+				getAllCartItems(user).then((allCartItems)=>{
+					dispatch({ type: 'PATCH_CART', payload: allCartItems });
+				}).catch((err)=>{
+					console.log(err);
+					
+				});
+			});
 		}
 
 		dispatch({
@@ -57,8 +62,8 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			payload: cartItem.product,
 		});
 		const newCartItems = removeCartItem(cartItems, cartItem.product.id);
+		dispatch({ type: 'PATCH_CART', payload: newCartItems });
 		storeCartItemsInLocalStorage(newCartItems);
-
 	};
 
 	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
