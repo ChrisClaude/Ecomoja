@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
 import { toast } from 'react-toastify';
 import { Button } from '@/components/common/';
 import { UIContext } from '@/hooks/context/UIContext';
@@ -11,6 +11,7 @@ import {
 	storeCartItemsInLocalStorage,
 } from '@/helpers/main';
 import { Product } from '@/types/AppTypes';
+import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const showCategories = ({ id, categories }: Product) => {
 	const { length } = categories;
@@ -35,7 +36,8 @@ const showCategories = ({ id, categories }: Product) => {
 
 const ProductDetails = ({ product }: { product: Product }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
-
+	const { user } = useContext<AuthState>(AuthContext);
+	
 	React.useEffect(() => {
 		storeCartItemsInLocalStorage(cartItems);
 	}, [cartItems]);
@@ -125,7 +127,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
 							secondary
 							className="py-3"
 							onClick={() => {
-								addProductToCart(product, dispatch);
+								addProductToCart(product, dispatch, user);
 								dispatch({ type: 'TOGGLE_MODAL' });
 							}}
 						>
