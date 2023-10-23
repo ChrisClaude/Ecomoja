@@ -67,16 +67,17 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	};
 
 	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
-		if (+event.currentTarget.value === cartItem.productInstances + 1) {
+		if (+event.currentTarget.value === cartItem.quantity + 1) {
 			dispatch({
 				type: 'INCREASE_PRODUCT_QUANTITY',
 				payload: cartItem.product,
 			});
+			console.log("Quantity increase");
 		}
 
 		if (
 			+event.currentTarget.value > 0 &&
-			+event.currentTarget.value === cartItem.productInstances - 1
+			+event.currentTarget.value === cartItem.quantity - 1
 		) {
 			dispatch({
 				type: 'DECREASE_PRODUCT_QUANTITY',
@@ -115,7 +116,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 									type="number"
 									id="qty"
 									className="border-black border-2 rounded w-12 ml-2 px-2 py-1"
-									value={cartItem.productInstances}
+									value={cartItem.quantity}
 									onChange={handleOnQtyChange}
 								/>
 						</div>

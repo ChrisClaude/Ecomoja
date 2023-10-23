@@ -88,7 +88,7 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 				id: productItem.id,
 				Users_permissions_user: productItem.users_permissions_user,
 				product,
-				productInstances: productItem.quantity,
+				quantity: productItem.quantity,
 			});
 		});
 	} catch (err) {
@@ -281,7 +281,7 @@ export async function removeItemFromCart(cartId: number) {
 export const calculateCartTotal = (cart: CartItemType[]): number => {
 	let total = 0;
 	cart.forEach((item) => {
-		total += item.product.currentPrice * item.productInstances;
+		total += item.product.currentPrice * item.quantity;
 	});
 	return total;
 };
@@ -348,14 +348,14 @@ export const addNewCartItem = (
 			id: newItem.id,
 			Users_permissions_user: user,
 			product: newItem,
-			productInstances: 1,
+			quantity: 1,
 		};
 		return [cartItem, ...cartItems];
 	}
 	// remove existing cart item from passed array
 	const tempCartItems = cartItems.filter((item) => item.product.id !== existingItem[0].product.id);
 	// increment quantity of the existing cart item
-	existingItem[0].productInstances += 1;
+	existingItem[0].quantity += 1;
 	return [existingItem[0], ...tempCartItems]; 
 };
 

@@ -23,7 +23,7 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 		case 'INCREASE_PRODUCT_QUANTITY':
 			state.cartItems.forEach((cartItem: CartItem) => {
 				if (cartItem.id === action.payload.id) {
-					cartItem.productInstances += 1;
+					cartItem.quantity += 1;
 				}
 			});
 
@@ -35,9 +35,9 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			state.cartItems.forEach((cartItem: CartItem) => {
 				if (
 					cartItem.id === action.payload.id &&
-					cartItem.productInstances !== 0
+					cartItem.quantity !== 0
 				) {
-					cartItem.productInstances -= 1;
+					cartItem.quantity -= 1;
 				}
 			});
 

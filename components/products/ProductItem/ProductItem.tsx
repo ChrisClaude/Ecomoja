@@ -58,7 +58,7 @@ const ProductItem = ({ item }: ProductProps) => {
 				});	
 			}else{
 				const cart:CartItem[] = newCartItem.slice();
-				cart[0].productInstances = 1;
+				cart[0].quantity = 1;
 				saveTempCart(cart).then((res) => {
 					if(res.ok && res !== null){
 						getAllCartItems(user).then((allCartItems)=>{

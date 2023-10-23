@@ -1,4 +1,5 @@
 import * as React from 'react';
+// eslint-disable-next-line import/no-cycle
 import {User as AuthUser} from '@/hooks/context/AuthContext';
 
 
@@ -42,7 +43,7 @@ export type CartItem = {
 	id: number;
 	Users_permissions_user?: AuthUser;
 	product: Product;
-	productInstances: number;
+	quantity: number;
 };
 
 export type BackendCart = {
