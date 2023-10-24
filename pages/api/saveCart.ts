@@ -10,9 +10,6 @@ export const saveCart = async (req, res) => {
 		}
 
 		const { token } = cookie.parse(req.headers.cookie);
-		console.log('body',req.body);
-		console.log('body stringify', JSON.stringify(req.body));
-
 		const strapiRes = await fetch(`${API_URL}/carts/save`, {
 			method: 'POST',
 			headers: {

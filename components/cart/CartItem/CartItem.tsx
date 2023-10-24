@@ -74,7 +74,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
 		
 		if(user){
-			if (+event.currentTarget.value > parseInt(cartItem.quantity)) {
+			if (+event.currentTarget.value > parseInt(cartItem.quantity.toString())) {
 				const newQuantity = +event.currentTarget.value;
 				increaseQuantity(newQuantity, cartItems, cartItem).then((newCartItems) => {
 					seUserCart(newCartItems);
