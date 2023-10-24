@@ -11,6 +11,7 @@ import {
 	UIAction,
 } from '@/types/AppTypes';
 import { addBike } from '@/services/BikeServices';
+// eslint-disable-next-line import/no-cycle
 import {
 	User as AuthUser,
 } from '@/hooks/context/AuthContext';
