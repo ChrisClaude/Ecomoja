@@ -15,7 +15,7 @@ export type UserLogin = {
 }
 
 export type UIState = {
-	user?: User;
+	user?: AuthUser;
 	isShopByCategoryCollapsed: boolean;
 	cartItems: CartItem[];
 	wishList?: Product[];
@@ -46,23 +46,16 @@ export type CartItem = {
 	quantity: number;
 };
 
-export type BackendCart = {
-	data:{
-		id?: number;
-		users_permissions_user: number;
-		product: number;
-		quantity: number;
-	};
-}
-
 type IncreaseProductQuantity = {
 	type: 'INCREASE_PRODUCT_QUANTITY';
 	payload: Product;
+	quantity: number;
 };
 
 type DecreaseProductQuantity = {
 	type: 'DECREASE_PRODUCT_QUANTITY';
 	payload: Product;
+	quantity: number;
 };
 
 type PatchCart = {
@@ -115,7 +108,7 @@ type ResetModal = {
 
 type SetCurrentUser = {
 	type: 'SET_CURRENT_USER';
-	payload: User;
+	payload: AuthUser;
 };
 
 export type UIAction =

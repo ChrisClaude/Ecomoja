@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-else-return */
 /* eslint-disable no-lonely-if */
 import * as React from 'react';
@@ -15,7 +16,6 @@ import {
 } from '@/hooks/context/AuthContext';
 import { NEXT_URL } from '@/config/index';
 import { CartRequest } from '@/services/ApiService';
-
 /**
  *  Method for querying and returning products all from backend */
 export async function getAllProducts(): Promise<Product[]> {
@@ -224,6 +224,67 @@ export const saveProductToUserCart = async (product: Product, user: any, cartIte
 		console.log(err);
 	 }
 	 return res;
+}
+
+/**
+ *
+ * @param cart Store Items to the localstorage
+ */
+export async function updateCartQuantity(cartItem:CartItem):Promise<Response>{
+	let response:Response = null;
+	try{
+		if(cartItem !== null){
+			response = await fetch(`${NEXT_URL}/api/updateCartQuantity`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(cartItem),
+			});
+			return response
+		}
+	}catch(error){
+		console.log(error.message);
+	}
+	return response
+}
+
+/**
+ *
+ * @param cart update backend cart quantity
+ */
+export async function initiateQuantityUpdate(cartItem:CartItem):Promise<Response>{
+	let response:Response = null;
+	if(cartItem !== null){
+		try{
+			response = await updateCartQuantity(cartItem);
+			return response;
+		}
+		catch(err){
+			console.error(err);
+		}
+	}
+	return response;
+}
+
+/**
+ *
+ * @param cart increase cart quantity
+ */
+export async function increaseQuantity(newQuantity:number, cartItems:CartItemType[], cartItem:CartItemType){
+	const tempCartItems = cartItems.slice();
+	const filteredCartItem = tempCartItems.filter((cart) => cart.id === cartItem.id);
+	filteredCartItem[0].quantity = newQuantity;
+	try{
+		const response = await updateCartQuantity(cartItem);
+		 if(response.ok){
+			return tempCartItems;
+		 }
+	}
+	catch(err){
+		console.error(err);
+	}
+	return tempCartItems;
 }
 
 /**

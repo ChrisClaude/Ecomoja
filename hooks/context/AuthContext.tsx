@@ -36,12 +36,17 @@ export const AuthProvider = ({ children }) => {
 	const router = useRouter();
 
 	const checkIfUserLoggedIn = useCallback(async () => {
-		const res = await fetch(`${NEXT_URL}/api/user`);
+		try{
+			const res = await fetch(`${NEXT_URL}/api/user`);
 		const data = await res.json();
 		if (res.ok) {
 			setUser(data.user);
 		} else {
 			setUser(null);
+		}
+		}
+		catch(err){
+			console.error(err);
 		}
 	}, []);
 
@@ -77,26 +82,32 @@ export const AuthProvider = ({ children }) => {
 
 	// Login user
 	const login = async ( identifier, password ) => {
-		const res = await fetch(`${NEXT_URL}/api/login`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				identifier,
-				password,
-			}),
-		});
-
-		const data = await res.json();
-
-		if (res.ok) {
-			setUser(data.user);
-			router.push('/');
-		} else {
-			setError(data.message);
-			setError(null);
+		try{
+			const res = await fetch(`${NEXT_URL}/api/login`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					identifier,
+					password,
+				}),
+			});
+	
+			const data = await res.json();
+	
+			if (res.ok) {
+				setUser(data.user);
+				router.push('/');
+			} else {
+				setError(data.message);
+				setError(null);
+			}
 		}
+		catch(err){
+			console.error(err);
+		}
+
 	};
 
 	// Logout user
