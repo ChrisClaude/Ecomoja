@@ -127,10 +127,10 @@ const NavBar = () => {
 				{/* Mobile Icons */}
 				<div className="flex items-center ml-auto lg:hidden">
 					<button
-						className="h-8 p-1 text-base flex items-center justify-center"
+						className="h-8 p-1 bg-inherit text-base flex items-center justify-center"
 						type="button"
 					>
-						{/* <FontAwesomeIcon icon="search" /> */}
+						<span className="material-icons">search</span>
 					</button>
 					<Link href="/cart"className="h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700">
 							<Badge badgeContent={cartItems.length} color="secondary">
