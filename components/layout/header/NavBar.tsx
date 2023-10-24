@@ -13,7 +13,7 @@ import LoginButton from '@/components/core/LoginButton';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const NavBar = () => {
-	const { dispatch, cartItems } = React.useContext(UIContext);
+	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 	const { isAuthenticated, user } = React.useContext<AuthState>(AuthContext);
 
 	const toggleDrawer = () => {
@@ -116,7 +116,7 @@ const NavBar = () => {
 								<span className="material-icons text-base mr-1">
 								favorite
 								</span>
-								<span>0</span>
+								<span>{wishList !== null ? wishList?.length : 0}</span>
 							</Link>
 						</li>
 						<li>

@@ -24,7 +24,7 @@ const ToggleWishlistIcon = ({ product, ...props }: ToggleWishlistIconProps) => {
 		if (isInUsersWishList) {
 			dispatch({ type: 'REMOVE_PRODUCT_FROM_WISHLIST', payload: product });
 
-			toast.error("You've removed an item from your cart", {
+			toast.error("You've removed an item from your wish list", {
 				position: 'top-right',
 				autoClose: 1500,
 				hideProgressBar: false,
