@@ -118,7 +118,7 @@ const ProductItem = ({ item }: ProductProps) => {
 							<ToggleWishlistIcon
 								product={item}
 								className={cn(
-									'absolute top-1 right-1 md:block mr-3',
+									'absolute top-1 right-1 md:block mr-3 bg-transparent',
 									s.wishListToggleIcon,
 								)}
 							/>

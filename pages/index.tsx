@@ -55,7 +55,7 @@ export default function Home({ecoProducts}) {
 				});
 			}
 		},
-		[dispatch],
+		[dispatch, layoutProp],
 	);
 
 

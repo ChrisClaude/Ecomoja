@@ -63,7 +63,7 @@ const ToggleWishlistIcon = ({ product, ...props }: ToggleWishlistIconProps) => {
 					favorite
 				</span>
 			) : (
-				<span className="material-icons-round text-3xl text-gray-500">
+				<span className="material-icons-round text-3xl text-emerald-600">
 					favorite_border
 				</span>
 			)}

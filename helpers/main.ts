@@ -467,7 +467,7 @@ export const isProductInArray = (product: Product, array: Product[]): boolean =>
 export async function saveTempUserCart(user:AuthUser):Promise<boolean>{
 	const userCart = getLocalStorageUserCart(user);
 	if(userCart.length > 0){
-		// send and save local storage
+		// send and save local storage to the backend
 		const res = await saveTempCart(userCart);
 		return res.ok;
 	}
@@ -508,7 +508,7 @@ export async function initializeCartItems(user:AuthUser, dispatch){
 }
 
 /**
- * Update cart from local storage if user signed out
+ * Update cart in local storage if user signs out
  */	
 export function updateFromLocalStorage(dispatch){
 	const lStorageCart = getLocalStorageCart();

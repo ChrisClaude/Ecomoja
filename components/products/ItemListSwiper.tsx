@@ -12,7 +12,7 @@ const ItemListSwiper = ({ items, component }: ItemListSwiperProps) => {
 	const { width: windowWidth } = useWindowSize();
 	const [settings, setSettings] = React.useState({
 		className: 'center',
-		infinite: true,
+		infinite: false,
 		centerPadding: '60px',
 		slidesToShow: 5,
 		swipeToSlide: true,
