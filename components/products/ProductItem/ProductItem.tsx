@@ -78,7 +78,7 @@ const ProductItem = ({ item }: ProductProps) => {
 
 	return (
 		<Link href={`/products/${id}`} className={cn(
-			'product-item block hover:text-gray-700 hover:no-underline',
+			'product-item block hover:text-gray-700 hover:no-underline mx-1 my-2 sm:grow',
 			s.ProductItemContainer,
 		)}>
 				<Card sx={{ maxWidth: 345 }} className="relative">
