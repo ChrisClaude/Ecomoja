@@ -33,14 +33,12 @@ const ItemListSwiper = ({ items, component }: ItemListSwiperProps) => {
 	const ItemComponent = component;
 
 	return (
-		<div>
-			<Slider {...settings}>
-				{items.map((item) => (
-					<div key={item.id}>
-						<ItemComponent item={item} />
-					</div>
-				))}
-			</Slider>
+		<div className="flex flex-wrap justify-start">
+			{items.map((item) => (
+			<div key={item.id}>
+				<ItemComponent item={item}/>
+			</div>
+			))}
 		</div>
 	);
 };
