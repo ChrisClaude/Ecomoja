@@ -61,7 +61,7 @@ const CartMiniItem = ({ cartItem }: { cartItem: CartItemType }) => {
 					</div>
 				</div>
 				<div className="flex">
-					<span>Qty: {cartItem.productInstances}</span>
+					<span>Qty: {cartItem.quantity}</span>
 					<span className="ml-auto">R {cartItem.product.currentPrice}</span>
 				</div>
 			</div>

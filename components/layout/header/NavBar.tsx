@@ -13,7 +13,7 @@ import LoginButton from '@/components/core/LoginButton';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const NavBar = () => {
-	const { dispatch, cartItems } = React.useContext(UIContext);
+	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 	const { isAuthenticated, user } = React.useContext<AuthState>(AuthContext);
 
 	const toggleDrawer = () => {
@@ -116,7 +116,7 @@ const NavBar = () => {
 								<span className="material-icons text-base mr-1">
 								favorite
 								</span>
-								<span>0</span>
+								<span>{wishList !== null ? wishList?.length : 0}</span>
 							</Link>
 						</li>
 						<li>
@@ -127,10 +127,10 @@ const NavBar = () => {
 				{/* Mobile Icons */}
 				<div className="flex items-center ml-auto lg:hidden">
 					<button
-						className="h-8 p-1 text-base flex items-center justify-center"
+						className="h-8 p-1 bg-inherit text-base flex items-center justify-center"
 						type="button"
 					>
-						{/* <FontAwesomeIcon icon="search" /> */}
+						<span className="material-icons">search</span>
 					</button>
 					<Link href="/cart"className="h-8 ml-1 p-1 text-base flex items-center justify-center hover:text-gray-700">
 							<Badge badgeContent={cartItems.length} color="secondary">

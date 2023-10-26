@@ -58,7 +58,7 @@ const ProductItem = ({ item }: ProductProps) => {
 				});	
 			}else{
 				const cart:CartItem[] = newCartItem.slice();
-				cart[0].productInstances = 1;
+				cart[0].quantity = 1;
 				saveTempCart(cart).then((res) => {
 					if(res.ok && res !== null){
 						getAllCartItems(user).then((allCartItems)=>{
@@ -78,7 +78,7 @@ const ProductItem = ({ item }: ProductProps) => {
 
 	return (
 		<Link href={`/products/${id}`} className={cn(
-			'product-item block hover:text-gray-700 hover:no-underline',
+			'product-item block hover:text-gray-700 hover:no-underline mx-1 my-2 sm:grow',
 			s.ProductItemContainer,
 		)}>
 				<Card sx={{ maxWidth: 345 }} className="relative">
@@ -118,7 +118,7 @@ const ProductItem = ({ item }: ProductProps) => {
 							<ToggleWishlistIcon
 								product={item}
 								className={cn(
-									'absolute top-1 right-1 md:block mr-3',
+									'absolute top-1 right-1 md:block mr-3 bg-transparent',
 									s.wishListToggleIcon,
 								)}
 							/>

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-else-return */
 /* eslint-disable no-lonely-if */
 import * as React from 'react';
@@ -10,12 +11,12 @@ import {
 	UIAction,
 } from '@/types/AppTypes';
 import { addBike } from '@/services/BikeServices';
+// eslint-disable-next-line import/no-cycle
 import {
 	User as AuthUser,
 } from '@/hooks/context/AuthContext';
 import { NEXT_URL } from '@/config/index';
 import { CartRequest } from '@/services/ApiService';
-
 /**
  *  Method for querying and returning products all from backend */
 export async function getAllProducts(): Promise<Product[]> {
@@ -88,7 +89,7 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 				id: productItem.id,
 				Users_permissions_user: productItem.users_permissions_user,
 				product,
-				productInstances: productItem.quantity,
+				quantity: productItem.quantity,
 			});
 		});
 	} catch (err) {
@@ -230,6 +231,67 @@ export const saveProductToUserCart = async (product: Product, user: any, cartIte
  *
  * @param cart Store Items to the localstorage
  */
+export async function updateCartQuantity(cartItem:CartItem):Promise<Response>{
+	let response:Response = null;
+	try{
+		if(cartItem !== null){
+			response = await fetch(`${NEXT_URL}/api/updateCartQuantity`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(cartItem),
+			});
+			return response
+		}
+	}catch(error){
+		console.log(error.message);
+	}
+	return response
+}
+
+/**
+ *
+ * @param cart update backend cart quantity
+ */
+export async function initiateQuantityUpdate(cartItem:CartItem):Promise<Response>{
+	let response:Response = null;
+	if(cartItem !== null){
+		try{
+			response = await updateCartQuantity(cartItem);
+			return response;
+		}
+		catch(err){
+			console.error(err);
+		}
+	}
+	return response;
+}
+
+/**
+ *
+ * @param cart increase cart quantity
+ */
+export async function increaseQuantity(newQuantity:number, cartItems:CartItemType[], cartItem:CartItemType){
+	const tempCartItems = cartItems.slice();
+	const filteredCartItem = tempCartItems.filter((cart) => cart.id === cartItem.id);
+	filteredCartItem[0].quantity = newQuantity;
+	try{
+		const response = await updateCartQuantity(cartItem);
+		 if(response.ok){
+			return tempCartItems;
+		 }
+	}
+	catch(err){
+		console.error(err);
+	}
+	return tempCartItems;
+}
+
+/**
+ *
+ * @param cart Store Items to the localstorage
+ */
 export const storeCartItemsInLocalStorage = (cart: CartItemType[]) => {
 	localStorage.setItem('cartitems', JSON.stringify(cart));
 };
@@ -281,7 +343,7 @@ export async function removeItemFromCart(cartId: number) {
 export const calculateCartTotal = (cart: CartItemType[]): number => {
 	let total = 0;
 	cart.forEach((item) => {
-		total += item.product.currentPrice * item.productInstances;
+		total += item.product.currentPrice * item.quantity;
 	});
 	return total;
 };
@@ -348,14 +410,14 @@ export const addNewCartItem = (
 			id: newItem.id,
 			Users_permissions_user: user,
 			product: newItem,
-			productInstances: 1,
+			quantity: 1,
 		};
 		return [cartItem, ...cartItems];
 	}
 	// remove existing cart item from passed array
 	const tempCartItems = cartItems.filter((item) => item.product.id !== existingItem[0].product.id);
 	// increment quantity of the existing cart item
-	existingItem[0].productInstances += 1;
+	existingItem[0].quantity += 1;
 	return [existingItem[0], ...tempCartItems]; 
 };
 
@@ -405,7 +467,7 @@ export const isProductInArray = (product: Product, array: Product[]): boolean =>
 export async function saveTempUserCart(user:AuthUser):Promise<boolean>{
 	const userCart = getLocalStorageUserCart(user);
 	if(userCart.length > 0){
-		// send and save local storage
+		// send and save local storage to the backend
 		const res = await saveTempCart(userCart);
 		return res.ok;
 	}
@@ -446,7 +508,7 @@ export async function initializeCartItems(user:AuthUser, dispatch){
 }
 
 /**
- * Update cart from local storage if user signed out
+ * Update cart in local storage if user signs out
  */	
 export function updateFromLocalStorage(dispatch){
 	const lStorageCart = getLocalStorageCart();

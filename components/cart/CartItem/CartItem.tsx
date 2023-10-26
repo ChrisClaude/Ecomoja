@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+/* eslint-disable radix */
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, saveTempCart, updateCartQuantity, initiateQuantityUpdate, addNewCartItem, increaseQuantity } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 	const {user} = useContext<AuthState>(AuthContext);
+	const [userCart, seUserCart] = useState(null);
 
 	const handleAddProductToWishList = () => {
 		const check = isProductInArray(cartItem.product, wishList);
@@ -40,7 +42,6 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	};
 
 	const handleOnRemoveCartItem = () => {
-
 		if(user){
 			dispatch({
 				type: 'REMOVE_PRODUCT_FROM_CART',
@@ -52,11 +53,9 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 					dispatch({ type: 'PATCH_CART', payload: allCartItems });
 				}).catch((err)=>{
 					console.log(err);
-					
 				});
 			});
 		}
-
 		dispatch({
 			type: 'REMOVE_PRODUCT_FROM_CART',
 			payload: cartItem.product,
@@ -66,24 +65,55 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 		storeCartItemsInLocalStorage(newCartItems);
 	};
 
-	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
-		if (+event.currentTarget.value === cartItem.productInstances + 1) {
-			dispatch({
-				type: 'INCREASE_PRODUCT_QUANTITY',
-				payload: cartItem.product,
-			});
+	useEffect(()=>{
+		if(userCart){
+			dispatch({ type: 'PATCH_CART', payload: userCart });
 		}
+	}, [userCart])
 
-		if (
-			+event.currentTarget.value > 0 &&
-			+event.currentTarget.value === cartItem.productInstances - 1
-		) {
-			dispatch({
-				type: 'DECREASE_PRODUCT_QUANTITY',
-				payload: cartItem.product,
-			});
-		}
-	};
+	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
+		
+		if(user){
+			if (+event.currentTarget.value > parseInt(cartItem.quantity.toString())) {
+				const newQuantity = +event.currentTarget.value;
+				increaseQuantity(newQuantity, cartItems, cartItem).then((newCartItems) => {
+					seUserCart(newCartItems);
+				}).catch((err)=>{
+					console.error(err);
+				});
+			}
+
+			if (
+				+event.currentTarget.value > 0 &&
+				+event.currentTarget.value === cartItem.quantity - 1
+			) {
+				const newQuantity = +event.currentTarget.value;
+				increaseQuantity(newQuantity, cartItems, cartItem).then((newCartItems) => {
+					seUserCart(newCartItems);
+				}).catch((err)=>{
+					console.error(err);
+				});
+			}
+		}else{
+			if (+event.currentTarget.value === cartItem.quantity + 1) {
+				dispatch({
+					type: 'INCREASE_PRODUCT_QUANTITY',
+					payload: cartItem.product,
+					quantity:+event.currentTarget.value,
+				});
+			}
+			if (
+				+event.currentTarget.value > 0 &&
+				+event.currentTarget.value === cartItem.quantity - 1
+				) {
+					dispatch({
+						type: 'DECREASE_PRODUCT_QUANTITY',
+						payload: cartItem.product,
+						quantity:+event.currentTarget.value,
+					});
+				}
+			}
+		};
 
 	return (
 		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
@@ -115,7 +145,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 									type="number"
 									id="qty"
 									className="border-black border-2 rounded w-12 ml-2 px-2 py-1"
-									value={cartItem.productInstances}
+									value={cartItem.quantity}
 									onChange={handleOnQtyChange}
 								/>
 						</div>

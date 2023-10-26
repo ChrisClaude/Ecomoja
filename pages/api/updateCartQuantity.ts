@@ -1,7 +1,7 @@
 import cookie from 'cookie';
 import { API_URL } from '@/config/index';
 
-export const saveCart = async (req, res) => {
+export const updateCartQuantity = async (req, res) => {
 	console.log(req.body);
 	if (req.method === 'POST') {
 		if (!req.headers.cookie) {
@@ -10,7 +10,7 @@ export const saveCart = async (req, res) => {
 		}
 
 		const { token } = cookie.parse(req.headers.cookie);
-		const strapiRes = await fetch(`${API_URL}/carts/save`, {
+		const strapiRes = await fetch(`${API_URL}/carts/updateQuantity`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export const saveCart = async (req, res) => {
 		if (strapiRes.ok) {
 			res.status(200).json({ response });
 		} else {
-			res.status(403).json({ message: 'Could not add your cart item' });
+			res.status(403).json({ message: 'Could not update quantity'});
 		}
 	}
 	else {
@@ -33,4 +33,4 @@ export const saveCart = async (req, res) => {
 	}
 };
 
-export default saveCart;
+export default updateCartQuantity;
