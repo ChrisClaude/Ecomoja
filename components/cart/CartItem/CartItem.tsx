@@ -6,11 +6,14 @@ import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
 import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, saveTempCart, updateCartQuantity, initiateQuantityUpdate, addNewCartItem, increaseQuantity } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { debounce } from 'lodash';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 	const {user} = useContext<AuthState>(AuthContext);
 	const [userCart, seUserCart] = useState(null);
+	const [qty, setQty] = useState(cartItem.quantity);
 
 	const handleAddProductToWishList = () => {
 		const check = isProductInArray(cartItem.product, wishList);
@@ -65,37 +68,23 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 		storeCartItemsInLocalStorage(newCartItems);
 	};
 
-	useEffect(()=>{
-		if(userCart){
-			dispatch({ type: 'PATCH_CART', payload: userCart });
-		}
-	}, [userCart])
-
 	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
 		
 		if(user){
 			if (+event.currentTarget.value > parseInt(cartItem.quantity.toString())) {
 				const newQuantity = +event.currentTarget.value;
-				increaseQuantity(newQuantity, cartItems, cartItem).then((newCartItems) => {
-					seUserCart(newCartItems);
-				}).catch((err)=>{
-					console.error(err);
-				});
+			    setQty(newQuantity);
 			}
 
 			if (
 				+event.currentTarget.value > 0 &&
-				+event.currentTarget.value === cartItem.quantity - 1
+				+event.currentTarget.value < parseInt(cartItem.quantity.toString())
 			) {
 				const newQuantity = +event.currentTarget.value;
-				increaseQuantity(newQuantity, cartItems, cartItem).then((newCartItems) => {
-					seUserCart(newCartItems);
-				}).catch((err)=>{
-					console.error(err);
-				});
+				setQty(newQuantity);
 			}
 		}else{
-			if (+event.currentTarget.value === cartItem.quantity + 1) {
+			if (+event.currentTarget.value > parseInt(cartItem.quantity.toString())) {
 				dispatch({
 					type: 'INCREASE_PRODUCT_QUANTITY',
 					payload: cartItem.product,
@@ -104,7 +93,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			}
 			if (
 				+event.currentTarget.value > 0 &&
-				+event.currentTarget.value === cartItem.quantity - 1
+				+event.currentTarget.value < parseInt(cartItem.quantity.toString())
 				) {
 					dispatch({
 						type: 'DECREASE_PRODUCT_QUANTITY',
@@ -114,6 +103,21 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				}
 			}
 		};
+
+		const updateQuantityValue = debounce((cartItemQuantity:number)=>{
+			increaseQuantity(cartItemQuantity, cartItems, cartItem).then((newCartItems) => {
+				seUserCart(newCartItems);
+				if(userCart){
+					dispatch({ type: 'PATCH_CART', payload: userCart });
+				}
+			}).catch((err)=>{
+				console.error(err);
+			});
+		}, 5000);
+
+		useEffect(()=>{
+			updateQuantityValue(qty);
+		}, [qty])
 
 	return (
 		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
@@ -145,7 +149,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 									type="number"
 									id="qty"
 									className="border-black border-2 rounded w-12 ml-2 px-2 py-1"
-									value={cartItem.quantity}
+									defaultValue={cartItem.quantity}
 									onChange={handleOnQtyChange}
 								/>
 						</div>
