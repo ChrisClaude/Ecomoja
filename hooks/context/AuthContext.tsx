@@ -31,13 +31,18 @@ export const AuthProvider = ({ children }) => {
 	const router = useRouter();
 
 	const checkIfUserLoggedIn = useCallback(async () => {
-		const res = await fetch(`${NEXT_URL}/api/user`);
+       
+       try{ 
+        const res = await fetch(`${NEXT_URL}/api/user`);
 		const data = await res.json();
 		if (res.ok) {
 			setUser(data.user);
 		} else {
 			setUser(null);
-		}
+		}} catch(error)
+           {console.log(error)
+           }
+		
 	}, []);
 
 	useEffect(() => {
