@@ -45,7 +45,7 @@ export async function getAllProducts(): Promise<Product[]> {
 			}),
 		);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 
 	return products;
@@ -93,7 +93,7 @@ async function recreateCartItems(cartItemsAPI): Promise<CartItemType[]> {
 			});
 		});
 	} catch (err) {
-		console.log(err.message);
+		console.error(err.message);
 	}
 	return cartItems;
 }
@@ -193,7 +193,7 @@ export async function saveTempCart(cartItems: CartItem[]){
 			return response
 		}
 	}catch(error){
-		console.log(error.message);
+		console.error(error.message);
 	}
 	return response
 }
@@ -222,7 +222,7 @@ export const saveProductToUserCart = async (product: Product, user: any, cartIte
 		return res;
 	 }
 	 catch(err){
-		console.log(err);
+		console.error(err);
 	 }
 	 return res;
 }
@@ -245,7 +245,7 @@ export async function updateCartQuantity(cartItem:CartItem):Promise<Response>{
 			return response
 		}
 	}catch(error){
-		console.log(error.message);
+		console.error(error.message);
 	}
 	return response
 }
@@ -332,7 +332,7 @@ export async function removeItemFromCart(cartId: number) {
 			{ method: 'DELETE',
 		},);
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 	}
 }
 
@@ -485,7 +485,7 @@ export async function getAllCarts(dispatch, user:AuthUser) {
 		}
 	}
 	catch(err){
-		console.log(err);
+		console.error(err);
 	}
 }
 
@@ -503,7 +503,7 @@ export async function initializeCartItems(user:AuthUser, dispatch){
 		}	
 	}
 	catch(err){
-		console.log(err);
+		console.error(err);
 	}
 }
 

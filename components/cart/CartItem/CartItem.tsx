@@ -54,7 +54,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				getAllCartItems(user).then((allCartItems)=>{
 					dispatch({ type: 'PATCH_CART', payload: allCartItems });
 				}).catch((err)=>{
-					console.log(err);
+					console.error(err);
 				});
 			});
 		}
