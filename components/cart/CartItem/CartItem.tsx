@@ -6,7 +6,6 @@ import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
 import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, saveTempCart, updateCartQuantity, initiateQuantityUpdate, addNewCartItem, increaseQuantity } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
@@ -113,10 +112,11 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			}).catch((err)=>{
 				console.error(err);
 			});
-		}, 5000);
+		}, 2000);
 
 		useEffect(()=>{
 			updateQuantityValue(qty);
+			return () => {updateQuantityValue.cancel();}
 		}, [qty])
 
 	return (
