@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { default as cn } from 'classnames';
-import ProductsLayoutMenu from '@/components/products/ItemListSwiper';
 import Button from '@/components/common/Button';
 import BikeItem from '@/components/core/BikeItem';
 import { Bike, Product } from '@/types/AppTypes';
+import ProductsLayoutMenu from '@/components/products/ProductsLayoutMenu';
 import ProductItem from './ProductItem';
 
 type CardListProps = ItemListProps & CardListHeaderProps;
