@@ -1,41 +1,17 @@
 import * as React from 'react';
-import Slider from 'react-slick';
-import { useWindowSize } from '@/hooks/custom';
 import { Product } from '@/types/AppTypes';
 
-type ItemListSwiperProps = {
+type ProductsLayoutMenuProps = {
 	items: Product[] | any[];
 	component: React.ComponentType<any>;
 };
 
-const ItemListSwiper = ({ items, component }: ItemListSwiperProps) => {
-	const { width: windowWidth } = useWindowSize();
-	const [settings, setSettings] = React.useState({
-		className: 'center',
-		infinite: false,
-		centerPadding: '60px',
-		slidesToShow: 5,
-		swipeToSlide: true,
-	});
-
-	React.useEffect(() => {
-		if (windowWidth < 768) {
-			setSettings({
-				className: 'center',
-				infinite: true,
-				centerPadding: '60px',
-				slidesToShow: 2,
-				swipeToSlide: true,
-			});
-		}
-	}, [windowWidth]);
-
+const ProductsLayoutMenu = ({ items, component }: ProductsLayoutMenuProps) => {
 	const ItemComponent = component;
-
 	return (
-		<div className="flex flex-wrap justify-start">
+		<div className="flex sm:justify-center sm:flex-wrap lg:flex-wrap lg:justify-center md:justify-center md:flex-wrap">
 			{items.map((item) => (
-			<div key={item.id}>
+			<div key={item.id} className="md:basis-1/4 md:last-of-type:mr-auto sm:basis-1/2 sm:last-of-type:mr-auto lg:last-of-type:mr-auto lg:basis-1/6">
 				<ItemComponent item={item}/>
 			</div>
 			))}
@@ -43,4 +19,4 @@ const ItemListSwiper = ({ items, component }: ItemListSwiperProps) => {
 	);
 };
 
-export default ItemListSwiper;
+export default ProductsLayoutMenu;

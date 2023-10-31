@@ -78,10 +78,10 @@ const ProductItem = ({ item }: ProductProps) => {
 
 	return (
 		<Link href={`/products/${id}`} className={cn(
-			'product-item block hover:text-gray-700 hover:no-underline mx-1 my-2 sm:grow',
+			'product-item block hover:text-gray-700 hover:no-underline mx-1 my-2',
 			s.ProductItemContainer,
 		)}>
-				<Card sx={{ maxWidth: 345 }} className="relative">
+				<Card sx={{ maxWidth: 200 }} className="relative">
 					<CardMedia
 						component="img"
 						height="194"
@@ -90,10 +90,10 @@ const ProductItem = ({ item }: ProductProps) => {
 					/>
 					<CardContent>
 						<div className="flex flex-col">
-							<div className="w-full flex-1 whitespace-nowrap truncate text-center font-bold text-base">
+							<div className="w-full  flex-1 whitespace-nowrap truncate sm:text-ellipsis overflow-hidden text-center font-bold text-base ...">
 								{name}
 							</div>
-							<div className="pricing-info-container w-full flex flex-col flex-1 mt-1 items-center justify-center lg:flex-row">
+							<div className="pricing-info-container w-full flex flex-col flex-1 items-center justify-center lg:flex-row">
 								<span className="text-base mr-2 font-bold">
 									R {currentPrice}
 								</span>

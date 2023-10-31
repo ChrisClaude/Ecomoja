@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { default as cn } from 'classnames';
-import ItemListSwiper from '@/components/products/ItemListSwiper';
+import ProductsLayoutMenu from '@/components/products/ItemListSwiper';
 import Button from '@/components/common/Button';
 import BikeItem from '@/components/core/BikeItem';
 import { Bike, Product } from '@/types/AppTypes';
@@ -70,7 +70,7 @@ const CardList = ({ items, title, buttonText, buttonType }: CardListProps) => (
 			className="mb-2"
 		/>
 
-		<ItemListSwiper
+		<ProductsLayoutMenu
 			items={items}
 			component={isProductArray(items) ? ProductItem : BikeItem}
 		/>

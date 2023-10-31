@@ -38,10 +38,17 @@ module.exports = {
 					},
 				},
 			},
+			screens:{
+				'sm':'360px',
+				'lg':'1024px',
+			},
 		},
 	},
 	variants: {
 		extend: {},
+	},
+	screens:{
+		'sm': '576px',
 	},
 	plugins: [],
 	corePlugins: {
