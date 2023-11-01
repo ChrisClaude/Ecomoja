@@ -16,7 +16,7 @@ type CarouselProps = {
 
 const Carousel = ({slides}: CarouselProps) => (
 	<Slider {...settings}>
-		{slides.map((sldImage) => (<div key={sldImage.id}>
+		{slides.map((sldImage) => (<div className='border-0' key={sldImage.id}>
 			<img
 				src={sldImage.image}
 				alt='eco friendly product'

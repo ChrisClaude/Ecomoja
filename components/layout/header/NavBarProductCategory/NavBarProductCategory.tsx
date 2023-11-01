@@ -78,7 +78,7 @@ const ShopCategory = () => {
 				<div className="absolute w-56 z-20 bg-white shadow-lg">
 					<div className="flex flex-col">
 						<div className="w-full">
-							<div className="flex items-center justify-between relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h font-bold">
+							<div className="flex items-center justify-between cursor-pointer relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h font-bold">
 								Shop by Department
 								<span
 								onClick={toggleShopBuCategory}

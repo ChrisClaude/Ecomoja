@@ -5,6 +5,7 @@ import BikeItem from '@/components/core/BikeItem';
 import { Bike, Product } from '@/types/AppTypes';
 import ProductsLayoutMenu from '@/components/products/ProductsLayoutMenu';
 import ProductItem from './ProductItem';
+import ProductSlider from './ProductSlider';
 
 type CardListProps = ItemListProps & CardListHeaderProps;
 
@@ -70,7 +71,7 @@ const CardList = ({ items, title, buttonText, buttonType }: CardListProps) => (
 			className="mb-2"
 		/>
 
-		<ProductsLayoutMenu
+		<ProductSlider
 			items={items}
 			component={isProductArray(items) ? ProductItem : BikeItem}
 		/>

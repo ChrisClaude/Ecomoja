@@ -56,6 +56,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				cartItems: [...action.payload],
 			};
+			case 'SET_PRODUCTS':
+			return {
+				...state,
+				products: action.payload,
+			};
 		case 'ADD_PRODUCT_TO_CART':
 			// eslint-disable-next-line no-case-declarations
 			const { cartItems } = state;

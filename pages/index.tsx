@@ -37,6 +37,12 @@ export default function Home({ecoProducts}) {
 		layoutProp,
 	} = React.useContext(UIContext);
 
+	React.useEffect(()=>{
+		if(ecoProducts){
+			dispatch({ type: 'SET_PRODUCTS', payload: ecoProducts });
+		}
+	},[dispatch, ecoProducts]);
+
 	React.useEffect(
 		() => {
 			dispatch({
@@ -58,14 +64,13 @@ export default function Home({ecoProducts}) {
 		[dispatch, layoutProp],
 	);
 
-
 	return (
 		<>
 			<Head>
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages}/>
-			{ecoProducts? <Catalogue catalogue={ecoProducts} title="Groceries"/> : ""}
+			{ecoProducts? <Catalogue catalogue={ecoProducts} title="Groceries"/> : "Loading"}
 			<FeaturedPartners/>
 		</>
 	);
