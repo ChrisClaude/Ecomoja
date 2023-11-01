@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { default as cn } from 'classnames';
-import { useRouter } from 'next/router';
 import { ProductCategory } from '@/types/ProductCategory';
 import { UIContext } from '@/hooks/context/UIContext';
 import s from './NavBarProductCategory.module.scss';
@@ -113,18 +112,7 @@ const ShopCategory = () => {
 		</>
 	);
 };
-const NavBarProductCategory = () => {
-	const router = useRouter();
-
-	const navigateToShoppingHome = () => {
-		router.push('/');
-	};
-
-	const navigateToMobilityHome = () => {
-		router.push('/mobility');
-	};
-
-	return (
+const NavBarProductCategory = () => (
 		<>
 			{/*#region Mobile daily deals */}
 			<div className="px-2 flex items-center h-12 justify-between bg-secondary lg:px-16 lg:hidden">
@@ -155,7 +143,7 @@ const NavBarProductCategory = () => {
 					<input
 						type="text"
 						placeholder="Search your eco friendly products here"
-						className="flex-1 placeholder:text-gray-800 p-2 bg-white-200 h-10 focus-visible:outline-none"
+						className="flex-1 p-2 bg-white-200 h-10 focus-visible:outline-none"
 					/>
 					<span className="material-icons-round flex items-center justify-center bg-gray-200 text-xl h-10 px-3 focus:outline-none">
 						search
@@ -166,6 +154,5 @@ const NavBarProductCategory = () => {
 			{/*#endregion */}
 		</>
 	);
-};
 
 export default NavBarProductCategory;

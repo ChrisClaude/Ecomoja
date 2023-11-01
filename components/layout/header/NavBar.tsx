@@ -11,6 +11,7 @@ import { UIContext } from '@/hooks/context/UIContext';
 import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
 import LoginButton from '@/components/core/LoginButton';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+import { useRouter } from 'next/router';
 
 const NavBar = () => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
@@ -18,6 +19,17 @@ const NavBar = () => {
 
 	const toggleDrawer = () => {
 		dispatch({ type: 'TOGGLE_MOBILE_MENU' });
+	};
+
+
+	const router = useRouter();
+
+	const navigateToShoppingHome = () => {
+		router.push('/');
+	};
+
+	const navigateToMobilityHome = () => {
+		router.push('/mobility');
 	};
 
 	return (
@@ -38,6 +50,19 @@ const NavBar = () => {
 					<Link href="/" className="flex items-center">
 							<Logo width={250} height={65} />
 					</Link>
+				</div>
+
+				<div className="flex">
+				<ul className="flex justify-end items-center">
+						<li className="p-2">
+						<Link href="#" onClick={navigateToShoppingHome} className="whitespace-nowrap">Shopping
+							</Link>
+						</li>
+						<li className="p-2">
+							<Link href="/mobility" onClick={navigateToMobilityHome} className="whitespace-nowrap">Mobility
+							</Link>
+						</li>
+				</ul>
 				</div>
 
 				<div className="lg:ml-auto justify-end hidden lg:flex">
