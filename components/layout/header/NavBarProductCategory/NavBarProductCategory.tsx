@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable spaced-comment */
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
@@ -13,7 +16,7 @@ const ProductCategoryList = ({
 }: {
 	categoryList: ProductCategory[];
 }) => (
-	<ul className="flex flex-col my-2">
+	<ul className="flex flex-col bg-white ">
 		{categoryList.map((category) => (
 			<li
 				key={category.id}
@@ -23,9 +26,7 @@ const ProductCategoryList = ({
 				)}
 			>
 				<span>{category.name}</span>
-				<span>
-					{/* <FontAwesomeIcon icon="chevron-right" /> */}
-				</span>
+				<span className="ml-auto material-icons-outlined">chevron_right</span>
 				{category.subcategories.length > 0 && (
 					<>
 						<ul
@@ -57,50 +58,44 @@ const ShopCategory = () => {
 	const { isShopByCategoryCollapsed, dispatch } = React.useContext(UIContext);
 
 	const toggleShopBuCategory = () => {
-		dispatch({
-			type: 'SET_SHOP_BY_CATEGORY',
-			payload: !isShopByCategoryCollapsed,
-		});
+		if(!isShopByCategoryCollapsed){
+			dispatch({
+				type: 'SET_SHOP_BY_CATEGORY',
+				payload: !isShopByCategoryCollapsed,
+			});
+		}
+		else{
+			dispatch({
+				type: 'SET_SHOP_BY_CATEGORY',
+				payload: !isShopByCategoryCollapsed,
+			});
+		}
 	};
 
 	return (
 		<>
 			<div className="relative">
-				<div className="absolute w-56 z-20 bg-white  shadow-lg">
+				<div className="absolute w-56 z-20 bg-white shadow-lg">
 					<div className="flex flex-col">
 						<div className="w-full">
 							<div className="flex items-center justify-between relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h font-bold">
 								Shop by Department
-								<span>
-									{/*isShopByCategoryCollapsed ? (
-										<FontAwesomeIcon
-											icon="chevron-up"
-											onClick={toggleShopBuCategory}
-											className="cursor-pointer"
-										/>
-									) : (
-										<FontAwesomeIcon
-											icon="chevron-down"
-											onClick={toggleShopBuCategory}
-											className="cursor-pointer"
-										/>
-									)*/}
-								</span>
+								<span
+								onClick={toggleShopBuCategory}
+								 className="material-icons-outlined cursor-pointer">expand_more</span>
 							</div>
 						</div>
 						<div
 							className={
-								isShopByCategoryCollapsed ? 'relative inline-block' : 'hidden'
+								isShopByCategoryCollapsed ? 'relative inline-block bg-white cursor-pointer hover:bg-secondary' : 'hidden'
 							}
 						>
 							<ProductCategoryList categoryList={productCategories} />
 							<a
 								href="#"
-								className="w-full block py-3 px-5 bg-ecolap-green text-white hover:no-underline hover:text-white"
+								className="w-full flex block py-3 px-5 bg-ecolap-green text-white hover:no-underline hover:text-white"
 							>
-								<span className="mr-1 text-base">
-									{/* <FontAwesomeIcon icon={['far', 'clock']} /> */}
-								</span>
+								<span className="material-icons-outlined mr-1 text-base">watch_later</span>
 								<span className="text-uppercase text-base font-bold">
 									Promotions
 								</span>
@@ -143,9 +138,9 @@ const NavBarProductCategory = () => (
 					<input
 						type="text"
 						placeholder="Search your eco friendly products here"
-						className="flex-1 p-2 bg-white-200 h-10 focus-visible:outline-none"
+						className="flex-1 p-2 bg-white h-10 focus-visible:outline-none"
 					/>
-					<span className="material-icons-round flex items-center justify-center bg-gray-200 text-xl h-10 px-3 focus:outline-none">
+					<span className="material-icons-round cursor-pointer flex items-center justify-center text-white bg-zinc-950 text-xl h-10 px-3 focus:outline-none">
 						search
 					</span>
 				</div>
