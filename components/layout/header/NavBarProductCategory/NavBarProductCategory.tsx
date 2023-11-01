@@ -156,7 +156,7 @@ const NavBarProductCategory = () => {
 						<button
 							onClick={navigateToShoppingHome}
 							type="button"
-							className="block w-2/5  drop-shadow-lg p-3 bg-slate-100 cursor-pointer hover:animate-heartbeat hover:scale-105"
+							className="block w-2/5  drop-shadow-lg p-3 bg-white cursor-pointer hover:animate-heartbeat hover:scale-105"
 						>
 							<p className="text-center font-medium ">Shopping</p>
 						</button>

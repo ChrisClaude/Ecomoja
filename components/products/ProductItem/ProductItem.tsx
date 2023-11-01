@@ -122,11 +122,12 @@ const ProductItem = ({ item }: ProductProps) => {
 									s.wishListToggleIcon,
 								)}
 							/>
-							<Button
-								secondary
+							<Button 
+								className="border-2 border-secondary bg-inherit focus:border-secondary focus:text-secondary"
 								onClick={handleAddProductToCart}
 							>
-								Add to cart
+							<span className="material-icons mr-1 text-base">add_shopping_cart</span>
+							 Add to cart
 							</Button>
 						</div>
 					</CardContent>

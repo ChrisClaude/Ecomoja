@@ -47,9 +47,6 @@ module.exports = {
 	variants: {
 		extend: {},
 	},
-	screens:{
-		'sm': '576px',
-	},
 	plugins: [],
 	corePlugins: {
 		preflight: false,
