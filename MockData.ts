@@ -365,7 +365,7 @@ export const productCategories: ProductCategory[] = [
 		],
 	},
 	{
-		id: 16,
+		id: 17,
 		name: 'Education',
 		subcategories: [
 			{ id: 1, name: 'Desk' },
