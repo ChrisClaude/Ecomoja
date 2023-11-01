@@ -151,23 +151,16 @@ const NavBarProductCategory = () => {
 					<div className="w-56 mr-5">
 						<ShopCategory />
 					</div>
-
-					<div className="flex-1 flex justify-around">
-						<button
-							onClick={navigateToShoppingHome}
-							type="button"
-							className="block w-2/5  drop-shadow-lg p-3 bg-white cursor-pointer hover:animate-heartbeat hover:scale-105"
-						>
-							<p className="text-center font-medium ">Shopping</p>
-						</button>
-						<button
-							onClick={navigateToMobilityHome}
-							type="button"
-							className="block w-2/5 drop-shadow-lg p-3 bg-zinc-950 cursor-pointer hover:animate-heartbeat hover:scale-105"
-						>
-							<p className="text-center text-white font-medium">Mobility</p>
-						</button>
-					</div>
+					<div className="hidden mx-3 lg:flex-1 lg:flex lg:items-center">
+					<input
+						type="text"
+						placeholder="Search your eco friendly products here"
+						className="flex-1 placeholder:text-gray-800 p-2 bg-white-200 h-10 focus-visible:outline-none"
+					/>
+					<span className="material-icons-round flex items-center justify-center bg-gray-200 text-xl h-10 px-3 focus:outline-none">
+						search
+					</span>
+				</div>
 				</div>
 			</div>
 			{/*#endregion */}

@@ -39,17 +39,8 @@ const NavBar = () => {
 							<Logo width={250} height={65} />
 					</Link>
 				</div>
-				<div className="hidden mx-3 lg:flex-1 lg:flex lg:items-center">
-					<input
-						type="text"
-						placeholder="Search your eco friendly products here"
-						className="flex-1 p-2 bg-gray-200 h-12 focus-visible:outline-none"
-					/>
-					<span className="material-icons-round flex items-center justify-center bg-gray-200 text-xl h-12 px-3 focus:outline-none">
-						search
-					</span>
-				</div>
-				<div className="justify-end hidden lg:flex">
+
+				<div className="lg:ml-auto justify-end hidden lg:flex">
 					<ul className="flex justify-end items-center">
 						<li className="p-2">
 							<LoginButton />
