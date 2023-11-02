@@ -20,7 +20,7 @@ const Carousel = ({slides}: CarouselProps) => (
 			<img
 				src={sldImage.image}
 				alt='eco friendly product'
-				className='w-full h-45 lg:h-80 object-contain'
+				className='w-full h-50 lg:h-85 object-cover'
 			/>
 		</div>))}
 	</Slider>
