@@ -6,12 +6,12 @@ import {Banner} from '@/components/layout';
 import FeaturedPartners from '@/components/core/FeaturedPartners';
 import {Product} from '@/types/AppTypes';
 import {getEcoProducts} from '@/helpers/main';
+import LoadingSpinner from '@/components/common/Spinner/Loading/LoadingSpinner';
 import { NEXT_URL } from '../config';
 
 export const getServerSideProps = (async (context) => {
 	const res = await fetch(`${NEXT_URL}/api/getAllProducts?populate=*`)
-	const allProducts = await res.json()
-	const ecoProducts:Product[] = getEcoProducts(allProducts);
+	const ecoProducts:Product[] = await getEcoProducts(res);
 	return { props: { ecoProducts } }
   })
 
@@ -70,8 +70,11 @@ export default function Home({ecoProducts}) {
 				<title>Ecomoja | Shopping | Home</title>
 			</Head>
 			<Banner slides={slideImages}/>
-			{ecoProducts? <Catalogue catalogue={ecoProducts} title="Groceries"/> : "Loading"}
-			<FeaturedPartners/>
+			{ecoProducts.length > 0? <>
+			<Catalogue catalogue={ecoProducts} title="Eco Specials"/>
+			 <FeaturedPartners/></>
+			  : 
+			  <LoadingSpinner/>}
 		</>
 	);
 }

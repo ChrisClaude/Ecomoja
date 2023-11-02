@@ -126,8 +126,8 @@ const ProductItem = ({ item }: ProductProps) => {
 								className="border-2 border-secondary bg-inherit focus:border-secondary focus:text-secondary"
 								onClick={handleAddProductToCart}
 							>
-							<span className="material-icons sm:hidden mr-1 text-base">add_shopping_cart</span>
-							 <span className='sm:max-w-sm'>Add to cart</span>
+							<span className="material-icons mr-1 text-xs">add_shopping_cart</span>
+							 <span className='text-xs'>Add to cart</span>
 							</Button>
 						</div>
 					</CardContent>

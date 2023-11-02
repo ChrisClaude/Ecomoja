@@ -51,28 +51,29 @@ export async function getAllProducts(): Promise<Product[]> {
 	return products;
 }
 
-export function getEcoProducts(ecoProducts): Product[] {
-	let products: Product[];
-
-		// eslint-disable-next-line prefer-const
-		products = ecoProducts.response.data.map(
-			(productItem): Product => ({
-				id: productItem.id,
-				name: productItem.attributes.name,
-				description: productItem.attributes.description,
-				image:
-					productItem.attributes.images.data[0].attributes.formats.thumbnail
-						.url,
-				currentPrice: productItem.attributes.price,
-				oldPrice: productItem.attributes.oldPrice,
-				rating: 4,
-				numberOfVotes: 90,
-				categories: ['Gardening'],
-				vendor: 'CMK',
-				isInStock: productItem.attributes.isInStock,
-			}),
-		);
-
+export async function getEcoProducts(res:Response): Promise<Product[]> {
+	let products: Product[] = [];
+	if(!res.ok){
+		return products;
+	}
+	const ecoProducts = await res.json();
+	products = ecoProducts.response.data.map(
+		(productItem): Product => ({
+			id: productItem.id,
+			name: productItem.attributes.name,
+			description: productItem.attributes.description,
+			image:
+			productItem.attributes.images.data[0].attributes.formats.thumbnail
+			.url,
+			currentPrice: productItem.attributes.price,
+			oldPrice: productItem.attributes.oldPrice,
+			rating: 4,
+			numberOfVotes: 90,
+			categories: ['Gardening'],
+			vendor: 'CMK',
+			isInStock: productItem.attributes.isInStock,
+		}),
+	);
 	return products;
 }
 
