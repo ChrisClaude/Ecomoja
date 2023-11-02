@@ -9,13 +9,13 @@ import { Product } from '@/types/AppTypes';
 import {useSearchParams} from 'next/navigation';
 import { NEXT_URL } from '@/config/index';
 import { getEcoProducts } from '@/helpers/main';
+import LoadingSpinner from '@/components/common/Spinner/Loading/LoadingSpinner';
 
 export const getServerSideProps = (async (context) => {
 	const res = await fetch(`${NEXT_URL}/api/getAllProducts?populate=*`)
-	const allProducts = await res.json()
-	const ecoProducts:Product[] = getEcoProducts(allProducts);
+	const ecoProducts:Product[] = await getEcoProducts(res);
 	return { props: { ecoProducts } }
-});
+  })
 
 const DynamicCartModal = dynamic(
 	() => import('../../components/cart/CartModal/CartModal'),
@@ -32,7 +32,7 @@ const ProductDetail = ({ ecoProducts }) => {
 		const getSelectedProduct = ()=> {
 			const id:number = parseInt(searchParams.get('id'), 10);
 			let userSelectedItem:Product;
-			if(ecoProducts){
+			if(ecoProducts.length > 0){
 				const selectedItem:Product[] = ecoProducts.filter((item) => item.id === id);
 				const productItem = selectedItem[0];
 				userSelectedItem = productItem;
@@ -77,7 +77,7 @@ const ProductDetail = ({ ecoProducts }) => {
 			<div className="flex px-2 py-6 lg:px-44">
 				<div className="flex-1 overflow-hidden">
 					<div className="w-full">
-						{selectedProduct? <ProductDetails product={selectedProduct} /> : ""}
+						{selectedProduct? <ProductDetails product={selectedProduct} /> : <LoadingSpinner/>}
 					</div>
 				</div>
 			</div>
