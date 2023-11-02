@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { default as cn } from 'classnames';
 import { ProductCategory } from '@/types/ProductCategory';
 import { UIContext } from '@/hooks/context/UIContext';
+import FontAwesomeIcon from '@/components/common/FontAwesomeIcon/FontAwesomeIcon';
 import s from './NavBarProductCategory.module.scss';
 import { productCategories } from '../../../../MockData';
 
@@ -58,20 +59,12 @@ const ShopCategory = () => {
 	const { isShopByCategoryCollapsed, dispatch } = React.useContext(UIContext);
 
 	const toggleShopBuCategory = () => {
-		if(!isShopByCategoryCollapsed){
-			dispatch({
-				type: 'SET_SHOP_BY_CATEGORY',
-				payload: !isShopByCategoryCollapsed,
-			});
-		}
-		else{
-			dispatch({
-				type: 'SET_SHOP_BY_CATEGORY',
-				payload: !isShopByCategoryCollapsed,
-			});
-		}
+		dispatch({
+			type: 'SET_SHOP_BY_CATEGORY',
+			payload: !isShopByCategoryCollapsed,
+		});
 	};
-
+	
 	return (
 		<>
 			<div className="relative">
@@ -80,9 +73,19 @@ const ShopCategory = () => {
 						<div className="w-full">
 							<div className="flex items-center justify-between cursor-pointer relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h font-bold">
 								Shop by Department
-								<span
-								onClick={toggleShopBuCategory}
-								 className="material-icons-outlined cursor-pointer">expand_more</span>
+									{isShopByCategoryCollapsed ? (
+										<FontAwesomeIcon
+										toggle={toggleShopBuCategory}
+										className="material-icons-outlined cursor-pointer"
+										icon="expand_more"
+										/>
+									) : (
+										<FontAwesomeIcon
+										toggle={toggleShopBuCategory}
+										className="material-icons-outlined cursor-pointer"
+										icon="chevron_right"
+										/>
+									)}
 							</div>
 						</div>
 						<div

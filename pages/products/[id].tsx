@@ -7,15 +7,24 @@ import { UIContext } from '@/hooks/context/UIContext';
 import ProductDetails from '@/components/products/ProductDetails';
 import { Product } from '@/types/AppTypes';
 import {useSearchParams} from 'next/navigation';
+import { NEXT_URL } from '@/config/index';
+import { getEcoProducts } from '@/helpers/main';
+
+export const getServerSideProps = (async (context) => {
+	const res = await fetch(`${NEXT_URL}/api/getAllProducts?populate=*`)
+	const allProducts = await res.json()
+	const ecoProducts:Product[] = getEcoProducts(allProducts);
+	return { props: { ecoProducts } }
+});
 
 const DynamicCartModal = dynamic(
 	() => import('../../components/cart/CartModal/CartModal'),
 );
 
-const ProductDetail = ({ product }: { product: Product }) => {
+const ProductDetail = ({ ecoProducts }) => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
-	const { products, dispatch, isModalOpen } = React.useContext(UIContext);
+	const { dispatch, isModalOpen } = React.useContext(UIContext);
 	const [selectedProduct, setSelectedproduct] = useState<Product>();
 
 	React.useEffect(() => {
@@ -23,8 +32,8 @@ const ProductDetail = ({ product }: { product: Product }) => {
 		const getSelectedProduct = ()=> {
 			const id:number = parseInt(searchParams.get('id'), 10);
 			let userSelectedItem:Product;
-			if(products){
-				const selectedItem:Product[] = products.filter((item) => item.id === id);
+			if(ecoProducts){
+				const selectedItem:Product[] = ecoProducts.filter((item) => item.id === id);
 				const productItem = selectedItem[0];
 				userSelectedItem = productItem;
 			}
@@ -35,7 +44,7 @@ const ProductDetail = ({ product }: { product: Product }) => {
 		if(selectedItemProduct){
 			setSelectedproduct(selectedItemProduct);
 		}
-	}, [products, searchParams]);
+	}, [ecoProducts, searchParams]);
 
 	React.useEffect(() => {
 		const handleRouteChange = () => {
