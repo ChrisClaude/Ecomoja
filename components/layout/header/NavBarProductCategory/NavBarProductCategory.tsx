@@ -141,7 +141,7 @@ const NavBarProductCategory = () => (
 					<input
 						type="text"
 						placeholder="Search your eco friendly products here"
-						className="flex-1 p-2 bg-white h-10 focus-visible:outline-none"
+						className="flex-1 p-2 bg-white h-10 focus-visible:outline-none shadow"
 					/>
 					<span className="material-icons-round cursor-pointer flex items-center justify-center text-white bg-zinc-950 text-xl h-10 px-3 focus:outline-none">
 						search
