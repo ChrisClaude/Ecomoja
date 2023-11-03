@@ -3,11 +3,10 @@ import Head from 'next/head';
 import Catalogue from '@/components/layout/Catalogue';
 import {UIContext} from '@/hooks/context/UIContext';
 import {Banner} from '@/components/layout';
-import FeaturedPartners from '@/components/core/FeaturedPartners';
 import {Product} from '@/types/AppTypes';
 import {getEcoProducts} from '@/helpers/main';
 import LoadingSpinner from '@/components/common/Spinner/Loading/LoadingSpinner';
-import MiddleBanner from '@/components/layout/MiddleBanner';
+import NewsLetter from '@/components/layout/NewsLetter';
 import { NEXT_URL } from '../config';
 
 export const getServerSideProps = (async (context) => {
@@ -81,8 +80,7 @@ export default function Home({ecoProducts}) {
 			 </>
 			  : 
 			  <LoadingSpinner/>}
-			  <MiddleBanner image="/assets/Ebike 2.png"/>
-			  <FeaturedPartners/>
+			  <NewsLetter image="/assets/Ebike 2.png"/>
 		</>
 	);
 }

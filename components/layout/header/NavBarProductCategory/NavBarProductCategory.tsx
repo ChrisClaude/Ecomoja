@@ -68,7 +68,7 @@ const ShopCategory = () => {
 	return (
 		<>
 			<div className="relative">
-				<div className="absolute w-56 z-20 bg-white shadow-lg">
+				<div className="absolute w-56 z-20 bg-white shadow">
 					<div className="flex flex-col">
 						<div className="w-full">
 							<div className="flex items-center justify-between cursor-pointer relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h font-bold">
@@ -132,7 +132,7 @@ const NavBarProductCategory = () => (
 			</div>
 			{/*#endregion */}
 			{/*#region Desktop daily deals */}
-			<div className="hidden px-2 py-4 bg-slate-100 h-16 lg:flex lg:flex-col lg:px-16 justify-center">
+			<div className="hidden px-2 py-4 bg-slate-50 h-16 lg:flex lg:flex-col lg:px-16 justify-center">
 				<div className="pb-2 lg:flex">
 					<div className="w-56 mr-5">
 						<ShopCategory />
