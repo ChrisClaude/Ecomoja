@@ -7,6 +7,7 @@ import {Product} from '@/types/AppTypes';
 import {getEcoProducts} from '@/helpers/main';
 import LoadingSpinner from '@/components/common/Spinner/Loading/LoadingSpinner';
 import NewsLetter from '@/components/layout/NewsLetter';
+import TrustedCompanies from '@/components/layout/TrustedCompanies';
 import { NEXT_URL } from '../config';
 
 export const getServerSideProps = (async (context) => {
@@ -19,10 +20,6 @@ const slideImages: { id: string; image: string }[] = [
 	{
 		id: 'home-page1',
 		image: '/assets/manonbike.png',
-	},
-	{
-		id: 'home-pag2',
-		image: '/assets/EBIKE.png',
 	},
 	{
 		id: 'home-page3',
@@ -80,7 +77,8 @@ export default function Home({ecoProducts}) {
 			 </>
 			  : 
 			  <LoadingSpinner/>}
-			  <NewsLetter image="/assets/Ebike 2.png"/>
+			  <TrustedCompanies/>
+			  <NewsLetter/>
 		</>
 	);
 }
