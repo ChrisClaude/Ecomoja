@@ -7,6 +7,7 @@ import FeaturedPartners from '@/components/core/FeaturedPartners';
 import {Product} from '@/types/AppTypes';
 import {getEcoProducts} from '@/helpers/main';
 import LoadingSpinner from '@/components/common/Spinner/Loading/LoadingSpinner';
+import MiddleBanner from '@/components/layout/MiddleBanner';
 import { NEXT_URL } from '../config';
 
 export const getServerSideProps = (async (context) => {
@@ -27,7 +28,12 @@ const slideImages: { id: string; image: string }[] = [
 	{
 		id: 'home-page3',
 		image:
-			'/assets/recycle_image.jpg',
+			'/assets/E Bike.png',
+	},
+	{
+		id: 'home-page3',
+		image:
+			'/assets/PartnerWus.png',
 	},
 ];
 
@@ -72,9 +78,11 @@ export default function Home({ecoProducts}) {
 			<Banner slides={slideImages}/>
 			{ecoProducts.length > 0? <>
 			<Catalogue catalogue={ecoProducts} title="Eco Specials"/>
-			 <FeaturedPartners/></>
+			 </>
 			  : 
 			  <LoadingSpinner/>}
+			  <MiddleBanner image="/assets/Ebike 2.png"/>
+			  <FeaturedPartners/>
 		</>
 	);
 }

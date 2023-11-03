@@ -35,7 +35,7 @@ const pickButtonType = (
 		);
 	} else if (buttonType === 'outlined') {
 		jsxResult = (
-			<Button className="bg-secondary text-white">
+			<Button className="bg-slate-950 text-white">
 				{buttonText}
 			</Button>
 		);
