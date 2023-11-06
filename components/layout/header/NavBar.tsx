@@ -53,7 +53,7 @@ const NavBar = () => {
 				</div>
 
 				<div className="flex">
-				<ul className="flex justify-end items-center">
+				<ul className="flex justify-end items-center sm:hidden">
 						<li className="p-2">
 						<Link href="#" onClick={navigateToShoppingHome} className="whitespace-nowrap">Shopping
 							</Link>

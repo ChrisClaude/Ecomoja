@@ -17,7 +17,7 @@ const ProductCategoryList = ({
 }: {
 	categoryList: ProductCategory[];
 }) => (
-	<ul className="flex flex-col bg-white ">
+	<ul className="flex flex-col bg-white">
 		{categoryList.map((category) => (
 			<li
 				key={category.id}
@@ -32,7 +32,7 @@ const ProductCategoryList = ({
 					<>
 						<ul
 							className={cn(
-								'absolute bg-white w-52 h-52 text-black top-0 left-full shadow-lg',
+								'absolute bg-slate-50 w-52 h-52 text-black top-0 left-full shadow-lg',
 								s.subcategories,
 							)}
 						>

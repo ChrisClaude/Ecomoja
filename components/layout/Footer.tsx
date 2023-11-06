@@ -61,7 +61,7 @@ const Footer = ({className}: React.HTMLProps<HTMLDivElement>) => (
 		</div>
 		<div className="bg-white px-2 py-4 md:px-32 lg:px-44">
 			<p className="text-center font-semibold text-base">
-				&copy; Craze-evironmental 2021
+				&copy; Craze-evironmental {(new Date().getFullYear())} All rights reserved.
 			</p>
 		</div>
 	</footer>

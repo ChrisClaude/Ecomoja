@@ -372,7 +372,16 @@ export const productCategories: ProductCategory[] = [
 			{ id: 2, name: 'Books' },
 			{ id: 3, name: 'Pens' },
 		],
-	}
+	},
+	{
+		id: 18,
+		name: 'Mobility',
+		subcategories: [
+			{ id: 1, name: 'Bicycles' },
+			{ id: 2, name: 'Electric Cars' },
+			{ id: 3, name: 'Motorcycles' },
+		],
+	},
 ];
 
 const getBikeTypeName = () => 'Bike';
