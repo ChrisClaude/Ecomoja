@@ -52,8 +52,8 @@ const NavBar = () => {
 					</Link>
 				</div>
 
-				<div className="flex">
-				<ul className="flex justify-end items-center sm:hidden">
+				<div className="flex sm:invisible lg:visible">
+				<ul className="flex justify-end items-center">
 						<li className="p-2">
 						<Link href="#" onClick={navigateToShoppingHome} className="whitespace-nowrap">Shopping
 							</Link>
@@ -127,7 +127,7 @@ const NavBar = () => {
 					<ul className="flex items-center ml-1">
 						<li className="mr-2">
 							<Link href="/wishlist"
-									className="flex text-white items-center justify-center rounded-3xl w-12 h-8 text-base bg-red-500 hover:bg-red-600 hover:text-white hover:no-underline"
+									className="flex text-white items-center justify-center rounded-3xl w-12 h-8 text-base bg-red-500 hover:bg-red-600 hover:text-black hover:no-underline"
 								>
 								<span className="material-icons text-base mr-1">
 								favorite

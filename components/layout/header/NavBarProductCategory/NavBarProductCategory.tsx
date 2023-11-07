@@ -96,7 +96,7 @@ const ShopCategory = () => {
 							<ProductCategoryList categoryList={productCategories} />
 							<a
 								href="#"
-								className="w-full flex block py-3 px-5 bg-zinc-950 text-white hover:no-underline hover:text-white"
+								className="w-full flex block py-3 px-5 bg-secondary text-white hover:no-underline hover:text-white"
 							>
 								<span className="material-icons-outlined mr-1 text-base">watch_later</span>
 								<span className="text-uppercase text-base font-bold">

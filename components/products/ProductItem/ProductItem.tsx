@@ -123,10 +123,10 @@ const ProductItem = ({ item }: ProductProps) => {
 								)}
 							/>
 							<Button 
-								className="border-2 border-slate-950 bg-inherit focus:border-secondary focus:text-secondary"
+								className="border-2 border-secondary bg-inherit focus:border-secondary focus:text-secondary"
 								onClick={handleAddProductToCart}
 							>
-							<span className="material-icons mr-1 text-xs">add_shopping_cart</span>
+							<span className="material-icons mr-1 text-xs text-secondary">add_shopping_cart</span>
 							 <span className='text-xs'>Add to cart</span>
 							</Button>
 						</div>
