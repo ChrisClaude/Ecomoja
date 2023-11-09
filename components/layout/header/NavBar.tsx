@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -54,12 +53,12 @@ const NavBar = () => {
 
 				<div className="flex sm:invisible lg:visible">
 				<ul className="flex justify-end items-center">
-						<li className="p-2">
-						<Link href="#" onClick={navigateToShoppingHome} className="whitespace-nowrap">Shopping
+						<li className="p-2 bg-secondary text-white cursor-pointer">
+						<Link href="#" onClick={navigateToShoppingHome} className="whitespace-nowrap hover:no-underline hover:text-white text-sm">Shopping
 							</Link>
 						</li>
-						<li className="p-2">
-							<Link href="/mobility" onClick={navigateToMobilityHome} className="whitespace-nowrap">Mobility
+						<li className="p-2 bg-zinc-950 text-white mx-2 cursor-pointer">
+							<Link href="/mobility" onClick={navigateToMobilityHome} className="whitespace-nowrap hover:no-underline hover:text-white text-sm">Mobility
 							</Link>
 						</li>
 				</ul>
