@@ -16,7 +16,7 @@ const ToggleWishlistIcon = ({ product, ...props }: ToggleWishlistIconProps) => {
 
 	React.useEffect(() => {
 		setIsInUsersWishList(isProductInArray(product, wishList));
-	}, [wishList]);
+	}, [product, wishList]);
 
 	const toggleToWishlist = (event) => {
 		event.preventDefault();
