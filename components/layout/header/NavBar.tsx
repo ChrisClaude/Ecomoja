@@ -53,11 +53,11 @@ const NavBar = () => {
 
 				<div className="flex sm:invisible lg:visible">
 				<ul className="flex justify-end items-center">
-						<li className="p-2 bg-secondary text-white cursor-pointer">
+						<li className="p-2 bg-secondary rounded text-white cursor-pointer">
 						<Link href="#" onClick={navigateToShoppingHome} className="whitespace-nowrap hover:no-underline hover:text-white text-sm">Shopping
 							</Link>
 						</li>
-						<li className="p-2 bg-zinc-950 text-white mx-2 cursor-pointer">
+						<li className="p-2 bg-zinc-950 rounded text-white mx-2 cursor-pointer">
 							<Link href="/mobility" onClick={navigateToMobilityHome} className="whitespace-nowrap hover:no-underline hover:text-white text-sm">Mobility
 							</Link>
 						</li>
