@@ -94,6 +94,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				isMobileMenuOpen: !state.isMobileMenuOpen,
 			};
+			case 'TOGGLE_CATEGORY_MENU':
+			return {
+				...state,
+				isCategoryMenuOpen: !state.isCategoryMenuOpen,
+			};
 		case 'TOGGLE_MODAL':
 			return {
 				...state,

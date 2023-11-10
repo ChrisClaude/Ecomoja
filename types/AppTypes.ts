@@ -21,6 +21,7 @@ export type UIState = {
 	wishList?: Product[];
 	isModalOpen: boolean;
 	isMobileMenuOpen: boolean;
+	isCategoryMenuOpen: boolean;
 	layoutProp: LayoutProp;
 	loading: boolean;
 	products: Product[];
@@ -104,6 +105,10 @@ type ToggleMobileMenu = {
 	type: 'TOGGLE_MOBILE_MENU';
 };
 
+type ToggleCategoryMenu = {
+	type: 'TOGGLE_CATEGORY_MENU';
+};
+
 type ToggleModal = {
 	type: 'TOGGLE_MODAL';
 };
@@ -129,6 +134,7 @@ export type UIAction =
 	| IncreaseProductQuantity
 	| DecreaseProductQuantity
 	| ToggleMobileMenu
+    | ToggleCategoryMenu
 	| ToggleModal
 	| ResetModal
 	| SetCurrentUser

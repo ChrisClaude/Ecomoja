@@ -18,8 +18,7 @@ const NavBar = () => {
 
 	const toggleDrawer = () => {
 		dispatch({ type: 'TOGGLE_MOBILE_MENU' });
-	};
-
+	}
 
 	const router = useRouter();
 
