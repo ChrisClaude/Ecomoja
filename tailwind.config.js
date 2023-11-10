@@ -38,6 +38,10 @@ module.exports = {
 					},
 				},
 			},
+			screens:{
+				'sm':'360px',
+				'lg':'1024px',
+			},
 		},
 	},
 	variants: {

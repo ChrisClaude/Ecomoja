@@ -9,8 +9,8 @@ const Catalogue = ({
 	catalogue: Product[] | Bike[];
 	title: string;
 }) => (
-	<div className="px-7 py-8 lg:px-16 lg:block bg-slate-50">
-		<div className="mt-2">
+	<div className="px-7 py-1 lg:px-16 lg:block bg-slate-50">
+		<div className="">
 			<CardList
 				title={title}
 				buttonText="View more"

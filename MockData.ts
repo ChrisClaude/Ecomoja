@@ -346,6 +346,42 @@ export const productCategories: ProductCategory[] = [
 			{ id: 3, name: 'Coffee' },
 		],
 	},
+	{
+		id: 15,
+		name: 'Electronics',
+		subcategories: [
+			{ id: 1, name: 'Desktops' },
+			{ id: 2, name: 'Watches' },
+			{ id: 3, name: 'Laptops' },
+		],
+	},
+	{
+		id: 16,
+		name: 'Essentials',
+		subcategories: [
+			{ id: 1, name: 'Wooden Toothbrush' },
+			{ id: 2, name: 'Wooden Bottle' },
+			{ id: 3, name: 'Paper bags' },
+		],
+	},
+	{
+		id: 17,
+		name: 'Education',
+		subcategories: [
+			{ id: 1, name: 'Desk' },
+			{ id: 2, name: 'Books' },
+			{ id: 3, name: 'Pens' },
+		],
+	},
+	{
+		id: 18,
+		name: 'Vehicles',
+		subcategories: [
+			{ id: 1, name: 'Bicycles' },
+			{ id: 2, name: 'Electric Cars' },
+			{ id: 3, name: 'Motorcycles' },
+		],
+	},
 ];
 
 const getBikeTypeName = () => 'Bike';

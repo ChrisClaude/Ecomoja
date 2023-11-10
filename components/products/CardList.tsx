@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { default as cn } from 'classnames';
-import ItemListSwiper from '@/components/products/ItemListSwiper';
 import Button from '@/components/common/Button';
 import BikeItem from '@/components/core/BikeItem';
 import { Bike, Product } from '@/types/AppTypes';
+import ProductsLayoutMenu from '@/components/products/ProductsLayoutMenu';
 import ProductItem from './ProductItem';
+import ProductSlider from './ProductSlider';
 
 type CardListProps = ItemListProps & CardListHeaderProps;
 
@@ -34,7 +35,7 @@ const pickButtonType = (
 		);
 	} else if (buttonType === 'outlined') {
 		jsxResult = (
-			<Button className="bg-lime-500" secondary>
+			<Button className="bg-secondary text-white">
 				{buttonText}
 			</Button>
 		);
@@ -70,7 +71,7 @@ const CardList = ({ items, title, buttonText, buttonType }: CardListProps) => (
 			className="mb-2"
 		/>
 
-		<ItemListSwiper
+		<ProductSlider
 			items={items}
 			component={isProductArray(items) ? ProductItem : BikeItem}
 		/>

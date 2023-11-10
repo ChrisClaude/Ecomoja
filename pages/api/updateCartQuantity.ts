@@ -2,7 +2,6 @@ import cookie from 'cookie';
 import { API_URL } from '@/config/index';
 
 export const updateCartQuantity = async (req, res) => {
-	console.log(req.body);
 	if (req.method === 'POST') {
 		if (!req.headers.cookie) {
 			res.status(403).json({ message: 'Not Authorized' });

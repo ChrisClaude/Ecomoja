@@ -16,6 +16,7 @@ const initializeUIState: UIState = {
 	wishList: [],
 	layoutProp: null,
 	loading: false,
+	products: []
 };
 
 export const UIContext = React.createContext<UIContextType>(

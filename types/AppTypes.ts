@@ -23,6 +23,7 @@ export type UIState = {
 	isMobileMenuOpen: boolean;
 	layoutProp: LayoutProp;
 	loading: boolean;
+	products: Product[];
 };
 
 export type LayoutProp = {
@@ -61,6 +62,11 @@ type DecreaseProductQuantity = {
 type PatchCart = {
 	type: 'PATCH_CART';
 	payload: CartItem[];
+};
+
+type SetProducts = {
+	type: 'SET_PRODUCTS';
+	payload: Product[];
 };
 
 type AddBikeToCart = {
@@ -119,6 +125,7 @@ export type UIAction =
 	| RemoveProductToWishList
 	| RemoveProductFromCart
 	| PatchCart
+    | SetProducts
 	| IncreaseProductQuantity
 	| DecreaseProductQuantity
 	| ToggleMobileMenu
