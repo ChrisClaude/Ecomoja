@@ -17,7 +17,13 @@ const initializeUIState: UIState = {
 	layoutProp: null,
 	loading: false,
 	products: [],
-	isCategoryMenuOpen: false
+	isCategoryMenuOpen: false,
+	isSubCategoryMenuOpen: false,
+	category: {
+		id: 0,
+		name: '',
+		subcategories: []
+	}
 };
 
 export const UIContext = React.createContext<UIContextType>(
