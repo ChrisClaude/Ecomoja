@@ -1,6 +1,7 @@
 import * as React from 'react';
 // eslint-disable-next-line import/no-cycle
 import {User as AuthUser} from '@/hooks/context/AuthContext';
+import { ProductCategory } from './ProductCategory';
 
 
 export type User = {
@@ -22,6 +23,8 @@ export type UIState = {
 	isModalOpen: boolean;
 	isMobileMenuOpen: boolean;
 	isCategoryMenuOpen: boolean;
+	isSubCategoryMenuOpen: boolean;
+	category:ProductCategory;
 	layoutProp: LayoutProp;
 	loading: boolean;
 	products: Product[];
@@ -109,6 +112,15 @@ type ToggleCategoryMenu = {
 	type: 'TOGGLE_CATEGORY_MENU';
 };
 
+type ToggleSubCategoryMenu = {
+	type: 'TOGGLE_SUB_CATEGORY_MENU';
+};
+
+type SetCategory = {
+	type: 'SET_CATEGORY';
+	category: ProductCategory;
+};
+
 type ToggleModal = {
 	type: 'TOGGLE_MODAL';
 };
@@ -135,6 +147,8 @@ export type UIAction =
 	| DecreaseProductQuantity
 	| ToggleMobileMenu
     | ToggleCategoryMenu
+	| ToggleSubCategoryMenu
+	| SetCategory
 	| ToggleModal
 	| ResetModal
 	| SetCurrentUser

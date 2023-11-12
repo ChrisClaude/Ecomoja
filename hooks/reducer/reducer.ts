@@ -99,6 +99,16 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				isCategoryMenuOpen: !state.isCategoryMenuOpen,
 			};
+			case 'TOGGLE_SUB_CATEGORY_MENU':
+			return {
+				...state,
+				isSubCategoryMenuOpen: !state.isSubCategoryMenuOpen,
+			};
+			case 'SET_CATEGORY':
+			return {
+				...state,
+				category: action.category,
+			};
 		case 'TOGGLE_MODAL':
 			return {
 				...state,

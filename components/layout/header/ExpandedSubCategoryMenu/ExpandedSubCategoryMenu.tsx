@@ -4,18 +4,17 @@ import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import { UIContext } from '@/hooks/context/UIContext';
 import { productCategories } from 'MockData';
-import MobileCategoryDrawer from './MobileCategoryDrawer';
-import ExpandedSubCategoryMenu from '../ExpandedSubCategoryMenu/ExpandedSubCategoryMenu';
+import MobileSubCategoryDrawer from './MobileSubCategoryDrawer';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-type ExpandedaCategoryMenuProps = {
+type ExpandedSubCategoryMenuProps = {
 	anchor: Anchor,
 };
 
-const ExpandedCategoryMenu = ({ anchor }: ExpandedaCategoryMenuProps) => {
+const ExpandedSubCategoryMenu = ({ anchor }: ExpandedSubCategoryMenuProps) => {
 	const {
-		isCategoryMenuOpen,
+		isSubCategoryMenuOpen,
 	} = React.useContext(UIContext);
 
 	const list = () => (
@@ -24,28 +23,25 @@ const ExpandedCategoryMenu = ({ anchor }: ExpandedaCategoryMenuProps) => {
 			role='presentation'
 			className='mt-4'
 		>
-			<MobileCategoryDrawer categories={productCategories} />
+			<MobileSubCategoryDrawer categories={productCategories} />
 			<Divider />
 		</Box>
 	);
 
-	return <><Drawer
+	return <Drawer
         variant="persistent"
 		anchor={anchor}
-		open={isCategoryMenuOpen}
+		open={isSubCategoryMenuOpen}
 	>
 		<Box
 			sx={{ width: 250 }}
 			role='presentation'
-			
 			className='bg-white h-full'
 		>
 			<Divider />
 			{list()}
 		</Box>
 	</Drawer>;
-	<ExpandedSubCategoryMenu anchor='left' />
-	</>
 };
 
-export default ExpandedCategoryMenu;
+export default ExpandedSubCategoryMenu;
