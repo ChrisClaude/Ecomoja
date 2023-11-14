@@ -12,7 +12,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 	const {user} = useContext<AuthState>(AuthContext);
 	const [userCart, seUserCart] = useState(null);
-	const [qty, setQty] = useState(cartItem.quantity);
+	const [qty, setQty] = useState(0);
 
 	const handleAddProductToWishList = () => {
 		const check = isProductInArray(cartItem.product, wishList);
@@ -115,7 +115,9 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 		}, 2000);
 
 		useEffect(()=>{
-			updateQuantityValue(qty);
+			if(qty > 0){
+				updateQuantityValue(qty);
+			}
 			return () => {updateQuantityValue.cancel();}
 		}, [qty])
 
@@ -149,7 +151,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 									type="number"
 									id="qty"
 									className="border-black border-2 rounded w-12 ml-2 px-2 py-1"
-									defaultValue={cartItem.quantity}
+									value={cartItem.quantity}
 									onChange={handleOnQtyChange}
 								/>
 						</div>
