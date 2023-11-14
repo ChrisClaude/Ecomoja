@@ -43,7 +43,7 @@ const ExpandedCategoryMenu = ({ anchor }: ExpandedaCategoryMenuProps) => {
 			<Divider />
 			{list()}
 		</Box>
-	</Drawer>;
+	</Drawer>
 	<ExpandedSubCategoryMenu anchor='left' />
 	</>
 };

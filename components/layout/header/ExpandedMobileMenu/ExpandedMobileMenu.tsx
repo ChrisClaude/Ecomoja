@@ -155,7 +155,7 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 			<Divider />
 			{list()}
 		</Box>
-	</Drawer>;
+	</Drawer>
 	<ExpandedCategoryMenu anchor='left'/>
 	</>
 };
