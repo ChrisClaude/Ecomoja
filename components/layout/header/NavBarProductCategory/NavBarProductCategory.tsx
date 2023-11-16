@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable spaced-comment */
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import Link from 'next/link';
 import { default as cn } from 'classnames';
-import { useRouter } from 'next/router';
 import { ProductCategory } from '@/types/ProductCategory';
 import { UIContext } from '@/hooks/context/UIContext';
+import FontAwesomeIcon from '@/components/common/FontAwesomeIcon/FontAwesomeIcon';
 import s from './NavBarProductCategory.module.scss';
 import { productCategories } from '../../../../MockData';
 
@@ -14,7 +17,7 @@ const ProductCategoryList = ({
 }: {
 	categoryList: ProductCategory[];
 }) => (
-	<ul className="flex flex-col my-2">
+	<ul className="flex flex-col bg-white">
 		{categoryList.map((category) => (
 			<li
 				key={category.id}
@@ -24,14 +27,12 @@ const ProductCategoryList = ({
 				)}
 			>
 				<span>{category.name}</span>
-				<span>
-					{/* <FontAwesomeIcon icon="chevron-right" /> */}
-				</span>
+				<span className="ml-auto material-icons-outlined">chevron_right</span>
 				{category.subcategories.length > 0 && (
 					<>
 						<ul
 							className={cn(
-								'absolute bg-white w-52 h-52 text-black top-0 left-full shadow-lg',
+								'absolute bg-slate-50 w-52 h-52 text-black top-0 left-full shadow-lg',
 								s.subcategories,
 							)}
 						>
@@ -63,45 +64,41 @@ const ShopCategory = () => {
 			payload: !isShopByCategoryCollapsed,
 		});
 	};
-
+	
 	return (
 		<>
 			<div className="relative">
-				<div className="absolute w-56 z-20 bg-white  shadow-lg">
+				<div className="absolute w-56 z-20 bg-white shadow">
 					<div className="flex flex-col">
 						<div className="w-full">
-							<div className="flex items-center justify-between relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h font-bold">
+							<div className="flex items-center justify-between cursor-pointer relative text-white bg-zinc-950 py-3 px-5 hover:bg-ecolap-gray-h font-bold">
 								Shop by Department
-								<span>
-									{/*isShopByCategoryCollapsed ? (
+									{isShopByCategoryCollapsed ? (
 										<FontAwesomeIcon
-											icon="chevron-up"
-											onClick={toggleShopBuCategory}
-											className="cursor-pointer"
+										toggle={toggleShopBuCategory}
+										className="material-icons-outlined cursor-pointer"
+										icon="expand_more"
 										/>
 									) : (
 										<FontAwesomeIcon
-											icon="chevron-down"
-											onClick={toggleShopBuCategory}
-											className="cursor-pointer"
+										toggle={toggleShopBuCategory}
+										className="material-icons-outlined cursor-pointer"
+										icon="chevron_right"
 										/>
-									)*/}
-								</span>
+									)}
 							</div>
 						</div>
 						<div
 							className={
-								isShopByCategoryCollapsed ? 'relative inline-block' : 'hidden'
+								isShopByCategoryCollapsed ? 'relative inline-block bg-white cursor-pointer hover:bg-secondary' : 'hidden'
 							}
 						>
 							<ProductCategoryList categoryList={productCategories} />
 							<a
 								href="#"
-								className="w-full block py-3 px-5 bg-ecolap-green text-white hover:no-underline hover:text-white"
+								className="w-full flex block py-3 px-5 bg-secondary text-white hover:no-underline hover:text-white"
 							>
-								<span className="mr-1 text-base">
-									{/* <FontAwesomeIcon icon={['far', 'clock']} /> */}
-								</span>
+								<span className="material-icons-outlined mr-1 text-base">watch_later</span>
 								<span className="text-uppercase text-base font-bold">
 									Promotions
 								</span>
@@ -113,18 +110,7 @@ const ShopCategory = () => {
 		</>
 	);
 };
-const NavBarProductCategory = () => {
-	const router = useRouter();
-
-	const navigateToShoppingHome = () => {
-		router.push('/');
-	};
-
-	const navigateToMobilityHome = () => {
-		router.push('/mobility');
-	};
-
-	return (
+const NavBarProductCategory = () => (
 		<>
 			{/*#region Mobile daily deals */}
 			<div className="px-2 flex items-center h-12 justify-between bg-secondary lg:px-16 lg:hidden">
@@ -146,33 +132,30 @@ const NavBarProductCategory = () => {
 			</div>
 			{/*#endregion */}
 			{/*#region Desktop daily deals */}
+<<<<<<< HEAD
 			<div className="hidden px-2 py-4 bg-secondary h-16 lg:flex lg:flex-col lg:px-16 justify-center">
 				<div className="lg:flex">
+=======
+			<div className="hidden px-2 py-4 bg-slate-50 h-16 lg:flex lg:flex-col lg:px-16 justify-center">
+				<div className="pb-2 lg:flex">
+>>>>>>> 39ce35793e95de93226c56186d940b3dd09fb5f9
 					<div className="w-56 mr-5">
 						<ShopCategory />
 					</div>
-
-					<div className="flex-1 flex justify-around">
-						<button
-							onClick={navigateToShoppingHome}
-							type="button"
-							className="block w-2/5  drop-shadow-lg p-3 bg-slate-100 cursor-pointer hover:animate-heartbeat hover:scale-105"
-						>
-							<p className="text-center font-medium ">Shopping</p>
-						</button>
-						<button
-							onClick={navigateToMobilityHome}
-							type="button"
-							className="block w-2/5 drop-shadow-lg p-3 bg-zinc-950 cursor-pointer hover:animate-heartbeat hover:scale-105"
-						>
-							<p className="text-center text-white font-medium">Mobility</p>
-						</button>
-					</div>
+					<div className="hidden mx-3 lg:flex-1 lg:flex lg:items-center">
+					<input
+						type="text"
+						placeholder="Search your eco friendly products here"
+						className="flex-1 p-2 bg-white h-10 focus-visible:outline-none shadow"
+					/>
+					<span className="material-icons-round cursor-pointer flex items-center justify-center text-white bg-zinc-950 text-xl h-10 px-3 focus:outline-none">
+						search
+					</span>
+				</div>
 				</div>
 			</div>
 			{/*#endregion */}
 		</>
 	);
-};
 
 export default NavBarProductCategory;

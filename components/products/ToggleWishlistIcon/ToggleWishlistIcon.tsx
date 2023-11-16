@@ -16,7 +16,7 @@ const ToggleWishlistIcon = ({ product, ...props }: ToggleWishlistIconProps) => {
 
 	React.useEffect(() => {
 		setIsInUsersWishList(isProductInArray(product, wishList));
-	}, [wishList]);
+	}, [product, wishList]);
 
 	const toggleToWishlist = (event) => {
 		event.preventDefault();
@@ -63,7 +63,7 @@ const ToggleWishlistIcon = ({ product, ...props }: ToggleWishlistIconProps) => {
 					favorite
 				</span>
 			) : (
-				<span className="material-icons-round text-3xl text-emerald-600">
+				<span className="material-icons-round text-3xl text-emerald-500">
 					favorite_border
 				</span>
 			)}

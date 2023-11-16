@@ -16,6 +16,7 @@ import {useRouter } from 'next/router';
 import { UIContext } from '@/hooks/context/UIContext';
 import { isAuthenticated } from '@/services/auth';
 import Logo from '@/components/layout/header/Logo';
+import ExpandedCategoryMenu from '../ExpandedCategoryMenu';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -30,6 +31,14 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		cartItems,
 		user,
 	} = React.useContext(UIContext);
+
+	const toggleCategoryDrawer = () => {
+        dispatch({ type: 'TOGGLE_CATEGORY_MENU' });
+    };
+
+	const toggleMobileMenu = () => {
+        dispatch({ type: 'TOGGLE_MOBILE_MENU' });
+    };
 
 	const router = useRouter();
 
@@ -60,7 +69,7 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 				<ListItem button key='My Ecomoja'>
 					<ListItemText primary='My Ecomoja' />
 				</ListItem>
-				<ListItem button key='Categories'>
+				<ListItem button key='Categories' onClick={toggleCategoryDrawer}>
 					<ListItemText primary='Categories' />
 				</ListItem>
 				<ListItem button key='Notifications'>
@@ -111,11 +120,17 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 		</Box>
 	);
 
-	return <Drawer
+	return <><Drawer
+	    variant="persistent"
 		anchor={anchor}
 		open={isMobileMenuOpen}
 		onClose={(event) => toggleDrawer(event as React.MouseEvent)}
 	>
+		<div className="flex items-center">
+			<button type="button" className='ml-auto p-2 mx-2 my-2 bg-secondary' onClick={toggleMobileMenu}>
+			<span className="material-icons-outlined" >arrow_back</span>
+			</button>
+    </div>
 		<Box
 			sx={{ width: 250 }}
 			role='presentation'
@@ -141,6 +156,8 @@ const ExpandedMobileMenu = ({ anchor }: ExpandedMobileMenuProps) => {
 			{list()}
 		</Box>
 	</Drawer>;
+	<ExpandedCategoryMenu anchor='left'/>
+	</>
 };
 
 export default ExpandedMobileMenu;

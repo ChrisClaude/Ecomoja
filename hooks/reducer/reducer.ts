@@ -56,6 +56,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 				cartItems: [...action.payload],
 			};
+			case 'SET_PRODUCTS':
+			return {
+				...state,
+				products: action.payload,
+			};
 		case 'ADD_PRODUCT_TO_CART':
 			// eslint-disable-next-line no-case-declarations
 			const { cartItems } = state;
@@ -88,6 +93,21 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 			return {
 				...state,
 				isMobileMenuOpen: !state.isMobileMenuOpen,
+			};
+			case 'TOGGLE_CATEGORY_MENU':
+			return {
+				...state,
+				isCategoryMenuOpen: !state.isCategoryMenuOpen,
+			};
+			case 'TOGGLE_SUB_CATEGORY_MENU':
+			return {
+				...state,
+				isSubCategoryMenuOpen: !state.isSubCategoryMenuOpen,
+			};
+			case 'SET_CATEGORY':
+			return {
+				...state,
+				category: action.category,
 			};
 		case 'TOGGLE_MODAL':
 			return {

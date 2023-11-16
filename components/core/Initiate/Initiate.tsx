@@ -1,8 +1,12 @@
 import { useContext, useEffect, useRef } from 'react';
-import { ToastContainer } from 'react-toastify';
+import dynamic from 'next/dynamic';
 import { initializeCartItems, updateFromLocalStorage } from '@/helpers/main';
 import { UIContext } from '@/hooks/context/UIContext';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+
+const ToastContainer = dynamic(() => import('react-toastify').then((module) => module.ToastContainer), {
+	ssr:false,
+});
 
 const Initiate = () => {
 	const { dispatch } = useContext(UIContext);

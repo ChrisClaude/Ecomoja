@@ -1,6 +1,7 @@
 import * as React from 'react';
 // eslint-disable-next-line import/no-cycle
 import {User as AuthUser} from '@/hooks/context/AuthContext';
+import { ProductCategory } from './ProductCategory';
 
 
 export type User = {
@@ -21,8 +22,12 @@ export type UIState = {
 	wishList?: Product[];
 	isModalOpen: boolean;
 	isMobileMenuOpen: boolean;
+	isCategoryMenuOpen: boolean;
+	isSubCategoryMenuOpen: boolean;
+	category:ProductCategory;
 	layoutProp: LayoutProp;
 	loading: boolean;
+	products: Product[];
 };
 
 export type LayoutProp = {
@@ -63,6 +68,11 @@ type PatchCart = {
 	payload: CartItem[];
 };
 
+type SetProducts = {
+	type: 'SET_PRODUCTS';
+	payload: Product[];
+};
+
 type AddBikeToCart = {
 	type: 'ADD_BIKE_TO_CART';
 	payload: Bike;
@@ -98,6 +108,19 @@ type ToggleMobileMenu = {
 	type: 'TOGGLE_MOBILE_MENU';
 };
 
+type ToggleCategoryMenu = {
+	type: 'TOGGLE_CATEGORY_MENU';
+};
+
+type ToggleSubCategoryMenu = {
+	type: 'TOGGLE_SUB_CATEGORY_MENU';
+};
+
+type SetCategory = {
+	type: 'SET_CATEGORY';
+	category: ProductCategory;
+};
+
 type ToggleModal = {
 	type: 'TOGGLE_MODAL';
 };
@@ -119,9 +142,13 @@ export type UIAction =
 	| RemoveProductToWishList
 	| RemoveProductFromCart
 	| PatchCart
+    | SetProducts
 	| IncreaseProductQuantity
 	| DecreaseProductQuantity
 	| ToggleMobileMenu
+    | ToggleCategoryMenu
+	| ToggleSubCategoryMenu
+	| SetCategory
 	| ToggleModal
 	| ResetModal
 	| SetCurrentUser

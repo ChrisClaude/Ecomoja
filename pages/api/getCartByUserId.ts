@@ -3,7 +3,6 @@ import { API_URL } from '@/config/index';
 
 export const getCartByUserId = async(req, res) => {
 	const {id} = req.query
-	console.log(id);
 	if (req.method === 'GET') {
 		if (!req.headers.cookie) {
 			res.status(403).json({ message: 'Not Authorized' });
