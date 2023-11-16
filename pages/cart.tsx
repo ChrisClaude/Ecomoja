@@ -25,7 +25,10 @@ const Cart = () => {
 			<Head>
 				<title>Ecomoja | Cart</title>
 			</Head>
-			<section className="px-6 py-8 lg:block lg:px-16 relative">
+			<section className="ppx-6 py-8 grid lg:gap-y-3 lg:grid-cols-5 lg:px-16 relative">
+                <div className='md:hidden lg:block'/>
+					<div className="col-span-3">
+
 				<h1 className="mb-6">Shopping Cart</h1>
 				<div
 					className={cn(
@@ -98,6 +101,7 @@ const Cart = () => {
 						)}
 					</aside>
 				</div>
+            </div>
 			</section>
 		</>
 	);
