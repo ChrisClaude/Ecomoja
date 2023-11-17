@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-else-return */
 /* eslint-disable no-lonely-if */
@@ -226,6 +227,37 @@ export const saveProductToUserCart = async (product: Product, user: any, cartIte
 		console.error(err);
 	 }
 	 return res;
+}
+
+/**
+ *
+ * @param cart get all cart items after saving a cart item
+ */
+async function getAllCartProductsAfterSave(saved:boolean, user:AuthUser):Promise<CartItemType[]>{
+	let cart:CartItemType[] = [];
+	if(!saved && !user){
+		return cart;
+	}
+	cart = await getAllCartItems(user);
+	return cart;
+}
+
+/**
+ *
+ * @param cart Save products to user cart
+ */
+export async function saveCartAndGetNewCart(product:Product, user:AuthUser, cartItems:CartItemType[], dispatch: React.Dispatch<UIAction>):Promise<void>{
+	let cart:CartItemType[] = [];
+	try{
+		const savedResponse = await saveProductToUserCart(product, user, cartItems);
+		cart = await getAllCartProductsAfterSave(savedResponse.ok, user);
+		if(cart.length > cartItems.length){
+			dispatch({ type: 'PATCH_CART', payload: cart });
+		}
+	}
+	catch(err){
+		console.error("Something went wrong");
+	}
 }
 
 /**

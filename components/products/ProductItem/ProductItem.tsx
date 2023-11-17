@@ -10,8 +10,7 @@ import { useCallback, useContext, useEffect, useMemo } from 'react';
 import {
 	addNewCartItem,
 	createNewCartItem,
-	getAllCartItems,
-	saveProductToUserCart,
+	saveCartAndGetNewCart,
 	storeCartItemsInLocalStorage,
 	updateQuantityIfCartItemExists,
 } from '@/helpers/main';
@@ -46,23 +45,19 @@ const ProductItem = ({ item }: ProductProps) => {
 			draggable: true,
 			progress: undefined,
 		});
+
+		function saveCart(theCart?:CartItem):void{
+			if(theCart){
+				setUserCartItem(theCart);
+				setQty(parseInt(theCart.quantity.toString(), 10) + 1);
+			}else{
+				saveCartAndGetNewCart(item, user, cartItems, dispatch);				
+			}
+		}
 	
 		if (auth) {
 			const newCartItem = createNewCartItem(cartItems, item);
-			if(newCartItem.length === 0){
-				saveProductToUserCart(item, user, cartItems).then((res)=>{
-					if(res.ok){
-						getAllCartItems(user).then((allCartItems)=>{
-							dispatch({ type: 'PATCH_CART', payload: allCartItems });
-						}).catch((err)=>{
-							console.error(err);
-						});
-					}
-				});	
-			}else{
-				setUserCartItem(newCartItem[0]);
-				setQty(parseInt(newCartItem[0].quantity.toString(), 10) + 1);
-			}
+			saveCart(newCartItem[0]);
 		} else {
 			const newCartItems = addNewCartItem(cartItems, item, user);
 			dispatch({ type: 'PATCH_CART', payload: newCartItems });
