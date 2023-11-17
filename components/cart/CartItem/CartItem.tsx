@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, updateQuantityIfCartItemExists } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, updateQuantityIfCartItemExists, updateLocalStorageCartQuantity } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 import { debounce } from 'lodash';
 
@@ -79,6 +79,9 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 		function sendQuantityRequest(){
 			if(user && qty > 0){
 				updateQuantityIfCartItemExists(dispatch, cartItem, qty);
+			}
+			else if(qty > 0){
+				updateLocalStorageCartQuantity(dispatch, cartItem, qty);
 			}
 		}
 		sendQuantityRequest();

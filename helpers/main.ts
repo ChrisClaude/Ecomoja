@@ -284,6 +284,14 @@ export async function updateQuantityIfCartItemExists(dispatch: React.Dispatch<UI
 	}
 }
 
+export function updateLocalStorageCartQuantity(dispatch: React.Dispatch<UIAction>, cartItem:CartItemType, newQuantity:number):void{
+	dispatch({
+		type: 'INCREASE_PRODUCT_QUANTITY',
+		payload: cartItem,
+		quantity:newQuantity,
+	});
+}
+
 /**
  * Removes cart state from local storage
  */
