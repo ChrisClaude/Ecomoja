@@ -33,6 +33,22 @@ const ProductItem = ({ item }: ProductProps) => {
 	const [qty, setQty] = React.useState(0);
 	const [userCartItem, setUserCartItem] = React.useState<CartItem>();
 
+	const sendQuantityRequest = useCallback(()=>{
+		if(user && qty > 0 && userCartItem !== null){
+			updateQuantityIfCartItemExists(dispatch, userCartItem, qty);
+		}
+	}, [dispatch, qty, user, userCartItem]);
+
+	const saveCart = useCallback((theCart?:CartItem) => {
+		if(theCart){
+			setUserCartItem(theCart);
+			setQty(parseInt(theCart.quantity.toString(), 10) + 1);
+			sendQuantityRequest();
+		}else{
+			saveCartAndGetNewCart(item, user, cartItems, dispatch);				
+		}
+	}, [cartItems, dispatch, item, sendQuantityRequest, user]);
+
 	const handleAddProductToCart = useCallback((event) => {
 		event.preventDefault();
 		event.stopPropagation();
@@ -45,15 +61,6 @@ const ProductItem = ({ item }: ProductProps) => {
 			draggable: true,
 			progress: undefined,
 		});
-
-		function saveCart(theCart?:CartItem):void{
-			if(theCart){
-				setUserCartItem(theCart);
-				setQty(parseInt(theCart.quantity.toString(), 10) + 1);
-			}else{
-				saveCartAndGetNewCart(item, user, cartItems, dispatch);				
-			}
-		}
 	
 		if (auth) {
 			const newCartItem = createNewCartItem(cartItems, item);
@@ -63,7 +70,7 @@ const ProductItem = ({ item }: ProductProps) => {
 			dispatch({ type: 'PATCH_CART', payload: newCartItems });
 			storeCartItemsInLocalStorage(newCartItems);
 		}
-	}, [auth, cartItems, dispatch, item, user]);
+	}, [auth, cartItems, dispatch, item, saveCart, user]);
 
 	const propaGateQauntityClick = (event) => {
 		event.preventDefault();
@@ -75,17 +82,9 @@ const ProductItem = ({ item }: ProductProps) => {
 	, [handleAddProductToCart]);
 		
 		useEffect(()=>{
-			function sendQuantityRequest(){
-				if(user && qty > 0 && userCartItem !== null){
-					updateQuantityIfCartItemExists(dispatch, userCartItem, qty);
-				}
-			}
-			sendQuantityRequest();
-			return () => {
+			    sendQuantityRequest();
 				debounceQuantityChange.cancel();
-			}
-	}, [debounceQuantityChange, dispatch, qty, user, userCartItem]);
-	
+		}, [debounceQuantityChange, dispatch, qty, sendQuantityRequest, user, userCartItem]);
 
 	return (
 		<Link href={`/products/${id}`} className={cn(
