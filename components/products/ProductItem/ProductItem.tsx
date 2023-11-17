@@ -37,7 +37,7 @@ const ProductItem = ({ item }: ProductProps) => {
 		if(user && qty > 0 && userCartItem !== null){
 			updateQuantityIfCartItemExists(dispatch, userCartItem, qty);
 		}
-	}, [dispatch, qty, user, userCartItem]);
+	}, [qty]);
 
 	const saveCart = useCallback((theCart?:CartItem) => {
 		if(theCart){
