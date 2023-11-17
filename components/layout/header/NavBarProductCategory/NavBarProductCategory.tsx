@@ -132,13 +132,8 @@ const NavBarProductCategory = () => (
 			</div>
 			{/*#endregion */}
 			{/*#region Desktop daily deals */}
-<<<<<<< HEAD
-			<div className="hidden px-2 py-4 bg-secondary h-16 lg:flex lg:flex-col lg:px-16 justify-center">
-				<div className="lg:flex">
-=======
 			<div className="hidden px-2 py-4 bg-slate-50 h-16 lg:flex lg:flex-col lg:px-16 justify-center">
 				<div className="pb-2 lg:flex">
->>>>>>> 39ce35793e95de93226c56186d940b3dd09fb5f9
 					<div className="w-56 mr-5">
 						<ShopCategory />
 					</div>
