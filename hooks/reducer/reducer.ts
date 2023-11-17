@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { CartItem, UIAction, UIState } from '@/types/AppTypes';
-import { addNewCartItem, removeStateCartItem, storeCartItemsInLocalStorage } from '@/helpers/main';
+import { addNewCartItem, createNewCartItem, removeStateCartItem, storeCartItemsInLocalStorage } from '@/helpers/main';
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[] = [];
@@ -22,16 +22,14 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				user: null,
 			};
 		case 'INCREASE_PRODUCT_QUANTITY':
-			state.cartItems.forEach((cartItem: CartItem) => {
-				if (cartItem.id === action.payload.id) {
-					cartItem.quantity = action.quantity;
-				}
-			});
-			storeCartItemsInLocalStorage(state.cartItems);
+				state.cartItems.forEach(item => {
+					if(item.id === action.payload.id){
+						item.quantity = action.quantity;
+					}
+				});
 			return {
 				...state,
 			};
-
 		case 'DECREASE_PRODUCT_QUANTITY':
 			state.cartItems.forEach((cartItem: CartItem) => {
 				if (

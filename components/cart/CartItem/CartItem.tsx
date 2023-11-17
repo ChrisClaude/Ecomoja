@@ -1,17 +1,16 @@
 /* eslint-disable radix */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, saveTempCart, updateCartQuantity, initiateQuantityUpdate, addNewCartItem, increaseQuantity } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, updateQuantityIfCartItemExists } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 import { debounce } from 'lodash';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
 	const {user} = useContext<AuthState>(AuthContext);
-	const [userCart, seUserCart] = useState(null);
 	const [qty, setQty] = useState(0);
 
 	const handleAddProductToWishList = () => {
@@ -67,59 +66,26 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 		storeCartItemsInLocalStorage(newCartItems);
 	};
 
-	const handleOnQtyChange = (event: React.FormEvent<HTMLInputElement>) => {
-		
-		if(user){
-			if (+event.currentTarget.value > parseInt(cartItem.quantity.toString())) {
-				const newQuantity = +event.currentTarget.value;
-			    setQty(newQuantity);
-			}
 
-			if (
-				+event.currentTarget.value > 0 &&
-				+event.currentTarget.value < parseInt(cartItem.quantity.toString())
-			) {
-				const newQuantity = +event.currentTarget.value;
-				setQty(newQuantity);
-			}
-		}else{
-			if (+event.currentTarget.value > parseInt(cartItem.quantity.toString())) {
-				dispatch({
-					type: 'INCREASE_PRODUCT_QUANTITY',
-					payload: cartItem.product,
-					quantity:+event.currentTarget.value,
-				});
-			}
-			if (
-				+event.currentTarget.value > 0 &&
-				+event.currentTarget.value < parseInt(cartItem.quantity.toString())
-				) {
-					dispatch({
-						type: 'DECREASE_PRODUCT_QUANTITY',
-						payload: cartItem.product,
-						quantity:+event.currentTarget.value,
-					});
-				}
-			}
-		};
+	const updateQuantityValue = (itemQuantity) => {
+		setQty(itemQuantity);
+	}
 
-		const updateQuantityValue = debounce((cartItemQuantity:number)=>{
-			increaseQuantity(cartItemQuantity, cartItems, cartItem).then((newCartItems) => {
-				seUserCart(newCartItems);
-				if(userCart){
-					dispatch({ type: 'PATCH_CART', payload: userCart });
-				}
-			}).catch((err)=>{
-				console.error(err);
-			});
-		}, 2000);
-
-		useEffect(()=>{
-			if(qty > 0){
-				updateQuantityValue(qty);
+	const debounceQuantityChange = useMemo((
+	) => debounce(updateQuantityValue, 300)
+	, []);
+	
+	useEffect(()=>{
+		function sendQuantityRequest(){
+			if(user && qty > 0){
+				updateQuantityIfCartItemExists(dispatch, cartItem, qty);
 			}
-			return () => {updateQuantityValue.cancel();}
-		}, [qty])
+		}
+		sendQuantityRequest();
+		return () => {
+			debounceQuantityChange.cancel();
+		}
+	}, [cartItem, debounceQuantityChange, dispatch, qty, user]);
 
 	return (
 		<div className="w-full flex flex-col bg-white p-3 lg:flex-row">
@@ -145,17 +111,13 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 						<span className="text-lg font-bold">
 							R {cartItem.product.currentPrice}
 						</span>
-						<div className="flex flex-row mt-1">
-							<span className="">Qty:</span>
-								<input
-									type="number"
-									id="qty"
-									className="border-black border-2 rounded w-12 ml-2 px-2 py-1"
-									value={cartItem.quantity}
-									onChange={handleOnQtyChange}
-								/>
-						</div>
 					</div>
+				</div>
+				<div className="flex flex-row mt-4 ml-auto">
+						<span className="m-1">Quantity:</span>
+							<button type="button" className='w-6' onClick={()=> debounceQuantityChange(+cartItem.quantity - 1)}>-</button>
+								<span className='border p-2 w-9 text-center'>{+cartItem.quantity}</span>
+							<button type="button" className='w-6' onClick={()=> debounceQuantityChange(+cartItem.quantity + 1)}>+</button>
 				</div>
 				<div className='mt-4'>
 						{cartItem.product.isFreeForDelivery
@@ -170,7 +132,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 							className="px-2 rounded flex items-center justify-center transition duration-300 mr-2 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
 							onClick={handleOnRemoveCartItem}
 						>
-							<span className="material-icons mr-1 text-lg">delete</span>{' '}
+							<span className="material-icons mr-1 text-lg">delete</span>
 							<span>Remove</span>
 						</button>
 						<button

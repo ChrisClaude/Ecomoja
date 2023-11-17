@@ -53,7 +53,7 @@ export type CartItem = {
 
 type IncreaseProductQuantity = {
 	type: 'INCREASE_PRODUCT_QUANTITY';
-	payload: Product;
+	payload: CartItem;
 	quantity: number;
 };
 

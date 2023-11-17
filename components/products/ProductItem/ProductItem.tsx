@@ -6,20 +6,21 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { default as cn } from 'classnames';
-import { useContext } from 'react';
+import { useCallback, useContext, useEffect, useMemo } from 'react';
 import {
 	addNewCartItem,
 	createNewCartItem,
 	getAllCartItems,
 	saveProductToUserCart,
-	saveTempCart,
 	storeCartItemsInLocalStorage,
+	updateQuantityIfCartItemExists,
 } from '@/helpers/main';
 import ToggleWishlistIcon from '@/components/products/ToggleWishlistIcon';
 import { UIContext } from '@/hooks/context/UIContext';
 import Button from '@/components/common/Button';
 import { CartItem, Product } from '@/types/AppTypes';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+import { debounce } from 'lodash';
 import s from './ProductItem.module.scss';
 
 type ProductProps = { item: Product };
@@ -30,8 +31,10 @@ const ProductItem = ({ item }: ProductProps) => {
 		item;
 	const {isAuthenticated ,user } = useContext<AuthState>(AuthContext);
 	const auth = isAuthenticated();
+	const [qty, setQty] = React.useState(0);
+	const [userCartItem, setUserCartItem] = React.useState<CartItem>();
 
-	const handleAddProductToCart = (event) => {
+	const handleAddProductToCart = useCallback((event) => {
 		event.preventDefault();
 		event.stopPropagation();
 		toast.success("You've added a new item to your cart", {
@@ -43,7 +46,7 @@ const ProductItem = ({ item }: ProductProps) => {
 			draggable: true,
 			progress: undefined,
 		});
-		
+	
 		if (auth) {
 			const newCartItem = createNewCartItem(cartItems, item);
 			if(newCartItem.length === 0){
@@ -57,24 +60,37 @@ const ProductItem = ({ item }: ProductProps) => {
 					}
 				});	
 			}else{
-				const cart:CartItem[] = newCartItem.slice();
-				cart[0].quantity = 1;
-				saveTempCart(cart).then((res) => {
-					if(res.ok && res !== null){
-						getAllCartItems(user).then((allCartItems)=>{
-							dispatch({ type: 'PATCH_CART', payload: allCartItems });
-						}).catch((err)=>{
-							console.error(err);
-						});
-					}
-				});
+				setUserCartItem(newCartItem[0]);
+				setQty(parseInt(newCartItem[0].quantity.toString(), 10) + 1);
 			}
 		} else {
 			const newCartItems = addNewCartItem(cartItems, item, user);
 			dispatch({ type: 'PATCH_CART', payload: newCartItems });
 			storeCartItemsInLocalStorage(newCartItems);
 		}
+	}, [auth, cartItems, dispatch, item, user]);
+
+	const propaGateQauntityClick = (event) => {
+		event.preventDefault();
+		event.stopPropagation();
 	}
+
+	const debounceQuantityChange = useMemo((
+		) => debounce(handleAddProductToCart, 300)
+	, [handleAddProductToCart]);
+		
+		useEffect(()=>{
+			function sendQuantityRequest(){
+				if(user && qty > 0 && userCartItem !== null){
+					updateQuantityIfCartItemExists(dispatch, userCartItem, qty);
+				}
+			}
+			sendQuantityRequest();
+			return () => {
+				debounceQuantityChange.cancel();
+			}
+	}, [debounceQuantityChange, dispatch, qty, user, userCartItem]);
+	
 
 	return (
 		<Link href={`/products/${id}`} className={cn(
@@ -124,7 +140,7 @@ const ProductItem = ({ item }: ProductProps) => {
 							/>
 							<Button 
 								className="border-2 border-secondary bg-inherit focus:border-secondary focus:text-secondary"
-								onClick={handleAddProductToCart}
+								onClick={(event) => {debounceQuantityChange(event); propaGateQauntityClick(event);}}
 							>
 							<span className="material-icons mr-1 text-xs text-secondary">add_shopping_cart</span>
 							 <span className='text-xs'>Add to cart</span>
