@@ -249,14 +249,29 @@ async function getAllCartProductsAfterSave(saved:boolean, user:AuthUser):Promise
 export async function saveCartAndGetNewCart(product:Product, user:AuthUser, cartItems:CartItemType[], dispatch: React.Dispatch<UIAction>):Promise<void>{
 	let cart:CartItemType[] = [];
 	try{
-		const savedResponse = await saveProductToUserCart(product, user, cartItems);
-		cart = await getAllCartProductsAfterSave(savedResponse.ok, user);
-		if(cart.length > cartItems.length){
+		const newCartItem = createNewCartItem(cartItems, product);
+		if(newCartItem.length === 0){
+			const savedResponse = await saveProductToUserCart(product, user, cartItems);
+		    cart = await getAllCartProductsAfterSave(savedResponse.ok, user);
+			if(cart.length > cartItems.length){
 			dispatch({ type: 'PATCH_CART', payload: cart });
 		}
 	}
+	else{
+		newCartItem[0].quantity = +newCartItem[0].quantity + 1;
+		updateCartQuantity(newCartItem[0]).then((response)=>{
+			if(response.ok){
+				dispatch({
+					type: 'INCREASE_PRODUCT_QUANTITY',
+					payload: newCartItem[0],
+					quantity: newCartItem[0].quantity,
+				});
+			}
+		});
+	}
+}
 	catch(err){
-		console.error("Something went wrong");
+		console.error(err);
 	}
 }
 
@@ -291,30 +306,6 @@ export async function updateCartQuantity(cartItem:CartItem):Promise<Response>{
 export const storeCartItemsInLocalStorage = (cart: CartItemType[]) => {
 	localStorage.setItem('cartitems', JSON.stringify(cart));
 };
-
-/**
- *
- * @param cart update products quantity
- */
-export async function updateQuantityIfCartItemExists(dispatch: React.Dispatch<UIAction>, cartItem:CartItemType, newQuantity:number):Promise<void>{
-	const tempCartItem:CartItemType = Object.assign(cartItem, {});
-	tempCartItem.quantity = newQuantity;
-	if(tempCartItem){
-		try{
-			const response = await updateCartQuantity(tempCartItem);
-			if(response.ok){
-				dispatch({
-					type: 'INCREASE_PRODUCT_QUANTITY',
-					payload: tempCartItem,
-					quantity:tempCartItem.quantity,
-				});
-			}
-		}
-		catch(err){
-			console.log(err);
-		}
-	}
-}
 
 export function updateLocalStorageCartQuantity(dispatch: React.Dispatch<UIAction>, cartItem:CartItemType, newQuantity:number):void{
 	dispatch({

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, updateQuantityIfCartItemExists, updateLocalStorageCartQuantity } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, updateLocalStorageCartQuantity, updateCartQuantity } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 import { debounce } from 'lodash';
 
@@ -78,7 +78,17 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	useEffect(()=>{
 		function sendQuantityRequest(){
 			if(user && qty > 0){
-				updateQuantityIfCartItemExists(dispatch, cartItem, qty);
+				// eslint-disable-next-line no-param-reassign
+				cartItem.quantity = qty;
+				updateCartQuantity(cartItem).then((response)=>{
+					if(response.ok){
+						dispatch({
+							type: 'INCREASE_PRODUCT_QUANTITY',
+							payload: cartItem,
+							quantity: cartItem.quantity,
+						});
+					}
+				});
 			}
 			else if(qty > 0){
 				updateLocalStorageCartQuantity(dispatch, cartItem, qty);
@@ -118,7 +128,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				</div>
 				<div className="flex flex-row mt-4 ml-auto">
 						<span className="m-1">Quantity:</span>
-							<button type="button" className='w-6' onClick={()=> debounceQuantityChange(+cartItem.quantity - 1)}>-</button>
+							<button type="button" className='w-6' disabled={qty <= 0} onClick={()=> debounceQuantityChange(+cartItem.quantity - 1)}>-</button>
 								<span className='border p-2 w-9 text-center'>{+cartItem.quantity}</span>
 							<button type="button" className='w-6' onClick={()=> debounceQuantityChange(+cartItem.quantity + 1)}>+</button>
 				</div>
