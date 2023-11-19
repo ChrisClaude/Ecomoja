@@ -128,7 +128,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				</div>
 				<div className="flex flex-row mt-4 ml-auto">
 						<span className="m-1">Quantity:</span>
-							<button type="button" className='w-6' disabled={qty <= 0} onClick={()=> debounceQuantityChange(+cartItem.quantity - 1)}>-</button>
+							<button type="button" className='w-6' disabled={+cartItem.quantity <= 0} onClick={()=> debounceQuantityChange(+cartItem.quantity - 1)}>-</button>
 								<span className='border p-2 w-9 text-center'>{+cartItem.quantity}</span>
 							<button type="button" className='w-6' onClick={()=> debounceQuantityChange(+cartItem.quantity + 1)}>+</button>
 				</div>
