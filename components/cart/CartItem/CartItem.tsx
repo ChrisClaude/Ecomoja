@@ -57,13 +57,16 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 				});
 			});
 		}
-		dispatch({
-			type: 'REMOVE_PRODUCT_FROM_CART',
-			payload: cartItem.product,
-		});
-		const newCartItems = removeCartItem(cartItems, cartItem.product.id);
-		dispatch({ type: 'PATCH_CART', payload: newCartItems });
-		storeCartItemsInLocalStorage(newCartItems);
+		else{
+			dispatch({
+				type: 'REMOVE_PRODUCT_FROM_CART',
+				payload: cartItem.product,
+			});
+			const newCartItems = removeCartItem(cartItems, cartItem.product.id);
+			dispatch({ type: 'PATCH_CART', payload: newCartItems });
+			storeCartItemsInLocalStorage(newCartItems);	
+		}
+		
 	};
 
 
