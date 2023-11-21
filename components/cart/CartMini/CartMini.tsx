@@ -12,6 +12,7 @@ const CartMini = () => {
 
 	return (
 		<div className={s.cartMini}>
+			<div>
 			<div
 				className={cn(
 					cartItems?{ hidden: cartItems.length > 0 }:"",
@@ -21,7 +22,7 @@ const CartMini = () => {
 				<p>Your cart is empty</p>
 			</div>
 			<div className={cn(cartItems?{ hidden: cartItems.length === 0 }:"")}>
-				<div>
+				<div className="overflow-y-auto h-56">
 					{cartItems? cartItems.map((item) => (
 						<CartMiniItem cartItem={item} key={item.id} />
 					)):""}
@@ -29,6 +30,7 @@ const CartMini = () => {
 				<div>
 					<div className="py-2 px-5 border-t-2 border-b-2 border-solid border-gray-300 flex justify-end font-bold">
 						Total: R {cartItems?calculateCartTotal(cartItems):""}
+					</div>
 					</div>
 					<div className="flex space-evenly px-2 my-3">
 						<Button secondary className="w-1/2 mr-2">
