@@ -50,11 +50,6 @@ const NavBar = () => {
 							<Logo width={250} height={65} />
 					</Link>
 				</div>
-
-				<div className="flex items-center justify-center sm:invisible lg:visible">
-					<ToggleShopMobility/>
-				</div>
-
 				<div className="lg:ml-auto justify-end hidden lg:flex">
 					<ul className="flex justify-end items-center">
 						<li className="p-2">

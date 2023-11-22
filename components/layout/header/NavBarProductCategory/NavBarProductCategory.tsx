@@ -113,7 +113,7 @@ const ShopCategory = () => {
 const NavBarProductCategory = () => (
 		<>
 			{/*#region Mobile daily deals */}
-			<div className='lg:hidden'>
+			<div className=''>
 			<ToggleShopMobility />
 			</div>
 			{/*#endregion */}
