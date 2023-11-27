@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 import { UIContext } from "@/hooks/context/UIContext";
 import React from "react";
 
@@ -18,7 +15,7 @@ function toggleSubCategorMenu(ecoCategory) {
 
   return(
     <>
-    <li className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" id="listbox-option-0" onClick={()=> toggleSubCategorMenu(category)} role="option">
+    <li className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" id="listbox-option-0" onClick={()=> toggleSubCategorMenu(category)} onKeyDown={()=>toggleSubCategorMenu(category)} role="option">
     <div className="flex items-center">
       <span className="font-normal ml-3 block truncate">{category.name}</span>
     </div>
