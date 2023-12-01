@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-else-return */
 /* eslint-disable no-lonely-if */
@@ -230,6 +231,52 @@ export const saveProductToUserCart = async (product: Product, user: any, cartIte
 
 /**
  *
+ * @param cart get all cart items after saving a cart item
+ */
+async function getAllCartProductsAfterSave(saved:boolean, user:AuthUser):Promise<CartItemType[]>{
+	let cart:CartItemType[] = [];
+	if(!saved && !user){
+		return cart;
+	}
+	cart = await getAllCartItems(user);
+	return cart;
+}
+
+/**
+ *
+ * @param cart Save products to user cart
+ */
+export async function saveCartAndGetNewCart(product:Product, user:AuthUser, cartItems:CartItemType[], dispatch: React.Dispatch<UIAction>):Promise<void>{
+	let cart:CartItemType[] = [];
+	try{
+		const newCartItem = createNewCartItem(cartItems, product);
+		if(newCartItem.length === 0){
+			const savedResponse = await saveProductToUserCart(product, user, cartItems);
+		    cart = await getAllCartProductsAfterSave(savedResponse.ok, user);
+			if(cart.length > cartItems.length){
+			dispatch({ type: 'PATCH_CART', payload: cart });
+		}
+	}
+	else{
+		newCartItem[0].quantity = +newCartItem[0].quantity + 1;
+		updateCartQuantity(newCartItem[0]).then((response)=>{
+			if(response.ok){
+				dispatch({
+					type: 'INCREASE_PRODUCT_QUANTITY',
+					payload: newCartItem[0],
+					quantity: newCartItem[0].quantity,
+				});
+			}
+		});
+	}
+}
+	catch(err){
+		console.error(err);
+	}
+}
+
+/**
+ *
  * @param cart Store Items to the localstorage
  */
 export async function updateCartQuantity(cartItem:CartItem):Promise<Response>{
@@ -251,43 +298,6 @@ export async function updateCartQuantity(cartItem:CartItem):Promise<Response>{
 	return response
 }
 
-/**
- *
- * @param cart update backend cart quantity
- */
-export async function initiateQuantityUpdate(cartItem:CartItem):Promise<Response>{
-	let response:Response = null;
-	if(cartItem !== null){
-		try{
-			response = await updateCartQuantity(cartItem);
-			return response;
-		}
-		catch(err){
-			console.error(err);
-		}
-	}
-	return response;
-}
-
-/**
- *
- * @param cart increase cart quantity
- */
-export async function increaseQuantity(newQuantity:number, cartItems:CartItemType[], cartItem:CartItemType){
-	const tempCartItems = cartItems.slice();
-	const filteredCartItem = tempCartItems.filter((cart) => cart.id === cartItem.id);
-	filteredCartItem[0].quantity = newQuantity;
-	try{
-		const response = await updateCartQuantity(cartItem);
-		 if(response.ok){
-			return tempCartItems;
-		 }
-	}
-	catch(err){
-		console.error(err);
-	}
-	return tempCartItems;
-}
 
 /**
  *
@@ -297,6 +307,13 @@ export const storeCartItemsInLocalStorage = (cart: CartItemType[]) => {
 	localStorage.setItem('cartitems', JSON.stringify(cart));
 };
 
+export function updateLocalStorageCartQuantity(dispatch: React.Dispatch<UIAction>, cartItem:CartItemType, newQuantity:number):void{
+	dispatch({
+		type: 'INCREASE_PRODUCT_QUANTITY',
+		payload: cartItem,
+		quantity:newQuantity,
+	});
+}
 
 /**
  * Removes cart state from local storage

@@ -4,11 +4,11 @@
 /* eslint-disable spaced-comment */
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
-import Link from 'next/link';
 import { default as cn } from 'classnames';
 import { ProductCategory } from '@/types/ProductCategory';
 import { UIContext } from '@/hooks/context/UIContext';
 import FontAwesomeIcon from '@/components/common/FontAwesomeIcon/FontAwesomeIcon';
+import ToggleShopMobility from '@/components/common/toggleButtons/ToggleShopMobility';
 import s from './NavBarProductCategory.module.scss';
 import { productCategories } from '../../../../MockData';
 
@@ -113,22 +113,8 @@ const ShopCategory = () => {
 const NavBarProductCategory = () => (
 		<>
 			{/*#region Mobile daily deals */}
-			<div className="px-2 flex items-center h-12 justify-between bg-secondary lg:px-16 lg:hidden">
-				<div>
-					{/* <FontAwesomeIcon
-						icon={['far', 'clock']}
-						className="text-white mr-1"
-					/> */}
-					<a
-						href="#"
-						className="text-white hover:no-underline hover:text-white"
-					>
-						<span className="text-uppercase">Promotions</span>
-					</a>
-				</div>
-				<Link href="/" className="text-white font-weight-bold hover:no-underline hover:text-white">
-						View More
-				</Link>
+			<div className=''>
+			<ToggleShopMobility />
 			</div>
 			{/*#endregion */}
 			{/*#region Desktop daily deals */}
@@ -143,7 +129,7 @@ const NavBarProductCategory = () => (
 						placeholder="Search your eco friendly products here"
 						className="flex-1 p-2 bg-white h-10 focus-visible:outline-none shadow"
 					/>
-					<span className="material-icons-round cursor-pointer flex items-center justify-center text-white bg-zinc-950 text-xl h-10 px-3 focus:outline-none">
+					<span className="material-icons-round cursor-pointer flex items-center text-white bg-zinc-950 text-xl h-10 px-3 focus:outline-none search-bar">
 						search
 					</span>
 				</div>

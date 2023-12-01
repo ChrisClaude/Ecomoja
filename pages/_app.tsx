@@ -1,5 +1,6 @@
 import '../scripts/wdyr';
 import * as React from 'react';
+import { StrictMode } from 'react';
 import { AppProps } from 'next/app';
 import '@/styles/styles.scss';
 import Layout from '@/components/layout/Layout';
@@ -24,6 +25,7 @@ const MyApp = ({ Component,
 		...pageProps
 	},
 }: AppProps) => (
+	<StrictMode>
 		<AuthProvider>
 			<UIProvider>
 				<MuiThemeProvider>
@@ -34,6 +36,7 @@ const MyApp = ({ Component,
 				</MuiThemeProvider>
 			</UIProvider>
 		</AuthProvider>
+		</StrictMode>
 );
 
 export default MyApp;
