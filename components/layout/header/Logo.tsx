@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import * as React from 'react';
 import { default as cn } from 'classnames';
+import router from 'next/router';
 
 type LogoProps = {
 	width: number,
@@ -15,6 +16,12 @@ const Logo = ({
 }: LogoProps) => {
 	const src =
 		'/assets/EcoMojaLogoDesign_HorizontalLogoAndName_GreenAndBlack.svg';
+
+		function reloadShoppingMobilityButtons(){
+			router.push('/');
+			router.reload();
+		}
+
 	return (
 		<Image
 			width={width}
@@ -25,6 +32,7 @@ const Logo = ({
 			alt='logo'
 			className={cn(className)}
 			unoptimized
+			onClick={()=>reloadShoppingMobilityButtons()}
 		/>
 	);
 };
