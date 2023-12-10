@@ -18,8 +18,9 @@ const Logo = ({
 		'/assets/EcoMojaLogoDesign_HorizontalLogoAndName_GreenAndBlack.svg';
 
 		function reloadShoppingMobilityButtons(){
-			router.push('/');
-			router.reload();
+			router.push('/').then(()=>{
+				router.reload();
+			});
 		}
 
 	return (
