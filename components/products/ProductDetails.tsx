@@ -38,6 +38,13 @@ const ProductDetails = ({ product }: { product: Product }) => {
 	const { dispatch, cartItems, wishList, isShopByCategoryCollapsed } = React.useContext(UIContext);
 	const { user } = useContext<AuthState>(AuthContext);
 	
+	React.useEffect(()=>{
+		dispatch({
+			type: 'SET_SHOP_BY_CATEGORY',
+			payload: false,
+		});
+	}, [dispatch]);
+
 	React.useEffect(() => {
 		const handleScroll = () => {
 			dispatch({
