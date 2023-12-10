@@ -1,8 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable spaced-comment */
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { default as cn } from 'classnames';
 import { ProductCategory } from '@/types/ProductCategory';
@@ -112,12 +107,12 @@ const ShopCategory = () => {
 };
 const NavBarProductCategory = () => (
 		<>
-			{/*#region Mobile daily deals */}
+			{/* #region Mobile daily deals */}
 			<div className=''>
 			<ToggleShopMobility />
 			</div>
-			{/*#endregion */}
-			{/*#region Desktop daily deals */}
+			{/* #endregion */}
+			{/* #region Desktop daily deals */}
 			<div className="hidden px-2 py-4 bg-slate-50 h-16 lg:flex lg:flex-col lg:px-16 justify-center">
 				<div className="pb-2 lg:flex">
 					<div className="w-56 mr-5">
@@ -135,7 +130,7 @@ const NavBarProductCategory = () => (
 				</div>
 				</div>
 			</div>
-			{/*#endregion */}
+			{/* #endregion */}
 		</>
 	);
 

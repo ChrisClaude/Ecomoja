@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/button-has-type */
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,13 +16,14 @@ const CartModal = () => {
 			<div className="w-full h-full flex justify-end">
 				<div
 					className="bg-gray-200 w-4/5 lg:w-1/2"
-					onClick={(event) => event.stopPropagation()}
+					onClick={(event) => event.stopPropagation()} onKeyDown={(event) => event.stopPropagation()}
+					role="button" tabIndex={0}
 				>
 					<div className="flex bg-white">
 						<span className="py-4 px-2 flex-1 text-xl text-center font-semibold">
 							Added to cart
 						</span>
-						<button onClick={handleCloseModal}>
+						<button onClick={handleCloseModal} type='button'>
 							<span className="material-icons-round p-4">close</span>
 						</button>
 					</div>

@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/button-has-type */
 import * as React from 'react';
 import { default as cn } from 'classnames';
 import { UIContext } from '@/hooks/context/UIContext';
@@ -23,6 +20,7 @@ const Modal = ({ children }: ModalProps) => {
 				{ hidden: !isModalOpen },
 			)}
 			onClick={handleModalAreClick}
+			onKeyDown={handleModalAreClick} role="button" tabIndex={0}
 		>
 			{children}
 		</div>

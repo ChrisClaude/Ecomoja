@@ -11,7 +11,6 @@ import ExpandedMobileMenu from '@/components/layout/header/ExpandedMobileMenu';
 import LoginButton from '@/components/core/LoginButton';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 import { useRouter } from 'next/router';
-import ToggleShopMobility from '@/components/common/toggleButtons/ToggleShopMobility';
 
 const NavBar = () => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);

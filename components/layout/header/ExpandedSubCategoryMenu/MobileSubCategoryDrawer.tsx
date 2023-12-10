@@ -1,7 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-
 import { ProductCategory } from "@/types/ProductCategory";
 import React, { useEffect, useState } from "react";
 import { UIContext } from "@/hooks/context/UIContext";
@@ -29,9 +26,9 @@ const MobileSubCategoryDrawer = ({categories,
 return(
 <div>
     <div className="flex items-center">
-    <span className="material-icons-outlined" onClick={toggleMenus}>arrow_back</span>
+    <span className="material-icons-outlined" onClick={toggleMenus} onKeyDown={toggleMenus} role="button" tabIndex={0}>arrow_back</span>
     <label id="listbox-label" className="block text-sm font-medium leading-6 text-gray-900 ml-2">Back to categories</label>
-    <span className="material-icons-outlined ml-auto mx-2 my-2" onClick={toggleMainMenu}>close</span>
+    <span className="material-icons-outlined ml-auto mx-2 my-2" onClick={toggleMainMenu} onKeyDown={toggleMainMenu} role="button" tabIndex={0}>close</span>
     </div>
 
   <div className="relative mt-2">
