@@ -16,7 +16,7 @@ const CartModal = () => {
 			<div className="w-full h-full flex justify-end">
 				<div
 					className="bg-gray-200 w-4/5 lg:w-1/2"
-					onClick={(event) => event.stopPropagation()}
+					onClick={(event) => event.stopPropagation()} onKeyDown={(event) => event.stopPropagation()}
 					role="button" tabIndex={0}
 				>
 					<div className="flex bg-white">
