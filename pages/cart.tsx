@@ -8,7 +8,7 @@ import { calculateCartTotal, calculateNumberOfCartItems } from '@/helpers/main';
 import { Button } from '@/components/common';
 
 const Cart = () => {
-	const { cartItems, dispatch } = React.useContext(UIContext);
+	const { cartItems, dispatch, isShopByCategoryCollapsed } = React.useContext(UIContext);
 	const { user } = React.useContext<AuthState>(AuthContext);
 
 	React.useEffect(
@@ -19,6 +19,19 @@ const Cart = () => {
 			}),
 		[],
 	);
+
+	React.useEffect(() => {
+		const handleScroll = () => {
+			dispatch({
+				type: 'SET_SHOP_BY_CATEGORY',
+				payload: false,
+			});
+		};
+		
+		window.addEventListener('scroll', handleScroll);
+		
+		return () => window.removeEventListener('mouseup', handleScroll);
+	}, [isShopByCategoryCollapsed, dispatch]);
 
 	return (
 		<>

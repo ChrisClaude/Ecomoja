@@ -37,7 +37,7 @@ const ProductCategoryList = ({
 							{category.subcategories.map((subCategory) => (
 								<li
 									key={subCategory.id}
-									className="py-1 px-5 flex items-center justify-between cursor-pointer hover:bg-secondary"
+									className="py-1 px-5 flex items-center justify-between hover:text-white cursor-pointer hover:bg-secondary"
 								>
 									{subCategory.name}
 								</li>

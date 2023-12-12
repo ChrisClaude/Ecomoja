@@ -71,7 +71,7 @@ const WishListItem = ({ product }: WishListItemProps) => {
 					<div className="flex flex-col md:ml-auto">
 						<Button
 							secondary
-							className="w-full mb-2 bg-secondary lg:w-52"
+							className="w-full mb-2 bg-secondary lg:w-52 text-white"
 							onClick={() => {
 								addProductToCart(product, dispatch, user);
 								dispatch({ type: 'TOGGLE_MODAL' });
@@ -82,7 +82,7 @@ const WishListItem = ({ product }: WishListItemProps) => {
 						</Button>
 
 						<Button
-							className="w-full bg-danger text-white lg:w-52"
+							className="w-full bg-danger text-white lg:w-52 hover:text-black"
 							onClick={handleOnRemoveWishListItem}
 						>
 							<span className="material-icons mr-1">delete</span>{' '}

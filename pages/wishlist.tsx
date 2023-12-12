@@ -6,7 +6,7 @@ import WishListItem from '@/components/core/WishListItem';
 import { CartModal } from '@/components/cart';
 
 const WishList = () => {
-	const { dispatch, wishList } = React.useContext(UIContext);
+	const { dispatch, wishList, isShopByCategoryCollapsed } = React.useContext(UIContext);
 
 	React.useEffect(
 		() =>
@@ -16,6 +16,19 @@ const WishList = () => {
 			}),
 		[dispatch],
 	);
+
+	React.useEffect(() => {
+		const handleScroll = () => {
+			dispatch({
+				type: 'SET_SHOP_BY_CATEGORY',
+				payload: false,
+			});
+		};
+		
+		window.addEventListener('scroll', handleScroll);
+		
+		return () => window.removeEventListener('mouseup', handleScroll);
+	}, [isShopByCategoryCollapsed, dispatch]);
 
 	return (
 		<>
