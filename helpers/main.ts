@@ -849,6 +849,7 @@ export async function removeItemAndUpdateWishList(itemId:number, userId, dispatc
 	let res:Response = null;
 	try{
 		res = await removeItemFromWishList(itemId);
+		console.log("Okay");
 		if(res.ok){
 			const newWishListItems = await getWishListItems(userId);
 			dispatch({ type: 'PATCH_WISH_LIST', payload: newWishListItems });

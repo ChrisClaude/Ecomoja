@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/common';
 import { UIContext } from '@/hooks/context/UIContext';
-import { addProductToCart, createNewWishListItem, removeItemFromWishList, removeStateWishList, storeWishListToLocalStorage } from '@/helpers/main';
+import { addProductToCart, createNewWishListItem, removeItemAndUpdateWishList, removeItemFromWishList, removeStateWishList, storeWishListToLocalStorage } from '@/helpers/main';
 import { Product } from '@/types/AppTypes';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 
@@ -25,14 +25,7 @@ const WishListItem = ({ product }: WishListItemProps) => {
 	const handleOnRemoveWishListItem = () => {
 		const newWishListItem = createNewWishListItem(wishList, product);
 		if(user){
-			removeItemFromWishList(newWishListItem[0].id).then((res)=>{
-				if(res.ok){
-					dispatch({
-						type: 'REMOVE_PRODUCT_FROM_WISHLIST',
-						payload: product,
-					});
-				}
-			})
+			removeItemAndUpdateWishList(newWishListItem[0].id, user.id, dispatch);
 		}
 		else{
 			const newWishList = removeStateWishList(wishList, product);
