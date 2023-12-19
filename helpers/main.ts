@@ -10,6 +10,7 @@ import {
 	CartItem as CartItemType,
 	Product,
 	UIAction,
+	UserWishList,
 } from '@/types/AppTypes';
 import { addBike } from '@/services/BikeServices';
 // eslint-disable-next-line import/no-cycle
@@ -203,7 +204,7 @@ export async function saveTempCart(cartItems: CartItem[]){
  *
  * @param cart Saves a product to the user cart on the backend
  */
-export const saveProductToUserCart = async (product: Product, user: any, cartItems: CartItem[]) => {
+export const saveProductToUserCart = async (product: Product, user: AuthUser) => {
 	let res:Response = null;
 	const cartRequest: CartRequest = {
 		data : {
@@ -251,7 +252,7 @@ export async function saveCartAndGetNewCart(product:Product, user:AuthUser, cart
 	try{
 		const newCartItem = createNewCartItem(cartItems, product);
 		if(newCartItem.length === 0){
-			const savedResponse = await saveProductToUserCart(product, user, cartItems);
+			const savedResponse = await saveProductToUserCart(product, user);
 		    cart = await getAllCartProductsAfterSave(savedResponse.ok, user);
 			if(cart.length > cartItems.length){
 			dispatch({ type: 'PATCH_CART', payload: cart });
@@ -535,4 +536,380 @@ export function updateFromLocalStorage(dispatch){
 	}
 	dispatch({ type: 'PATCH_CART', payload: lStorageCart });
 	storeCartItemsInLocalStorage(lStorageCart);
+}
+
+/**
+ *
+ * @param wishList Store Items to the localstorage only
+ */
+export const storeWishListToLocalStorage = (list: UserWishList[]) => {
+	localStorage.setItem('WishList', JSON.stringify(list));
+};
+
+/**
+ *
+ * Get the local storage and override the user object with that of the logged in user
+ */
+export function getLocalStorageUserWishList(user):UserWishList[]{
+	let userWishList:UserWishList[] = [];
+	const lStorageWishList:UserWishList[] = JSON.parse(localStorage.getItem('WishList'));
+	if(lStorageWishList !== null && user){
+		userWishList = lStorageWishList.slice();
+		userWishList.forEach((list)=>{
+			// eslint-disable-next-line no-param-reassign
+			list.Users_permissions_user = user;
+		});
+		// eslint-disable-next-line @typescript-eslint/no-use-before-define
+		storeWishListToLocalStorage([]);
+		return userWishList;
+	}
+	return userWishList	
+}
+
+/**
+ *
+ * @param wishListItem Send local storage items to the backend when user logs in
+ */
+export async function saveTempWishList(list: UserWishList[]){
+	let response:Response = null;
+	try{
+		if(list.length > 0){
+			response = await fetch(`${NEXT_URL}/api/saveWishList`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(list),
+			});
+			return response
+		}
+	}catch(error){
+		console.error(error.message);
+	}
+	return response
+}
+
+/**
+ * send and save user local storage if user is logged in
+ */	
+export async function saveTempUserWishList(user:AuthUser):Promise<boolean>{
+	const userWishList = getLocalStorageUserWishList(user);
+	if(userWishList.length > 0){
+		// send and save local storage to the backend
+		const res = await saveTempWishList(userWishList);
+		return res.ok;
+	}
+	return false;
+}
+
+/**
+ * Initialize user cart when user is logged in
+ */	
+export async function initializeWishListItems(user:AuthUser, dispatch){
+	try{
+		if(user){
+			const saved = await saveTempUserWishList(user);
+			if(saved){
+				await getAllWishLists(dispatch, user);
+			}
+			await getAllWishLists(dispatch, user);
+		}	
+	}
+	catch(err){
+		console.error(err);
+	}
+}
+
+
+/* Method for creating cart Items */
+async function recreateWishListItems(wishListAPI): Promise<UserWishList[]> {
+	const wishListItems: UserWishList[] = [];
+	try {
+		const products: Product[] = await getAllProducts();
+		wishListAPI.response.forEach((productItem) => {
+			const product: Product = products.find(
+				({ id }) => id === productItem.product.id,
+			);
+			wishListItems.push({
+				id: productItem.id,
+				product,
+				Users_permissions_user: productItem.users_permissions_user,
+		});
+	});
+	return wishListItems;
+    }
+	catch(err) {
+		console.error(err.message);
+	}
+	
+	return wishListItems;
+}
+
+/**
+ *  Method for getting all cart Items */
+async function getWishListItems(userId:number): Promise<UserWishList[]> {
+	let wishListItems: UserWishList[] = [];
+
+	try {
+		if(userId){
+			const wishListResponse = await fetch(`${NEXT_URL}/api/getWishListByUserId?id=${userId}`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+			const wishListAPI = await wishListResponse.json();
+			const items = await recreateWishListItems(wishListAPI);
+			wishListItems = items;
+		}
+
+	} catch (error) {
+		console.error('Error:', error);
+	}
+
+	return wishListItems;
+}
+
+/**
+ * Returns wish list items from Backend if it exists else returns null
+ */
+// eslint-disable-next-line consistent-return
+export async function getAllWishListItems(user:AuthUser): Promise<UserWishList[]> {
+	let wishListItems: UserWishList[];
+
+	try {
+		if(user){
+			wishListItems = await getWishListItems(user.id);
+			return wishListItems;
+		}
+
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+/**
+ * Get all user wish list Items if user is logged in
+ */	
+export async function getAllWishLists(dispatch, user:AuthUser) {
+	try{
+		const list:UserWishList[] = await getAllWishListItems(user);
+		if(list !== null){
+			dispatch({ type: 'PATCH_WISH_LIST', payload: list });
+		}
+	}
+	catch(err){
+		console.error(err);
+	}
+}
+
+/**
+ *
+ * @param cart get all cart items after saving a cart item
+ */
+async function getAllWishListProductsAfterSave(saved:boolean, user:AuthUser):Promise<UserWishList[]>{
+	let wishList:UserWishList[] = [];
+	if(!saved && !user){
+		return wishList;
+	}
+	wishList = await getAllWishListItems(user);
+	return wishList;
+}
+
+/**
+ *
+ * @param cart Saves a product to the user wish list on the backend
+ */
+export const saveProductToUserWishList = async (product: Product, user: AuthUser) => {
+	let res:Response = null;
+	const wishListItemRequest = {
+		data : {
+			product: product.id.toString(),
+			users_permissions_user: user.id.toString(),
+	 }};
+
+	 try{
+		res = await fetch(`${NEXT_URL}/api/saveWishListItem`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(wishListItemRequest),
+		});
+
+		return res;
+	 }
+	 catch(err){
+		console.error(err);
+	 }
+	 return res;
+}
+
+/**
+ * Filter the new cart item to avoid duplicates
+ */
+export const createNewWishListItem = (
+	wishListItems: UserWishList[],
+	newItem: Product
+): UserWishList[] => {
+	const newWishListItem = wishListItems.filter(
+		(wishListItem) => wishListItem.product.id === newItem.id,
+	);
+
+	return newWishListItem;
+}
+
+/**
+ *
+ * @param cart Save products to user WishList
+ */
+export async function saveProductAndGetNewWishList(product:Product, user:AuthUser, dispatch: React.Dispatch<UIAction>):Promise<void>{
+	let wishList:UserWishList[] = [];
+	try{
+		const savedResponse = await saveProductToUserWishList(product, user);
+		if(savedResponse){
+			wishList = await getAllWishListProductsAfterSave(savedResponse.ok, user);
+			if(wishList !== null){
+				dispatch({ type: 'PATCH_WISH_LIST', payload: wishList });
+			}
+			else{
+				console.error("Could not update wish list");
+			}
+		}
+	}
+	catch(err){
+		console.error(err);
+	}
+}
+
+/*
+* Add new wishList Item
+*/
+export const addNewWishListItem = (
+	userWishList: UserWishList[],
+	newItem: Product,
+	user: AuthUser,
+): UserWishList[] => {
+	const wishList: UserWishList = {
+		id: newItem.id,
+		product: newItem,
+		Users_permissions_user: user,
+	};
+	const wishListItem = [wishList, ...userWishList];
+	return wishListItem
+};
+
+/**
+ * This method finds if a product exists in a product array. It returns true if the product is found, returns false otherwise.
+ * @return boolean
+ */
+export const isWishListInArray = (product: Product, array: UserWishList[]): boolean =>
+	array.some((p) => p.product.id === product.id);
+
+/**
+ *
+ * @param wishList Store Items to the localstorage and state
+ */
+export const storeWishListItemsInLocalStorage = (list: UserWishList[], product, dispatch, user: AuthUser) => {
+	const wishListItem = addNewWishListItem(list, product, user)
+	localStorage.setItem('WishList', JSON.stringify(wishListItem));
+	dispatch({ type: 'PATCH_WISH_LIST', payload: wishListItem });	
+};
+
+/**
+ * Removes wish list item from state from local storage
+ */
+export const updateLocalStorageWishList = (product:Product, wishList:UserWishList[], dispatch) => {
+	const newWishList:UserWishList[]  = wishList.filter((wishListItem) => wishListItem.product.id !== product.id);
+	localStorage.setItem('WishList', JSON.stringify(newWishList));
+	dispatch({ type: 'PATCH_WISH_LIST', payload: newWishList });
+};
+
+/**
+ * Removes cart items from backend by cart Id, not to be mistaken with product id
+ */
+export async function removeItemFromWishList(itemId: number):Promise<Response> {
+	let res:Response = null;
+	try {
+		res = await fetch(
+			`${NEXT_URL}/api/deleteWishListItem?id=${itemId}`,
+			{ method: 'DELETE',
+		},);
+		return res;
+	} catch (err) {
+		console.error(err);
+	}
+	return res;
+}
+
+/**
+ * remove and update wish list item
+ */
+export async function removeItemAndUpdateWishList(itemId:number, userId, dispatch):Promise<Response>{
+	let res:Response = null;
+	try{
+		res = await removeItemFromWishList(itemId);
+		if(res.ok){
+			const newWishListItems = await getWishListItems(userId);
+			dispatch({ type: 'PATCH_WISH_LIST', payload: newWishListItems });
+		}
+		return res;
+	}
+	catch(err){
+		console.error(err);
+	}
+	return res;
+} 
+
+/**
+ *
+ * Get the wish list local storage items
+ */
+export function getLocalStorageWishList():UserWishList[]{
+	const userWishList:UserWishList[] = [];
+	const lStorageWishList:UserWishList[] = JSON.parse(localStorage.getItem('WishList'));
+	if(lStorageWishList !== null){
+		return lStorageWishList;
+	}
+	return userWishList
+}
+
+/**
+ * Update cart in local storage if user signs out
+ */	
+export function updateWishListFromLocalStorage(dispatch){
+	const lStorageWishList = getLocalStorageWishList();
+	if(lStorageWishList.length > 0){
+		dispatch({ type: 'PATCH_WISH_LIST', payload: lStorageWishList });
+	}
+	dispatch({ type: 'PATCH_WISH_LIST', payload: lStorageWishList });
+	storeWishListToLocalStorage(lStorageWishList);
+}
+
+/**
+ * Remove wish list item from state
+ */
+export const removeStateWishList = (
+	wishList: UserWishList[],
+	product: Product,
+): UserWishList[] =>
+wishList !== null ? wishList.filter((listItem) => listItem.product.id !== product.id) : [];
+
+/**
+ *
+ * @param WishList remove user object and insert items in local storage when the user logs out
+ */
+export function insertWishListInLocalStorage(wishList: UserWishList[]){
+	const localStorageWishListItemsItems:UserWishList[] = [];
+	if(wishList !== null){
+		wishList.forEach((item) => {
+			// eslint-disable-next-line no-param-reassign
+			item.Users_permissions_user = null;
+			// eslint-disable-next-line no-param-reassign
+			item.id = item.product.id;
+			localStorageWishListItemsItems.push(item);
+		});
+		// eslint-disable-next-line @typescript-eslint/no-use-before-define
+		storeWishListToLocalStorage(localStorageWishListItemsItems);
+	}
 }

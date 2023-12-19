@@ -19,7 +19,7 @@ export type UIState = {
 	user?: User;
 	isShopByCategoryCollapsed: boolean;
 	cartItems: CartItem[];
-	wishList?: Product[];
+	wishList: UserWishList[];
 	isModalOpen: boolean;
 	isMobileMenuOpen: boolean;
 	isCategoryMenuOpen: boolean;
@@ -92,6 +92,12 @@ type RemoveProductFromCart = {
 type AddProductToWishList = {
 	type: 'ADD_PRODUCT_TO_WISHLIST';
 	payload: Product;
+	authUser: AuthUser;
+};
+
+type PatchWishList = {
+	type: 'PATCH_WISH_LIST';
+	payload: UserWishList[];
 };
 
 type RemoveProductToWishList = {
@@ -148,6 +154,7 @@ export type UIAction =
 	| ToggleMobileMenu
     | ToggleCategoryMenu
 	| ToggleSubCategoryMenu
+	| PatchWishList
 	| SetCategory
 	| ToggleModal
 	| ResetModal
@@ -195,3 +202,9 @@ export type Bike = {
 	name: string;
 	image: string;
 };
+
+export type UserWishList = {
+	id: number;
+	product: Product;
+	Users_permissions_user?: AuthUser;
+}
