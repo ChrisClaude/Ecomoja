@@ -5,6 +5,7 @@ import { createNewWishListItem, isWishListInArray, removeItemAndUpdateWishList, 
 import { Product } from '@/types/AppTypes';
 import { useContext } from 'react';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
+import { debounce } from 'lodash';
 
 type ToggleWishlistIconProps = {
 	product: Product;
@@ -50,6 +51,7 @@ const ToggleWishlistIcon = ({ product, ...props }: ToggleWishlistIconProps) => {
 		event.stopPropagation();
 	}
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	function handleSaveWishList(){
 		const newWishListItem = createNewWishListItem(wishList, product);
 		if(auth){
@@ -76,11 +78,20 @@ const ToggleWishlistIcon = ({ product, ...props }: ToggleWishlistIconProps) => {
 		}
 	}
 
+	const debounceWishListChange = React.useMemo((
+		) => debounce(handleSaveWishList, 300)
+	, [handleSaveWishList]);
+
+	React.useEffect(() => 
+	() => {
+		debounceWishListChange.cancel()
+	}, [debounceWishListChange]);
+	
 	return (
 		<button
 			{...props}
 			onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
-				preventRedirect(event); preventRedirect(event); handleSaveWishList()
+				preventRedirect(event); preventRedirect(event); debounceWishListChange()
 			}}
 			type="button"
 		>

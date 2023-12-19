@@ -767,7 +767,7 @@ export async function saveProductAndGetNewWishList(product:Product, user:AuthUse
 	let wishList:UserWishList[] = [];
 	try{
 		const savedResponse = await saveProductToUserWishList(product, user);
-		if(savedResponse){
+		if(savedResponse.ok){
 			wishList = await getAllWishListProductsAfterSave(savedResponse.ok, user);
 			if(wishList !== null){
 				dispatch({ type: 'PATCH_WISH_LIST', payload: wishList });
