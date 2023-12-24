@@ -28,6 +28,7 @@ export type UIState = {
 	layoutProp: LayoutProp;
 	loading: boolean;
 	products: Product[];
+	shopMobility: boolean;
 };
 
 export type LayoutProp = {
@@ -61,6 +62,11 @@ type DecreaseProductQuantity = {
 	type: 'DECREASE_PRODUCT_QUANTITY';
 	payload: Product;
 	quantity: number;
+};
+
+type ToggleShopMobility = {
+	type: 'TOGGLE_SHOP_MOBILITY';
+	shopMobility: boolean;
 };
 
 type PatchCart = {
@@ -150,6 +156,7 @@ export type UIAction =
 	| PatchCart
     | SetProducts
 	| IncreaseProductQuantity
+	| ToggleShopMobility
 	| DecreaseProductQuantity
 	| ToggleMobileMenu
     | ToggleCategoryMenu

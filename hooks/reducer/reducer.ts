@@ -45,6 +45,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 			};
 
+		case 'TOGGLE_SHOP_MOBILITY':
+			return {
+				...state,
+				shopMobility: action.shopMobility,
+			};
 		case 'SET_SHOP_BY_CATEGORY':
 			return {
 				...state,
