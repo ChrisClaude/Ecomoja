@@ -4,33 +4,17 @@ import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { CartItem as CartItemType } from '@/types/AppTypes';
 import { UIContext } from '@/hooks/context/UIContext';
-import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, updateLocalStorageCartQuantity, updateCartQuantity } from '@/helpers/main';
+import { removeCartItem, storeCartItemsInLocalStorage, isProductInArray, removeItemFromCart, getAllCartItems, updateLocalStorageCartQuantity, updateCartQuantity, createNewWishListItem, saveProductAndGetNewWishList, removeItemAndUpdateWishList, storeWishListItemsInLocalStorage, updateLocalStorageWishList } from '@/helpers/main';
 import AuthContext, { AuthState } from '@/hooks/context/AuthContext';
 import { debounce } from 'lodash';
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 	const { dispatch, cartItems, wishList } = React.useContext(UIContext);
-	const {user} = useContext<AuthState>(AuthContext);
+	const {user, isAuthenticated} = useContext<AuthState>(AuthContext);
 	const [qty, setQty] = useState(0);
+	const auth = isAuthenticated();
 
-	const handleAddProductToWishList = () => {
-		const check = isProductInArray(cartItem.product, wishList);
-
-		if (check){
-			toast.warn("The product is already added to your wish list", {
-				position: 'top-right',
-				autoClose: 1500,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-			});
-			return;
-		}
-
-		dispatch({ type: 'ADD_PRODUCT_TO_WISHLIST', payload: cartItem.product });
-
+	function addWishListItemToast(){
 		toast.info("You've added a new item to your wishlist", {
 			position: 'top-right',
 			autoClose: 1500,
@@ -40,8 +24,54 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 			draggable: true,
 			progress: undefined,
 		});
-	};
+	}
 
+	function removeWishListItemToast(){
+		toast.error("You've removed an item from your wish list", {
+			position: 'top-right',
+			autoClose: 1500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+	}
+	
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	function handleSaveWishList(){
+		const newWishListItem = createNewWishListItem(wishList, cartItem.product);
+		if(auth){
+			if(newWishListItem.length === 0){
+				saveProductAndGetNewWishList(cartItem.product, user, dispatch).then(()=>{
+					addWishListItemToast();
+				});
+			}
+			else{
+				removeItemAndUpdateWishList(newWishListItem[0].id, user.id, dispatch).then((res)=>{
+					if(res.ok){
+						removeWishListItemToast();
+					}
+				});
+			}
+		}
+		if(!auth && newWishListItem.length === 0){
+			storeWishListItemsInLocalStorage(wishList, cartItem.product, dispatch, user);
+		}
+		else{
+			updateLocalStorageWishList(cartItem.product, wishList, dispatch);
+		}
+	}
+
+	const debounceWishListChange = React.useMemo((
+		) => debounce(handleSaveWishList, 300)
+	, [handleSaveWishList]);
+
+	React.useEffect(() => 
+	() => {
+		debounceWishListChange.cancel()
+	}, [debounceWishListChange]);
+	
 	const handleOnRemoveCartItem = () => {
 		if(user){
 			dispatch({
@@ -68,7 +98,6 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 		}
 		
 	};
-
 
 	const updateQuantityValue = (itemQuantity) => {
 		setQty(itemQuantity);
@@ -154,7 +183,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
 						<button
 							type="button"
 							className="px-2 rounded flex items-center justify-center transition duration-300 shadow-sm bg-gradient-to-r from-gray-50 to-gray-200 hover:from-gray-300 hover:to-gray-200"
-							onClick={handleAddProductToWishList}
+							onClick={debounceWishListChange}
 						>
 							<span className="material-icons mr-1 text-lg">favorite</span>
 							<span>Add to list</span>

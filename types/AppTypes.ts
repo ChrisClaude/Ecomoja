@@ -19,7 +19,7 @@ export type UIState = {
 	user?: User;
 	isShopByCategoryCollapsed: boolean;
 	cartItems: CartItem[];
-	wishList?: Product[];
+	wishList: UserWishList[];
 	isModalOpen: boolean;
 	isMobileMenuOpen: boolean;
 	isCategoryMenuOpen: boolean;
@@ -28,6 +28,7 @@ export type UIState = {
 	layoutProp: LayoutProp;
 	loading: boolean;
 	products: Product[];
+	shopMobility: boolean;
 };
 
 export type LayoutProp = {
@@ -63,6 +64,11 @@ type DecreaseProductQuantity = {
 	quantity: number;
 };
 
+type ToggleShopMobility = {
+	type: 'TOGGLE_SHOP_MOBILITY';
+	shopMobility: boolean;
+};
+
 type PatchCart = {
 	type: 'PATCH_CART';
 	payload: CartItem[];
@@ -92,6 +98,12 @@ type RemoveProductFromCart = {
 type AddProductToWishList = {
 	type: 'ADD_PRODUCT_TO_WISHLIST';
 	payload: Product;
+	authUser: AuthUser;
+};
+
+type PatchWishList = {
+	type: 'PATCH_WISH_LIST';
+	payload: UserWishList[];
 };
 
 type RemoveProductToWishList = {
@@ -144,10 +156,12 @@ export type UIAction =
 	| PatchCart
     | SetProducts
 	| IncreaseProductQuantity
+	| ToggleShopMobility
 	| DecreaseProductQuantity
 	| ToggleMobileMenu
     | ToggleCategoryMenu
 	| ToggleSubCategoryMenu
+	| PatchWishList
 	| SetCategory
 	| ToggleModal
 	| ResetModal
@@ -195,3 +209,9 @@ export type Bike = {
 	name: string;
 	image: string;
 };
+
+export type UserWishList = {
+	id: number;
+	product: Product;
+	Users_permissions_user?: AuthUser;
+}

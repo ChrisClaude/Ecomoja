@@ -1,9 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { CartItem, UIAction, UIState } from '@/types/AppTypes';
-import { addNewCartItem, createNewCartItem, removeStateCartItem, storeCartItemsInLocalStorage } from '@/helpers/main';
+import { CartItem, UIAction, UIState, UserWishList } from '@/types/AppTypes';
+import { addNewCartItem, addNewWishListItem, createNewCartItem, removeStateCartItem, storeCartItemsInLocalStorage } from '@/helpers/main';
 
 const reducer = (state: UIState, action: UIAction): UIState => {
 	let newCartItems: CartItem[] = [];
+	let newWishListItem: UserWishList[] = [];
 
 	switch (action.type) {
 		case 'SET_CURRENT_USER':
@@ -44,6 +45,11 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				...state,
 			};
 
+		case 'TOGGLE_SHOP_MOBILITY':
+			return {
+				...state,
+				shopMobility: action.shopMobility,
+			};
 		case 'SET_SHOP_BY_CATEGORY':
 			return {
 				...state,
@@ -60,19 +66,23 @@ const reducer = (state: UIState, action: UIAction): UIState => {
 				products: action.payload,
 			};
 		case 'ADD_PRODUCT_TO_CART':
-			// eslint-disable-next-line no-case-declarations
-			const { cartItems } = state;
-			newCartItems = addNewCartItem(cartItems, action.payload, action.authUser);
+			newCartItems = addNewCartItem(state.cartItems, action.payload, action.authUser);
 			return {
 				...state,
 				cartItems: newCartItems,
 			};
 
 		case 'ADD_PRODUCT_TO_WISHLIST':
+			newWishListItem = addNewWishListItem(state.wishList, action.payload, action.authUser);
 			return {
 				...state,
-				wishList: [action.payload, ...state.wishList],
+				wishList: newWishListItem,
 			};
+			case 'PATCH_WISH_LIST':
+				return {
+					...state,
+					wishList: [...action.payload],
+				};
 		case 'REMOVE_PRODUCT_FROM_WISHLIST':
 			return {
 				...state,

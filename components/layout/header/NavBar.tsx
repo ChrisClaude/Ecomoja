@@ -116,7 +116,7 @@ const NavBar = () => {
 								<span className="material-icons text-base mr-1">
 								favorite
 								</span>
-								<span>{wishList !== null ? wishList?.length : 0}</span>
+								<span className="text-base text-white">{wishList !== null ? wishList?.length : 0}</span>
 							</Link>
 						</li>
 						<li>

@@ -6,12 +6,12 @@ import { UIContext } from '@/hooks/context/UIContext';
 
 const LoginButton = () => {
 	const { isAuthenticated, logout} = useContext<AuthState>(AuthContext);
-	const { cartItems } = React.useContext(UIContext);
+	const { cartItems, wishList } = React.useContext(UIContext);
 	
 	return (<>
 		{isAuthenticated() ? (
 			<button type='button' className='bg-transparent' onClick={event => {
-				 logout(cartItems);
+				 logout(cartItems, wishList);
 				 }}>
 				Log out
 			</button>

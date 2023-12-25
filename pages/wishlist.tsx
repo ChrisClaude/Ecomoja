@@ -38,7 +38,7 @@ const WishList = () => {
 							<h3 className="mb-6">Wish List</h3>
 							{wishList.map((p) => (
 								<div className="mb-4" key={p.id}>
-									<WishListItem product={p} key={p.id} />
+									<WishListItem product={p.product} key={p.id} />
 								</div>
 							))}
 						</div>
