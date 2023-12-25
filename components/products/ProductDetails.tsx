@@ -8,7 +8,6 @@ import { UIContext } from '@/hooks/context/UIContext';
 import {
 	addProductToCart,
 	createNewWishListItem,
-	isProductInArray,
 	removeItemAndUpdateWishList,
 	saveProductAndGetNewWishList,
 	storeCartItemsInLocalStorage,
