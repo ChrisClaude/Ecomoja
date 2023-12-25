@@ -23,7 +23,8 @@ const initializeUIState: UIState = {
 		id: 0,
 		name: '',
 		subcategories: []
-	}
+	},
+	shopMobility: false
 };
 
 export const UIContext = React.createContext<UIContextType>(
