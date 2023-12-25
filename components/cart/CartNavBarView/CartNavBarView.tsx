@@ -13,7 +13,7 @@ const CartNavICon = () => {
 			className="flex text-black items-center justify-center rounded-3xl w-12 h-8 bg-secondary hover:bg-green hover:text-black text-white hover:no-underline"
 		>
 			<span className="material-icons text-base">shopping_cart</span>
-			<span className="ml-1">{cartItems.length}</span>
+			<span className="ml-1 text-base">{cartItems.length}</span>
 		</a>
 	);
 };
